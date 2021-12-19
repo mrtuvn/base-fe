@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+.modal {
+	&.modal-choose-your-country {
+		.modal-content {
+			padding: 0;
+			.modal-body {
+				padding: 0 30px;
+				color: $color-black;
+				@include screen(custom, max, $max-sm) {
+					padding: 0 20px;
+				}
+				p {
+					color: $color-dimgray;
+				}
+			}
+			.modal-footer {
+				display: block;
+				margin: 0;
+				padding: 20px 30px 30px;
+				@include screen(custom, max, $max-sm) {
+					padding: 20px;
+				}
+				.btn {
+					width: auto;
+					min-width: 110px;
+				}
+			}
+		}
+		.modal-title {
+			@include screen(custom, max, $max-sm) {
+				font-size: 20px;
+			}
+		}
+		.country-options {
+			margin: 22px 0 17px;
+			li {
+				margin-top: 8px;
+				a {
+					display: block;
+					position: relative;
+					font-size: 15px;
+					line-height: 24px;
+					color: $color-nightrider;
+					@include font-family($font-semibold);
+					padding: 11px 15px;
+					background-color: $bg-white;
+					border: 1px solid $line-gray;
+					border-radius: 3px;
+					&:hover {
+						text-decoration: none;
+					}
+					.flag {
+						display: inline-block;
+						margin-right: 10px;
+						width: 24px;
+						height: 24px;
+						line-height: 24px;
+						font-size: 0;
+						vertical-align: middle;
+						[dir="rtl"] & {
+							margin-right: 0;
+							margin-left: 10px;
+						}
+						img {
+							width: 24px;
+							border-radius: 50%;
+						}
+					}
+				}
+				&.active a {
+					background-color: rgba(0, 0, 0, 0.1);
+					box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+					color: $color-carmine;
+					&:after {
+						content: "";
+						width: 24px;
+						height: 24px;
+						background: url("/lg5-common-gp/images/common/icons/arrow-check.svg") no-repeat 0 0;
+						background-size: 24px 24px;
+						position: absolute;
+						top: 13px;
+						right: 20px;
+						[dir="rtl"] & {
+							right: auto;
+							left: 20px;
+							transform: rotateY(180deg);
+						}
+					}
+				}
+			}
+		}
+	}
+}

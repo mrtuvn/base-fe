@@ -1,0 +1,132 @@
+// fit ie lower case. use [.modal] codes by default.scss
+.modal-background {
+	display:none;
+	position: fixed;
+	top: 0; bottom: 0; left: 0; right: 0;
+	background-color:$color-black;
+	opacity:0.5;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
+	&.active {
+		display:block;
+	}
+}
+.broswe-check-popup-layer {
+	display:none;
+	position: fixed;
+	z-index:10002;
+	top: 0; bottom: 0; left: 0; right: 0;
+	margin: auto;
+	&.active {
+		display:block;
+	}
+	.modal-contents {
+		position: absolute;
+		top:10px; left:50%;
+		margin-left:(-710px/2);
+		display:inline-block;
+		vertical-align:middle;
+		background-color:$color-white;
+		text-align:left;
+		[dir="rtl"] & {text-align:right;}
+	}
+	.modal-contentainer {
+		border:0;
+		border-radius:0;
+		box-shadow:none;
+		.modal-layer-close {
+			width:20px;
+			height:20px;
+			padding:0;
+			border:0;
+			background:transparent;
+			cursor:pointer;
+			position:absolute;
+			z-index:1;
+			top:22px; right:30px;
+			[dir="rtl"] & {
+				right:auto;
+				left:30px;
+			}
+			img {
+				width:100%;
+			}
+		}
+		> .modal-body {
+			&:first-child {
+				padding-top: 60px;
+			}
+		}
+	}
+	.modal-header {
+		padding:22px 40px 10px 0;
+		margin:0 30px 16px;
+		border-bottom:3px solid $line-carmine;
+		& + .modal-body {
+			padding-top:0;
+		}
+	}
+	.modal-title {
+		@include font-family($font-semibold);
+		font-size:28px;
+		line-height:32px;
+		color:$color-black;
+	}
+	.modal-body p {margin:0;}
+}
+
+.modal-body{
+	padding:0 30px 30px;
+	// @include screen(custom, max, $max-sm){		
+	// 	padding-bottom:20px;
+	// }
+	.browse-supported-guide {
+		width:650px;
+		font-size:16px;
+		line-height:24px;
+		.headbox {
+			padding:14px 20px 13px;
+			background-color:$bg-whitesmoke;
+			@include font-family($font-semibold);
+			color:$color-nightrider;
+			margin-bottom: 14px;
+			// @include screen(custom, max, $max-sm){		
+			// 	padding:10px 20px 8px;
+			// }
+		}
+		.guide-paragraph {
+			color:$color-dimgray;
+			p {margin-bottom: 24px;}
+			.point-text {
+				font-style:normal;
+				color:$color-carmine;
+			}
+		}
+		.setting-follow-this-step {
+			border-top:1px solid $line-gray;
+			border-bottom:1px solid $line-gray;
+			padding:19px 0 18px;
+			margin-top: -6px;
+			// @include screen(custom, max, $max-sm){		
+			// 	margin-top: -11px;
+			// 	padding:14px 0 12px;
+			// }
+			.setting-step {
+				padding-left: 8px;
+				&:before {
+					content:"-";
+					margin-right:6px;
+					margin-left: -8px;
+				}
+				[dir="rtl"] & {
+					padding-left: 0;
+					padding-right: 8px;
+					&:before {
+						margin-left:6px;
+						margin-right: -8px;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,201 @@
+@charset 'UTF-8';
+@import './setting/variables';
+
+.GPC0045 {
+	max-width:(1284px+60px);
+	padding-left:30px;
+	padding-right:30px;
+	@include screen(custom, max, $max-sm) {
+		padding-left:24px;
+		padding-right:24px;
+	}
+
+	text-align:center;
+	.unit-box-wrap {
+		@extend %clearfix;
+	}
+	.unit-box {
+		float:left;
+		width:calc(100%/2 - 12px);
+		margin-right:24px;
+		[dir="rtl"] & {
+			float:right;
+			margin-right:0;
+			margin-left:24px;
+		}
+		&:last-child {
+			margin-right:0;
+		}
+		[dir="rtl"] &:last-child {
+			margin-left:0;
+		}
+		a{
+			&.icon-text {
+				display:block;
+			}
+			&:hover {
+				text-decoration:none;
+			}
+		}
+		.visual-area {
+			position:relative;
+			width:100%;
+			margin-bottom:19px;
+			img {
+				max-width:64px;
+				@include screen(custom, max, $max-sm) {
+					max-width:32px;
+				}
+			}
+		}
+		.title, .title h1, .title h2, .title h3, .title h4, .title h5, .title h6, .title p { /* LGEGMC-243 20200520 */
+			margin-bottom:12px;
+			font-size:24px;
+			line-height:32px;
+			@include font-family($font-semibold);
+		}
+		.body-copy {
+			margin-bottom:8px;
+			font-size:16px;
+			line-height:24px;
+			color:$color-dimgray;
+		}
+		.place {
+			display:block;
+			margin-bottom:19px;
+			font-size:14px;
+			line-height: 20px;
+			color:$color-carmine;
+			@include font-family($font-bold);
+		}
+		.bottom-btn {
+			.link-text {
+				color:$color-black;
+			}
+			.ico-right{
+				&:after {
+					background: url('/lg5-common-gp/images/common/icons/link-right-nightrider.svg') no-repeat 0 1px;
+				}
+			}
+
+			&.btn-type-box {
+				.btn{
+					margin:0 3px 10px 3px;
+				}
+			}
+			&.btn-type-text {
+				.link-text{
+					margin:0 9px 11px 9px;
+				}
+			}
+
+		}
+
+
+		@include screen(custom, max, $max-sm) {
+			display:table;
+			float:none;
+			position:relative;
+			padding:10px 0 10px 0;
+			width:100%;
+			min-height:32px;
+			margin:0;
+			border-bottom:1px solid $line-lightgray;
+
+			&:last-child{
+				border-bottom:none;
+			}
+			.title, .title h1, .title h2, .title h3, .title h4, .title h5, .title h6, .title p { /* LGEGMC-243 20200520 */
+				display:table-cell;
+				margin:0;
+				font-size:16px;
+				line-height:24px;
+				text-align:left;
+				[dir="rtl"] & {
+					text-align:right;
+				}
+				vertical-align:middle;
+				width:calc(100% - 39px);
+				padding:0 10px 0 7px;
+				[dir="rtl"] & {
+					padding:0 7px 0 10px;
+				}
+			}
+			.visual-area {
+				display:table-cell;
+				width:32px;
+				height:100%;
+				min-height:32px;
+				text-align:left;
+				vertical-align:middle;
+				img {
+					max-width:100%;
+				}
+			}
+			a {
+				&.icon-text {
+					position:relative;
+					overflow:hidden;
+					display:block;
+					color:$color-nightrider;
+					&:after{
+						content: '';
+						position: absolute;
+						right:0;
+						top:50%;
+						z-index:7;
+						transform:translateY(-50%);
+						width:12px;
+						height:12px;
+						background: url('/lg5-common-gp/images/common/icons/link-right-nightrider.svg') no-repeat 50% 50%;
+						[dir="rtl"] & {
+							right:auto;
+							left:0;
+							transform:translateY(-50%) rotate(180deg);
+						}
+					}
+				}
+			}
+			.body-copy,.place,.bottom-btn  {
+				/* LGEGMC-243 20200520 */
+				text-align: left;
+				padding: 0 32px 0 47px;
+				[dir="rtl"] & {
+					text-align: right;
+					padding: 0 47px 0 32px;
+				}
+				/* // LGEGMC-243 20200520 */
+			}
+
+
+		}
+
+	}
+
+	&.icn-img3s-txt3 {
+		.unit-box {
+			width:calc(100%/3 - 16px);
+			@include screen(custom, max, $max-sm) {
+				width:100%;
+			}
+		}
+	}
+	&.icn-img4s-txt4 {
+		.unit-box {
+			width:calc(100%/4 - 18px);
+			@include screen(custom, max, $max-sm) {
+				width:100%;
+			}
+		}
+	}
+	// [Start] LGEGMC-1657 VIP 메뉴 추가 건
+	&.icn-img5s-txt5 {
+		.unit-box {
+			width:calc(100%/5 - 20px);
+			@include screen(custom, max, $max-sm) {
+				width:100%;
+			}
+		}
+	}
+	// [End] LGEGMC-1657 VIP 메뉴 추가 건
+}

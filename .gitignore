@@ -1,0 +1,16 @@
+/.buildpath
+/.cache
+/.metadata
+/.project
+/.settings
+/.vscode
+atlassian*
+/nbproject
+/robots.txt
+/pub/robots.txt
+/sitemap
+/sitemap.xml
+/.idea
+/.gitattributes
+/node_modules
+.DS_Store

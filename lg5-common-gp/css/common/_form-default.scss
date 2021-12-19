@@ -1,0 +1,1096 @@
+
+// Input
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+input[type="email"] {
+	height:44px;
+	padding:0 10px;
+	font-size:16px;line-height:24px;
+	border:1px solid $line-input;
+	background:$bg-white;
+	color:$color-nightrider; // WA-GPC0007-11
+	@include font-family($font-regular);
+	@include placeholder($color-gray);
+
+	&:focus {
+		border:2px solid $line-nero;
+		background-color: #f8fbff;
+	}
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.error-msg {
+	display:none;
+	margin:4px 0 0 10px;
+	span {
+		display:block;
+		font-size:14px;
+		line-height:20px;
+		color:$color-carmine;
+	}
+}
+.error {
+	textarea,
+	input[type="text"],
+	input[type="password"],
+	input[type="tel"],
+	input[type="number"],
+	input[type="email"] {
+		&:not(.radio-text) {
+			border:1px solid $line-red !important;
+		}
+		&:focus {
+			border:2px solid $line-nero;
+			background-color: #f8fbff;
+		}
+	}
+	.error-msg {
+		display:block;
+		&:first-child {
+			margin: 0 0 15px 10px;
+		}
+	}
+	.chosen-container {
+		.chosen-single {
+			border-color: $line-red;
+		}
+	}
+}
+
+// Checkbox
+.checkbox-box {
+	// base
+	display:inline-block;
+	position:relative;
+	margin:0;
+	min-height:24px;
+	cursor:pointer;
+	&.disabled {
+		cursor:default;
+	}
+	// common
+	.checkbox-btn {
+		width:24px;
+		height:24px;
+		border:1px solid $line-input;
+		background-color:$bg-white;
+		position:absolute;
+		left:0;top:1px;
+		[dir="rtl"] & {
+			left:auto;
+			right:0;
+		}
+	}
+	.text {
+		display:inline-block;
+		vertical-align:middle;
+		font-size:16px;
+		line-height:24px;
+		color:$color-dimgray;
+		@include font-family($font-regular);
+		padding-left:34px;
+		[dir="rtl"] & {
+			padding-left:0;
+			padding-right:34px;
+		}
+		@include screen(custom, max, $max-sm) {
+			font-size:14px;
+			line-height:20px;
+		}
+	}
+	input[type="checkbox"]{
+		border:0;
+		clip:rect(0 0 0 0);
+		height:18px;
+		margin:-9px;
+		overflow:hidden;
+		padding:0;
+		position:absolute;
+		width:18px;
+		top:(9px + 4px);
+		left:9px;
+		[dir="rtl"] & {
+			left:auto;
+			right:9px;
+		}
+		&:hover + .checkbox-btn, &:focus + .checkbox-btn {
+			border-color:$line-nero;
+			border-width:2px;
+			background-color:#f8fbff;
+		}
+		&:checked + .checkbox-btn {
+			border-color:$line-carmine;
+			border-width:2px;
+			background-color:$bg-carmine;
+			+ .text {
+				color:$color-black;
+				font-weight:600;
+			}
+		}
+		&:checked + .checkbox-btn:after {
+			box-sizing: content-box;
+			content:'';
+			position:absolute;
+			top:50%;
+			left:3px;
+			width:11px;
+			height:4px;
+			margin-top:-5px;
+			border-style:solid;
+			border-color:$line-white;
+			border-width:0 0 3px 3px;
+			transform:rotate(-45deg);
+		}
+		&:disabled + .checkbox-btn,
+		&:checked:disabled + .checkbox-btn:after {opacity:0.5;}
+		&:disabled + .checkbox-btn + .text {opacity:0.4;}
+		&:focus:disabled + .checkbox-btn,
+		&:hover:disabled + .checkbox-btn {
+			border:1px solid $line-input;
+			background-color:$bg-white;
+		}
+		&:checked:disabled + .checkbox-btn {
+			border-color:$line-carmine;
+			border-width:2px;
+			background-color:$bg-carmine;
+		}
+		// WA_CS Modify
+		&:focus {
+			& + .checkbox-btn:before {
+				content:'';
+				position:absolute;
+				top:-2px;
+				left:-2px;
+				width:24px;
+				height:24px;
+				outline:1px solid #4D90FE;
+				@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+					outline:1px dotted #6b6b6b;
+				}
+			}
+			&:checked {
+				+ .checkbox-btn {
+					outline:2px solid $line-darkgray;
+					&:before {
+						top:-4px;
+						left:-4px;
+						width:28px;
+						height:28px;
+					}
+				}
+			}
+		}
+	}
+	// MKT custom
+	&.checkbox-sm {
+		.checkbox-btn {
+			top:4px;
+			width:18px;
+			height:18px;
+		}
+		.text {
+			font-size:16px;
+			line-height:23px;
+			padding-left:26px;
+			[dir="rtl"] & {
+				padding-right:26px;
+			}
+		}
+		// WA_CS Modify
+		input[type="checkbox"]:focus {
+			& + .checkbox-btn:before {
+				width:18px;
+				height:18px;
+			}
+			&:checked + .checkbox-btn:before {
+				width:22px;
+				height:22px;
+			}
+		}
+		input[type=checkbox]:checked+.checkbox-btn:after {
+			left:2px;
+			width:9px;
+			height:4px;
+			border-width: 0 0 2px 2px;
+		}
+		/*LGEUS-11780,LGEUS-12257 20190927 add*/
+		.filter-cnt{
+			cursor: default;
+			display:inline;
+			font-size:16px;
+			line-height:23px;
+			color:$color-dimgray;
+			@include font-family($font-regular);
+			padding-left:4px;
+			[dir="rtl"] & {
+				// 20200506 START 이상현 - rtl 국가에서 숫자, 기호가 한줄로 표시되지 않는 문제 수정
+				display:inline-block;
+				padding-left:0;
+				// 20200506 END
+				padding-right:4px;
+			}
+			@include screen(custom, max, $max-sm) {
+			font-size:14px;line-height:20px;vertical-align: text-bottom;
+			}
+		}
+		/*LGEUS-11780,LGEUS-12257 20190927 add*/
+	}
+}
+
+// Radio Button
+.radio-box {
+	display:inline-block;
+	position:relative;
+	margin:0;
+	min-height:24px;
+	cursor:pointer;
+	.radio-btn {
+		width:24px;
+		height:24px;
+		border:1px solid $line-input;
+		border-radius:50%;
+		background-color:$bg-white;
+		position:absolute;
+		top:1px;
+		left:0;
+		[dir="rtl"] & {
+			left:auto;
+			right:0;
+		}
+	}
+	.text {
+		display:inline-block;
+		vertical-align: top;
+		padding-top: 4px;
+		padding-left:34px;
+		[dir="rtl"] & {
+			padding-left:0;
+			padding-right:34px;
+		}
+		font-size:16px;
+		line-height:24px;
+		color:$color-dimgray;
+		@include font-family($font-regular);
+		word-break:break-all;
+		@include screen(custom, max, $max-sm) {
+			font-size:14px;
+			line-height:20px;
+		}
+	}
+	&:hover {
+		input[type="radio"] + .radio-btn {
+			border:2px solid $line-black;
+			background-color: #f8fbff;
+		}
+		input[type="radio"]:disabled + .radio-btn {
+			// PJTOBS-31 Start - disabled 항목에 hover시 컬러 변하지 않도록 수정 
+			border:1px solid #6b6b6b;
+			// PJTOBS-31 End
+			background-color: $bg-white;
+		}
+		input[type="radio"]:disabled + .radio-btn + .text {
+			opacity:0.4;
+		}
+	}
+	input[type="radio"] {
+		border:0;
+		clip:rect(0 0 0 0);
+		height:1px;
+		margin:-1px;
+		overflow:hidden;
+		padding:0;
+		position:absolute;
+		width:1px;
+		&:focus + .radio-btn {
+			border:2px solid $line-black;
+			background-color: #f8fbff;
+		}
+		&:checked + .radio-btn {
+			border-color:$line-carmine;
+			background-color: $bg-carmine;
+			+ .text {
+				color:$color-black;
+				font-weight:600;
+			}
+			&:after {
+				@include pseudo();
+				position:absolute;
+				width:8px;
+				height:8px;
+				background-color: $bg-white;
+				border-radius:50%;
+				top:50%;
+				left:50%;
+				transform:translate(-50%, -50%);
+			}
+			&:disabled {opacity:0.5;}
+		}
+		&:disabled + .radio-btn{opacity:0.5;}
+		&:disabled + .radio-btn + .text {opacity:0.4;}
+		&:checked {
+			&:disabled {
+				+ .radio-btn {
+					border-color:$line-carmine;
+					background-color: $bg-carmine;
+					opacity:0.5;
+				}
+			}
+		}
+	}
+}
+
+// Default Selectbox Style sheet
+select.run-chosen { // only selectbox
+	width: 100%;
+	height:44px;
+	position: relative;
+	background-color:$bg-white;
+
+	@include screen(custom, max, $max-sm) {
+		appearance: none;
+		font-size: 16px; // Prevent ios auto zoom
+		border: 1px solid $line-input;
+		max-height: 44px;
+		padding: 11px 32px 11px 10px;
+		border-radius: 0;
+		background: url('/lg5-common-gp/images/common/icons/select-arrow-gray.svg') no-repeat 100% 50% $bg-white;
+		[dir="rtl"] & {
+			padding: 11px 10px 11px 32px;
+			background: url('/lg5-common-gp/images/common/icons/select-arrow-gray.svg') no-repeat 0 50% $bg-white;
+		}
+		color: $color-nightrider;
+		&[disabled] {
+			//color: $color-gray;
+			opacity:0.5;
+		}
+		option[value=""][disabled] {
+			display: none;
+		}
+	}
+	@include screen(custom, min, $min-md) {
+		visibility: none;
+	}
+
+	&.hidden,
+	&.hidden + .chosen-container {
+		display: none;
+	}
+
+	// [Start] LGEBR-587
+	&.type-search-option {
+		& + .chosen-container {
+			width: 100% !important;
+			&:before {
+				content: '';
+				position: absolute;
+				top: 2px;
+				right: 1px;
+				z-index: 5;
+				width: 48px;
+				height: 41px;
+				background: url('/lg5-common-gp/images/support/icons/support-search.svg') no-repeat 50% 50%;
+				pointer-events: none;
+			}
+			.chosen-single {
+				.icon {
+					display: none;
+				}
+			}
+			.chosen-drop {
+				max-height: 200px;
+			}
+			.chosen-search {
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				z-index: 3;
+				padding-right: 50px;
+				
+				.chosen-search-input {
+					width: 100%;
+					outline: none;
+					&:focus {
+						outline: none;
+					}
+				}
+			}
+		}
+		[dir=rtl] & + .chosen-container {
+			&:before {
+				left: 1px;
+				right: auto;
+			}
+			.chosen-search {
+				padding-right: 0;
+				padding-left: 50px;
+			}
+		}
+	}
+	// [End] LGEBR-587
+
+	// LGEIS-593 start
+	&.type-no-icon {
+		& + .chosen-container {
+			&:before {
+				display: none;
+			}
+			.chosen-search {
+				padding-right: 0;
+			}
+		}
+		[dir=rtl] & + .chosen-container {
+			.chosen-search {
+				padding-left: 0;
+			}
+		}
+	}
+	// LGEIS-593 end
+}
+
+
+
+
+
+.error select.run-chosen {
+	border-color:$line-red !important;
+}
+.chosen-container {
+	position: relative;
+	display: block;
+	width: 100%;
+	vertical-align: middle;
+	user-select: none;
+
+	// text font setting
+	font-size: 16px;
+	line-height: 1;
+	color: $color-nightrider; // WA-GPC0007-11
+	background-color: $bg-white;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.chosen-single { // trigger btn
+		fill: currentColor;
+		cursor: pointer;
+		display: block;
+		position: relative;
+		border: 1px solid $line-input;
+		max-height: 44px;
+		padding: 13px 32px 13px 10px;
+		color: inherit;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		max-width: 100%;
+		text-decoration: none;
+		[dir=rtl] & {text-align:right;padding:13px 10px 13px 32px}
+		.icon {
+			position: absolute;
+			right: 0;
+			[dir=rtl] & {left:0;right:auto;}
+			top: 50%;
+			padding: 0 10px;
+			transform: translateY(-50%);
+			fill: $color-gray;
+		}
+	}
+
+	.chosen-drop { // drop menu wrapper
+		display:none;
+		position: absolute;
+		top: 100%;
+		z-index: 10;
+		width: 100%;
+		background: $bg-white;
+		box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+		clip: rect(0, 0, 0, 0);
+		clip-path: inset(100% 100%);
+		[dir="rtl"] & {text-align:right;}
+	}
+
+	.chosen-results { // drop menu
+		padding: 8px;
+		margin-bottom: 0;
+		li {
+			display: list-item;
+			padding: 10px 8px;
+			&.active-result {
+				cursor: pointer;
+				&.highlighted {
+					// hover
+					background-color: #f2f2f2;
+				}
+			}
+
+		}
+		.disabled-result {
+			opacity: 0.4;
+			&:first-child {
+				display: none;
+			}
+		}
+	}
+
+	&.chosen-container-single-nosearch,
+	&:not(.chosen-with-drop) {
+		.chosen-search {
+			position: absolute;
+			clip: rect(0, 0, 0, 0);
+			clip-path: inset(100% 100%);
+			opacity: 0;
+			width:100%;
+			left:0;
+			top:0;
+			.chosen-search-input {width:100%;}
+		}
+	}
+	&.chosen-container-active {
+		color: $color-nightrider;
+		.chosen-single {
+			border: 2px solid $line-nero;
+			padding: 12px 31px 12px 9px;
+			[dir=rtl] & {padding:12px 9px 12px 31px}
+			background:#f8fbff;
+			.icon {
+				fill: currentColor;
+			}
+		}
+	}
+	&.chosen-with-drop {
+		.chosen-single {
+			.icon {
+				svg {
+					transform: rotate(-180deg);
+				}
+			}
+		}
+		.chosen-drop {
+			display:block;
+			clip: auto;
+			clip-path: none;
+			border: 1px solid #6b6b6b;
+			border-top: 0;
+		}
+
+	}
+	&.chosen-disabled {
+		opacity:0.5;
+		.chosen-single {
+			cursor: default;
+		}
+	}
+	&.chosen-scroll {
+		.chosen-drop {
+			max-height: 195px;
+			overflow: hidden;
+			.mCSB_draggerContainer {
+				top: 8px;
+				bottom: 8px;
+			}
+		}
+	}
+	&.group-chosen {
+
+		li {
+			&.active-result {
+				color:$color-nightrider;
+			}
+			&.group-result {
+				@include font-family($font-bold);
+				color:$color-nightrider;
+				&.active-result {
+					color:$color-dimgray;
+					&.highlighted {
+						// hover
+						background-color: #f2f2f2;
+					}
+				}
+			}
+			&.group-option {
+				@include font-family($font-regular);
+				font-size:14px;
+				color:$color-dimgray;
+				padding-left:20px;
+				padding-right:20px;
+			}
+
+		}
+	}
+}
+
+// file uplaod
+// replace file input
+.delivery-part {
+	width:100%;
+	> .file-name-expose,
+	> input[type="text"].file-name-expose {
+		position: relative;
+		display:block;
+		float:left;
+		width:calc(100% - (94px + 10px) );
+		height:44px;
+		input {
+			width: 100%;
+		}
+		.delete {
+			display: none;
+			.icon {
+				position:absolute;left:9px;top:9px;
+				@extend %circleDeletebtn;
+			}
+			position:absolute;
+			right:4px;top:50%;transform:translateY(-50%);
+			width:37px;height:37px;padding:0;
+		}
+		// 20200429 START 구유정 || rtl 수정
+		[dir=rtl] & {
+			float:right;
+			.delete {
+				.icon {
+					left:auto;
+					right:9px;
+				}
+				left:4px;
+				right:auto;
+			}
+		}
+		// 20200429 END 구유정 || rtl 수정
+		@include screen(custom, max, $max-sm) {
+			width:calc(100% - (45px + 10px) );
+		}
+	}
+	input[type="text"].file-name-expose {
+		&:valid, &.in-file {
+			border: 2px solid $line-nero;
+			background-color:#f8fbff;
+			@include placeholder(transparent);
+		}
+	}
+	.replace-file-input {
+		position:relative;
+		display:block;
+		float:left;
+		margin-top:0;
+		margin-left:10px;
+		width:94px; height:44px;
+		background-color:$color-dimgray;
+		border-radius:3px;
+		// 20200429 START 구유정 || rtl 수정
+		[dir=rtl] & {
+			float:right;
+			margin-left:0;
+			margin-right:10px;
+		}
+		// 20200429 END 구유정 || rtl 수정
+		&:hover, &:focus {
+			background-color:#4d4d4d;
+		}
+		input, label {
+			width:100%; height:100%;
+		}
+		input[type="file"] {
+			position: absolute;
+			z-index:-1;
+			opacity: 0;
+			width:100%; height:100%;
+			&:focus + label {
+				outline:1px dotted;outline:5px auto -webkit-focus-ring-color;
+				background-color:#4d4d4d;
+			}
+		}
+		label {
+			@include font-family($font-bold);
+			font-size:14px;
+			line-height:44px;
+			color:$color-white;
+			text-align: center;
+			text-transform: uppercase;
+			margin:auto;
+			cursor: pointer;
+			@include screen(custom, max, $max-sm) {
+				background: url(/lg5-common-gp/images/common/icons/file-add-m.svg) 50% 50% no-repeat;
+				background-size: 20px 20px;
+			}
+		}
+	}
+	&.with-delete {
+		float:left;
+		width:calc(100% - (40px + 10px) );
+		& + .file-btn-group{
+			float:left;
+		}
+		// 20200506 START 구유정 || rtl 추가
+		[dir="rtl"] & {
+			float:right;
+			& + .file-btn-group{
+				float:right;
+			}
+		}
+		// 20200506 END 구유정 || rtl 추가
+	}
+	&.attached {
+		.delete {
+			display: block;
+		}
+	}
+	&:after {
+		content:'';
+		display:block;
+		clear:both;
+	}
+	@include screen(custom, max, $max-sm) {
+		.file-btn-group {
+			display:none;
+		}
+		.replace-file-input {
+			width:44px;height:44px;
+			overflow: hidden;
+			label {
+				color:transparent;
+			}
+		}
+		.add-next, .delete-this {
+			&.active {display:none;}
+		}
+	}
+}
+// file add or delete button
+.file-btn-group{
+	display:block;
+	float:left;
+	margin-top:2px;
+	margin-left:10px;
+	[dir=rtl] & {margin-left:0;margin-right:10px;}
+	.add-next, .delete-this {
+		display:none;
+		width:40px; height:40px;
+		vertical-align:top;
+		border: 1px solid $color-dimgray;
+		border-radius:3px;
+		background-color:$color-white;
+		background-size:20px 20px;
+		background-position:50% 50%;
+		background-repeat:no-repeat;
+		&.active{display:inline-block;}
+		&:hover, &:focus {
+			border-color:#000;
+		}
+	}
+	.add-next {
+		background-image:url(/lg5-common-gp/images/common/icons/file-add.svg);
+		&:hover, &:focus {
+			background-image:url(/lg5-common-gp/images/common/icons/file-add-hover.svg);
+		}
+	}
+	.delete-this {
+		background-image:url(/lg5-common-gp/images/common/icons/file-delete.svg);
+		&:hover, &:focus {
+			background-image:url(/lg5-common-gp/images/common/icons/file-delete-hover.svg);
+		}
+	}
+}
+
+// Search Form Area
+.search-area { 
+	position:relative;
+	form {
+		position:relative;
+	}
+	.search-input {
+		border:1px solid $line-input;
+		background:$bg-white;
+		padding-right:48px;
+		[dir="rtl"] & {
+			padding-right:0;
+			padding-left:48px;
+		}
+		//LGEBR-469 START
+		&.btn-area{
+			border: none;
+			background: transparent;
+			padding-right: 0;
+		}
+		//LGEBR-469 END
+	}
+	input.search,
+	input.datepicker-input {
+		width:100%;height:42px;
+		background:$bg-white;
+		border:0;
+		font-size:16px;
+		line-height:24px;
+		color:$color-black;
+		@include font-family($font-regular);
+		@include placeholder($color-gray);
+		padding:0 0 0 15px;
+		[dir="rtl"] & {padding:0 15px 0 0;}
+	}
+	button.location {
+		width:48px;height:42px;
+		background:url('/lg5-common-gp/images/customer/location.svg') no-repeat 50% 50% transparent;
+		border:0;
+		position:absolute;
+		right:1px;top:1px;
+		[dir="rtl"] & {
+			right:auto;
+			left:1px;
+		}
+	}
+	input.submit {
+		width:48px;height:42px;
+		position:absolute;
+		right:1px;top:1px;
+		[dir="rtl"] & {
+			right:auto;
+			left:1px;
+		}
+	}
+	/*LGECI-379 start*/
+	.submit {
+		width:48px;height:42px;
+		position:absolute;
+		right:1px;top:1px;
+		[dir="rtl"] & {
+			right:auto;
+			left:1px;
+		}
+	}
+	/*LGECI-379 end*/
+	.search-layer {
+		display:none;
+		/* LGECI-293 20201104 add */
+		&.active {
+			display:block;
+			.skip_nav{ 
+				&.for-desktop {
+					display: block;
+				}
+				&.for-mobile {
+					display: none;
+				}
+				@include screen(custom, max, $max-sm) {
+					&.for-desktop {
+						display: none;
+					}
+					&.for-mobile {
+						display: block;
+					}
+				}
+				a:focus {
+					width: 100%; 
+				}
+			}
+		}
+		/* //LGECI-293 20201104 add */
+		position:absolute;
+		z-index:10;
+		width:100%;
+		border:1px solid #6b6b6b;
+		margin-top:-1px;
+		background:$bg-white;
+		.search-head {
+			@include font-family($font-semibold);
+			padding:12px 10px 10px;
+			font-size:16px;line-height:24px;
+			color:$color-nightrider;
+			background:$bg-whitesmoke;
+			border-top:1px solid $line-gray;
+			border-bottom:1px solid $line-gray;
+		}
+		ul.list {
+			@extend %listreset;
+			li {
+				position:relative;
+				background:$color-white;
+				border-bottom:1px solid $line-lightgray;
+				@extend %clearfix;
+				a {
+					display:block;
+					width:100%;
+					@include font-family($font-regular);
+					text-decoration:none;
+					font-size:14px;
+					color:$color-dimgray;
+					// 20200514 START 이상현 - 검색 창 포커스 시 활성화하는 영역의 rtl 수정
+					float:left;
+					padding:8px 60px 9px 20px;
+					[dir="rtl"] & {
+						float:right;
+						padding:8px 20px 9px 60px;
+					}
+					// 20200514 END
+					.product-name {
+						display:block;
+						width:100%;
+						@include truncate(100%);
+					}
+				}
+				&:hover {
+					background:#fdf5f8;
+					a {
+						color:$color-carmine;
+					}
+				}
+				a.delete {
+					// 20200514 START 이상현 - 검색 창 포커스 시 활성화하는 영역의 rtl 수정
+					width:37px;
+					height:37px;
+					padding:0;
+					position:absolute;
+					top:0;
+					right:12px;
+					[dir="rtl"] & {
+						right:auto;
+						left:12px;
+					}
+					.icon {
+						@extend %circleDeletebtn;
+						position:absolute;
+						top:9px;
+						left:9px;
+						[dir="rtl"] & {
+							left:auto;
+							right:9px;
+						}
+					}
+					// 20200514 END
+				}
+			}
+		}
+		.search-result-list {
+			.search-head {
+				@extend %clearfix;
+				&:nth-child(1) {border-top:0;}
+				strong {
+					float:left;display:block;
+					&:nth-child(1) {width:(330px*100%/498px)}
+					&:nth-child(2) {
+						position:relative;
+						width:(168px*100%/498px);
+						&:before {
+							@include pseudo();
+							left:0;top:0;margin:-12px 0 0 -10px;
+							width:1px;height:46px;
+							background:#e4e4e4;
+							// 20200520 START 구유정 || rtl 간격 수정 (REDMINE #7451)
+							[dir="rtl"] & {
+								margin-left:10px;
+							}
+							// 20200520 END 구유정 || rtl 간격 수정 (REDMINE #7451)
+						}
+					}
+				}
+			}
+			.scrollbar {
+				max-height:200px;
+				.mCSB_inside > .mCSB_container {
+					margin-right:0;
+				}
+				//@include screen(custom, max, $max-sm) {
+				//	max-height:none;
+				//}
+			}
+			ul.list {
+				li {
+					a {
+						padding:8px 10px 9px;
+						@extend %clearfix;
+						.model-name,
+						.product-name,
+						.category-name {float:left;display:block;padding:0 10px;}
+						.category-name {float:right;}
+						.model-name {
+							width:(135px*100%/478px);
+							word-break: break-all;
+						}
+						.product-name {width:(183px*100%/478px);}
+						.category-name {width:(156px*100%/478px);}
+					}
+				}
+			}
+		}
+		.no-submit {
+			// test
+			display:none;
+			text-align:center;
+			padding:11px 20px;
+			@include font-family($font-semibold);
+			font-size:16px;line-height:24px;
+			color:$color-carmine;
+		}
+		.not-result {
+			text-align:center;
+			padding:54px 20px 42px;
+			@include font-family($font-semibold);
+			font-size:16px;line-height:24px;
+			color:$color-dimgray;
+		}
+
+		// search bottom area
+		.search-footer-area {
+			padding:13px 20px;
+			text-align:right;
+			background:$bg-whitesmoke;
+			overflow: hidden;
+			.link-close {
+				color: $color-nightrider;
+				float: right;
+			}
+			.link-more {
+				float: left;
+			}
+		}
+		/* 20200914 LGEBR-126 Remove Category From Predictive Search */
+		&.search-two-item {
+			[data-countrycode="br"] & {
+				.search-result-list {
+					ul.list {
+						li {
+							a {
+								.product-name {width:(308px*100%/478px);}
+								.category-name {width:(166px*100%/478px);}
+							}
+						}
+					}
+				} 
+			}
+		}
+		/* // 20200914 LGEBR-126 Remove Category From Predictive Search */
+	}
+}
+
+// Required Text
+.require-area {
+	color:$color-dimgray;
+	@include font-family($font-regular);
+	font-size:16px;
+	line-height:24px;
+	text-align:right;
+	.require {
+		padding:0 3px 0 0;
+		@include font-family($font-regular);
+		// 20200406 START 이지원 [rtl] require * 여백 변경
+		[dir="rtl"] & {padding:0 0 0 3px;}
+		// 20200406 END
+	}
+	// 20200427 START 구유정 || rtl 추가
+	[dir="rtl"] & {
+		text-align:left;
+	}
+	// 20200427 END 구유정 || rtl 추가
+}
+.require {
+	display:inline-block;
+	color:$color-carmine;
+	@include font-family($font-semibold);
+	padding:0 0 0 3px;
+	[dir="rtl"] & {padding:0 3px 0 0;}
+}

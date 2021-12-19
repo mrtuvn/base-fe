@@ -1,0 +1,591 @@
+@charset 'UTF-8';
+@import './setting/variables';
+
+.GPC0022 {
+	/* LGEUS-11784 : 20190807 add */
+	position:fixed;left:0;bottom:0;z-index:1001;
+	/* //LGEUS-11784 : 20190807 add */
+	width:100%;
+	padding:2px 0 25px;
+	border-top:1px solid #bdbdbd;
+	box-shadow:0 -5px 10px rgba(177,176,176,0.1);
+	background:$bg-white;
+	display: none;
+	transition: all 0.5s ease;
+	transform: translateY(100%);
+	transform-origin: top;
+
+	&.active {
+		display: block;
+	}
+	&.showing {
+		transform: translateY(0);
+	}
+	@include screen(custom, max, $max-sm) {
+		padding:0 0 12px;
+		margin-top:-8px;
+	}
+	/* 20190902 : LGEUS-11812 add */
+	&.compare-min{
+		bottom:-110px;
+		@include screen(custom, max, $max-sm) {
+			bottom:-109px;
+		}
+
+		.title-area {
+			display:none;
+		}
+		.compare-product{
+			float: none;
+			.slick-list{
+				visibility: hidden;
+			}
+		}
+		.compare-control{
+			float: none;
+			width: 100%;
+			position: absolute;
+			top: -26px;
+			@include screen(custom, max, $max-sm) {
+				top: -25px;
+			}
+			.text{
+				display: none;
+			}
+			.button{
+				position: static;
+				width: 100%;
+				.btn-clear{
+					display: inline-block;
+					margin-right: 7px;
+					[dir="rtl"] & {
+						margin-right: 0;
+						margin-left: 7px;
+					}
+				}
+				.btn-compare{
+					display: inline-block;
+					margin-left: 8px;
+					[dir="rtl"] & {
+						margin-left: 0;
+						margin-right: 8px;
+					}
+					.count-area{
+						display: inline-block;
+					}
+				}
+				
+			}
+		}
+	}	
+	.compare-sticky-collspace {
+		width:68px;
+		margin: 0 auto;
+		height: 23px;
+		position: relative;
+		top: -23px;
+		@include screen(custom, max, $max-sm) {
+			top: -21px;
+		}
+		button{
+			width: 100%;
+			height: 100%;
+			border: 0px;
+			cursor: pointer;
+			&.open{
+				display: none;
+				&.active{
+					display: block;
+					background: url('/lg5-common-gp/images/common/icons/compare-component-open.png') no-repeat;
+					opacity: 1;
+					@include screen(custom, max, $max-sm) {
+						background: url('/lg5-common-gp/images/common/icons/compare-component-open_Mobile.png') no-repeat;
+						background-size: 68px;
+					}
+				}
+			}
+			&.close{
+				display: none;
+				&.active{
+					display: block;
+					background: url('/lg5-common-gp/images/common/icons/compare-component-close.png') no-repeat;
+					opacity: 1;
+					@include screen(custom, max, $max-sm) {
+						background: url('/lg5-common-gp/images/common/icons/compare-component-close_Mobile.png') no-repeat;
+						background-size: 68px;
+					}
+				}
+			}
+		}
+	}
+	/* //20190902 : LGEUS-11812 add */
+	.inner {
+		position:relative;
+		max-width:(1284px+60px);
+		margin:0 auto;
+		padding-left:30px;
+		padding-right:30px;
+		@extend %clearfix;
+		@include screen(custom, max, $max-sm) {
+			padding-left:8px;
+			padding-right:8px;
+		}
+	}
+	.compare-product {
+		position:relative;
+		float:left;
+		width:calc(100% - 174px);
+		padding:0 30px;
+		[dir="rtl"] & {
+			@include screen(custom, min, $min-md) {
+				float:right;
+			}
+		}
+		@include screen(custom, max, $max-sm) {
+			float:none;
+			width:100%;
+			padding:0;
+		}
+		.item {
+			float:left;
+			[dir="rtl"] & {
+				float:right;
+			}
+			position:relative;
+			width:330px;
+			border:1px solid $line-lightgray;
+			margin:0 10px;
+			padding:14px 0 10px;
+			min-height:125px;
+			@include screen(custom, max, $max-sm) {
+				margin:0 6px;
+				min-height:129px;
+			}
+			&.no-item {
+				background:#fcfcfc;
+				border:1px dashed #dddddd;
+				/*
+				&:after, &:before {
+					@include pseudo();
+					left:50%;top:50%;
+					transform: translate(-50%,-50%);
+					background:#bfbebe;
+				}
+				&:after {width:2px;height:14px;}
+				&:before {width:14px;height:2px;}
+				*/
+			}
+		}
+		.visual {
+			float:left;
+			width:(120px/330px) * 100%;
+			padding-top:9px;
+			padding-left:(20px/330px) * 100%;
+			padding-right:(20px/330px) * 100%;
+			[dir="rtl"] & {
+				@include screen(custom, min, $min-md) {
+					float:right;
+				}
+			}
+			@include screen(custom, max, $max-sm) {
+				float:none;
+				width:100%;
+				padding:0;
+				text-align:center;
+			}
+			a {display:inline-block;}
+			img {
+				width:100%;
+				@include screen(custom, max, $max-sm) {
+					width:40px;
+				}
+			}
+		}
+		.products-info {
+			float:left;
+			width:(210px/330px) * 100%;
+			[dir="rtl"] & {
+				text-align:right;
+				@include screen(custom, min, $min-md) {
+					float:right;
+				}
+			}
+			@include screen(custom, max, $max-sm) {
+				float:none;
+				width:100%;
+			}
+			.model-name {
+				margin:0;
+				@include screen(custom, min, $min-md) {
+					padding-right:(50px/210px) * 100%;
+					[dir="rtl"] & {
+						padding-right:0;
+						padding-left:(50px/210px) * 100%;
+					}
+				}
+				@include screen(custom, max, $max-sm) {
+					// padding:0;
+					margin:2px auto 0;
+					max-width:(110px/140px) * 100%;
+					text-align:center;
+				}
+				a {
+					display:block;
+					height:62px;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					display: -webkit-box;
+					-webkit-line-clamp: 3;
+					-webkit-box-orient: vertical;
+					@include font-family($font-regular);
+					font-size:14px;
+					line-height:20px;
+					color:$color-nightrider;
+					// 20200608 START 박지영 - RTL 에서 괄호로 끝나는 경우 깨지는 현상 수정
+					[dir="rtl"] & {
+						display:block;
+					}
+					// 20200608 END
+					@include screen(custom, max, $max-sm) {
+						height:32px;
+						-webkit-line-clamp: 2;
+						font-size:13px;
+						line-height:16px;
+					}
+				}
+			}
+			.price-area {
+				font-size:0;
+				min-height:35px;
+				margin-top:2px;
+				//text-align:left;
+				[dir="rtl"] & {
+					@include screen(custom, min, $min-md) {
+						text-align:right;
+					}
+				}
+				@include screen(custom, max, $max-sm) {
+					min-height:20px;
+					text-align:center;
+				}
+				.msrp,
+				.purchase-price,
+				.product-price {
+					display:inline-block;
+					//vertical-align:top;
+				}
+				.msrp {
+					font-size:14px;
+					line-height:20px;
+					color:$color-nightrider;
+					text-transform:uppercase;
+					padding-right: 10px;
+					[dir="rtl"] & {
+						padding-right:0;
+						padding-left:10px;
+					}
+					@include screen(custom, min, $min-md) {
+						line-height:32px;
+						margin-top:3px;
+					}
+				}
+				.purchase-price {
+					font-size:16px;
+					line-height:20px;
+					color:$color-black;
+					@include font-family($font-bold);
+					margin:9px 10px 0 0;
+					[dir="rtl"] & {
+						@include screen(custom, min, $min-md) {
+							margin:9px 0 0 10px;
+						}
+					}
+					@include screen(custom, max, $max-sm) {
+						margin:0;
+						font-size:13px;
+						& + .product-price {
+							margin-left: 5px;
+						}
+					}
+				}
+				.product-price {
+					// 20200421 START 박지영 - promotion price 보이지 않게 수정
+					display:none;
+					// 20200421 END
+					@include font-family($font-semibold);
+					font-size:14px;
+					line-height:20px;
+					text-align:left;
+					[dir="rtl"] & {
+						text-align:right;
+					}
+					// PJTOBS-32 Start
+					&.vip {
+						display:inline-block;
+						margin-top:9px;
+						@include screen(custom, max, $max-sm) {
+							margin-top: 0;
+						}
+					}
+					.vip-price {
+							display: block;
+							font-size: 14px;
+							font-weight: 700;
+							line-height: 20px;
+							color: $color-carmine;
+							text-transform: uppercase;
+							text-align: left;
+							[dir="rtl"] & {text-align:right;}
+					}
+					/*
+					@include screen(custom, max, $max-lg) {
+						display:none;
+					}
+					.price {
+						color:$color-dimgray;
+						@include screen(custom, max, $max-lg) {
+							display:inline-block;
+						}
+					}
+					.legal {
+						margin-top:-5px;
+						font-size:13px;
+						color:$color-carmine;
+						@include screen(custom, max, $max-lg) {
+							display:inline-block;
+						}
+					}
+					*/
+					// PJTOBS-32 End
+				}
+			}
+			// non price 
+			.retailer {
+				color:$color-black;
+				@include font-family($font-semibold);
+				@include screen(custom, min, $min-md) {
+					height:36px;
+					font-size:16px;
+					line-height:18px;
+					margin-top: 1px;
+				}
+				@include screen(custom, max, $max-sm) {
+					font-size:13px;
+					line-height:20px;
+					margin-top: 2px;
+					text-align: center;
+				}
+			}
+		}
+		.button {
+			position:absolute;
+			top:6px;
+			right:(13px/330px) * 100%;
+			@include screen(custom, max, $max-sm) {
+				top:8px;
+				right:5px;
+			}
+			[dir="rtl"] & {
+				right:auto;
+				left:(13px/330px) * 100%;
+				@include screen(custom, max, $max-sm) {
+					left:5px;
+				}
+			}
+			.close {
+				overflow:hidden;
+				white-space:nowrap;
+				width:24px;height:24px;
+				padding:0;border:0;opacity:1;
+				background:url('/lg5-common-gp/images/common/icons/compare-close.svg') no-repeat 6px 6px;
+				cursor:pointer;
+				text-indent:200%;
+				[dir="rtl"] & {
+					text-indent:-1000%;
+				}
+			}
+		}
+	}
+	.title-area {
+		width:150px;
+		text-align:center;
+		float:right;
+		[dir="rtl"] & {
+			float:left;
+		}
+		.text {
+			width:100%;
+			margin-top:-5px;
+			color:$color-dimgray;
+			font-size:18px;
+			line-height:22px;
+			h2 {
+				display:inline;
+				font-size:18px;
+				line-height:22px;
+			}
+			@include font-family($font-semibold);
+			@include screen(custom, max, $max-sm) {
+				display:none;
+			}
+			.count {
+				color:$color-carmine;
+				margin-left:4px;
+				&:before, &:after {
+					display:inline;
+					font:inherit;
+					color:$color-dimgray;
+				}
+				&:before {
+					content:"(";
+				}
+				&:after {
+					content:")";
+				}
+			}
+		}
+	}
+	.compare-control {
+		float:right;
+		width:150px;
+		text-align:center;
+		[dir="rtl"] & {
+			@include screen(custom, min, $min-md) {
+				float:left;
+			}
+		}
+		@include screen(custom, max, $max-sm) {
+			float:none;
+			width:100%;
+		}
+		.button {
+			width:150px;
+			position:absolute;
+			bottom:0;
+			right:30px;
+			// 20200311 START 박지영 - Clear All 버튼 1줄로 출력
+			white-space:nowrap;
+			// 20200311 END
+			[dir="rtl"] & {
+				right:auto;
+				left:30px;
+			}
+			@include screen(custom, max, $max-sm) {
+				position:static;
+				width:100%;
+				margin-top:12px;
+			}
+		}
+		.btn-clear {
+			@include screen(custom, max, $max-sm) {
+				display:inline-block;
+			}
+			.link-text {
+				padding:0;border:0;background:transparent;
+				color:$color-dimgray;
+				text-decoration:underline;
+			}
+		}
+		.btn-compare {
+			margin-top:15px;
+			@include screen(custom, max, $max-sm) {
+				display:inline-block;
+				margin:0 0 0 10px;
+				[dir="rtl"] & {
+					margin:0 10px 0 0;
+				}
+			}
+			.btn.btn-sm {
+				width:100%;
+				padding:8px 10px 9px;
+				@include screen(custom, max, $max-sm) {
+					padding:8px 20px 9px;
+				}
+			}
+			.count-area {
+				display:none;
+				// 20200312 START 이상현 - sticky compare 접은 상태에서 () 미노출 수정
+				@include screen(custom, max, $max-sm) {
+					display:inline-block;
+				}
+				&:before, &:after {
+					display:inline;
+					font:inherit;
+					color:$color-white;
+				}
+				&:before {
+					content:"(";
+				}
+				&:after {
+					content:")";
+				}
+				// 20200312 END 이상현 - sticky compare 접은 상태에서 () 미노출 수정
+			}
+		}
+	}
+
+	// Slick CSS
+	.slick-list {
+		overflow: hidden;
+		&:focus {outline:none;}
+	}
+	.slick-loading .slick-track{visibility: hidden;}
+	.slick-slide{
+		display:none;
+		height:100%;
+		min-height:1px;
+		outline:none;
+		img {display:block;}
+		&.slick-loading {
+			img {display:none;}
+		}
+	}
+	.slick-initialized .slick-slide {display: block;}
+	.slick-loading .slick-slide{visibility: hidden;}
+	.slick-arrow {
+		overflow:hidden;
+		line-height:0;
+		position:absolute;top:50%;z-index:1;
+		transform: translate(0,-50%);
+		text-indent:200%;
+		[dir="rtl"] & {
+			transform: translate(0,-50%) rotate(180deg);
+			text-indent:-1000%;
+		}
+		border:0;padding:0;
+		width:11px;height:20px;
+		color:$color-gray;
+		background:transparent;
+		cursor:pointer;
+		&.slick-next {
+			right:0;
+			[dir="rtl"] & {
+				right:auto;
+				left:0;
+			}
+			background:url('/lg5-common-gp/images/common/icons/carousel-right.svg') no-repeat;
+			background-size:11px 20px;
+			&:not([disabled]):hover,
+			&:not([disabled]):focus {
+				background-image:url('/lg5-common-gp/images/common/icons/carousel-right-over.svg');
+			}
+		}
+		&.slick-prev {
+			left:0;
+			[dir="rtl"] & {
+				left:auto;
+				right:0;
+			}
+			background:url('/lg5-common-gp/images/common/icons/carousel-left.svg') no-repeat;
+			background-size:11px 20px;
+			&:not([disabled]):hover,
+			&:not([disabled]):focus {
+				background-image:url('/lg5-common-gp/images/common/icons/carousel-left-over.svg');
+			}
+		}
+		&.slick-disabled { 
+			opacity:0.3; 
+			cursor:default;
+		}
+	}
+}

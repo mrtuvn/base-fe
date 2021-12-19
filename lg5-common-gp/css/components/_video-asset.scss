@@ -1,0 +1,170 @@
+.video-asset {
+	width: 100%;
+	height: 56.25vw;
+	position: relative;
+	overflow: hidden;
+	iframe {
+		border: none;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		// transform: translateY(-50%);
+	}
+}
+
+.visual-area.video-box {
+	position: relative;
+	.see-video {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
+	}
+}
+.link-text.see-video {
+	color: $color-nightrider;
+	&.ico-left {
+		&:before {
+			@extend %linkicon;
+			width:20px;
+			height:20px;
+			background:url('/lg5-common-gp/images/components/btn-play-black.svg') no-repeat;
+			background-size:20px 20px;
+			vertical-align:middle;
+			margin-top:-3px;
+			margin-right:8px;
+			[dir="rtl"] & {
+				margin-right:0;
+				margin-left:8px;
+			}
+		}
+	}
+	.text-white & {
+		color: $color-white;
+		&:before {
+			background: url(/lg5-common-gp/images/components/btn-play.svg) no-repeat;
+		    background-size: 20px 20px;
+		}
+	}
+}
+
+// video close common button
+.video-box-closeset {
+	&.video-modal {
+		button.close-video {
+			top: 2%;
+		}
+	}
+	button.close-video {
+		cursor:pointer;
+		overflow:hidden;
+		width:51px;
+		height:51px;
+		padding:10px;
+		background:url('/lg5-common-gp/images/common/icons/modal-close.svg') no-repeat 10px 10px;
+		background-color: $bg-white !important;
+		background-size:31px 31px;
+		white-space:nowrap;
+		text-indent:200%;
+		border:0;
+		position: absolute;
+		z-index: 1;
+		top: 9%;
+		right: 1.5%;
+		[dir="rtl"] & {
+			right: auto;
+			left: 1.5%;
+
+		}
+		@include screen(custom, max, $max-md) {
+			width:35px;
+			height:35px;
+			padding:5px;
+			background-position:5px 5px;
+			background-size:25px 25px;
+		}
+		@include screen(custom, max, $max-xs) {
+			width:26px;
+			height:26px;
+			background-size:16px 16px;
+		}
+	}
+}
+
+
+// Video asset inside components
+.video-box {
+	position: relative;
+	&.slick-active.carousel-box {
+		background-color: $color-black;
+	}
+	.video-asset {
+		position: absolute;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: $color-black;
+	}
+}
+.video-box:not(.slick-slide) {
+	@include screen(custom, max, $max-sm){
+		.text-area {
+			opacity: 1 !important;
+		}
+	}
+}
+.video-modal {
+	position: fixed;
+	z-index: 9999;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	/* LGEPL-136 20200917 add */
+	background-color: transparent;
+	.video-modal-background{
+		background: #000;
+		opacity: 0.5;
+		height: 100%;
+	}
+	/* //LGEPL-136 20200917 add */
+	.modal-video-asset {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		transform: translateY(-50%);
+		overflow: hidden;
+		.video-asset {
+			max-width: 1284px;
+			max-height: 722px;
+			margin: 0 auto;
+			@media screen and (min-aspect-ratio: 16/9) {
+				height: 100vh;
+			}
+		}
+	}
+	&.youtube {
+		.video-asset {
+			@media screen and (max-aspect-ratio: 16/9) {
+				height: calc((100vw - 15px) * (9/16));
+			}
+		}
+	}
+	&.brightcove {
+		.video-asset {
+			@media screen and (max-aspect-ratio: 16/9) {
+				height: calc((100vw) * (9/16));
+			}
+		}
+	}
+}
+#videoPlayerCode {
+	width:100%;height:100%;
+	.video-js {width:100%;height:100%;}
+	.vjs-poster {width:100%;height:100%;}
+}

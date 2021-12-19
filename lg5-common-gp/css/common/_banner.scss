@@ -1,0 +1,17 @@
+@charset 'UTF-8';
+
+.banner-windows{
+  max-width: 1600px;
+  padding: 25px 0;
+  margin: 0 auto;
+  @include screen(custom, max, $max-design) {
+    padding: 25px 15px;
+  }
+  @include screen(custom, max, $max-sm) {
+    padding: 15px 9px;
+  }
+  .inner{
+    display: flex;
+    justify-content: flex-end;
+  }
+}

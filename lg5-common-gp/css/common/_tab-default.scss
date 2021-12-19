@@ -1,0 +1,861 @@
+// Tab
+[dir=rtl] .js-tab-guide-outer {
+    direction: rtl;
+}
+
+[dir=rtl] .mCustomScrollBox {
+    direction: ltr;
+}
+
+[class^="tabs-type"] {
+    @extend %clearfix;
+    font-size: 0;
+    a,
+    button {
+        background-color: transparent;
+        border: none;
+        padding: 10px 20px;
+        text-transform: uppercase;
+    }
+    .btn-tab {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 14px;
+        line-height: 1;
+        box-sizing: border-box;
+        @include font-family($font-bold);
+        pointer-events: auto;
+    }
+    .btn-tab.active {
+        color: $color-carmine;
+    }
+    @include screen(custom, max, $max-sm) {
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+    // 20200511 START 이상현
+    // [dir="rtl"] & {
+    // 	@include screen(custom, min, $min-md){
+    // 		overflow-x:hidden;
+    // 	}
+    // }
+    // 20200511 END
+}
+
+.tabs-type-liner,
+.tabs-type-nojs-liner {
+    /* LGEGR-42  20200420 add */
+    white-space: nowrap;
+    color: $color-dimgray;
+    @include screen(custom, min, $min-md) {
+        border-bottom: 1px solid $line-gray;
+    }
+    li {
+        display: inline-block;
+        &:first-child {
+            .btn-tab {
+                margin: 0 68px 0 0;
+                @include screen(custom, min, $min-md) {
+                    [dir=rtl] & {
+                        margin: 0 0 0 68px;
+                    }
+                }
+            }
+        }
+        &:last-child {
+            .btn-tab {
+                margin: 0;
+            }
+        }
+    }
+    .btn-tab {
+        font-size: 16px;
+        margin: 0 68px 0 0;
+        border-width: 3px;
+        padding: 12px 20px;
+        pointer-events: auto;
+        &.active {
+            color: $color-black;
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+        background-color:$color-white;
+        color:$color-dimgray;
+        @include screen(custom, max, $max-sm) {
+            // margin:0 4px 0 0;
+            // margin: 0;
+        }
+    }
+    @include screen(custom, max, $max-sm) {
+        margin-top: 5px;
+        // WA-Common-Tab : tab 영역 ul-li 구조화 시작
+        .btn-tab {
+            // font-size:14px;
+            padding: 11px 0 12px 0;
+            margin: 0 0 0 24px;
+            border-width: 2px;
+            &:first-child {
+                margin-left: 0;
+            }
+            // 20200409 START 이상현 - tab ui rtl 코드 추가
+            [dir=rtl] & {
+                margin: 0 24px 0 0;
+                &:first-child {
+                    margin-right: 0;
+                }
+            }
+            // 20200409 END
+        }
+        li {
+            // display: inline-block;
+            margin: 0 0 0 24px;
+            [dir=rtl] & {
+                margin: 0 24px 0 0;
+            }
+        }
+        li:first-child {
+            margin-left: 0;
+            [dir=rtl] & {
+                margin-right: 0;
+            }
+            .btn-tab {
+                margin: 0;
+            }
+        }
+        li:last-child {
+            [dir=rtl] & {
+                margin-left: 0;
+            }
+        }
+        // WA-Common-Tab : tab 영역 ul-li 구조화 끝
+        button.btn-tab {
+            cursor: pointer;
+        }
+    }
+    .btn-tab.active {
+        border-bottom: 3px solid $color-carmine;
+        // padding-bottom: 9px;
+    }
+    a {
+        display: block;
+        @extend %uppercase;
+        text-decoration: none;
+    }
+    &.center {
+        text-align: center;
+    }
+    &.small {
+        border-bottom: 1px solid $line-gray;
+        .btn-tab {
+            font-size: 14px;
+            padding: 11px 20px 11px 20px;
+            margin: 0 10px 0 0;
+        }
+        .btn-tab.active {
+            border-bottom-width: 2px;
+        }
+    }
+}
+
+$tabs-linebox-padding-v: 17px;
+$tabs-linebox-padding-h: 25px;
+
+/* 20200708 Add type line box */
+.tabs-type-line-box {
+    white-space: nowrap;
+    color: $color-dimgray;
+    font-size: 0;
+    // display: flex;
+    // justify-content: center;
+    // flex-wrap: nowrap;
+    li {
+        // align-self: stretch;
+        display: inline-block;
+        vertical-align: top;
+        @include screen(custom, min, $min-md) {
+            & + li {
+                margin-left: -1px;
+            }
+        }
+    }
+    .btn-tab {
+        position: relative;
+        font-size: 18px;
+        margin: 0;
+        pointer-events: auto;
+        background-color:$color-white;
+        color:$color-dimgray;
+        text-transform: none;
+        white-space: normal;
+        @include screen(custom, min, $min-md) {
+            height: 69px;
+            box-sizing: border-box;
+            padding: ($tabs-linebox-padding-v + 7px) $tabs-linebox-padding-h;
+            border: 1px solid #d9d9d9;
+            &.active {
+                z-index: 1;
+                color: $color-black;
+                border: 1px solid $line-carmine;
+            }
+        }
+    }
+    @include screen(custom, max, $max-sm) {
+        .btn-tab {
+            font-size:16px;
+            padding: 11px 0 12px 0;
+            margin: 0 0 0 24px;
+            border-width: 2px;
+            white-space: nowrap;
+            &:first-child {
+                margin-left: 0;
+            }
+            [dir=rtl] & {
+                margin: 0 24px 0 0;
+                &:first-child {
+                    margin-right: 0;
+                }
+            }
+        }
+        li {
+            margin: 0 0 0 24px;
+            [dir=rtl] & {
+                margin: 0 24px 0 0;
+            }
+        }
+        li:first-child {
+            margin-left: 0;
+            [dir=rtl] & {
+                margin-right: 0;
+            }
+            .btn-tab {
+                margin: 0;
+            }
+        }
+        li:last-child {
+            [dir=rtl] & {
+                margin-left: 0;
+            }
+        }
+        button.btn-tab {
+            cursor: pointer;
+        }
+        .btn-tab.active {
+            color: $color-black;
+            border-bottom: 3px solid $color-carmine;
+        }
+    }
+    a {
+        display: block;
+        @extend %uppercase;
+        text-decoration: none;
+    }
+    &.center {
+        text-align: center;
+    }
+    &.small {
+        .btn-tab {
+            font-size: 14px;
+            padding: 11px 20px 11px 20px;
+        }
+        @include screen(custom, max, $max-sm) {
+            .btn-tab.active {
+                border-bottom-width: 2px;
+            }
+        }
+    }
+}
+/* // 20200708 Add type line box */
+
+/* LGEGR-42  20200420 add */
+
+.tabs-type-nojs-liner {
+    .btn-tab:not(.active) {
+        color: $color-black;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+
+/* // LGEGR-42  20200420 add */
+
+.help-library-area .tabs-type-liner {
+    &.small {
+        border-bottom: 1px solid $line-gray;
+        .btn-tab {
+            font-size: 14px;
+            padding: 11px 20px 11px 20px;
+            margin: 0 10px 0 0;
+        }
+        .btn-tab.active {
+            border-bottom-width: 2px;
+        }
+    }
+}
+
+.tabs-type-rect {
+    white-space: nowrap;
+    // 20200527 START 이상현 - rtl 화면에서 박스형 tab의 테두리가 스크롤 버튼의 테두리와 겹치는 것을 방지함.
+    // margin-left:-1px;
+    // [dir=rtl] & {margin-left:0;margin-right:-1px;}
+    // 20200527 END
+    @include screen(custom, min, $min-md) {
+        color: $color-dimgray;
+        a,
+        button {
+            color: $color-dimgray;
+            padding: 15px 40px;
+            text-decoration: none;
+        }
+        .btn-tab {
+            border: 1px solid #d9d9d9;
+            border-left: none;
+            [dir=rtl] & {
+                border-left: 1px solid #d9d9d9;
+                border-right: none;
+            }
+        }
+        li:first-child {
+            .btn-tab {
+                border-left: 1px solid #d9d9d9;
+                // 20200512 START 이상현 - tab 상자 타입의 rtl 화면 수정.
+                [dir=rtl] & {border-right:1px solid #d9d9d9;}
+                // 20200512 END
+            }
+        }
+        &.center {
+            text-align: center;
+        }
+    }
+    @include screen(custom, max, $max-sm) {
+        color: $color-dimgray;
+        // WA-Common-Tab : tab 영역 ul-li 구조화 시작
+        .btn-tab {
+            font-size: 16px;
+            border-width: 3px;
+            background-color: $color-white;
+            color: $color-dimgray;
+            padding: 11px 0 12px 0;
+            margin: 0 0 0 24px;
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+        li {
+            display: inline-block;
+            margin: 0 0 0 24px;
+            &:first-child {
+                margin-left: 0;
+                .btn-tab {
+                    margin-left: 0;
+                }
+            }
+            [dir=rtl] & {
+                &:first-child {
+                    margin-left: 24px;
+                }
+                &:last-child {
+                    margin-left: 0;
+                }
+            }
+        }
+        // WA-Common-Tab : tab 영역 ul-li 구조화 끝
+        .btn-tab.active {
+            color: $color-black;
+            border-bottom: 3px solid $color-carmine;
+        }
+        a {
+            display: block;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+        &.center {
+            text-align: center;
+        }
+    }
+}
+
+.tab-equal-type {
+    // .tabs-type-liner {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    .btn-tab {
+        margin: 0;
+        display: table-cell;
+        width: 100%;
+        text-align: center;
+    }
+    // }
+}
+
+.js-tab-controll,
+.js-tab-controll-type2 {
+    // 보류
+    // [dir="rtl"] & {
+    // 	max-width:100%;
+    // 	overflow-x:hidden;
+    // }
+    &.none-scroll {
+        .tab-scroll-controller {
+            display: none;
+        }
+    }
+    &.has-scroll {
+        .tab-scroll-controller {
+            display: block;
+        }
+    }
+    .tab-scroll-controller {
+        display: none;
+        button {
+            width: 51px;
+            height: 100%;
+            appearance: none;
+            background: transparent;
+            border: none;
+            position: absolute;
+            // 20200511 START 이상현 - tab arrow button의 위치 계산 수정
+            cursor: pointer;
+            // 20200512 START 이상현 - 오타 수정
+            @include screen(custom, min, $min-md) {
+                top: 0;
+            }
+            // 20200512 END
+            @include screen(custom, max, $max-sm) {
+                width: 41px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            // 20200511 END
+            &:before {
+                content: '';
+                display: inline-block;
+                width: 14px;
+                height: 14px;
+                border-left: 1px solid $color-gray;
+                border-top: 1px solid $color-gray;
+                transform-origin: center;
+            }
+            &:not([disabled]):hover:before,
+            &:not(:disabled):hover:before {
+                border-left: 1px solid $color-black;
+                border-top: 1px solid $color-black;
+            }
+            &:disabled {
+                opacity: 0.4;
+                cursor: default;
+            }
+        }
+        .scroll-left {
+            left: 0;
+            &:before {
+                transform: rotate(-45deg);
+                margin-bottom: -2px;
+            }
+            //[dir=rtl] & {
+            //	left:auto;right:0;
+            //	&:before {
+            //		transform: rotate(135deg);
+            //	}
+            //}
+        }
+        .scroll-right {
+            right: 0;
+            &:before {
+                transform: rotate(135deg);
+                margin-left: -8px;
+                margin-bottom: -2px;
+            }
+            //[dir=rtl] & {
+            //	right:auto;left:0;
+            //	&:before {
+            //		transform: rotate(-45deg);
+            //	}
+            //}
+        }
+    }
+}
+
+@include screen(custom, min, $min-md) {
+    .js-tab-controll {
+        position: relative;
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: #e4e4e4;
+        }
+        .tab-outer {
+            padding: 0;
+            background: $bg-white;
+            text-align: center;
+            border-bottom: 1px solid $line-gray;
+            .mCSB_scrollTools.mCSB_scrollTools_horizontal {
+                .mCSB_dragger,
+                .mCSB_draggerRail {
+                    opacity: 0;
+                }
+            }
+            .mCSB_container {
+                // width: auto !important;
+            }
+            .tab-inner {
+                border-bottom: none;
+                // WA-Common-Tab : tab 영역 ul-li 구조화 추가
+                // 20200409 START 이상현 - tab ui rtl 코드 추가
+                li {
+                    display: inline-block;
+                    padding-left: 20px;
+                    &:first-child {
+                        padding-left: 0;
+                    }
+                    .search-tab-inner & {
+                        @include screen(custom, min, 0) {
+                            padding: 0;
+                        }
+                    }
+                }
+                // 20200409 END
+
+                /* 20200708 Add type line box */
+                &.tabs-type-line-box {
+                    li {
+                        display: inline-table;
+                        padding-left: 0;
+                        .btn-tab {
+                            box-sizing: border-box;
+                            max-width: 320px;
+                            height: 69px;
+                            margin: 0;
+                            padding: ($tabs-linebox-padding-v - 2px) $tabs-linebox-padding-h;
+                            text-transform: none;
+                            white-space: normal;
+                            &:last-child {
+                                padding-right: $tabs-linebox-padding-h;
+                            }
+                            &.active {
+                                padding-bottom: ($tabs-linebox-padding-v - 2px);
+                            }
+                        }
+                    }
+                }
+                /* // 20200708 Add type line box */
+            }
+            .btn-tab {
+                max-width: 200px;
+                box-sizing: content-box;
+                padding: 15px 40px 15px 20px;
+                margin-right: 10px;
+                display: table-cell;
+                text-align: center;
+                vertical-align: middle;
+                opacity: 0;
+                -webkit-transition: opacity 0.1s;
+                transition: opacity 0.1s;
+                // WA-Common-Tab : tab 영역 ul-li 구조화 추가
+                height: 32px;
+                &:last-child {
+                    padding-right: 20px;
+                }
+                &.active {
+                    padding-bottom: 12px;
+                }
+            }
+            &.type-half {
+                background-color: transparent;
+                .btn-tab {
+                    padding-right: 20px;
+                    max-width: 130px;
+                }
+            }
+            &:not(.type-half) {
+                .btn-tab.active:not(:last-child) {
+                    position: relative;
+                    &:after {
+                        content: '';
+                        width: 20px;
+                        height: 100%;
+                        border-bottom: 3px solid $color-white;
+                        background: inherit;
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        display: block;
+                        box-sizing: content-box;
+                    }
+                }
+            }
+            &.mCustomScrollbar_init {
+                .btn-tab {
+                    white-space: normal;
+                    opacity: 1;
+                }
+            }
+            .tab-scroll-controller {
+                display: none;
+            }
+        }
+        .tab-scroll-controller {
+            display: block;
+            opacity: 0;
+            -webkit-transition: opacity 0.1s;
+            transition: opacity 0.1s;
+        }
+        &.has-scroll {
+            padding: 0 51px;
+            .tab-scroll-controller {
+                opacity: 1;
+            }
+        }
+        &.none-scroll {
+            .tab-scroll-controller {
+                display: none;
+            }
+            .mCustomScrollbar {
+                padding: 0;
+            }
+            .mCS_no_scrollbar {
+                padding: 0;
+                // .btn-tab {
+                // 	display: inline-block;
+                // }
+                .tab-inner {
+                    // display: inline-flex;
+                    // justify-content: center;
+                    display: inline-block;
+                    text-align: center;
+                    vertical-align: top;
+                    /* 20200708 Add type line box */
+                    // &.tabs-type-line-box {
+                    //     display: flex;
+                    //     justify-content: center;
+                    //     flex-wrap: nowrap;
+                    //     li {
+                    //         align-self: stretch;
+                    //         .btn-tab {
+                    //             table-layout: fixed;
+                    //         }
+                    //     }
+                    // }
+                    /* // 20200708 Add type line box */
+                }
+            }
+        }
+        &:not(.none-scroll) {
+            position: relative;
+            // WA-Common-Tab : tab scroll button 추가를 위한 CSS 수정;
+            .tab-scroll-controller {
+                display: block;
+            }
+        }
+        // 20200506 START 이상현 - tab ui 유형 분기
+        // type liner
+        .tabs-type-liner {
+            li {
+                [dir=rtl] & {
+                    padding-left: 0;
+                    padding-right: 20px;
+                    &:first-child {
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+        // 20200506 END
+        // Type Rect
+        &.type-rect {
+            &:before {
+                display: none;
+            }
+            .tab-outer {
+                border-bottom: 0;
+                background: transparent;
+                // 20200527 START 이상현 - rtl 화면에서 박스형 tab의 테두리가 스크롤 버튼의 테두리와 겹치는 것을 방지함.
+                [dir="rtl"] & .mCSB_container {
+                    margin-left:1px;
+                }
+                // 20200527 END
+                .tab-inner {
+                    li {
+                        padding-left: 0;
+                    }
+                }
+                .btn-tab {
+                    max-width: none;
+                    box-sizing: border-box;
+                    padding: 14px 20px 15px 20px;
+                    margin-right: 0;
+                    // WA-Common-Tab : 기존 탭 디자인 유지;
+                    display: table-cell;
+                    text-align: center;
+                    vertical-align: top;
+                    white-space: nowrap;
+                    &:last-child {
+                        padding-right: 20px;
+                    }
+                    // WA-Common-Tab : 선택된 탭이 2가지 이상으로 구분되도록 디자인 수정 시작;
+                    position: relative;
+                    &.active {
+                        padding-bottom: 15px;
+                        &:after {
+                            content: '';
+                            display: block;
+                            position: absolute;
+                            left: 0;
+                            top: 41px;
+                            width: 100%;
+                            height: 3px;
+                            background: $color-carmine;
+                        }
+                    }
+                }
+                &:not(.type-half) {
+                    .btn-tab.active:not(:last-child) {
+                        &:after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            &:not(.none-scroll) {
+                .tab-outer {
+                    li {
+                        &:first-child {
+                            .btn-tab {
+                                border-left: 0;
+                                [dir=rtl] & {
+                                    border-left: 1px solid #d9d9d9;
+                                }
+                            }
+                        }
+                        &:last-child {
+                            .btn-tab {
+                                border-right: 0;
+                                [dir=rtl] & {
+                                    border-left: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+                .tab-scroll-controller {
+                    button {
+                        border: 1px solid #d9d9d9;
+                        padding: 0;
+                        &:disabled {
+                            opacity: 1;
+                            &:before {
+                                opacity: 0.4;
+                            }
+                        }
+                    }
+                    .scroll-left {
+                        &:before {
+                            margin-left: 9px;
+                        }
+                    }
+                    .scroll-right {
+                        &:before {
+                            margin-left: -9px;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* 20200708 Add type line box */
+        &.tabs-type-line-box-outer {
+            &:before {
+                display: none;
+            }
+            .tab-outer {
+                border-bottom: none;
+                // li:first-child {
+                //     .btn-tab.active {
+                //         position: relative;
+                //         z-index: 2;
+                //     }
+                // }
+            }
+            .scroll-left,
+            .scroll-right {
+                border: 1px solid #d9d9d9;
+            }
+            // .scroll-left {
+            //     border-right: 1px solid #d9d9d9;
+            //     &:disabled {
+            //         border-right: none;
+            //     }
+            // }
+            // .scroll-right {
+            //     border-left: 1px solid #d9d9d9;
+            //     &:disabled {
+            //         border-left: none;
+            //     }
+            // }
+        }
+        /* // 20200708 Add type line box */
+
+    }
+}
+
+@include screen(custom, max, $max-sm) {
+    @keyframes arrow {
+        0% {
+            opacity: 0;
+            background-position: 1px 50%;
+        }
+        50% {
+            opacity: 1;
+            background-position: 3px 50%;
+        }
+        100% {
+            opacity: 0;
+            background-position: 1px 50%;
+        }
+    }
+    .tab-wrap {
+        position: relative;
+        border-bottom: 1px solid $line-gray;
+        margin: 0 -24px;
+        // height:44px;
+        .tab-outer {
+            position: static;
+            // WA-Common-Tab : tab의 prev, next 버튼 모바일 위치 조절;
+            margin: 0 41px;
+            height: auto;
+            font-size: 0;
+            .arrow {
+                // display: none;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                // margin-right: -24px;
+                width: 24px;
+                height: 100%;
+                background: url('/lg5-common-gp/images/common/icons/double-angle-right-nobel.svg') no-repeat;
+                background-position: 0 50%;
+                background-color: $bg-white;
+                animation: arrow 1s 0.2s infinite;
+                transition: opacity 0.5s ease;
+                &.js-fade {
+                    display: none;
+                }
+            }
+        }
+    }
+    .tab-outer {
+        overflow-x: auto;
+        .tab-inner {
+            display: inline-block;
+        }
+    }
+}

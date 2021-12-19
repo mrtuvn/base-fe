@@ -1,0 +1,830 @@
+@charset 'UTF-8';
+
+@import './setting/variables';
+@import './fonts';
+@import './common/navigation';
+@import './common/footer';
+@import './modal/browse-not-supported';
+@import './components/floating-menu'; // floating menu
+@import './common/e-privacy'; // e privacy
+@import './common/carousel-default'; // mobile carousel on product thumbnail and .slick-arrow default css ... etc
+@import './common/energy-label';	//LGEGMC-926
+@import './common/banner';	//LGEBR-314
+@import './modal/with-pay'; // PJTOBSEMI-4-num2 import 위치 변경
+@import './modal/choose-your-country';	//LGEGMC-1473
+@import './modal/header-notice-popup'; // LGEITF-342
+
+// 20200323 START IR 폰트 반영
+// font-family (국가별 폰트가 반영되면, head 태그 내, font preload url도 변경되어야 합니다.) 
+// 20200603 START 박지영 - 기본 폰트에 segoe ui 추가 
+// note. 
+// lg smart 가 아랍어를 지원하지 않으므로, 영문은 lg smart로 아랍어는 sans-serif 로 나오도록 하기로 했음.
+// sans-serif로 설정 시 브라우저에서 Segoe UI 폰트로 렌더링해 주어, 해당 디자인으로 컨펌을 받았음.
+// 그런데 일부 페이지에서 tahoma로 렌더링되는 경우를 발견하여 해당 폰트를 명시적으로 추가해 줌.
+// mac os에서는 segoe ui를 지원하지 않아 Microsoft Sans Serif 추가
+* {font-family: "LG Smart", "Segoe UI", "Microsoft Sans Serif", sans-serif;}
+// 20200603 END
+
+[data-countrycode=gr] * {font-family: "Trebuchet MS",sans-serif;}
+// 20200520 START 박지영 - eg_ar, ae_ar, levant_ar, il 은 기본 폰트 사용하도록 아래 목록에서 삭제
+// 20200525 START 박지영 - sa 기본 폰트 사용하도록 목록에서 삭제
+// 20200525 END
+// 20200520 END
+[data-countrycode=cn] * {font-family: "Microsoft YaHei", sans-serif, Arial;}
+[data-countrycode=tw] * {font-family: "Microsoft JhengHei", sans-serif, Arial;}
+[data-countrycode=jp] * {font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Yu Gothic", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;}
+// 20200506 START 박지영 - vn 폰트 삭제 (lg smart 사용)
+// 20200506 END
+
+[data-countrycode=kz] *,
+[data-countrycode=ua] *,
+[data-countrycode=bg] *,
+[data-countrycode=ru] *,
+[data-countrycode=uz_ru] * {font-family: "LG Smart RU", Tahoma, Arial, sans-serif;}
+
+// 20200514 START 박지영 - ir 폰트 수정
+[data-countrycode=ir] * {font-family:"IRANYekan", sans-serif;}
+// 20200514 END
+// 20200323 END
+
+html[dir=rtl] {direction:rtl;}
+// 20200401 START 박지영 : CMS Edit 화면에서 예외처리
+html[dir=rtl] body.iw-fullscreen-edit {
+	direction:ltr;
+	.component-wrap,
+	.component {
+		direction:rtl;
+	}
+}
+// 20200401 END
+
+body {
+	overflow-x:hidden;
+	//overflow-y:scroll;
+	input::-ms-clear {
+		display:none;
+	}
+	&.compare-sticky-showing {
+		padding-bottom:175px;
+		@include screen(custom, max, $max-sm) {
+			padding-bottom:210px;
+		}
+		&.compare-sticky-min {
+			padding-bottom:65px;
+		}
+	}
+	word-break:break-word ;
+	word-wrap: break-word;
+	[data-countrycode=jp] &{
+		word-break:break-all;
+	}
+}
+
+@import './common/bootstrap-reset'; // bootstrap reset
+
+// for debug (gulp only)
+// common.js : if(location.port == '3000') $('body').addClass('show-grid');
+body.show-grid {
+	.iw_viewport-wrapper {
+		&:before,
+		&:after {
+			content: '';
+			display:block;
+			width:1px;
+			height:100%;
+			position:fixed;
+			z-index:9999;
+			background:red;
+			opacity:0.2;
+			top:0;
+		}
+		@include screen(xl) {
+			&:before {left:50%;margin-left:-642px;}
+			&:after {right:50%;margin-right:-642px;}
+		}
+		@include screen(lg) {
+			&:before {left:30px;}
+			&:after {right:30px;}
+		}
+		@include screen(md) {
+			&:before {left:30px;}
+			&:after {right:30px;}
+		}
+		@include screen(custom, max, $max-sm) {
+			&:before {left:24px;}
+			&:after {right:24px;}
+		}
+	}
+}
+
+#content {
+	&:focus {outline:none;}
+}
+
+@include screen(custom, max, $max-sm) {
+	body.floating-search .search-common {
+		z-index:1000000;
+		position:fixed !important;left:0 !important;top:0 !important;
+		width:100% !important;min-width:100% !important;
+		background:#fff;padding:0;margin:0;
+	}
+}
+
+img.lazyload,
+img.lazyloaded {
+	//transition: opacity 0.1s;
+	&.mobile {display:none;}
+	&.pc-md {display:none;}
+	@media (max-width: 1024px) {
+		&.pc-lg {display:none;}
+		&.pc-md {display:inline-block;}
+	}
+	@media (max-width: 767px) {
+		&.pc {display:none;}
+		&.pc-md {display:none;}
+		&.mobile {display:inline-block;}
+	}
+}
+img.lazyload {opacity:0;}
+img.lazyloaded {opacity:1;}
+
+// Normalize
+h1,h2,h3,h4,h5,h6 {margin: 0;}
+ul, ol, li {
+	@extend %listreset;
+}
+
+@import './common/buttons'; // buttons
+
+.wishlist-compare {
+	position:relative;
+	margin-top:17px;
+	// text-align:center;
+	// 20200427 START 박지영 - 단어 단위로 떨어지도록 변경
+	word-break:normal;
+	word-wrap:normal;
+	// 20200427 END
+	a {
+		display:inline-block;
+		vertical-align:top;
+		margin-left:((16px*100%)/321px);
+		&:first-child {
+			margin-left:0;
+		}
+		[dir="rtl"] & {
+			margin-left:0;
+			margin-right:((16px*100%)/321px);
+			&:first-child {
+				margin-right:0;
+			}
+		}
+		@include screen(custom, max, $max-md) {
+			margin:0;
+		}
+	}
+	.link-text {
+		text-transform:uppercase;
+		@include screen(custom, max, $max-sm) {
+			&.ico-compare {
+				span:first-child {
+					width:auto;
+					height:auto;
+				}
+			}
+		}
+	}
+	.go-compare-sticky {
+		display:none;
+		font-size:14px;
+		color:$color-dimgray;
+		text-decoration: none;
+		@include font-family($font-bold);
+		&:focus {
+			display: block;
+			padding: 5px 10px;
+			position: absolute;
+			width: 100%;
+			height:auto;
+			text-align: center;
+			z-index: 2;
+			clip: initial;
+			background: #fff;
+			margin: -29px 0 0 0;
+		}
+	}
+	.js-compare.added + .go-compare-sticky {
+		display: block;
+		position: absolute;
+	}
+}
+@include screen(custom, max, $max-sm) {
+	.js-compare .visible-xs {
+		display:inline !important;
+	}
+}
+
+
+// LG pick icon
+.recommendation {
+	display: inline-block;
+	vertical-align:middle;
+	width:50px; height:20px;
+	@include font-family($font-bold);
+	text-align:center;
+	font-size:12px;
+	line-height:20px;
+	color:$color-white;
+	background-color:#b24d04;
+	margin-right: 8px;
+	border-radius:3px;
+	@include screen(custom, max, $max-sm){
+	}
+}
+
+// Colorchip tooltip
+.tooltip-box{
+	position: absolute;
+	display:block;
+	background:red;
+	font-size: 14px;
+	padding: 5px 11px;
+	border: 1px solid $line-gray;
+	background: $color-white;
+	color: $color-nightrider;
+	border-radius: 2px;
+	z-index: 9999;
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.05);
+	.arrow{
+		display: inline-block;
+		position: absolute;
+		left: 50%;
+		bottom:-8px;
+		width: 15px;
+		height: 15px;
+		margin-left:-7px;
+		border: 1px solid $line-gray;
+		background:$color-white;
+		border-left: 0;
+		border-top: 0;
+		transform:rotate(45deg);
+		-webkit-transform:rotate(45deg);
+		-moz-transform:rotate(45deg);
+		z-index: 1;
+	}
+	.text{
+		position: relative;
+		z-index: 2;
+	}
+
+}
+
+@import './common/form-default'; // form default
+@import './common/pagination'; // pagination
+@import './common/tab-default'; // tab-default
+@import './common/modal-common'; // modal common
+@import './common/tooltip'; // tooltip
+@import './common/table-list'; // table
+@import './common/date-picker'; // date picker
+@import './common/customer-title'; // title area for non-component page
+@import './common/loading-circle'; // loading circle for ajax
+@import './common/bv-review-star-for-pdp'; // bv review for pdp
+@import './common/in-house-review-star'; // in house review for list
+@import './common/model-switcher'; // model-switcher
+@import './common/sns-share'; // sns share layer
+@import './common/datepicker'; // datepicker
+@import './common/mcustom-scrollbar'; // mcustom scrollbar
+
+// Notice Text
+.notice {
+	position:relative;
+	font-size:14px;
+	line-height:20px;
+	color:$color-dimgray;
+	padding:7px 0 0 22px;
+	&:before {
+		left:0;top:10px;
+		@include pseudo();
+		width:14px;height:14px;
+		background:url('/lg5-common-gp/images/common/icons/notice.svg') no-repeat 0 0;
+	}
+	[dir="rtl"] & {
+		padding:7px 22px 0 0;
+		&:before {
+			left:auto;
+			right:0;
+		}
+	}
+	// LGEUK-462 start
+	&.no-icon {
+		padding-left: 0;
+		&:before {
+			display: none;
+		}
+		[dir="rtl"] & {
+			padding-right: 0;
+		}
+	}
+	// LGEUK-462 end
+}
+
+// print
+@include screen(print) {
+	html, body {
+		width:100%;
+		height:100%;
+		margin:0;
+		-webkit-print-color-adjust: economy;
+		color-adjust: economy;
+	}
+}
+
+// no script
+.header-noscript {
+	padding:10px 30px 11px;
+	@include font-family($font-regular);
+	font-size:14px;
+	line-height:18px;
+	text-align:center;
+	color:$color-nightrider;
+	background:#f5f5f5;
+}
+
+/*
+// ecorebate (only us)
+body {
+	.eco-m .eco-c a {
+		color:$color-carmine;
+		text-decoration:underline;
+		@include font-family($font-regular);
+	}
+}
+
+// foresee (only us)
+body ._acsmiddleright._acsVertical_right._acsbadge--default {
+	top:20% !important;
+}
+*/
+
+// BV Static version (de, fr, uk, ca_en, ca_fr)
+.rating[itemprop=aggregateRating] {
+	opacity:0;
+}
+.rating {
+	// BV rating case add
+	&.loaded {
+		.bv-cleanslate,
+		.bv-cv2-cleanslate dl {
+			text-align:inherit!important;
+			direction:inherit!important;
+		}
+		.bv-stars-container {
+			display:inline-block!important;
+			width:auto!important;
+		}
+		// need path for cascading
+		.bv-cleanslate .bv-rating-top-statistic a.bv-rating-stars-container .bv-rating-stars {
+			font-size:22px !important;
+			line-height:22px !important;
+		}
+		.bv-cleanslate .bv-rating-top-statistic .bv-stars-container dd {
+			padding:0!important;
+		}
+		// bv-core-container-968 case : use 'my lg product'
+		.bv-cleanslate .bv-core-container-968 .bv-stars-container {
+			margin-top:-4px!important;
+		}
+	}
+	//  Shoppilot review (ru)
+	&.rating-ru-box {
+		a {
+			text-decoration:none;
+		}
+		.sp-listing-inline-rating-widget {
+			top:auto;
+			display:block;
+			font-size:16px;
+			.sp-inline-rating-stars {
+				margin-right:0;
+				display:inline-block;
+				.sp-star-on,
+				.sp-star-off,
+				.sp-star-half {
+					width:16px;
+					height:16px;
+					background-size:16px 16px;
+				}
+			}
+			.sp-inline-rating-disclaimer {
+				display: inline-block;
+				vertical-align: top;
+				color: #6b6b6b;
+				font-size: 14px;
+				line-height: 20px;
+				margin-top: 0;
+				margin-left: 2px;
+			}
+		}
+	}
+}
+
+// HTML과 구조가 다르게 개발되어, PDP 페이지에서 좌우 여백이 추가로 발생하는 문제를 CSS로 재수정
+@media (max-width: 1630px) {
+	// fix the layout bug on the PDP page
+	body > .iw_viewport-wrapper > .container-fluid > .container-fluid > .row > .iw_columns > .iw_placeholder > .iw_component > .component-wrap, // for overview
+	body > .iw_viewport-wrapper > .container-fluid > .container-fluid > .row > .iw_columns > .iw_component > .component-wrap, // for spec and... etc.
+	body > .iw_viewport-wrapper > .container-fluid > .container-fluid > .row > .iw_columns > .iw_component > .footer-box { // for footer
+		margin-left:-30px;
+		margin-right:-30px;
+	}
+	// for footer in search result page
+	body > .container-fluid > .row > .iw_columns > .iw_component > .container-fluid > .footer-box {
+		margin-left:-30px;
+		margin-right:-30px;
+	}
+}
+
+// wechat
+#bdshare_weixin_qrcode_dialog {
+	opacity:0;
+	&.hide {
+		display:none;
+	}
+}
+
+// baidu 
+body .tangram-suggestion-main {
+	z-index:2;
+	text-decoration:none;
+}
+// 20200408 START 이상현 - tooltip이 plp sort 영역 아래로 보이는 문제 수정.
+.tooltip {
+	z-index:10;	// cascade bootstrap css(z-index:1070)
+}
+// 20200408 END 
+
+// 20200416 START 박지영 - CAC, CAC_EN 챗봇 아이콘 위치 수정
+#chat-widget-container {
+    right: 0!important;
+    margin-right: 90px!important;
+    @include screen(custom, max, 1439) {
+		left:15px !important;
+		right:auto !important;
+		margin-right:0 !important;
+	}
+}
+// 20200416 END
+
+// 20200429 START 박지영 - 스카이프 div RTL에서 깨지지 않도록 수정
+html[dir=rtl] #skypedetectioncontainer {
+	left:auto;
+	right:-10px !important;
+}
+// 20200429 END
+
+/* PJTOBS-30 20200827 modify */
+#modal_re_stock_alert {
+	//LGEPL-424 s
+	.modal-header{
+		// margin: 0; // LGEGMC-2644
+	}
+	.re-stock-alert-form {
+		.modal-form-area {
+			background-color: $bg-white !important;
+			padding: 0; //LGEPL-424 add
+			.field-block {
+				[dir="rtl"] & {margin-right:0;}
+			}
+		}
+		.desc {
+			@include list-bullet();
+			[dir="rtl"] & {
+				padding-left: 0;
+			}
+			@include font-family($font-regular);
+			font-size: 16px;
+			line-height: 24px;
+			color: $color-nightrider;
+			white-space: normal;
+			&:before {
+				left: 0;
+				[dir="rtl"] & {
+					left: inherit;
+					right: 0;
+				}
+			}
+		}
+		//LGEPL-424 e
+		.field-container {
+			padding: 30px;
+			background: $bg-whitesmoke;
+			dl {
+				margin-bottom: 0;
+				dt {
+					margin-bottom: 3px;
+					font-size: 16px;
+					font-weight: normal;
+					line-height: 24px;
+					color: $color-nightrider;
+				}
+				dd {
+					input {
+						margin-bottom: 0;
+						width: 100%;
+					}
+				}
+			}
+		}
+		.content-paragraph {
+			[dir="rtl"] & {
+				padding-left: 0;
+			}
+			margin-top: 5px;
+			@include font-family($font-regular);
+			font-size: 14px;
+			line-height: 24px;
+			color: $color-nightrider;
+		}
+		.agree-chk {
+			margin-top: 10px;
+			.field-block {
+				text-indent: -26px;
+				padding-left: 26px;
+				[dir="rtl"] & {
+					padding-left: 0;
+					padding-right: 26px;
+				}
+				& + .field-block { margin-top: 5px; }
+				.checkbox-box {
+					text-indent: 0;
+					padding-left: 0;
+					[dir="rtl"] & {
+						padding-left: 0;
+						padding-right: 0;
+					}
+					.checkbox-btn {
+						width: 18px;
+						height: 18px;
+						top: 4px;
+					}
+					input[type="checkbox"]:focus {
+						& + .checkbox-btn:before {
+							width:18px;
+							height:18px;
+						}
+						&:checked + .checkbox-btn:before {
+							width:22px;
+							height:22px;
+						}
+					}
+					input[type="checkbox"]:checked + .checkbox-btn:after{
+						left: 2px;
+						width: 9px;
+						height: 4px;
+						border-width: 0 0 2px 2px;
+					}
+					.text {
+						padding-left: 26px;
+						[dir="rtl"] & {
+							padding-left: 0;
+							padding-right: 26px;
+						}
+					}
+				}
+
+				.link-text{
+					text-indent: 0;
+					padding-left: 0;
+					[dir="rtl"] & {
+						padding-left: 0;
+						padding-right: 0;
+					}
+					line-height: 24px;
+					vertical-align: bottom;
+					&:after {
+						margin-bottom: -2px;
+						background-position: 0 0;
+					}
+				}
+				.require,
+				.error-msg{
+					text-indent: 0;
+				}
+			}
+		}
+		.modal-footer {
+			.btn-area {
+				.btn {
+					margin: 0;
+				}
+			}
+			.notice {
+				margin: 20px 0 0;
+				padding: 0;//LGEPL-424
+				[dir="rtl"] & {
+					padding: 0;//LGEPL-424
+				}
+				text-align: left;
+				.require {
+					color: $color-dimgray;
+					padding: 0 3px 0 0;
+				}
+				[dir="rtl"] & {
+					text-align:right;
+					.require {
+						padding: 0 0 0 3px;
+					}
+				}
+				&::before {
+					display: none;
+				}
+			}
+		}
+	}
+	.re_stock_alert {
+		display: none;
+		.modal-body {
+			padding: 35px 30px 40px;
+			.icon {
+				display: block;
+				background-size: 100%;
+				&.icon-email {
+					margin: 0 auto 20px;
+					width: 56px;
+					height: 56px;
+					background:url('/lg5-common-gp/images/common/icons/email-thin.svg') no-repeat 0 0;
+				}
+				&.icon-notice {
+					margin: 0 auto 20px; // LGEGMC-2644
+					width: 60px; // LGEGMC-2644
+					height: 60px; // LGEGMC-2644
+					background:url('/lg5-common-gp/images/common/icons/no-contents-black.svg') no-repeat 0 0;
+				}
+			}
+			.content-paragraph {
+				font-family: 'LG Smart SemiBold', sans-serif;
+				text-align: center;
+				font-size: 16px; // LGEGMC-2644
+				line-height: 24px; // LGEGMC-2644
+				font-weight: 400;
+				color: $color-black;
+				white-space: normal;
+			}
+		}
+		// LGEGMC-2644 start
+		.modal-footer {
+			flex-direction: row !important;
+		}
+		// LGEGMC-2644 end
+	}
+}
+//web accessibillity add
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px) !important;  /* for Internet Explorer */
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden !important;
+}
+/* //PJROBS-30 20200827 modify */
+
+// firefox large outline
+a:focus,
+button:focus {
+	-moz-outline-style: none;
+}
+
+
+/* popover */
+.popover-wrap {
+	// variable
+	$message-height:161px;
+	$bleet-size:10px;
+
+	position:absolute;
+	z-index: 500;
+	.popover-inner {
+		// width:360px;
+		// @include screen(custom, max, $max-sm) {
+		// 	width:300px;
+		// }
+		background-color:$bg-white;
+		padding:19px 34px 19px 24px;
+		border:1px solid $line-gray;
+		border-radius:3px;
+		text-align:left;
+		[dir="rtl"] & {text-align:right;}
+		&:before {
+			content:"";
+			position:absolute;
+			width:$bleet-size; height:$bleet-size;
+			background: #fff;
+			border-color:inherit;
+			border-style: solid;
+			border-width: 0 0 1px 1px;
+		}
+	}
+	.btn-cover {
+		position: absolute;
+		right:13px; top:13px;
+		[dir="rtl"] & {
+			right:auto;
+			left:13px;
+		}
+		button {
+			width:12px;
+			height:12px;
+			background : {
+				image:url(/lg5-common-gp/images/common/icons/cookie-popover-close.svg);
+				repeat:no-repeat;
+				position:50% 50%;
+				color:transparent;
+			}
+			border:none;
+			cursor: pointer;
+		}
+	}
+	// variation
+	&.above {
+		//top:-#{$message-height + floor($bleet-size/2)};
+		bottom:7px;
+		.popover-inner:before {
+			bottom:-#{floor($bleet-size/2)};
+			transform: rotate(-45deg);
+			-o-transform: rotate(-45deg);
+			-ms-transform: rotate(-45deg);
+			-moz-transform: rotate(-45deg);
+			-webkit-transform: rotate(-45deg);
+		}
+	}
+	&.below {
+		//bottom:-#{$message-height + floor($bleet-size/2)};
+		top:7px;
+		.popover-inner:before {
+			top:-#{floor($bleet-size/2)};
+			transform: rotate(135deg);
+			-o-transform: rotate(135deg);
+			-ms-transform: rotate(135deg);
+			-moz-transform: rotate(135deg);
+			-webkit-transform: rotate(135deg);
+		}
+	}
+	&.center {
+		left:50%;
+		transform: translateX(-50%);
+		-o-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		-webkit-transform: translateX(-50%);
+		.popover-inner:before {
+			left:50%; margin-left:-#{floor($bleet-size/2)};
+		}
+	}
+	&.left {
+		left:-28px;
+		.popover-inner:before {
+			left:24px;
+		}
+	}
+	&.right {
+		right:-28px;
+		.popover-inner:before {
+			right:24px;
+		}
+	}
+	&.bottom {
+		top: 100%;
+		margin-top: 15px;
+		@include screen(custom, max, $max-sm) {
+			margin-top: 0;
+		}
+	}
+}
+
+.intercom-lightweight-app-launcher{
+	bottom:80px !important;
+	right:15px !important;
+	@include screen(custom, max, $max-sm) {
+		bottom:70px !important;
+		right:6px !important;
+	}
+}
+#intercom-container{
+	.intercom-messenger-frame{
+		bottom:150px !important;
+		@include screen(custom, max, $max-sm) {
+			bottom:140px !important;
+		}
+	}
+	.intercom-launcher-frame{
+		bottom:80px !important;
+		right:15px !important;
+		@include screen(custom, max, $max-sm) {
+			bottom:70px !important;
+			right:6px !important;
+		}
+	}
+}

@@ -1,0 +1,229 @@
+// Global
+@font-face {
+	font-family: 'LG Smart';
+	font-display: swap;
+	font-weight: 700;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Bold.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Bold.woff') format('woff');
+}
+@font-face {
+	font-family: 'LG Smart';
+	font-display: swap;
+	font-weight: 700;
+	font-style: italic;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Bold_Italic.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Bold_Italic.woff') format('woff');
+}
+@font-face {
+	font-family: 'LG Smart';
+	font-display: swap;
+	font-weight: 300;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Light.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Light.woff') format('woff');
+}
+@font-face {
+	font-family: 'LG Smart';
+	font-display: swap;
+	font-weight: 400;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Regular.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Regular.woff') format('woff');
+}
+@font-face {
+	font-family: 'LG Smart';
+	font-display: swap;
+	font-weight: 400;
+	font-style: italic;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Regular_Italic.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Regular_Italic.woff') format('woff');
+}
+@font-face {
+	font-family: 'LG Smart';
+	font-display: swap;
+	font-weight: 600;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_SemiBold.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_SemiBold.woff') format('woff');
+}
+
+// RU
+@font-face {
+	font-family: 'LG Smart RU';
+	font-display: swap;
+	font-weight: 700;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Bold_RU.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Bold_RU.woff') format('woff');
+}
+@font-face {
+	font-family: 'LG Smart RU';
+	font-display: swap;
+	font-weight: 300;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Light_RU.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Light_RU.woff') format('woff');
+}
+@font-face {
+	font-family: 'LG Smart RU';
+	font-display: swap;
+	font-weight: 400;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Regular_RU.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Regular_RU.woff') format('woff');
+}
+@font-face {
+	font-family: 'LG Smart RU';
+	font-display: swap;
+	font-weight: 600;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_SemiBold_RU.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_SemiBold_RU.woff') format('woff');
+}
+
+// 20200402 START 박지영 - IR 폰트 반영
+// 20200514 START 박지영 - IR 폰트 수정
+// IR
+@font-face {
+	font-family: 'IRANYekan';
+	font-display: swap;
+	font-weight: 700;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/iranyekanwebbold.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/iranyekanwebbold.woff') format('woff');
+}
+@font-face {
+	font-family: 'IRANYekan';
+	font-display: swap;
+	font-weight: 300;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/iranyekanweblight.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/iranyekanweblight.woff') format('woff');
+}
+@font-face {
+	font-family: 'IRANYekan';
+	font-display: swap;
+	font-weight: 400;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/iranyekanwebregular.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/iranyekanwebregular.woff') format('woff');
+}
+@font-face {
+	font-family: 'IRANYekan';
+	font-display: swap;
+	font-weight: 600;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/iranyekanwebmedium.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/iranyekanwebmedium.woff') format('woff');
+}
+// 20200514 END
+// 20200402 END
+
+
+// DS LG font
+@font-face {
+	font-family: 'DS LG Smart Bold';
+	font-display: swap;
+	font-weight: normal;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Bold.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Bold.woff') format('woff');
+}
+@font-face {
+	font-family: 'DS LG Smart Bold';
+	font-display: swap;
+	font-weight: normal;
+	font-style: italic;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Bold_Italic.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Bold_Italic.woff') format('woff');
+}
+@font-face {
+	font-family: 'DS LG Smart Light';
+	font-display: swap;
+	font-weight: normal;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Light.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Light.woff') format('woff');
+}
+@font-face {
+	font-family: 'LG Smart_Global';
+	font-display: swap;
+	font-weight: normal;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Regular.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Regular.woff') format('woff');
+}
+@font-face {
+	font-family: 'DS LG Smart Italic';
+	font-display: swap;
+	font-weight: normal;
+	font-style: italic;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Regular_Italic.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Regular_Italic.woff') format('woff');
+}
+@font-face {
+	font-family: 'DS LG Smart SemiBold';
+	font-display: swap;
+	font-weight: normal;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_SemiBold.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_SemiBold.woff') format('woff');
+}
+//DS LG font RU
+@font-face {
+	font-family: 'DS LG Smart Bold RU';
+	font-display: swap;
+	font-weight: normal;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Bold_RU.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Bold_RU.woff') format('woff');
+}
+@font-face {
+	font-family: 'DS LG Smart Light RU';
+	font-display: swap;
+	font-weight: normal;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Light_RU.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Light_RU.woff') format('woff');
+}
+@font-face {
+	font-family: 'DS LG Smart RU';
+	font-display: swap;
+	font-weight: normal;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Regular_RU.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_Regular_RU.woff') format('woff');
+}
+@font-face {
+	font-family: 'DS LG Smart SemiBold RU';
+	font-display: swap;
+	font-weight: normal;
+	font-style: normal;
+	src: local('☺'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_SemiBold_RU.woff2') format('woff2'),
+		 url('/lg5-common-gp/webfonts/LG_Smart_SemiBold_RU.woff') format('woff');
+}

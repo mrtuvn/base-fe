@@ -1,0 +1,4637 @@
+@import '../setting/_variables';
+@import './banner-gnb-bottom'; //banner-gnb-bottom
+@import './banner-standard'; //LGEGMC-2323
+
+// skip navigation
+.skip_nav {
+	a {
+		display: block;
+		width: 100%;
+		background: #666;
+		padding: 0 30px;
+		text-align: center;
+		font-size: 14px;
+		line-height: 40px;
+		color: #fff;
+		@include font-family($font-regular);
+		letter-spacing: 0.5px;
+		text-decoration: underline;
+		position: absolute;
+		left: -10000px;
+		[dir="rtl"] & {
+			right: -10000px;
+		}
+		&:focus {
+			position: static;
+			color: #fff !important;
+		}
+		@include screen(custom, max, $max-sm) {
+			padding: 0 24px;
+			&[href="#lgAccHelp"] {
+				display: none;
+			}
+		}
+	}
+	// print
+	@include screen(print) {
+		display: none;
+	}
+}
+.cookie-banner.eprivacy-cookie:not(.active) + .skip_nav {
+	a:focus {
+		z-index: 10002;
+	}
+}
+// naviggation
+header.navigation {
+	position: relative;
+	width: 100%;
+	z-index: 10000;
+	.row {
+		border-bottom: 1px solid #e4e4e4;
+		background: #fff;
+		&.for-desktop {
+			display: block;
+		}
+		&.for-mobile {
+			display: none;
+		}
+		@include screen(custom, max, $max-sm) {
+			&.for-desktop {
+				display: none;
+			}
+			&.for-mobile {
+				display: block;
+			}
+		}
+	}
+	.skip_nav {
+		a:focus {
+			width: 100%;
+		}
+	}
+	.for-desktop {
+		.size {
+			max-width: 1600px;
+			margin: 0 auto;
+			width: 100%;
+			height: 100%;
+			@extend %clearfix;
+		}
+		.logo {
+			height: 93px;
+			float: left;
+			[dir="rtl"] & {
+				float: right;
+			}
+			a {
+				display: block;
+				padding: 0 30px;
+				img {
+					height: 93px;
+				}
+			}
+		}
+		.links {
+			float: left;
+			[dir="rtl"] & {
+				float: right;
+			}
+		}
+		.navi-top {
+			width: 100%;
+			height: 42px;
+			border-bottom: 1px solid #eee;
+		}
+		.navi-btm {
+			width: 100%;
+			height: 51px;
+		}
+		.left-top {
+			height: 100%;
+			font-size: 14px;
+			line-height: 24px;
+			@include font-family($font-bold);
+			overflow: hidden;
+			float: left;
+			[dir="rtl"] & {
+				float: right;
+			}
+			a {
+				display: block;
+				width: auto;
+				height: 100%;
+				padding: 12px 10px 0;
+				color: #333;
+				text-transform: uppercase;
+				overflow: hidden;
+				float: left;
+				margin-right: 10px;
+				[dir="rtl"] & {
+					float: right;
+					margin-right: 0;
+					margin-left: 10px;
+				}
+				img {
+					width: auto;
+					height: 9px;
+					margin: 0 0 2px 0;
+				}
+				// LGEGMC-2706 start
+				&[data-link-name=lg_thinq] {
+					img {
+						transform: translateY(0.7px);
+						height: 11px;
+					}
+				}
+				// LGEGMC-2706 end
+			}
+		}
+		.right-top {
+			height: 100%;
+			font-size: 14px;
+			line-height: 24px;
+			@include font-family($font-semibold);
+			float: right;
+			[dir="rtl"] & {
+				float: left;
+			}
+			a {
+				// display: block;
+				display: inline-block; // PJTLGCOMVSSITE-4 inline-block 으로 변경
+				width: auto;
+				height: 100%;
+				padding: 12px 10px 0;
+				color: $color-black;
+				overflow: hidden;
+			}
+		}
+		.left-btm {
+			@extend %clearfix;
+			height: 100%;
+			float: left;
+
+			[dir="rtl"] & {
+				float: right;
+			}
+			// depth1,2 common style
+			ul.depth1,
+			ul.depth2 {
+				//float:left;
+				display: table-cell;
+				table-layout: fixed;
+				width: auto;
+				height: 100%;
+				@include font-family($font-bold);
+				font-size: 15px;
+				line-height: 16px;
+				height: 100%;
+				margin: 0;
+				> li,
+				.mCSB_container > li {
+					display: table-cell;
+					vertical-align: middle;
+					height: 100%;
+					> a {
+						position: relative;
+						display: block;
+						width: auto;
+						height: 100%;
+						max-height: 51px;
+						margin: 0 9px;
+						color: #333;
+						overflow: hidden;
+						text-transform: uppercase;
+						text-decoration: none;
+						> span {
+							//position:relative;
+							display: table-cell;
+							table-layout: fixed;
+							width: 100%;
+							height: 51px;
+							vertical-align: middle;
+							text-align: center;
+							padding: 0 0 2px 0;
+						}
+						&.active {
+							color: $color-carmine;
+							overflow: visible;
+							& > span:after {
+								position: absolute;
+								content: "";
+								display: block;
+								left: 0;
+								bottom: 0;
+								width: 100%;
+								height: 2px;
+								background: $bg-carmine;
+							}
+						}
+						@include screen(custom, max, 1440) {
+							margin: 0 5px;
+						}
+						@include screen(custom, max, 1325) {
+							.hidden-br {
+								display: none;
+							}
+						}
+					}
+				}
+			}
+			// depth 1 style
+			ul.depth1 {
+				max-width: 870px; // GNB 자동으로 2줄로 나오도록 수정
+				word-break: normal;
+				word-wrap: normal;
+				@include screen(custom, max, 1325) {
+					max-width: 100%;
+				}
+				> li {
+					&.depth1-holder {
+						> a {
+							float: left;
+
+							[dir="rtl"] & {
+								float: right;
+							}
+							@include screen(custom, min, 1326) {
+								display: none;
+							}
+							@include screen(custom, max, 1325) {
+								position: relative;
+								overflow: visible;
+							}
+						}
+						@include screen(custom, max, 1325) {
+							padding-right: 20px;
+							[dir="rtl"] & {
+								padding-right: 0;
+								padding-left: 20px;
+							}
+							> a {
+								&.active {
+									& > span:after {
+										display: none;
+									}
+								}
+							}
+							> a.active {
+								& + .scroll {
+									display: block;
+									ul.depth2 {
+										display: block;
+									}
+								}
+							}
+						}
+						& + li {
+							> a {
+								overflow: visible;
+								&:before {
+									display: block;
+									width: 1px;
+									height: 14px;
+									background: #e4e4e4;
+									content: "";
+									position: absolute;
+									top: 17px;
+									left: -30px;
+									[dir="rtl"] & {
+										left: auto;
+										right: -30px;
+									}
+								}
+							}
+						}
+						& ~ li {
+							padding-left: 20px;
+							[dir="rtl"] & {
+								padding-left: 0;
+								padding-right: 20px;
+							}
+						}
+						@include screen(custom, max, 1440) {
+							& + li {
+								> a {
+									&:before {
+										left: -15px;
+										[dir="rtl"] & {
+											left: auto;
+											right: -15px;
+										}
+									}
+								}
+							}
+							& ~ li {
+								padding-left: 10px;
+								[dir="rtl"] & {
+									padding-right: 10px;
+								}
+							}
+						}
+						@include screen(custom, max, 1325) {
+							& + li {
+								> a {
+									&:before {
+										left: -25px;
+										[dir="rtl"] & {
+											left: auto;
+											right: -25px;
+										}
+									}
+								}
+							}
+							& ~ li {
+								padding-left: 20px;
+								[dir="rtl"] & {
+									padding-right: 20px;
+								}
+							}
+						}
+						ul.depth2 {
+							> li {
+								padding-right: 20px;
+								[dir="rtl"] & {
+									padding-right: 0;
+									padding-left: 20px;
+								}
+							}
+						}
+						@include screen(custom, max, 1440) {
+							ul.depth2 {
+								> li {
+									padding-right: 10px;
+									[dir="rtl"] & {
+										padding-left: 10px;
+									}
+								}
+							}
+						}
+						@include screen(custom, max, 1325) {
+							ul.depth2 {
+								> li {
+									padding-right: 20px;
+									[dir="rtl"] & {
+										padding-left: 20px;
+									}
+								}
+							}
+						}
+						.scroll {
+							.scroll-left,
+							.scroll-right {
+								display: none;
+							}
+						}
+						@include screen(custom, max, 1325) {
+							.scroll {
+								display: none;
+								position: absolute;
+								left: 0;
+								top: 94px;
+								width: 100%;
+								height: 52px;
+								background: $bg-white;
+								margin: 0 -15px;
+								padding: 0 15px;
+								box-sizing: content-box;
+								.scroll-left,
+								.scroll-right {
+									display: none;
+									position: absolute;
+									top: 0;
+									width: 50px;
+									height: 52px;
+									border-bottom: 2px solid #e4e4e4;
+									background: #fff;
+									z-index: 3;
+									&:before {
+										content: "";
+										display: block;
+										position: absolute;
+										width: 14px;
+										height: 14px;
+										border-left: 1px solid $color-gray;
+										border-top: 1px solid $color-gray;
+									}
+									&:hover:before {
+										border-left: 1px solid $color-black;
+										border-top: 1px solid $color-black;
+									}
+									a {
+										position: relative;
+										display: block;
+										width: 100%;
+										height: 100%;
+										z-index: 2;
+									}
+								}
+								.scroll-left {
+									left: 0;
+									&:before {
+										transform: rotate(-45deg);
+										left: 23px;
+										top: 18px;
+									}
+								}
+								.scroll-right {
+									right: 0;
+									&:before {
+										transform: rotate(135deg);
+										right: 23px;
+										top: 18px;
+									}
+								}
+								// scroll bar
+								.mCSB_scrollTools {
+									opacity: 0 !important;
+								}
+								.mCSB_container {
+									width: 100% !important;
+									display: table;
+									text-align: center;
+								}
+								.mCustomScrollBox {
+									-webkit-overflow-scrolling: touch;
+								}
+								&:after {
+									content: "";
+									position: absolute;
+									left: 0;
+									bottom: 0;
+									width: 100%;
+									height: 2px;
+									background: #e4e4e4;
+									z-index: 1;
+								}
+							}
+							ul.depth2 {
+								display: none;
+								z-index: 2;
+								position: relative;
+								width: calc(100% - 80px);
+								max-width: calc(100% - 80px);
+								margin: 0 40px !important;
+								text-align: center;
+								white-space: nowrap;
+								box-sizing: border-box;
+								> li {
+									float: none;
+									display: inline-block;
+									margin: 0 (10px-7px);
+									padding-right: 10px;
+									> a {
+										> span {
+											height: 52px;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			/*
+			.tablet-layer {
+				display:none;
+				@include screen(custom, max, 1325) {
+					&.active {
+						display:block;
+					}
+					.sublayer {
+						display:block !important;
+						top:(94px+52px);
+					}
+				}
+			}
+			*/
+		}
+		.right-btm {
+			position: relative;
+			padding: 14px 4px 0 0;
+			white-space: nowrap;
+			height: 51px;
+			float: right;
+			text-align: right;
+			[dir="rtl"] & {
+				float: left;
+				text-align: left;
+			}
+			.links {
+				padding: 0 13px 0 0;
+				a {
+					@include font-family($font-bold);
+					font-size: 15px;
+					line-height: 28px;
+					color: #333;
+					text-transform: uppercase;
+					&:focus,
+					&:hover {
+						color: $color-carmine;
+					}
+				}
+				// for b2b (inquiry to buy)
+				width: 80px !important;
+				text-align: center;
+				line-height: 16px;
+				position: absolute;
+				right: 196px;
+				top: 8px;
+				[dir="rtl"] & {
+					right: auto;
+					left: 196px;
+				}
+				a {
+					line-height: 16px;
+					white-space: normal;
+				}
+				// INQUIRY TO BUY is kept as 1 line for 1490px and larger
+				@include screen(custom, min, 1490) {
+					//width:140px !important;
+					width: 150px !important; // for ca_fr +10px
+					top: 16px;
+					text-align: right;
+					[dir="rtl"] & {
+						text-align: left;
+					}
+				}
+			}
+			.icons {
+				display: inline-block;
+				white-space: nowrap;
+				vertical-align: top;
+				height: 38px;
+				padding-right: 5px;
+				[dir="rtl"] & {
+					padding-right: 0;
+					padding-left: 5px;
+				}
+				> li,
+				> div {
+					display: inline-block;
+					vertical-align: top;
+					> a {
+						width: 20px;
+						height: 20px;
+						display: inline-block;
+						text-decoration: none;
+						background: {
+							repeat: no-repeat;
+							position: 50% 50%;
+							size: auto auto;
+						}
+						margin-left: 8px;
+						[dir="rtl"] & {
+							margin-left: 0;
+							margin-right: 8px;
+						}
+					}
+					// LGEGMC-1473 start
+					&.hide {
+						display: none;
+					}
+					// LGEGMC-1473 end
+				}
+				.login {
+					position: static;
+					padding-right: 7px;
+					[dir="rtl"] & {
+						padding-right: 0;
+						padding-left: 7px;
+					}
+					> a {
+						background-image: url("/lg5-common-gp/images/common/icons/login-nero.svg");
+						&:focus,
+						&:hover {
+							background-image: url("/lg5-common-gp/images/common/icons/login-carmine.svg");
+						}
+					}
+					&.logged {
+						> a {
+							background-image: url("/lg5-common-gp/images/common/icons/login-fill-nero.svg");
+							&:focus,
+							&:hover {
+								background-image: url("/lg5-common-gp/images/common/icons/login-fill-carmine.svg");
+							}
+						}
+					}
+					// [Start] LGEGMC-1657 VIP 메뉴 추가 건
+					&.is-vip {
+						// GNB - Desktop
+						> a {
+							width: 22px;
+							height: 22px;
+							margin-top: -1px;
+							background-position: center center;
+							background-size: contain;
+							background-image: url("/lg5-common-gp/images/common/icons/login-vip-nero.svg");
+							&:focus,
+							&:hover {
+								background-image: url("/lg5-common-gp/images/common/icons/login-vip-carmine.svg");
+							}
+						}
+					}
+					// [End] LGEGMC-1657 VIP 메뉴 추가 건
+					// [Start] PJTB2BOBS-1 B2B VIP 메뉴 추가 건
+					&.is-vip-b2b {
+						// GNB - Desktop
+						> a {
+							width: 22px;
+							height: 22px;
+							margin-top: -1px;
+							background-position: center center;
+							background-size: contain;
+							background-image: url("/lg5-common-gp/images/common/icons/login-b2b-fill-nero2.svg");
+							&:focus,
+							&:hover {
+								background-image: url("/lg5-common-gp/images/common/icons/login-b2b-fill-carmine2.svg");
+							}
+						}
+					}
+					// [End] PJTB2BOBS-1 B2B VIP 메뉴 추가 건
+				}
+				// .wishlist {
+				// 	> a {
+				// 		background-image:url('/lg5-common-gp/images/common/icons/wishlist-nero.svg');
+				// 		&:focus,
+				// 		&:hover {
+				// 			background-image:url('/lg5-common-gp/images/common/icons/wishlist-carmine.svg');
+				// 		}
+				// 	}
+				// }
+				.cart {
+					position: relative;
+					padding-right: 7px;
+					[dir="rtl"] & {
+						padding-right: 0;
+						padding-left: 7px;
+					}
+					> a {
+						background-image: url("/lg5-common-gp/images/common/icons/cart-nero.svg");
+					}
+					.count {
+						display: block;
+						background: $bg-carmine;
+						color: $color-white;
+						@include font-family($font-regular);
+						font-size: 12px;
+						line-height: 16px;
+						width: auto;
+						min-width: 16px;
+						height: 16px;
+						border-radius: 8px;
+						text-align: center;
+						padding: 0 5px;
+						position: absolute;
+						top: -2px;
+						left: 21px;
+						&:empty {
+							display: none;
+						}
+					}
+				}
+				.search {
+					a {
+						background-image: url("/lg5-common-gp/images/common/icons/search-nero.svg");
+						&:focus,
+						&:hover {
+							background-image: url("/lg5-common-gp/images/common/icons/search-carmine.svg");
+						}
+					}
+				}
+				.language {
+					> a {
+						margin-left: 0;
+						margin-right: 5px;
+						[dir="rtl"] & {
+							margin-right: 0;
+							margin-left: 5px;
+						}
+						color: $color-nightrider;
+						box-sizing: content-box;
+						background: {
+							image: url("/lg5-common-gp/images/common/icons/language-black.svg");
+							position: 0% 57%;
+						}
+						&:focus,
+						&:hover {
+							background-image: url("/lg5-common-gp/images/common/icons/language-carmine.svg");
+							color: $color-carmine;
+						}
+					}
+					.language-options {
+						display: none;
+						width: 165px;
+						background-color: $bg-white;
+						padding: 11px 20px 10px;
+						border: 1px solid $line-gray;
+						font-size: 16px;
+						line-height: 30px;
+						color: $color-dimgray;
+						@include font-family($font-semibold);
+						position: absolute;
+						top: 51px;
+						right: 0;
+						text-align: left;
+						[dir="rtl"] & {
+							right: auto;
+							left: 0;
+							text-align: right;
+						}
+						&.active {
+							display: block;
+						}
+						a {
+							display: block;
+							&.active {
+								color: $color-carmine;
+							}
+							&:focus,
+							&:hover {
+								text-decoration: underline;
+							}
+						}
+					}
+				}
+				// LGEGMC-1473 start
+				.country {
+					padding-right: 8px;
+					[dir="rtl"] & {
+						padding-right: 0;
+						padding-left: 8px;
+					}
+					> a {
+						margin-left: 0;
+						margin-right: 5px;
+						width: 24px;
+						height: 24px;
+						[dir="rtl"] & {
+							margin-right: 0;
+							margin-left: 5px;
+						}
+						box-sizing: content-box;
+						img {
+							margin-top: -1px;
+							width: 22px;
+							border-radius: 50%;
+							vertical-align: top;
+						}
+					}
+					.country-options {
+						display: none;
+						width: 202px;
+						background-color: $bg-white;
+						padding: 15px 0;
+						border: 1px solid $line-dimgray;
+						color: $color-nightrider;
+						@include font-family($font-semibold);
+						position: absolute;
+						top: 51px;
+						right: 0;
+						text-align: left;
+						[dir="rtl"] & {
+							right: auto;
+							left: 0;
+							text-align: right;
+						}
+						&.active {
+							display: block;
+						}
+						a {
+							display: block;
+							padding: 8px 20px;
+							color: $color-nightrider;
+							font-size: 14px;
+							&:focus,
+							&:hover {
+								text-decoration: underline;
+								color: $color-carmine;
+							}
+						}
+						li {
+							margin-top: 3px;
+							&.active  a{
+								color: $color-carmine;
+								background-color: rgba(0, 0, 0, 0.1);
+							}
+						}
+						.flag {
+							display: inline-block;
+							margin-right: 14px;
+							width: 24px;
+							height: 24px;
+							line-height: 24px;
+							font-size: 0;
+							vertical-align: middle;
+							[dir="rtl"] & {
+								margin-right: 0;
+								margin-left: 14px;
+							}
+							img {
+								width: 24px;
+								border-radius: 50%;
+							}
+						}
+					}
+				}
+				// LGEGMC-1473 end
+			}
+		}
+		// close
+		.close {
+			opacity: 1;
+			&:hover {
+				opacity: 1;
+			}
+			position: absolute;
+			top: 12px;
+			right: 12px;
+			[dir="rtl"] & {
+				right: auto;
+				left: 12px;
+			}
+			a {
+				display: block;
+				width: 28px;
+				height: 28px;
+				background: url("/lg5-common-gp/images/common/icons/gnb-close.svg") no-repeat 50% 50%;
+				background-size: 12px 12px;
+			}
+		}
+		// sub layer
+		.sublayer {
+			display: none;
+			width: 100%;
+			background: $bg-white;
+			box-sizing: content-box;
+			border-bottom: 1px solid #e4e4e4;
+			padding: 0 15px 15px;
+			margin: 0 -15px;
+			position: absolute;
+			top: 94px;
+			left: 0;
+			white-space: normal;
+			[dir="rtl"] & {
+				left: auto;
+				right: 0;
+			}
+			.sublayer-inner {
+				max-width: (336px * 4);
+				width: 100%;
+				margin: 0 auto;
+				// padding:50px 0 0;
+				padding: 45px 0 0;
+				&:after {
+					clear: both;
+					width: 100%;
+					height: 0;
+					display: block;
+					content: "";
+				}
+			}
+			$title-column-margin: 21px; // value of between 1depth title n below categories.
+			.title-top {
+				width: 100%;
+				padding: 0 40px;
+				& + .columns {
+					margin-top: $title-column-margin;
+				}
+				& + .column {
+					clear: both;
+				}
+				// 20200507 START 이지원 : 타이틀 위치 rtl 적용
+				[dir="rtl"] & {
+					text-align: right;
+				}
+				// 20200507 END
+			}
+			.column {
+				position: relative;
+				display: block;
+				width: 25%;
+				padding: 0 40px;
+				box-sizing: border-box;
+				font-size: 16px;
+				line-height: 20px;
+				color: $color-dimgray;
+				@include font-family($font-regular);
+				margin-left: 0;
+				margin-right: 0;
+				margin-bottom: 40px;
+				float: left;
+				border-left: 1px solid #e4e4e4;
+				&:nth-child(1) {
+					border-left: 0;
+				}
+				&.featured-product,
+				&.banner {
+					border-left: 0;
+				}
+				// LGEGMC-2181 .featured-product padding 수정
+				&.featured-product {
+					padding-left: 75px;
+				}
+				&.banner {
+					padding-left: 20px;
+				}
+				[dir="rtl"] & {
+					float: right;
+					text-align: right;
+					border-left: none;
+					border-right: 1px solid #e4e4e4;
+					&:nth-child(1) {
+						border-right: 0;
+					}
+					&.featured-product,
+					&.banner {
+						border-right: 0;
+					}
+					&.featured-product {
+						padding-left: 0;
+						padding-right: 75px;
+					}
+					&.banner {
+						padding-left: 0;
+						padding-right: 20px;
+					}
+				}
+				// LGEGMC-2181 start
+				@include screen(custom, max, 1325) {
+					// width: 33.3333%; 
+					&.featured-product {
+						// display: none;
+					}
+				}
+				@include screen(custom, max, 1199) {
+					width: 50%;
+					&.banner {
+						// display: none;
+						padding: 0 40px;
+						clear: both;
+						& + .column.featured-product {
+							clear: none;
+						}
+					}
+					&.featured-product {
+						clear: both;
+					}
+				}
+				// LGEGMC-2181 end
+			}
+			.banner {
+				padding: 0;
+				a {
+					position: relative;
+					display: block;
+					width: 265px;
+					height: 300px;
+					// LGEGMC-2181 start
+					.banner-readmore {
+						color: $color-nightrider;
+						.banner-more {
+							span {
+								&::after {
+									background: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg") no-repeat 0 1px;
+								}
+							}
+						}
+					}
+					// LGEGMC-2181 end
+					&.white {
+						.banner-visual {
+							background: $color-nightrider;
+						}
+						.banner-description {
+							color: $color-white;
+							.banner-link {
+								span {
+									&::after {
+										background: url("/lg5-common-gp/images/common/icons/link-right-white.svg")
+											no-repeat 0 1px;
+									}
+								}
+							}
+						}
+						// LGEGMC-2181 start
+						.banner-readmore {
+							color: $color-white;
+							.banner-more {
+								span {
+									&::after {
+										background: url("/lg5-common-gp/images/common/icons/link-right-white.svg")
+											no-repeat 0 1px;
+									}
+								}
+							}
+						}
+						.banner-visual.outside {
+							.banner-readmore {
+								color: $color-nightrider;
+								.banner-more {
+									span {
+										&::after {
+											background: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg")
+												no-repeat 0 1px;
+										}
+									}
+								}
+							}
+						}
+						// LGEGMC-2181 end
+					}
+					&.black {
+						.banner-visual {
+							background: $color-white;
+						}
+						.banner-description {
+							color: $color-nightrider;
+							.banner-head {
+								color: $color-black;
+							}
+							.banner-link {
+								span {
+									&::after {
+										background: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg") no-repeat 0 1px;
+									}
+								}
+							}
+						}
+					}
+				}
+				.banner-visual {
+					position: relative;
+					overflow: hidden;
+					width: 100%;
+					height: 100%;
+					img {
+						max-width: 100%;
+					}
+					// LGEGMC-2181 start
+					.banner-readmore {
+						display: none;
+						position: absolute;
+						left: 0;
+						right: 0;
+						max-width: 235px;
+						width: 100%;
+						margin: auto;
+						text-align: center;
+						&.active {
+							display: block;
+						}
+						.banner-more {
+							font-size: 14px;
+							line-height: 20px;
+							@include font-family($font-bold);
+							span {
+								@extend %uppercase;
+								position: relative;
+								margin-left: -12px;
+								[dir="rtl"] & {
+									margin-left: 0;
+									margin-right: -12px;
+								}
+								&::after {
+									content: "";
+									display: inline-block;
+									width: 12px;
+									height: 12px;
+									position: absolute;
+									bottom: 2px;
+									margin-left: 3px;
+									[dir="rtl"] & {
+										margin: 0 3px 0 0;
+										transform: rotateY(180deg);
+									}
+								}
+							}
+						}
+					}
+					&.outside {
+						overflow: visible;
+						.banner-readmore {
+							bottom: -25px;
+						}
+					}
+					&.inside {
+						.banner-readmore {
+							bottom: 20px;
+						}
+					}
+					// LGEGMC-2181 end
+				}
+				.banner-description {
+					position: absolute;
+					left: 0;
+					right: 0;
+					max-width: 235px;
+					width: 100%;
+					margin: auto;
+					text-align: center;
+					&.top {
+						top: 20px;
+					}
+					&.bottom {
+						bottom: 20px;
+					}
+					.banner-desc {
+						font-size: 14px;
+						line-height: 20px;
+						@include font-family($font-semibold);
+					}
+					.banner-head {
+						font-size: 20px;
+						line-height: 24px;
+						@include font-family($font-semibold);
+						margin: 5px 0 8px;
+					}
+					.banner-link {
+						font-size: 14px;
+						line-height: 20px;
+						@include font-family($font-bold);
+						span {
+							@extend %uppercase;
+							position: relative;
+							margin-left: -12px;
+							[dir="rtl"] & {
+								margin-left: 0;
+								margin-right: -12px;
+							}
+							&::after {
+								content: "";
+								display: inline-block;
+								width: 12px;
+								height: 12px;
+								position: absolute;
+								bottom: 2px;
+								margin-left: 3px;
+								[dir="rtl"] & {
+									// 20200413 START 이상현 - gnb : rtl 화면에서 링크 아이콘 수정
+									margin: 0 3px 0 0;
+									transform: rotateY(180deg);
+									// 20200413 END
+								}
+							}
+						}
+					}
+				}
+			}
+			// margin-top
+			.head-link {
+				font-size: 17px;
+				line-height: 21px;
+				text-transform: uppercase;
+				position: relative;
+				//display:inline-block;
+				& + ul {
+					margin-top: $title-column-margin;
+				}
+				> div {
+					color: #333;
+					@include font-family($font-bold);
+				}
+				> a {
+					position: relative;
+					color: #333;
+					@include font-family($font-bold);
+					&:after {
+						@extend %linkicon;
+						background: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg") no-repeat 0 1px;
+						position: absolute;
+						bottom: 5px;
+						margin-left: 3px;
+					}
+					&[target="_blank"] {
+						&:after {
+							@extend %linkicon;
+							background: url("/lg5-common-gp/images/common/icons/blank-dimgray.svg") no-repeat 0 0;
+							// bottom:5px;
+							margin-left: 6px;
+							[dir="rtl"] & {
+								margin-left: 0;
+								margin-right: 6px;
+							}
+						}
+					}
+					[dir="rtl"] & {
+						// 20200525 START 이상현 - GNB : rtl, IE 브라우저 조건에서 링크 아이콘과 텍스트가 포개지는 것을 방지.
+						&:after {right:100%;}
+						// 20200525 END
+						&:not([target="_blank"]):after {
+							margin: 0 3px 0 0;
+							transform: rotateY(180deg);
+						}
+					}
+				}
+			}
+			.sub-link {
+				text-transform: uppercase;
+				color: #333;
+				font-size: 16px;
+				line-height: 20px;
+				margin-bottom: 21px;
+				@include font-family($font-semibold);
+				&:last-child {
+					margin-bottom: 0;
+				}
+				> a,
+				> div a {
+					color: #333;
+					&[target="_blank"] {
+						&:after {
+							@extend %linkicon;
+							background: url("/lg5-common-gp/images/common/icons/blank-dimgray.svg") no-repeat 0 0;
+							// bottom:5px;
+							margin-left: 6px;
+							[dir="rtl"] & {
+								margin-left: 0;
+								margin-right: 6px;
+							}
+						}
+					}
+					sup{
+						font-size:10px;
+						margin-left:2px;
+					}
+				}
+				> ul {
+					margin-top: 7px;
+				}
+			}
+			.link-list {
+				text-transform: none;
+				.link {
+					color: $color-dimgray;
+					font-size: 16px;
+					line-height: 20px;
+					@include font-family($font-regular);
+					a {
+						position: relative;
+						display: inline-block;
+						color: $color-dimgray;
+						&[target="_blank"] {
+							&:after {
+								@extend %linkicon;
+								background: url("/lg5-common-gp/images/common/icons/blank-dimgray.svg") no-repeat 0 0;
+								margin-left: 6px;
+								[dir="rtl"] & {
+									margin-left: 0;
+									margin-right: 6px;
+								}
+							}
+						}
+					}
+				}
+				.link + .link {
+					margin-top: 7px;
+				}
+			}
+			.sub-link .link-list {
+				padding-left: 5px;
+
+				[dir="rtl"] & {
+					padding-left: 0;
+					padding-right: 6px;
+				}
+			}
+			.head-link .link-list {
+				margin-top: 20px;
+				margin-bottom: 40px;
+				// 20200525 START 박지영 - GNB 간격 수정
+				&:last-child {
+					margin-bottom:0;
+				}
+				// 20200525 END
+			}
+			.head-link + ul .head-link {
+				margin-top: 20px;
+			}
+			.head-link + .head-link {
+				margin-top: 20px;
+			}
+			/*
+			.head-link .link-list {
+				margin-top:21px;
+			}
+			.link-list + .head-link {
+				margin-top:40px;
+			}
+			.head-link + .sub-link {
+				margin-top:21px;
+			}
+			.sub-link + .link-list {
+				margin-top:7px;
+			}
+			.link-list + .sub-link {
+				margin-top:21px;
+			}
+			.sub-link + .sub-link {
+				margin-top:21px;
+			}
+
+			// text-indent
+			.sub-link + .link-list {
+				padding-left:5px;
+			}
+			*/
+		}
+		@include screen(custom, max, 1325) {
+			.sublayer {
+				padding: 0 15px;
+				margin: 0 -15px;
+
+				//top:52px;
+				li a {
+					transition: transform 0.5s ease-in-out;
+				}
+			}
+			.left-btm ul.depth2 li > a.active + .sublayer {
+				//display:none !important;
+				top: 52px;
+				width: 100vw;
+				white-space: none;
+				box-sizing: border-box;
+				margin: 0 0 0 -55px;
+				text-align: left;
+				[dir="rtl"] & {
+					margin: 0 -55px 0 0;
+					text-align: right;
+				}
+				li {
+					display: block;
+				}
+				.close {
+					right: 25px;
+					[dir="rtl"] & {
+						right: auto;
+						left: 25px;
+					}
+				}
+			}
+		}
+		.left-btm ul.depth1 > li > a.active + .sublayer,
+		.left-btm ul.depth2 li > a.active + .sublayer {
+			display: block;
+		}
+	}
+	&.b2c {
+		.for-desktop {
+			.logo {
+				width: 158px;
+			}
+			.links {
+				width: calc(100% - 158px - 30px);
+			}
+			.left-btm {
+				ul.depth1 {
+					//max-width:100%;
+					max-width: 1100px; // B2C - GNB 무조건 한 줄로
+					@include screen(custom, max, 1325) {
+						max-width: 100%;
+					}
+				}
+			}
+			.sublayer {
+				.columns.support .column {
+					@include screen(custom, min, 992) { // LGEGMC-2181
+						&:nth-child(4n + 1) {
+							clear: both;
+							// 20200525 START 박지영 - GNB 간격 수정
+							[dir="ltr"] & {
+								border-left: 0;
+							}
+							[dir="rtl"] & {
+								border-right: 0;
+							}
+							// 20200525 END
+						}
+					}
+					// LGEGMC-2181 start
+					/* @include screen(custom, max, 1325) {
+						@include screen(custom, min, 992) {
+							&:nth-child(3n + 1) {
+								clear: both;
+								// 20200525 START 박지영 - GNB 간격 수정
+								[dir="ltr"] & {
+									border-left: 0;
+								}
+								[dir="rtl"] & {
+									border-right: 0;
+								}
+								// 20200525 END
+							}
+						}
+					} */
+					@include screen(custom, max, 1199) {
+						&:nth-child(2n + 1) {
+							clear: both;
+							// 20200525 START 박지영 - GNB 간격 수정
+							[dir="ltr"] & {
+								border-left: 0;
+							}
+							[dir="rtl"] & {
+								border-right: 0;
+							}
+							// 20200525 END
+						}
+					}
+					// LGEGMC-2181 end
+				}
+			}
+		}
+	}
+	&.b2b {
+		.for-desktop {
+			.logo {
+				width: 230px;
+			}
+			.links {
+				width: calc(100% - 230px - 30px);
+			}
+			.left-btm {
+				ul.depth1 {
+					max-width: 770px;
+					> li {
+						&.depth1-holder {
+							@include screen(custom, max, 1440) {
+								& + li {
+									padding-left: 10px;
+									[dir="rtl"] & {
+										padding-left: 0;
+										padding-right: 10px;
+									}
+									> a:before {
+										left: -15px;
+										[dir="rtl"] & {
+											right: -15px;
+										}
+									}
+								}
+							}
+							@include screen(custom, max, 1325) {
+								padding-right: 20px;
+								[dir="rtl"] & {
+									padding-right: 0;
+									padding-left: 20px;
+								}
+								& + li {
+									padding-left: 20px;
+									[dir="rtl"] & {
+										padding-left: 0;
+										padding-right: 20px;
+									}
+									> a:before {
+										left: -25px;
+										[dir="rtl"] & {
+											left: auto;
+											right: -25px;
+										}
+									}
+								}
+							}
+							ul.depth2 {
+								li {
+									padding-right: 4px;
+									&:last-child {
+										padding-right: 20px;
+
+										@include screen(custom, max, 1440) {
+											padding-right: 10px;
+										}
+									}
+									[dir="rtl"] & {
+										padding-right: 0;
+										padding-left: 4px;
+										&:last-child {
+											padding-left: 20px;
+											@include screen(custom, max, 1440) {
+												padding-left: 10px;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			.right-btm {
+				.links {
+					right: 111px;
+					word-break: normal;
+					word-wrap: normal;
+					[dir="rtl"] & {
+						right: auto;
+						left: 111px;
+					}
+				}
+				&.num1 {
+					.links {
+						right: 30px;
+						[dir="rtl"] & {
+							right: auto;
+							left: 30px;
+						}
+					}
+				}
+				&.num2 {
+					.links {
+						right: (111px-30px);
+						[dir="rtl"] & {
+							right: auto;
+							left: (111px-30px);
+						}
+					}
+				}
+				&.num3 {
+					.links {
+						right: 111px;
+						[dir="rtl"] & {
+							right: auto;
+							left: 111px;
+						}
+					}
+				}
+			}
+			.sublayer {
+				.columns {
+					margin-left: 0;
+					margin-right: 0;
+					.column2 {
+						width: 50%;
+						float: left;
+						[dir="rtl"] & {
+							float: right;
+						}
+						@include screen(custom, max, 1325) {
+							// width: 66.6666%; // LGEGMC-2181
+						}
+						@include screen(custom, max, 991) {
+							width: 50%;
+						}
+						.column {
+							width: 50% !important;
+							float: left !important;
+							@include screen(custom, max, 991) {
+								width: 100% !important;
+								border-left: 0;
+								& + .column {
+									margin-top: -19px;
+								}
+							}
+							[dir="rtl"] & {
+								float: right !important;
+								@include screen(custom, max, 991) {
+									border-right: 0;
+								}
+							}
+						}
+						&:after {
+							content: "";
+							display: block;
+							width: 100%;
+							height: 0;
+						}
+					}
+					&:after {
+						content: "";
+						display: block;
+						width: 100%;
+						height: 0;
+					}
+				}
+			}
+		}
+	}
+	// PJTLGCOMVSSITE-4 : start
+	&.vs {
+		.for-desktop {
+			.logo {
+				width: 169px;
+			}
+			.links {
+				width: calc(100% - 169px - 30px);
+			}
+			.left-btm {
+				ul.depth1 {
+					max-width: 1100px;
+					> li {
+						&.depth1-holder {
+							@include screen(custom, max, 1440) {
+								& + li {
+									padding-left: 10px;
+									[dir="rtl"] & {
+										padding-left: 0;
+										padding-right: 10px;
+									}
+									> a:before {
+										left: -15px;
+										[dir="rtl"] & {
+											right: -15px;
+										}
+									}
+								}
+							}
+							@include screen(custom, max, 1325) {
+								padding-right: 20px;
+								[dir="rtl"] & {
+									padding-right: 0;
+									padding-left: 20px;
+								}
+								& + li {
+									padding-left: 20px;
+									[dir="rtl"] & {
+										padding-left: 0;
+										padding-right: 20px;
+									}
+									> a:before {
+										left: -25px;
+										[dir="rtl"] & {
+											left: auto;
+											right: -25px;
+										}
+									}
+								}
+							}
+							ul.depth2 {
+								li {
+									padding-right: 4px;
+									&:last-child {
+										padding-right: 20px;
+
+										@include screen(custom, max, 1440) {
+											padding-right: 10px;
+										}
+									}
+									[dir="rtl"] & {
+										padding-right: 0;
+										padding-left: 4px;
+										&:last-child {
+											padding-left: 20px;
+											@include screen(custom, max, 1440) {
+												padding-left: 10px;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			.right-btm {
+				.links {
+					right: 111px;
+					word-break: normal;
+					word-wrap: normal;
+					[dir="rtl"] & {
+						right: auto;
+						left: 111px;
+					}
+				}
+				&.num1 {
+					.links {
+						right: 30px;
+						[dir="rtl"] & {
+							right: auto;
+							left: 30px;
+						}
+					}
+				}
+				&.num2 {
+					.links {
+						right: (111px-30px);
+						[dir="rtl"] & {
+							right: auto;
+							left: (111px-30px);
+						}
+					}
+				}
+				&.num3 {
+					.links {
+						right: 111px;
+						[dir="rtl"] & {
+							right: auto;
+							left: 111px;
+						}
+					}
+				}
+			}
+			.sublayer {
+				.columns {
+					margin-left: 0;
+					margin-right: 0;
+					.column2 {
+						width: 50%;
+						float: left;
+						[dir="rtl"] & {
+							float: right;
+						}
+						@include screen(custom, max, 1325) {
+							// width: 66.6666%; // LGEGMC-2181
+						}
+						@include screen(custom, max, 1199) { // LGEGMC-2181
+							width: 50%;
+						}
+						.column {
+							width: 50% !important;
+							float: left !important;
+							@include screen(custom, max, 1199) { // LGEGMC-2181
+								width: 100% !important;
+								border-left: 0;
+								& + .column {
+									margin-top: -19px;
+								}
+							}
+							[dir="rtl"] & {
+								float: right !important;
+								@include screen(custom, max, 1199) { // LGEGMC-2181
+									border-right: 0;
+								}
+							}
+						}
+						&:after {
+							content: "";
+							display: block;
+							width: 100%;
+							height: 0;
+						}
+					}
+					&:after {
+						content: "";
+						display: block;
+						width: 100%;
+						height: 0;
+					}
+				}
+			}
+		}
+		.for-mobile {
+			height: 48px;
+			.logo {
+				a {
+					padding: 10px 20px;
+					img {
+						height: 28px;
+						line-height: 1;
+					}
+				}
+			}
+			.menu {
+				.menu-wrap {
+					.depth2-m {
+						li {
+							&:first-child {
+								border-bottom: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	// PJTLGCOMVSSITE-4 : end
+	.for-mobile {
+		height: 84px;
+		&.b2c-only {
+			// 20200316 START 박지영 : b2b링크 없는 국가의 경우 높이 수정
+			height: 48px;
+			// 20200316 END
+		}
+		// PJTLGCOMVSSITE-4 : start
+		&.no-top-menu {
+			height: 48px;
+		}
+		// PJTLGCOMVSSITE-4 : end
+		.top-menu {
+			width: 100%;
+			height: 36px;
+			overflow: hidden;
+			background: #d9d9d9;
+			padding: 4px 0 0 0;
+			ul {
+				width: 100%;
+				height: 32px;
+				li {
+					width: 50%;
+					height: 100%;
+					padding: 0 24px;
+					overflow: hidden;
+					background: #fff;
+					float: left;
+					[dir="rtl"] & {
+						float: right;
+					}
+					a {
+						position: relative;
+						display: block;
+						width: 100%;
+						height: 100%;
+						font-size: 14px;
+						line-height: 32px;
+						text-align: center;
+						@include font-family($font-semibold);
+						color: $color-dimgray;
+						background: #fff;
+						/* LGECI-307 20201124 Add start */
+						&:focus{
+							outline: 2px solid #000;
+							outline-offset: -2px;
+						}
+						/* LGECI-307 20201124 Add end */
+						&:after {
+							content: "";
+							position: absolute;
+							display: block;
+							width: 200%;
+							height: 62px;
+							bottom: 0;
+							border-radius: 31px 31px;
+							z-index: 1;
+							background: #d9d9d9;
+						}
+						span {
+							position: absolute;
+							left: 0;
+							top: 0;
+							width: 100%;
+							height: 100%;
+							text-align: center;
+							z-index: 2;
+						}
+					}
+					&.active {
+						background: #d9d9d9;
+						a {
+							color: #333333;
+							&:after {
+								background: #fff;
+							}
+						}
+					}
+					// b2c
+					$wave-position: -28px;
+					&:nth-child(2) {
+						a:after {
+							left: $wave-position;
+							[dir="rtl"] & {
+								left: auto;
+								right: $wave-position;
+							}
+						}
+					}
+					&.active:nth-child(1) {
+						a:after {
+							bottom: auto;
+							top: 0;
+							right: $wave-position;
+							[dir="rtl"] & {
+								right: auto;
+								left: $wave-position;
+							}
+						}
+					}
+					// b2b
+					&:nth-child(1) {
+						a:after {
+							right: $wave-position;
+							[dir="rtl"] & {
+								right: auto;
+								left: $wave-position;
+							}
+						}
+					}
+					&.active:nth-child(2) {
+						a:after {
+							bottom: auto;
+							top: 0;
+							left: $wave-position;
+
+							[dir="rtl"] & {
+								left: auto;
+								right: $wave-position;
+							}
+						}
+					}
+				}
+			}
+		}
+		.nav-wrap {
+			position: relative;
+			width: 100%;
+			height: 47px;
+		}
+		.logo {
+			width: 140px;
+			text-align: center;
+			margin: 0 auto;
+			a {
+				padding: 11px 20px;
+				display: inline-block;
+
+				img {
+					width: auto;
+					height: 22px;
+				}
+			}
+		}
+		.menu {
+			position: static;
+			padding: 0;
+			margin-top: -46px;
+			float: left;
+			[dir="rtl"] & {
+				float: right;
+			}
+			> a {
+				display: block;
+				width: 58px;
+				height: 47px;
+				.line {
+					display: block;
+					height: 2px;
+					background: #333;
+					position: absolute;
+					left: 20px;
+					[dir="rtl"] & {
+						left: auto;
+						right: 20px;
+					}
+					&.line1 {
+						width: 16px;
+						top: 16px;
+					}
+					&.line2 {
+						width: 14px;
+						top: 23px;
+					}
+					&.line3 {
+						width: 18px;
+						top: 30px;
+					}
+					//-webkit-transition: width 0.5s, top 0.5s, transform 0.5s; transition: width 0.5s, top 0.5s, transform 0.5s;
+					//&.line2 {
+					//	-webkit-transition: width 0.2s; transition: width 0.2s;
+					//}
+				}
+			}
+			&.open > a {
+				background: url("/lg5-common-gp/images/common/icons/gnb-close.svg") no-repeat 50% 50%;
+				background-size: 16px 16px;
+				.line {
+					display: none;
+				}
+				//.line {
+				//	&.line1 {
+				//		width:20px;
+				//		top:23px;
+				//		-ms-transform: rotate(45deg);-webkit-transform: rotate(45deg);transform: rotate(45deg);
+				//	}
+				//	&.line2 {width:0;}
+				//	&.line3 {
+				//		width:20px;
+				//		top:23px;
+				//		-ms-transform: rotate(-45deg);-webkit-transform: rotate(-45deg);transform: rotate(-45deg);
+				//	}
+				//}
+			}
+			.menu-wrap {
+				display: none;
+				width: 100%;
+				background: #fff;
+				border-bottom: 1px solid #e4e4e4;
+				position: absolute;
+				top: 48px;
+				left: 0;
+				[dir="rtl"] & {
+					left: auto;
+					right: 0;
+					text-align: right;
+				}
+				&.active {
+					display: block;
+				}
+				.sublayer-m {
+					display: none;
+					&.active {
+						display: block;
+					}
+					.welcome {
+						color: #333;
+						padding: 14px 24px 13px;
+						border-top: 1px solid #e4e4e4;
+						border-bottom: 1px solid #e4e4e4;
+						@include font-family($font-semibold);
+						.name {
+							@include font-family($font-bold);
+							text-transform: capitalize;
+						}
+					}
+				}
+				.top-link {
+					display: none;
+					&.active {
+						display: block;
+					}
+					margin: 0;
+					padding: 0;
+					background: #f7f7f7;
+					border-bottom: 1px solid #e4e4e4;
+					> li {
+						a {
+							position: relative;
+							display: block;
+							width: 100%;
+							font-size: 17px;
+							line-height: 51px;
+							padding: 0 24px;
+							color: #333;
+							text-transform: uppercase;
+							text-decoration: none;
+							@include font-family($font-semibold);
+							img {
+								width: auto;
+								height: 11px;
+							}
+							// LGEGMC-2706 start
+							&[data-link-name=lg_thinq] {
+								img {
+									height: 13px;
+								}
+							}
+							// LGEGMC-2706 end
+						}
+					}
+				}
+				.depth1-m {
+					margin: 0;
+					padding: 0;
+					display: none;
+
+					&.active {
+						display: block;
+					}
+					> li {
+						position: relative;
+						a {
+							position: relative;
+							display: block;
+							width: 100%;
+							font-size: 17px;
+							line-height: 24px;
+							padding: 13px 24px 14px;
+							color: #333;
+							text-transform: uppercase;
+							text-decoration: none;
+							@include font-family($font-semibold);
+							&:after {
+								content: "";
+								display: block;
+								width: 14px;
+								height: 14px;
+								background: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg") no-repeat 0 1px;
+								background-size: 14px 14px;
+								position: absolute;
+								top: 18px;
+								right: 22px;
+								margin-left: 3px;
+								[dir="rtl"] & {
+									right: auto;
+									left: 22px;
+									margin-left: 0;
+									margin-right: 3px;
+									// 20200413 START 이상현 - gnb : rtl 화면에서 링크 아이콘 수정
+									transform: rotateY(180deg);
+									// 20200413 END
+								}
+							}
+							&[target="_blank"] {
+								&:after {
+									display: none;
+								}
+								span {
+									&:after {
+										@extend %linkicon;
+										background: url("/lg5-common-gp/images/common/icons/blank-dimgray.svg") no-repeat 0 0;
+										margin-left: 6px;
+										[dir="rtl"] & {
+											margin-left: 0;
+											margin-right: 6px;
+										}
+									}
+								}
+							}
+						}
+						&.support {
+							border-top: 1px solid #e4e4e4;
+							height: 53px;
+						}
+						&.business {
+							border-top: 1px solid #e4e4e4;
+						}
+					}
+				}
+				.back {
+					width: 100%;
+					height: 51px;
+					background: #f8f8f8;
+					a {
+						display: block;
+						width: 100%;
+						height: 51px;
+						&:before {
+							content: "";
+							display: inline-block;
+							width: 28px;
+							height: 28px;
+							vertical-align: middle;
+							background: url("/lg5-common-gp/images/common/icons/gnb-arrow-left.svg") no-repeat 0 0;
+							background-size: 20px 20px;
+							margin: 16px 0 0 19px;
+							[dir="rtl"] & {
+								margin: 16px 19px 0 0;
+								transform: rotateY(180deg);
+								-ms-transform: rotateY(180deg);
+								-moz-transform: rotateY(180deg);
+								-o-transform: rotateY(180deg);
+							}
+						}
+					}
+				}
+				// LGEGMC-2181 start
+				.column.banner, .column.featured-product {
+					& + .back {
+						border-top: 1px solid $line-gray;
+					}
+				}
+				// LGEGMC-2181 end
+				.depth2-m {
+					margin: 0;
+					padding: 0;
+					li {
+						span, a {
+							position: relative;
+							display: block;
+							width: 100%;
+							font-size: 17px;
+							line-height: 24px;
+							padding: 13px 24px 14px;
+							color: #333;
+							text-decoration: none;
+							@include font-family($font-semibold);
+						}
+						&.current-page a {
+							color: $color-carmine !important;
+						}
+						&.type1 {
+							border-top: 1px solid #e4e4e4;
+							color: #333;
+							text-transform: uppercase;
+							a {
+								color: #333;
+								&:after {
+									@extend %linkicon;
+									background: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg")
+										no-repeat 0 1px;
+									margin-left: 3px;
+
+									[dir="rtl"] & {
+										// 20200413 START 이상현 - gnb : rtl 화면에서 링크 아이콘 수정
+										margin: 0 3px 0 0;
+										transform: rotateY(180deg);
+										// 20200413 END
+									}
+								}
+								&[target="_blank"] {
+									&:after {
+										@extend %linkicon;
+										background: url("/lg5-common-gp/images/common/icons/blank-dimgray.svg")
+											no-repeat 0 0;
+										margin-left: 6px;
+
+										[dir="rtl"] & {
+											margin-left: 0;
+											margin-right: 6px;
+										}
+									}
+								}
+							}
+						}
+						&.type1.current-page {
+							a {
+								color: $color-carmine !important;
+								&:after {
+									background: url("/lg5-common-gp/images/common/icons/link-right-carmine.svg")
+										no-repeat 0 1px;
+								}
+								&[target="_blank"] {
+									&:after {
+										background: url("/lg5-common-gp/images/common/icons/blank-carmine.svg")
+											no-repeat 0 0;
+									}
+								}
+							}
+						}
+						&:first-child.type1 {
+							border-bottom: 1px solid #e4e4e4;
+							+ .type1 {
+								border-top: 0;
+							}
+						}
+						&.type2 {
+							color: #333;
+							span, a {
+								color: #333;
+								&:after {
+									@extend %linkicon;
+									background: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg") no-repeat 0 1px;
+									margin-left: 3px;
+									[dir="rtl"] & {
+										// 20200413 START 이상현 - gnb : rtl 화면에서 링크 아이콘 수정
+										margin: 0 3px 0 0;
+										transform: rotateY(180deg);
+										// 20200413 END
+									}
+								}
+								&[target="_blank"] {
+									&:after {
+										@extend %linkicon;
+										background: url("/lg5-common-gp/images/common/icons/blank-dimgray.svg")
+											no-repeat 0 0;
+										margin-left: 6px;
+
+										[dir="rtl"] & {
+											margin-left: 0;
+											margin-right: 6px;
+										}
+									}
+								}
+							}
+							span.no-link {
+								&:after {
+									display: none;
+								}
+							}
+						}
+						&.type2.current-page {
+							a {
+								color: $color-carmine !important;
+								&:after {
+									background: url("/lg5-common-gp/images/common/icons/link-right-carmine.svg") no-repeat 0 1px;
+								}
+								&[target="_blank"] {
+									&:after {
+										background: url("/lg5-common-gp/images/common/icons/blank-carmine.svg") no-repeat 0 0;
+									}
+								}
+							}
+						}
+						&.type3 {
+							ul, li {
+								margin: 0;
+								padding: 0;
+							}
+							a {
+								position: relative;
+								color: $color-dimgray;
+								font-size: 16px;
+								padding: 14px 24px 14px;
+								@include font-family($font-regular);
+								&[target="_blank"] {
+									&:after {
+										@extend %linkicon;
+										background: url("/lg5-common-gp/images/common/icons/blank-dimgray.svg") no-repeat 0 0;
+										margin-left: 6px;
+										[dir="rtl"] & {
+											margin-left: 0;
+											margin-right: 6px;
+										}
+									}
+								}
+							}
+						}
+						&.type3.current-page {
+							a {
+								color: $color-carmine !important;
+								&[target="_blank"] {
+									&:after {
+										background: url("/lg5-common-gp/images/common/icons/blank-carmine.svg") no-repeat 0 0;
+									}
+								}
+							}
+						}
+						&.type2 + .type3 {
+							padding-left: 5px;
+							[dir="rtl"] & {
+								padding-left: 0;
+								padding-right: 5px;
+							}
+						}
+						&.type1 {
+							ul {
+								li {
+									border-top: 0;
+								}
+							}
+						}
+						&.no-expand {
+							position: relative;
+							border-top: 1px solid #e4e4e4;
+							color: #333;
+							text-transform: uppercase;
+							a {
+								position: relative;
+								color: #333;
+							}
+						}
+						&.expand {
+							position: relative;
+							border-top: 1px solid #e4e4e4;
+							color: #333;
+							text-transform: uppercase;
+							a {
+								position: relative;
+								color: #333;
+								&:before,
+								&:after {
+									content: "";
+									position: absolute;
+									display: block;
+									background: #333;
+								}
+								&:before {
+									width: 14px;
+									height: 2px;
+									top: 24px;
+									right: 24px;
+
+									[dir="rtl"] & {
+										right: auto;
+										left: 24px;
+									}
+								}
+								&:after {
+									width: 2px;
+									height: 14px;
+									top: 18px;
+									right: 30px;
+
+									[dir="rtl"] & {
+										right: auto;
+										left: 30px;
+									}
+								}
+							}
+							&.active a {
+								&:after {
+									display: none;
+								}
+							}
+						}
+						&.sub {
+							display: none;
+							.type3 {
+								padding-left: 0 !important;
+							}
+						}
+						&.expand.active + .sub {
+							display: block;
+						}
+					}
+				}
+				.depth2-m + .back {
+					border-top: 1px solid #e4e4e4;
+				}
+				.mylg {
+					/* 20190729 LGEUS-11776 */
+					display: none;
+					&.active {
+						display: block;
+						> li a {
+							&[target="_blank"] {
+								&:after {
+									@extend %linkicon;
+									background: url("/lg5-common-gp/images/common/icons/blank-dimgray.svg") no-repeat 0
+										0;
+									margin-left: 6px;
+
+									[dir="rtl"] & {
+										margin-left: 0;
+										margin-right: 6px;
+									}
+								}
+							}
+						}
+					}
+					/* //20190729 LGEUS-11776 */
+					margin: 0;
+					padding: 0;
+					border-top: 1px solid #e4e4e4;
+					> li {
+						position: relative;
+						a {
+							position: relative;
+							display: block;
+							width: 100%;
+							font-size: 17px;
+							line-height: 24px;
+							padding: 13px 24px 14px;
+							color: #333;
+							text-decoration: none;
+							@include font-family($font-semibold);
+						}
+						&.txtlink {
+							border-bottom: 1px solid #e4e4e4;
+
+							a {
+								text-transform: uppercase;
+							}
+						}
+						&.login,
+						&.wishlist {
+							> a {
+								&:before {
+									content: "";
+									display: inline-block;
+									width: 28px;
+									height: 28px;
+									vertical-align: middle;
+								}
+							}
+						}
+						&.login {
+							> a {
+								&:before {
+									background: url("/lg5-common-gp/images/common/icons/login-nero.svg") no-repeat 0 50%;
+									background-size: 20px 20px;
+
+									[dir="rtl"] & {
+										background-position: 100% 50%;
+									}
+								}
+								// [Start] LGEIN-529
+								&.sign-up {
+									&:before {
+										background-image: url("/lg5-common-gp/images/common/icons/signup-nero.svg");
+									}
+								}
+								// [End] LGEIN-529
+							}
+							&.logged > a {
+								&:before {
+									background-image: url("/lg5-common-gp/images/common/icons/login-fill-nero.svg");
+								}
+								&:after {
+									content: "";
+									display: block;
+									width: 14px;
+									height: 14px;
+									background: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg") no-repeat 0 1px;
+									background-size: 14px 14px;
+									position: absolute;
+									top: 18px;
+									right: 22px;
+									margin-left: 3px;
+									[dir="rtl"] & {
+										right: auto;
+										left: 22px;
+										margin-left: 0;
+										margin-right: 3px;
+										// 20200413 START 이상현 - gnb : rtl 화면에서 링크 아이콘 수정
+										transform: rotateY(180deg);
+										// 20200413 END
+									}
+								}
+							}
+							// [Start] LGEGMC-1657 VIP 메뉴 추가 건
+							&.is-vip {
+								// GNB - Mobile Menu
+								.after-login {
+									&:before {
+										background-size: 20px;
+										background-position: center center;
+										background-image: url("/lg5-common-gp/images/common/icons/login-vip-nero.svg");
+									}
+								}
+							}
+							// [Start] PJTB2BOBS-1 B2B VIP 메뉴 추가 건
+							&.is-vip-b2b {
+								// GNB - Mobile Menu
+								.after-login {
+									&:before {
+										background-size: 20px;
+										background-position: center center;
+										background-image: url("/lg5-common-gp/images/common/icons/login-b2b-fill-nero2.svg");
+									}
+								}
+							}
+
+						}
+						&.wishlist {
+							> a {
+								&:before {
+									background: url("/lg5-common-gp/images/common/icons/wishlist-nero.svg") no-repeat 0
+										50%;
+									background-size: 20px 20px;
+								}
+							}
+						}
+						// LGEGMC-2306 : start
+						&.btn-register-product {
+							> a {
+								&:before {
+									content: '';
+									display: inline-block;
+									width: 28px;
+									height: 28px;
+									vertical-align: middle;
+									background: url(/lg5-common-gp/images/common/icons/register-a-product-s.svg) no-repeat 0 50%;
+									background-size: 18px 18px;
+									[dir="rtl"] & {
+										background-position-x: 100%;
+									}
+								}
+							}
+						}
+						// LGEGMC-2306 : end
+					}
+				}
+				.language {
+					display: none;
+					a {
+						position: relative;
+						display: block;
+						font-size: 17px;
+						color: $color-nightrider;
+						@include font-family($font-semibold);
+						background: {
+							image: url("/lg5-common-gp/images/common/icons/language-black.svg");
+							repeat: no-repeat;
+							position: 24px 50%;
+						}
+						padding: 10px 24px 12px 52px;
+						[dir="rtl"] & {
+							background-position-x: calc(100% - 24px);
+							padding: 10px 52px 12px 24px;
+						}
+						&:hover {
+							text-decoration: none;
+						}
+						&:after {
+							content: "";
+							width: 14px;
+							height: 14px;
+							background: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg") no-repeat 0 1px;
+							background-size: 14px 14px;
+							position: absolute;
+							top: 14px;
+							right: 22px;
+							margin-left: 3px;
+							[dir="rtl"] & {
+								right: auto;
+								left: 22px;
+								margin-left: 0;
+								margin-right: 3px;
+								// 20200413 START 이상현 - gnb : rtl 화면에서 링크 아이콘 수정
+								transform: rotateY(180deg);
+								// 20200413 END
+							}
+						}
+					}
+					// event style
+					&.active {
+						display: block;
+					}
+					& + .sublayer-m .depth2-m {
+						.active a {
+							color: $color-carmine;
+						}
+					}
+				}
+				// LGEGMC-1473 start
+				.country {
+					display: none;
+					a {
+						display: block;
+						position: relative;
+						font-size: 17px;
+						color: $color-nightrider;
+						@include font-family($font-semibold);
+						padding: 10px 24px;
+						background-color: #f7f7f7;
+						&:hover {
+							text-decoration: none;
+						}
+						.flag {
+							display: inline-block;
+							margin-right: 10px;
+							width: 20px;
+							height: 25px;
+							line-height: 25px;
+							font-size: 0;
+							vertical-align: middle;
+							[dir="rtl"] & {
+								margin-right: 0;
+								margin-left: 10px;
+							}
+							img {
+								width: 20px;
+								border-radius: 50%;
+							}
+						}
+						&:after {
+							content: "";
+							width: 14px;
+							height: 14px;
+							background: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg") no-repeat 0 1px;
+							background-size: 14px 14px;
+							position: absolute;
+							top: 14px;
+							right: 22px;
+							margin-left: 3px;
+							[dir="rtl"] & {
+								right: auto;
+								left: 22px;
+								margin-left: 0;
+								margin-right: 3px;
+								transform: rotateY(180deg);
+							}
+						}
+					}
+					&.active {
+						display: block;
+					}
+				}
+				.country-options-m {
+					padding: 10px 38px 38px;
+					background-color: #f8f8f8;
+					strong {
+						display: block;
+						margin-bottom: 29px;
+						font-size: 22px;
+						text-align: center;
+						color: $color-nightrider;
+						@include font-family($font-bold);
+					}
+					li {
+						margin-top: 8px;
+						a {
+							display: block;
+							position: relative;
+							font-size: 15px;
+							line-height: 24px;
+							color: $color-nightrider;
+							@include font-family($font-semibold);
+							padding: 11px 15px;
+							background-color: $bg-white;
+							border: 1px solid $line-gray;
+							border-radius: 3px;
+							&:hover {
+								text-decoration: none;
+							}
+							.flag {
+								display: inline-block;
+								margin-right: 10px;
+								width: 24px;
+								height: 24px;
+								line-height: 24px;
+								font-size: 0;
+								vertical-align: middle;
+								[dir="rtl"] & {
+									margin-right: 0;
+									margin-left: 10px;
+								}
+								img {
+									width: 24px;
+									border-radius: 50%;
+								}
+							}
+						}
+						&.active a {
+							background-color: rgba(0, 0, 0, 0.1);
+							box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+							color: $color-carmine;
+							&:after {
+								content: "";
+								width: 24px;
+								height: 24px;
+								background: url("/lg5-common-gp/images/common/icons/arrow-check.svg") no-repeat 0 0;
+								background-size: 24px 24px;
+								position: absolute;
+								top: 13px;
+								right: 20px;
+								[dir="rtl"] & {
+									right: auto;
+									left: 20px;
+									transform: rotateY(180deg);
+								}
+							}
+						}
+					}
+				}
+				// LGEGMC-1473 end
+				// LGEGMC-2181 start
+				.banner {
+					position: relative;
+					margin: 24px 0 30px;
+					&:before {
+						position: absolute;
+						left: 0;
+						top: -24px;
+						width: 100%;
+						height: 1px;
+						background-color: #e4e4e4;
+						content: '';
+					}
+					a {
+						position: relative;
+						display: block;
+						margin: 0 auto;
+						width: 265px;
+						height: 300px;
+						// LGEGMC-2181 start
+						.banner-readmore {
+							color: $color-nightrider;
+							.banner-more {
+								span {
+									&::after {
+										background: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg") no-repeat 0 1px;
+									}
+								}
+							}
+						}
+						// LGEGMC-2181 end
+						&.white {
+							.banner-visual {
+								background: $color-nightrider;
+							}
+							.banner-description {
+								color: $color-white;
+								.banner-link {
+									span {
+										&::after {
+											background: url("/lg5-common-gp/images/common/icons/link-right-white.svg")
+												no-repeat 0 1px;
+										}
+									}
+								}
+							}
+							// LGEGMC-2181 start
+							.banner-readmore {
+								color: $color-white;
+								.banner-more {
+									span {
+										&::after {
+											background: url("/lg5-common-gp/images/common/icons/link-right-white.svg")
+												no-repeat 0 1px;
+										}
+									}
+								}
+							}
+							.banner-visual.outside {
+								.banner-readmore {
+									color: $color-nightrider;
+									.banner-more {
+										span {
+											&::after {
+												background: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg")
+													no-repeat 0 1px;
+											}
+										}
+									}
+								}
+							}
+							// LGEGMC-2181 end
+						}
+						&.black {
+							.banner-visual {
+								background: $color-white;
+							}
+							.banner-description {
+								color: $color-nightrider;
+								.banner-head {
+									color: $color-black;
+								}
+								.banner-link {
+									span {
+										&::after {
+											background: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg") no-repeat 0 1px;
+										}
+									}
+								}
+							}
+						}
+					}
+					.banner-visual {
+						position: relative;
+						overflow: hidden;
+						width: 100%;
+						height: 100%;
+						img {
+							max-width: 100%;
+						}
+						// LGEGMC-2181 start
+						.banner-readmore {
+							display: none;
+							position: absolute;
+							left: 0;
+							right: 0;
+							max-width: 235px;
+							width: 100%;
+							margin: auto;
+							text-align: center;
+							&.active {
+								display: block;
+							}
+							.banner-more {
+								font-size: 14px;
+								line-height: 20px;
+								@include font-family($font-bold);
+								span {
+									@extend %uppercase;
+									position: relative;
+									margin-left: -12px;
+									[dir="rtl"] & {
+										margin-left: 0;
+										margin-right: -12px;
+									}
+									&::after {
+										content: "";
+										display: inline-block;
+										width: 12px;
+										height: 12px;
+										position: absolute;
+										bottom: 2px;
+										margin-left: 3px;
+										[dir="rtl"] & {
+											margin: 0 3px 0 0;
+											transform: rotateY(180deg);
+										}
+									}
+								}
+							}
+						}
+						&.outside {
+							overflow: visible;
+							.banner-readmore {
+								bottom: -25px;
+							}
+						}
+						&.inside {
+							.banner-readmore {
+								bottom: 20px;
+							}
+						}
+						// LGEGMC-2181 end
+					}
+					.banner-description {
+						position: absolute;
+						left: 0;
+						right: 0;
+						max-width: 235px;
+						width: 100%;
+						margin: auto;
+						text-align: center;
+						&.top {
+							top: 20px;
+						}
+						&.bottom {
+							bottom: 20px;
+						}
+						.banner-desc {
+							font-size: 14px;
+							line-height: 20px;
+							@include font-family($font-semibold);
+						}
+						.banner-head {
+							font-size: 20px;
+							line-height: 24px;
+							@include font-family($font-semibold);
+							margin: 5px 0 8px;
+						}
+						.banner-link {
+							font-size: 14px;
+							line-height: 20px;
+							@include font-family($font-bold);
+							span {
+								@extend %uppercase;
+								position: relative;
+								margin-left: -12px;
+								[dir="rtl"] & {
+									margin-left: 0;
+									margin-right: -12px;
+								}
+								&::after {
+									content: "";
+									display: inline-block;
+									width: 12px;
+									height: 12px;
+									position: absolute;
+									bottom: 2px;
+									margin-left: 3px;
+									[dir="rtl"] & {
+										margin: 0 3px 0 0;
+										transform: rotateY(180deg);
+									}
+								}
+							}
+						}
+					}
+					& + .featured-product {
+						&:before {
+							display: none;
+						}
+					}
+				}
+				.featured-product {
+					position: relative;
+					&:before {
+						position: absolute;
+						left: 0;
+						top: -24px;
+						width: 100%;
+						height: 1px;
+						background-color: #e4e4e4;
+						content: '';
+					}
+					& + .banner {
+						&:before {
+							display: none;
+						}
+					}
+				}
+				.gnb-feature {
+					text-align: center;
+					width: 270px;
+					position: relative;
+					margin: 30px auto;
+					.title,
+					.title h1,
+					.title h2,
+					.title h3,
+					.title h4,
+					.title h5,
+					.title h6 {
+						font-size: 16px;
+						line-height: 20px;
+						color: $color-nightrider;
+						@include font-family($font-semibold);
+					}
+					.desc {
+						margin-top: 5px;
+						font-size: 14px;
+						line-height: 20px;
+						color: $color-dimgray;
+						@include font-family($font-regular);
+					}
+					.feature-box {
+						.slick-slider {
+							position: relative;
+							display: block;
+							box-sizing: border-box;
+							-webkit-touch-callout: none;
+							-webkit-user-select: none;
+							-khtml-user-select: none;
+							-moz-user-select: none;
+							-ms-user-select: none;
+							user-select: none;
+							-ms-touch-action: pan-y;
+							touch-action: pan-y;
+							-webkit-tap-highlight-color: transparent;
+						}
+						.slick-list {
+							position: relative;
+							overflow: hidden;
+							display: block;
+							margin: 0;
+							padding: 0;
+		
+							&:focus {
+								outline: none;
+							}
+							&.dragging {
+								cursor: pointer;
+							}
+						}
+						.slick-slider .slick-track,
+						.slick-slider .slick-list {
+							-webkit-transform: translate3d(0, 0, 0);
+							-moz-transform: translate3d(0, 0, 0);
+							-ms-transform: translate3d(0, 0, 0);
+							-o-transform: translate3d(0, 0, 0);
+							transform: translate3d(0, 0, 0);
+						}
+						.slick-track {
+							position: relative;
+							left: 0;
+							top: 0;
+							display: block;
+							margin-left: auto;
+							margin-right: auto;
+							&:before,
+							&:after {
+								content: "";
+								display: table;
+							}
+							&:after {
+								clear: both;
+							}
+							.slick-loading & {
+								visibility: hidden;
+							}
+						}
+						.slick-slide {
+							height: 100%;
+							min-height: 1px;
+							padding: 0 !important;
+							float: left;
+							[dir="rtl"] & {
+								float: right;
+							}
+							a {
+								position: relative;
+								display: flex;
+								align-items: center;
+							}
+							.image {
+								padding: 10px;
+								max-width: 100px;
+								height: 100px;
+								line-height: 100px;
+								position: static;
+							}
+							img {
+								width: 100%;
+								vertical-align: top;
+							}
+							.text {
+								padding-left: 10px;
+								text-align: initial;
+								[dir="rtl"] & {
+									padding-left: 0;
+									padding-right: 10px;
+								}
+							}
+						}
+						.slick-arrow.slick-hidden {
+							display: none;
+						}
+					}
+					.slick-dot-wrap {
+						left: 0;
+						width: 100%;
+						text-align: center;
+						z-index: 2;
+						margin-top: 15px;
+						.dot-box {
+							display: inline-block;
+							text-align: center;
+							margin: 0;
+							height: 8px;
+							vertical-align: middle;
+							li {
+								display: inline-block;
+								width: 8px;
+								height: 8px;
+								position: relative;
+								margin: 0 5px;
+								line-height: normal;
+								vertical-align: top;
+								padding: 0 !important;
+								a,
+								button {
+									overflow: hidden;
+									color: transparent;
+									background: $color-white;
+									border-radius: 50%;
+									border: 1px solid rgba(0, 0, 0, 0.75);
+									display: block;
+									width: 8px;
+									height: 8px;
+									margin: 0;
+									padding: 0;
+									cursor: pointer;
+		
+									&:focus {
+										outline: 1px solid $color-black;
+									}
+								}
+								&.slick-active {
+									a,
+									button {
+										background: $color-carmine;
+										border-color: $color-carmine;
+									}
+								}
+							}
+						}
+						.slide-pause {
+							overflow: hidden;
+							color: transparent;
+							white-space: nowrap;
+							display: inline-block;
+							vertical-align: middle;
+							width: 8px;
+							height: 8px;
+							background: url("/lg5-common-gp/images/common/icons/pause-dimgray.svg") no-repeat;
+							background-size: 100% 100%;
+							margin-left: 10px - 5px;
+							@include screen(custom, max, $max-sm) {
+								margin-left: 10px - 5px;
+							}
+							[dir="rtl"] & {
+								margin-left: 0;
+								margin-right: 10px - 5px;
+		
+								@include screen(custom, max, $max-sm) {
+									margin-right: 10px - 5px;
+								}
+							}
+							&.play {
+								background: url("/lg5-common-gp/images/common/icons/play-dimgray.svg") no-repeat;
+								background-size: 100% 100%;
+							}
+						}
+					}
+					.slick-arrow {
+						padding: 0;
+						&.slick-prev,
+						&.slick-next {
+							position: absolute;
+							z-index: 10;
+							top: 32px;
+							width: 22px;
+							height: 40px;
+							margin-top: 0;
+							cursor: pointer;
+							overflow: hidden;
+							color: transparent;
+							[dir="rtl"] & {
+								transform: rotateY(180deg);
+							}
+						}
+						&.slick-prev {
+							background: url("/lg5-common-gp/images/common/header/gnb-feature-prev.svg") no-repeat 50% 50%;
+							left: -25px;
+							[dir="rtl"] & {
+								left: auto;
+								right: -25px;
+							}
+						}
+						&.slick-next {
+							background: url("/lg5-common-gp/images/common/header/gnb-feature-next.svg") no-repeat 50% 50%;
+							right: -25px;
+							[dir="rtl"] & {
+								right: auto;
+								left: -25px;
+							}
+						}
+						&.slick-disabled {
+							opacity: 0.3;
+							cursor: default;
+						}
+					}
+					button {
+						appearance: none;
+						border: none;
+						background-color: transparent;
+					}
+				}
+				// LGEGMC-2181 end
+			}
+			/* PJTOBS 20200603 add */
+			.box-obs {
+				/* PJTOBS 20200701 add */
+				display:none;
+				/* //PJTOBS 20200701 add */
+				margin: 0;
+				padding: 14px 24px 24px;
+				border-top: 1px solid #e4e4e4;
+				border-bottom: none;
+				/* PJTOBS 20200701 add */
+				&.active {
+					display:block;
+				}
+				/* //PJTOBS 20200701 add */
+				& + .depth2-m {
+					border-top: 1px solid #e4e4e4;
+				}
+			}
+			/* //PJTOBS 20200603 add */
+			&.open {
+				@include screen(custom, max, $max-sm) {
+					.bg-drop {
+						//content:'';
+						display: block;
+						width: 100%;
+						height: 100%;
+						position: fixed;
+						background: rgba(0, 0, 0, 0.5);
+						left: 0;
+						top: 0;
+						z-index: -1;
+					}
+				}
+			}
+		}
+		// 20200925 LGEGMC-723 모바일 View에서 Sign-in/up 아이콘 누락건 개선
+		.left {
+			position: static;
+			margin-top: -46px;
+			float: left;
+			padding: 0 10px 0 0;
+			[dir="rtl"] & {
+				float: right;
+				padding: 0 0 0 10px;
+			}
+			.icons {
+				> div {
+					display: inline-block;
+					padding: 10px 12px 0 0;
+
+					[dir="rtl"] & {
+						padding: 10px 0 0 12px;
+					}
+					> a {
+						width: 28px;
+						height: 28px;
+						display: inline-block;
+					}
+				}
+				.search {
+					position: relative;
+					@include screen(custom, max, $max-sm) {
+						position: static;
+					}
+					&:before {
+						display: block;
+						width: 1px;
+						height: 14px;
+						content: "";
+						position: absolute;
+						left: 19px;
+						top: 7px;
+					}
+					> a {
+						background: url("/lg5-common-gp/images/common/icons/search-nero.svg") no-repeat 50% 50%;
+						background-size: 20px 20px;
+					}
+				}
+			}
+		}
+		.right {
+			position: static;
+			margin-top: -46px;
+			float: right;
+			padding: 0 20px 0 0;
+			[dir="rtl"] & {
+				float: left;
+				padding: 0 0 0 20px;
+			}
+			.icons {
+				> div {
+					display: inline-block;
+					padding: 10px 0 0 12px;
+
+					[dir="rtl"] & {
+						padding: 10px 12px 0 0;
+					}
+					> a {
+						width: 28px;
+						height: 28px;
+						display: inline-block;
+					}
+					// LGEGMC-1473 start
+					&.hide {
+						display: none;
+					}
+					// LGEGMC-1473 end
+				}
+				.cart {
+					position: relative;
+					> a {
+						background: url("/lg5-common-gp/images/common/icons/cart-nero.svg") no-repeat 50% 50%;
+						background-size: 20px 20px;
+					}
+					.count {
+						display: block;
+						position: absolute;
+						left: 25px;
+						top: 11px;
+						background: $bg-carmine;
+						color: $color-white;
+						@include font-family($font-regular);
+						font-size: 12px;
+						line-height: 16px;
+						width: auto;
+						min-width: 16px;
+						height: 16px;
+						border-radius: 8px;
+						text-align: center;
+						padding: 0 5px;
+						&:empty {
+							display: none;
+						}
+					}
+				}
+				.login {
+					position: static;
+					padding-left: 7px;
+					[dir="rtl"] & {
+						padding-left: 0;
+						padding-right: 7px;
+					}
+					> a {
+						background-image: url("/lg5-common-gp/images/common/icons/login-nero.svg");
+						background-repeat: no-repeat;
+						background-position: 50% 50%;
+						background-size:20px 20px;
+						&:focus,
+						&:hover {
+							background-image: url("/lg5-common-gp/images/common/icons/login-carmine.svg");
+						}
+					}
+					&.logged {
+						> a {
+							background-image: url("/lg5-common-gp/images/common/icons/login-fill-nero.svg");
+							&:focus,
+							&:hover {
+								background-image: url("/lg5-common-gp/images/common/icons/login-fill-carmine.svg");
+							}
+						}
+					}
+					// [Start] LGEGMC-1657 VIP 메뉴 추가 건
+					&.is-vip {
+						// GNB - mobile
+						> a {
+							padding-top: 14px;
+							text-decoration: none;
+							background-position: center center;
+							background-size: 22px;
+							background-image: url("/lg5-common-gp/images/common/icons/login-vip-nero.svg");
+							&:focus,
+							&:hover {
+								background-image: url("/lg5-common-gp/images/common/icons/login-vip-carmine.svg");
+							}
+						}
+					}
+					// [End] LGEGMC-1657 VIP 메뉴 추가 건
+					// [Start] PJTB2BOBS-1 B2B VIP 메뉴 추가 건
+					&.is-vip-b2b {
+						// GNB - mobile
+						> a {
+							padding-top: 14px;
+							text-decoration: none;
+							background-position: center center;
+							background-size: 22px;
+							background-image: url("/lg5-common-gp/images/common/icons/login-b2b-fill-nero2.svg");
+							&:focus,
+							&:hover {
+								background-image: url("/lg5-common-gp/images/common/icons/login-b2b-fill-carmine2.svg");
+							}
+						}
+					}
+					// [End] PJTB2BOBS-1 B2B VIP 메뉴 추가 건
+				}
+				.search {
+					position: relative;
+					@include screen(custom, max, $max-sm) {
+						position: static;
+					}
+					&:before {
+						display: block;
+						width: 1px;
+						height: 14px;
+						content: "";
+						position: absolute;
+						left: 19px;
+						top: 7px;
+					}
+					> a {
+						background: url("/lg5-common-gp/images/common/icons/search-nero.svg") no-repeat 50% 50%;
+						background-size: 20px 20px;
+					}
+				}
+			}
+		}
+		/* // 20200925 LGEGMC-723 */
+	}
+	&.b2b {
+		.for-mobile {
+			.menu {
+				.menu-wrap {
+					.depth2-m {
+						li {
+							&:first-child {
+								border-bottom: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	// print
+	@include screen(print) {
+		display: none;
+	}
+	// search layer
+	.gnb-search-layer {
+		display: none;
+		&.active {
+			display: block;
+		}
+		position: absolute;
+		right: 0;
+		top: -4px;
+		width: 348px;
+		height: 46px;
+		z-index: 2;
+		@include screen(custom, max, $max-sm) {
+			top: 4px;
+			right: auto;
+			left: 0;
+			background: #fff;
+			width: 100%;
+			height: auto;
+			padding: 0 50px 0 4px;
+			.search-close {
+				position: absolute;
+				right: 12px;
+				top: 5px;
+				a {
+					display: block;
+					width: 28px;
+					height: 28px;
+					background: url("/lg5-common-gp/images/common/icons/gnb-close.svg") no-repeat 50% 50%;
+					background-size: 14px 14px;
+				}
+			}
+		}
+	}
+	// form
+	form.gnb-search-form {
+		.search-input {
+			border-radius: 3px;
+			border: 1px solid #999;
+			background: #fff;
+			text-align: left;
+			overflow: hidden;
+			.input {
+				width: calc(100% - 54px);
+				height: 36px;
+				font-size: 16px;
+				@include font-family($font-semibold);
+				color: #333;
+				border: 0;
+				padding-left: 18px;
+				padding-right: 18px;
+				&:focus {
+					background: #fff;
+					border: 0;
+				}
+				@include screen(custom, max, $max-sm) {
+					width: calc(100% - 54px);
+					height: 37px;
+				}
+				@include placeholder(#767676);
+			}
+		}
+		.search-submit {
+			position: absolute;
+			right: 14px;
+			top: 4px;
+			.submit {
+				width: 28px;
+				height: 28px;
+				padding: 4px;
+			}
+			@include screen(custom, max, $max-sm) {
+				right: 64px;
+				top: 6px;
+			}
+		}
+		.search-result-layer {
+			position: absolute;
+			right: 0;
+			top: 41px;
+			display: none;
+			&.active {
+				display: block;
+			}
+			@include screen(custom, max, $max-sm) {
+				top: 43px;
+				width: 100%;
+			}
+		}
+		.search-layer {
+			position: relative;
+			float: right;
+			white-space: normal;
+			width: 749px;
+			border: 1px solid #e4e4e4;
+			background: #fff;
+			.enhanced {
+				float: right;
+				.head {
+					font-size: 15px;
+					color: #767676;
+					padding-bottom: 9px;
+					a {
+						color: #767676;
+						.count {
+							color: $color-carmine;
+						}
+					}
+				}
+				.enhanced-products {
+					float: left;
+					width: 400px;
+					text-align: left;
+					padding: 19px 30px 12px;
+					border-right: 1px solid #e4e4e4;
+					margin-right: -1px;
+					ul {
+						margin: 0;
+						padding: 0;
+						li {
+							width: 100%;
+							height: 111px;
+							margin: 0;
+							padding: 0;
+							border-top: 1px solid #eee;
+							.img {
+								float: left;
+								padding: 18px 0;
+								width: 70px;
+								height: (70px + 36px);
+								img {
+									width: 100%;
+									height: auto;
+								}
+							}
+							.txt {
+								float: left;
+								width: calc(100% - 70px);
+								padding: 14px 0 0 30px;
+								word-break: break-all;
+								a.product {
+									display: block;
+								}
+								a.link-text {
+									margin-right: 13px;
+
+									&:last-child {
+										margin-right: 0;
+									}
+								}
+								.model {
+									@include font-family($font-semibold);
+									font-size: 15px;
+									line-height: 18px;
+									color: #333;
+								}
+								.name {
+									@include font-family($font-semibold);
+									font-size: 14px;
+									line-height: 18px;
+									color: $color-dimgray;
+									margin: 4px 0 3px 0;
+									overflow: hidden;
+									max-height: 36px;
+								}
+								.hidden-price {
+									display: none;
+								}
+							}
+							&:after {
+								content: "";
+								clear: both;
+								display: block;
+								width: 100%;
+								height: 0;
+							}
+						}
+					}
+				}
+				.enhanced-category {
+					float: left;
+					width: 347px;
+					border-left: 1px solid #e4e4e4;
+					text-align: left;
+					.head {
+						padding: 19px 30px 9px;
+					}
+					ul {
+						li {
+							a {
+								display: block;
+								padding: 0 30px;
+								font-size: 16px;
+								line-height: 45px;
+								height: 45px;
+								color: #333;
+								text-decoration: none;
+								@include font-family($font-semibold);
+								&:hover,
+								&:focus {
+									background: $bg-carmine;
+									color: $color-white;
+								}
+							}
+						}
+					}
+				}
+			}
+			@include screen(custom, max, $max-sm) {
+				float: none;
+				width: 100%;
+				> .close {
+					display: none;
+				}
+				.enhanced {
+					float: none;
+					.enhanced-products {
+						float: none;
+						width: 100%;
+						padding: 14px 0 7px;
+						border-right: 0;
+						.head {
+							padding: 0 20px 9px;
+						}
+						ul {
+							li {
+								height: auto;
+								.img {
+									width: (65px + 40px);
+									height: (65px + 38px);
+									padding: 19px 20px;
+								}
+								.txt {
+									width: calc(100% - (65px + 40px));
+									padding: 14px 20px 11px 5px;
+								}
+							}
+						}
+					}
+					.enhanced-category {
+						float: none;
+						width: 100%;
+						border-left: 0;
+						border-top: 1px solid #e4e4e4;
+						.head {
+							padding: 14px 20px 7px;
+						}
+						ul {
+							margin-bottom: 23px;
+							li {
+								a {
+									line-height: 52px;
+									height: 52px;
+									padding: 0 25px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.search-layer-suggestion {
+			float: right;
+			white-space: normal;
+			width: 348px;
+			border: 1px solid #e4e4e4;
+			background: #fff;
+			text-align: left;
+			padding: 18px 25px;
+			a {
+				font-size: 15px;
+				line-height: 22px;
+				color: $color-dimgray;
+				.txt {
+					color: $color-carmine;
+				}
+			}
+			@include screen(custom, max, $max-sm) {
+				float: none;
+				width: 100%;
+				border-left: 0;
+				border-right: 0;
+				padding: 13px 20px 17px;
+			}
+		}
+	}
+	// login, logout
+	.gnb-login {
+		display: none;
+
+		&.active {
+			display: block;
+		}
+		// [Start] LGEFR-382
+		white-space: nowrap;
+		min-width: 222px;
+		// [End] LGEFR-382
+		border: 1px solid #e4e4e4;
+		background: #fff;
+		padding: 12px 20px;
+		position: absolute;
+		right: 0;
+		top: 51px;
+		text-align: left;
+		[dir="rtl"] & {
+			right: auto;
+			left: 0;
+			text-align: right;
+		}
+		a {
+			color: $color-dimgray;
+			font-size: 16px;
+			line-height: 27px;
+			/* 20190729 LGEUS-11776 */
+			&[target="_blank"] {
+				&:after {
+					@extend %linkicon;
+					background: url("/lg5-common-gp/images/common/icons/blank-dimgray.svg") no-repeat 0 0;
+					margin-left: 6px;
+
+					[dir="rtl"] & {
+						margin-left: 0;
+						margin-right: 6px;
+					}
+				}
+			}
+			/* 20190729 LGEUS-11776 */
+		}
+		.welcome {
+			padding: 2px 0 13px 0;
+			border-bottom: 1px solid #e4e4e4;
+			color: #333;
+			@include font-family($font-semibold);
+			.name {
+				@include font-family($font-bold);
+				text-transform: capitalize;
+				padding-left: 3px; /*LGEKZ-115 add*/
+			}
+		}
+		ul {
+			margin: 0;
+			li {
+				padding: 3px 0 0 0;
+				margin: 0;
+			}
+		}
+		.welcome + ul {
+			padding: 9px 0 0 0;
+		}
+	}
+	/* PJTOBS 20200603 add */
+	.box-obs{
+		margin: 0 0 8px;
+		padding:7px 0 10px;
+		border-bottom: 1px solid #e4e4e4;
+		.rate{
+			display: inline-block;
+			padding-left: 5px;
+			@include font-family($font-regular);
+			font-size: 16px;
+			line-height: 27px;
+			color: $color-black;
+			text-decoration: none;
+		}
+		.box-point,
+		.box-coupon {
+			a {	
+				display: block;
+				text-decoration: none;
+				&[target=_blank]:after {
+					display: none !important;
+				}
+				ul {
+					@extend %clearfix;
+					margin: 0;
+					padding:4px 0;
+					.title {
+						margin: 0;
+						float: left;
+						[dir="rtl"] & {float: right;}
+						@include font-family($font-regular);
+						font-size: 14px;
+						line-height:1.2em;
+						color: $color-black;
+					}
+					.number {
+						float: right;
+						[dir="rtl"] & {float: left;}
+						margin: 0;
+						@include font-family($font-regular);
+						font-size: 16px;
+						line-height:1.2em;
+						color: $color-black;
+					}
+				}
+			}
+		}
+	}
+	/* //PJTOBS 20200603 add */
+	// login or logout
+	.before-login {
+		display: block !important;
+	}
+	.after-login {
+		display: none !important;
+	}
+	.logged {
+		.before-login {
+			display: none !important;
+		}
+		.after-login {
+			display: block !important;
+		}
+	}
+	.logged ~ .before-login {
+		display: none !important;
+	}
+	.logged ~ .after-login {
+		display: block !important;
+	}
+	.for-desktop {
+		// feature product
+		.gnb-feature {
+			text-align: center;
+			max-width: 160px;
+			position: relative;
+
+			// LGEGMC-2181 start
+			/* @include screen(custom, max, 1325) {
+				display: none;
+			} */
+			@include screen(custom, max, 991) {
+				max-width: 180px;
+			}
+			// LGEGMC-2181 end
+			.title,
+			.title h1,
+			.title h2,
+			.title h3,
+			.title h4,
+			.title h5,
+			.title h6 {
+				margin-top: 15px;
+				font-size: 18px;
+				line-height: 22px;
+				color: $color-nightrider;
+				@include font-family($font-semibold);
+			}
+			.desc {
+				margin-top: 4px;
+				font-size: 14px;
+				line-height: 20px;
+				color: $color-dimgray;
+				@include font-family($font-regular);
+			}
+			.feature-box {
+				.slick-slider {
+					position: relative;
+					display: block;
+					box-sizing: border-box;
+					-webkit-touch-callout: none;
+					-webkit-user-select: none;
+					-khtml-user-select: none;
+					-moz-user-select: none;
+					-ms-user-select: none;
+					user-select: none;
+					-ms-touch-action: pan-y;
+					touch-action: pan-y;
+					-webkit-tap-highlight-color: transparent;
+				}
+				.slick-list {
+					position: relative;
+					overflow: hidden;
+					display: block;
+					margin: 0;
+					padding: 0;
+
+					&:focus {
+						outline: none;
+					}
+					&.dragging {
+						cursor: pointer;
+					}
+				}
+				.slick-slider .slick-track,
+				.slick-slider .slick-list {
+					-webkit-transform: translate3d(0, 0, 0);
+					-moz-transform: translate3d(0, 0, 0);
+					-ms-transform: translate3d(0, 0, 0);
+					-o-transform: translate3d(0, 0, 0);
+					transform: translate3d(0, 0, 0);
+				}
+				.slick-track {
+					position: relative;
+					left: 0;
+					top: 0;
+					display: block;
+					margin-left: auto;
+					margin-right: auto;
+					&:before,
+					&:after {
+						content: "";
+						display: table;
+					}
+					&:after {
+						clear: both;
+					}
+					.slick-loading & {
+						visibility: hidden;
+					}
+				}
+				.slick-slide {
+					height: 100%;
+					min-height: 1px;
+					padding: 0 !important;
+					float: left;
+					[dir="rtl"] & {
+						float: right;
+					}
+					a {
+						position: relative;
+						display: block;
+					}
+					.image {
+						max-width: 160px;
+						height: 160px;
+						line-height: 160px;
+						position: static;
+						margin: 0 auto; // LGEGMC-2181
+					}
+
+					img {
+						width: 100%;
+					}
+				}
+				.slick-arrow.slick-hidden {
+					display: none;
+				}
+			}
+			.slick-dot-wrap {
+				left: 0;
+				width: 100%;
+				text-align: center;
+				z-index: 2;
+				margin-top: 15px;
+				.dot-box {
+					display: inline-block;
+					text-align: center;
+					margin: 0;
+					height: 8px;
+					vertical-align: middle;
+					li {
+						display: inline-block !important;
+						width: 8px;
+						height: 8px;
+						position: relative;
+						margin: 0 5px;
+						line-height: normal;
+						vertical-align: top;
+						padding: 0 !important;
+						a,
+						button {
+							overflow: hidden;
+							color: transparent;
+							background: $color-white;
+							border-radius: 50%;
+							border: 1px solid rgba(0, 0, 0, 0.75);
+							display: block;
+							width: 8px;
+							height: 8px;
+							margin: 0;
+							padding: 0;
+							cursor: pointer;
+
+							&:focus {
+								outline: 1px solid $color-black;
+							}
+						}
+						&.slick-active {
+							a,
+							button {
+								background: $color-carmine;
+								border-color: $color-carmine;
+							}
+						}
+					}
+				}
+				.slide-pause {
+					overflow: hidden;
+					color: transparent;
+					white-space: nowrap;
+					display: inline-block;
+					vertical-align: middle;
+					width: 8px;
+					height: 8px;
+					background: url("/lg5-common-gp/images/common/icons/pause-dimgray.svg") no-repeat;
+					background-size: 100% 100%;
+					margin-left: 10px - 5px;
+					@include screen(custom, max, $max-sm) {
+						margin-left: 10px - 5px;
+					}
+					[dir="rtl"] & {
+						margin-left: 0;
+						margin-right: 10px - 5px;
+
+						@include screen(custom, max, $max-sm) {
+							margin-right: 10px - 5px;
+						}
+					}
+					&.play {
+						background: url("/lg5-common-gp/images/common/icons/play-dimgray.svg") no-repeat;
+						background-size: 100% 100%;
+					}
+				}
+			}
+			.slick-arrow {
+				padding: 0;
+				&.slick-prev,
+				&.slick-next {
+					position: absolute;
+					z-index: 10;
+					top: 60px;
+					width: 22px;
+					height: 40px;
+					margin-top: 0;
+					cursor: pointer;
+					overflow: hidden;
+					color: transparent;
+					[dir="rtl"] & {
+						transform: rotateY(180deg);
+					}
+				}
+				&.slick-prev {
+					background: url("/lg5-common-gp/images/common/header/gnb-feature-prev.svg") no-repeat 50% 50%;
+					left: -40px;
+					[dir="rtl"] & {
+						left: auto;
+						right: -40px;
+					}
+				}
+				&.slick-next {
+					background: url("/lg5-common-gp/images/common/header/gnb-feature-next.svg") no-repeat 50% 50%;
+					right: -40px;
+					[dir="rtl"] & {
+						right: auto;
+						left: -40px;
+					}
+				}
+				&.slick-disabled {
+					opacity: 0.3;
+					cursor: default;
+				}
+			}
+			button {
+				appearance: none;
+				border: none;
+				background-color: transparent;
+			}
+		}
+	}
+	// TYPE B !!!
+	.for-desktop .navi-b-type {
+		@include screen(custom, min, $min-xl) {
+			white-space: normal;
+		}
+		.column {
+			border-left: none;
+			& + .column:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 1px;
+				height: 100%;
+				background: #e4e4e4;
+
+				[dir="rtl"] & {
+					display: none;
+				}
+			}
+			// font-size, line-height, color
+			.head-link > a {
+				// font-size:17px;
+				// line-height:41px;
+				&.icon-none:after {
+					display: none;
+				}
+			}
+			.link-list .link {
+				font-size: 16px;
+				line-height: 27px;
+
+				& + .link {
+					margin: 0;
+				}
+			}
+			.sub-link {
+				font-size: 16px;
+				line-height: 24px;
+				margin-bottom: 17px;
+				// 20200525 START 박지영 - GNB 간격 수정
+				&:last-child {
+					margin-bottom:0;
+				}
+				// 20200525 END
+				> ul {
+					margin: 0;
+				}
+			}
+			.head-link .link-list {
+				margin-top: 6px;
+			}
+
+			.link-list {
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+		// thumbnail area
+		$title-column-margin: 21px;
+		.column:nth-of-type(1) {
+			border-left: none;
+
+			@include screen(custom, min, $min-xl) {
+				width: calc(100% - 316px);
+			}
+			.thumb-list-box {
+				@extend %clearfix;
+				margin: 0;
+
+				@include screen(custom, min, $min-xl) {
+					padding: ($title-column-margin + 4px) 0 0;
+				}
+			}
+			// 20200525 START 박지영 - GNB 간격 수정
+			.head-link + .thumb-list-box {
+				margin-top:12px;
+				@include screen(custom, min, $min-xl) {
+					margin-top:0;
+				}
+			}
+			// 20200525 END
+			.thumb-list {
+				@include screen(custom, min, $min-xl) {
+					float: left;
+					text-align: center;
+					width: 25%;
+					padding: 0 20px;
+
+					[dir="rtl"] & {
+						float: right;
+					}
+				}
+				a {
+					display: block;
+					&:hover {
+						.thumb-title,
+						.thumb-txt {
+							text-decoration: underline;
+						}
+					}
+				}
+				.thumb-title {
+					// 20200525 START 박지영 - GNB 폰트 수정
+					font-size: 16px;
+					line-height: 22px;
+					@include screen(custom, min, $min-xl) {
+						font-size:18px;
+					}
+					// 20200525 END
+					color: #333333;
+					padding: 15px 0 4px;
+					@include font-family($font-semibold);
+					@include screen(custom, max, $max-lg) {
+						padding: 9px 0 10px;
+					}
+				}
+				.thumb-txt {
+					font-size: 14px;
+					line-height: 20px;
+					color: #6b6b6b;
+					margin: 0;
+					@include screen(custom, max, $max-lg) {
+						display: none;
+					}
+				}
+				.thumb-img {
+					max-width: 160px;
+					max-height: 160px;
+					@include screen(custom, max, $max-lg) {
+						display: none;
+					}
+				}
+			}
+		}
+		// text area
+		.column:nth-of-type(2) {
+			width: 316px;
+			margin-top: 50px;
+			margin-bottom: 25px;
+			text-align: left;
+			border-left: none;
+			[dir="rtl"] & {
+				text-align: right;
+			}
+			@include screen(custom, max, $max-lg) {
+				margin-top: 10px;
+			}
+			.head-link {
+				padding-top: 12px;
+				// 20200525 START 박지영 - GNB 간격 수정
+				&:first-child {
+					padding-top:0;
+				}
+				// 20200525 END
+			}
+		}
+	}
+
+	// 20200416 START 이상현 - gnb : rtl 화면에서 링크 아이콘 수정
+	[dir="rtl"] & a[target="_blank"]:after {
+		transform: rotateY(180deg);
+		-ms-transform: rotateY(180deg);
+		-moz-transform: rotateY(180deg);
+		-webkit-transform: rotateY(180deg);
+		-o-transform: rotateY(180deg);
+	}
+	// 20200416 END
+
+	
+	// LGEGMC-1070 START TYPE C 추가
+	.for-desktop {
+		.sublayer {
+			.columns.navi-c-type {
+				.column2 {
+					.column {
+						@media (min-width: 992px) and (max-width: 1325px) {
+							// width: 100% !important; // LGEGMC-2181
+						}
+					}
+					.column + .column {
+						@media (min-width: 992px) and (max-width: 1325px) {
+							// border-color: transparent; // LGEGMC-2181
+						}
+					}
+
+					@include screen(custom, max, 1325) {
+						// width: 33.3333%; // LGEGMC-2181
+					}
+					@include screen(custom, max, 991) {
+						width: 50%;
+					}
+				}
+			}
+		}
+	}
+	// LGEGMC-1070 END
+}
+.breadcrumb {
+	[dir="rtl"] & {
+		text-align: right;
+	}
+	display: block;
+	width: 100%;
+	max-width: 1600px;
+	padding: 0;
+	margin: 0 auto;
+	border-radius: 0;
+	background: transparent !important;
+	@include font-family($font-regular);
+	@include screen(custom, max, 1600) {
+		margin: 0 -15px;
+		width: auto;
+	}
+	ul {
+		list-style: none;
+		padding: 11px 30px;
+		margin: 0;
+		li {
+			display: inline-block;
+			padding: 0;
+			margin: 0;
+			font-size: 15px;
+			line-height: 18px;
+			&:before {
+				content: "/";
+				display: inline-block;
+				padding: 0 5px 0 1px;
+
+				// 20200416 START 박지영 rtl 간격 수정
+				[dir="rtl"] & {
+					padding: 0 1px 0 5px;
+				}
+
+				// 20200416 END
+			}
+			&:first-child:before {
+				display: none;
+			}
+			a {
+				color: #767676;
+
+				strong {
+					font-weight: normal;
+					color: #000000;
+				}
+			}
+		}
+	}
+	@include screen(custom, max, $max-sm) {
+		display: none;
+	}
+}
+@import "./navigation-search";
+@media screen and (-ms-high-contrast: active) {
+	header.navigation .for-desktop .sublayer .banner a.white .banner-visual {
+		img {
+			visibility: hidden;
+		}
+	}
+}
+[data-countrycode="ca_fr"] header.navigation.b2c .for-desktop .left-btm ul.depth1 {
+	max-width: 1000px;
+}
+[data-countrycode="tw"] header.navigation.b2b .for-desktop {
+	.right-btm .links {
+		top: 16px;
+	}
+}
+[data-countrycode="cn"] header.navigation.b2b .for-desktop {
+	.right-btm .links {
+		top: 16px;
+	}
+}
+// [Start] LGEVN-303 : B2B GNB Super categories Conflict
+[data-countrycode="vn"] header.navigation.b2b .for-desktop {
+	.right-btm .links {
+		width: 180px!important;
+		top: 16px;
+		// @include screen(custom, min, 1490) {
+		// 	width: 180px!important;
+		// }
+		@media (min-width: 1325px) and(max-width: 1499px) {
+			width: 100px !important;
+			text-align: center;
+			top: 8px;
+		}
+	}
+	.left-btm ul.depth1 {
+		max-width: 1000px;
+	}
+}
+// [End] LGEVN-303 : B2B GNB Super categories Conflict
+
+// 20200421 START 박지영
+[data-countrycode="vn"] header.navigation.b2c .for-desktop .left-btm ul.depth1 {
+	max-width: 1000px;
+}
+[data-countrycode="au"] header.navigation.b2c .for-desktop .left-btm ul.depth1 {
+	max-width: 1020px;
+}
+[data-countrycode="ar"] header.navigation.b2b .for-desktop {
+	.right-btm .links {
+		width: 210px !important;
+		top: 16px;
+		@include screen(custom, min, 1490) {
+			width: 210px !important;
+		}
+	}
+	.left-btm ul.depth1 {
+		max-width: 782px;
+	}
+}
+[data-countrycode="ru"] header.navigation.b2b .for-desktop .right-btm .links {
+	width: 160px !important;
+	top: 16px;
+	@include screen(custom, min, 1490) {
+		width: 160px !important;
+	}
+}
+[data-countrycode="ec"] header.navigation.b2b .for-desktop .right-btm .links,
+[data-countrycode="cac"] header.navigation.b2b .for-desktop .right-btm .links,
+[data-countrycode="cac_en"] header.navigation.b2b .for-desktop .right-btm .links {
+	width: 180px !important;
+	top: 16px;
+	@include screen(custom, min, 1490) {
+		width: 180px !important;
+	}
+}
+[data-countrycode="ar"] header.navigation.b2b .for-desktop .right-btm .links,
+[data-countrycode="co"] header.navigation.b2b .for-desktop .right-btm .links {
+	width: 210px !important;
+	top: 16px;
+	@include screen(custom, min, 1490) {
+		width: 210px !important;
+	}
+}
+[data-countrycode="ua"] header.navigation.b2b .for-desktop .right-btm .links {
+	@include screen(custom, min, 1490) {
+		width: 180px !important;
+	}
+}
+// 20200421 END
+// 20200406 START 박지영 : br b2b 예외 (inquiry to buy - width)
+[data-countrycode="br"] header.navigation.b2b .for-desktop .right-btm .links {
+	width: 210px !important;
+	top: 16px;
+	@include screen(custom, min, 1490) {
+		width: 210px !important;
+	}
+}
+// 20200406 END
+// 20200413 START 박지영 : pe b2b 예외 (inquiry to buy - width)
+[data-countrycode="pe"] header.navigation.b2b .for-desktop .right-btm .links {
+	width: 210px !important;
+	top: 16px;
+	@include screen(custom, min, 1490) {
+		width: 210px !important;
+	}
+}
+// 20200413 END
+// global b2b 예외
+[data-countrycode="global"] header.navigation.b2b .for-desktop .left-btm ul.depth1 {
+	max-width: 1020px;
+}
+// 20201110 START LGECI-199 : GNB level2 uppercase 제거
+[data-countrycode="ca_en"] header.navigation .for-desktop .sublayer .sub-link, 
+[data-countrycode="ca_fr"] header.navigation .for-desktop .sublayer .sub-link {
+	text-transform: none;
+}
+// 20201110 END
+
+// LGEBR-306 START
+[data-countrycode="br"] header.navigation .for-mobile .top-menu ul li:nth-child(2) a span {
+	&:nth-child(1) {
+		@include screen(custom, min, 401) {
+			display: block !important;
+		}
+		@include screen(custom, max, 400) {
+			display: none !important;
+		}
+	}
+	&:nth-child(2) {
+		@include screen(custom, min, 401) {
+			display: none !important;
+		}
+		@include screen(custom, max, 400) {
+			display: block !important;
+		}
+	}
+}
+// LGEBR-306 END
+
+/* LGEGMC-1134 : CES2021 : start */
+.ces2021-wrap {
+	display: table;
+	width: 100%;
+	height: 100vh;
+	background: #0e0e12 url(/lg5-common-gp/images/static/bg-ces2021-w.jpg) no-repeat 50% 0;
+	@include screen(custom, max, $max-sm) {
+		background: #0e0e12 url(/lg5-common-gp/images/static/bg-ces2021-m.jpg) no-repeat 50% 0;
+		background-size: cover;
+	}
+	.inner {
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.title {
+		font-size: 26px; 
+		line-height: 38px;
+		color: $color-white;
+		@include font-family($font-semibold);
+		@include screen(custom, max, $max-sm) {
+			font-size: 22px;
+			line-height: 28px;
+		}
+	}
+	.count {
+		display: block;
+		margin-top: 25px;
+		font-size: 38px;
+		line-height: 50px;
+		color: $color-white;
+		@include font-family($font-semibold);
+	}
+	.logo {
+		margin-top: 28px;
+		font-size: 0;
+		@include screen(custom, max, $max-sm) {
+			margin-top: 20px;
+		}
+		li {
+			position: relative;
+			display: inline-block;
+			padding: 0 27px;
+			@include screen(custom, max, $max-sm) {
+				padding: 0 20px;
+			}
+			& + li {
+				&:before {
+					position: absolute;
+					left: 0;
+					top: 50%;
+					width: 1px;
+					height: 37px;
+					background-color: #6b6b6b;
+					transform: translateY(-50%);
+					content: "";
+					@include screen(custom, max, $max-sm) {
+						height: 30px;
+					}
+				}
+			}
+			img {
+				height: 50px;
+				@include screen(custom, max, $max-sm) {
+					height: 45px;
+				}
+			}
+		}
+
+	}
+	br.mobile {
+		display: none;
+		@include screen(custom, max, $max-sm) {
+			display: block;
+		}
+	}
+}
+/* LGEGMC-1134 : CES2021 : end */
+// PJTLGCOMVSSITE-4 : start
+.top-menu-vs {
+	display: flex;
+	justify-content: center;
+	border-bottom: 1px solid $line-gray;
+	a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 5px;
+		width: 33.33%;
+		min-height: 50px;
+		font-size: 14px;
+		line-height: 1.3;
+		text-align: center;
+		color: $color-dimgray;
+		font-family: 'DS LG Smart SemiBold';
+		&:hover {
+			text-decoration: none;
+		}
+		&.active {
+			position: relative;
+			color: $color-nightrider;
+			&:after {
+				position: absolute;
+				left: 0;
+				bottom: -1px;
+				width: 100%;
+				height: 2px;
+				background-color: $bg-carmine;
+				content: '';
+			}
+		}
+	}
+}
+// PJTLGCOMVSSITE-4 : end
+// LGEGMC-2181 start
+.m-menu-open {
+	overflow: hidden;
+	@include screen(custom, min, $min-md) {
+		overflow-y: auto;
+	}
+	header.navigation {
+		z-index: 25001;
+		.row {
+			background: none;
+			&.for-mobile {
+				position: fixed;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				height: 100%;
+				overflow-y: auto;
+				margin: 0;
+				.top-menu {
+					display: none;
+				}
+				.nav-wrap {
+					height: 48px;
+					background-color: $bg-white;
+					border-bottom: 1px solid $line-gray;
+				}
+			}
+		}
+	}
+}
+// LGEGMC-2181 end

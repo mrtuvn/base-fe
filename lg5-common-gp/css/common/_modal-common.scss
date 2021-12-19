@@ -1,0 +1,481 @@
+// footer 버튼 타입 2개
+// 다른 스타일 추가시 # 값으로 추가해서 사용
+body.modal-open {padding-right:0 !important;}
+.modal {
+	padding-right:0 !important;
+	@include screen(custom, min, $min-md) {
+		&:before {
+			content:'';
+			display:inline-block;
+			vertical-align: middle;
+			height:100%;
+		}
+	}
+	&.modal-scroll {
+		.modal-body {max-height:400px;}
+		.modal-lg .modal-body {max-height:600px;}
+	}
+	&.modal-fix {
+		&:before{
+			vertical-align: top;
+		}
+		.modal-dialog {
+			top:40px;
+			@include screen(custom, max, $max-sm) {
+				top:0;
+			}
+		}
+	}
+	&.modal-locked {
+		overflow-y: hidden;
+	}
+	// alert popup
+	&.modal-simple {
+		.modal-header{
+			padding-top:32px;
+			& + .modal-body {
+				padding-top: 0;
+			}
+			@include screen(custom, max, $max-sm){
+				padding-top:22px;
+			}
+		}
+		.modal-body {
+			padding:32px 40px 0;
+			@include screen(custom, max, $max-sm){
+				padding:22px 30px 0;
+			}
+		}
+		.modal-footer {
+			padding:23px 40px 40px;
+			@include screen(custom, max, $max-sm){
+				padding:23px 30px 30px;
+			}
+			//PJTPMREVIEW-2 start
+			&.is-flex {
+				display: flex;
+				align-items: stretch;
+			}
+			//PJTPMREVIEW-2 end
+		}
+		.modal-dialog {
+			width:400px;
+			margin-left:-200px;
+			border:1px solid $line-darkgray;
+			@include screen(custom, max, $max-sm){
+				width:310px;
+				margin-left:-155px;
+				margin-top:47px;
+			}
+		}
+		.simple-content-box {
+			text-align: center;
+			font-size:16px;
+			color:$color-nightrider;
+			@include screen(custom, max, $max-sm) {
+				font-size:14px;
+			}
+			// reset
+			p {margin:0;}
+			.content-paragraph {
+				&:not(:first-child){
+					margin-top:17px;
+				}
+			}
+			.modal-url {
+				@include font-family($font-semibold);
+				word-break: break-all;
+			}
+			.receipt-number {
+				color:$color-carmine;
+			}
+		}
+		// help library, video tutorial
+	}
+	.modal-dialog {
+		display:inline-block;
+		vertical-align:middle;
+		max-width:100%;
+		left:50%;
+		text-align:left;
+		[dir="rtl"] & {text-align:right;}
+		&.modal-sm {
+			width:480px;
+			max-width:480px;
+			margin-left:-240px;
+			@include screen(custom, max, $max-sm) {
+				left:0;margin:47px 12px 0;width:calc(100% - 24px);
+				max-width:100%;
+			}
+		}
+		&.modal-md {
+			width:560px;
+			max-width:560px;
+			margin-left:-280px;
+			@include screen(custom, max, $max-sm) {
+				left:0;margin:47px 12px 0;width:calc(100% - 24px);
+				max-width:100%;
+			}
+		}
+		&.modal-lg {
+			width:710px;
+			max-width:710px;
+			margin-left:-355px;
+			@include screen(custom, max, $max-sm) {
+				left:0;margin:47px 12px 0;width:calc(100% - 24px);
+				max-width:100%;
+			}
+		}
+		.mCSB_container {
+			.question-section {
+				.star-rates {
+					+ .caution {
+						margin-top:5px !important;
+					}
+				}
+			}
+		}
+	}
+	.modal-content {
+		border:0;
+		border-radius:0;
+		box-shadow:none;
+		.modal-close {
+			cursor:pointer;
+			width:20px;height:20px;
+			padding:0;border:0;
+			overflow:hidden;
+			white-space:nowrap;
+			background:url('/lg5-common-gp/images/common/icons/modal-close.svg') no-repeat 0 0;
+			position:absolute;
+			z-index:1;
+			top:22px;
+			right:30px;
+			text-indent:200%;
+			[dir="rtl"] & {
+				right:auto;
+				left:30px;
+				text-indent:-400%;
+			}
+			@include screen(custom, max, $max-sm) {
+				right:20px;top:17px;
+				[dir="rtl"] & {
+					right:auto;
+					left:20px;
+				}
+				width:15px;height:15px;
+				background-size:100% 100%;
+			}
+		}
+
+		> .modal-body {
+			&:first-child {
+				padding-top: 60px;
+			}
+		}
+	}
+	.modal-header {
+		border-bottom:3px solid $line-carmine;
+		margin:0 30px 18px;
+		padding:22px 40px 10px 0;
+		// padding:22px 40px 9px 0;
+		[dir="rtl"] & {padding:22px 0 10px 40px;}
+		@include screen(custom, max, $max-sm) {
+			margin-left:20px;margin-right:20px;
+			padding:12px 30px 9px 0;
+			// padding:16px 30px 8px 0;
+			[dir="rtl"] & {padding:12px 0 9px 30px;}
+		}
+		& + .modal-body {
+			padding-top:0;
+		}
+	}
+	.modal-title {
+		@include font-family($font-semibold);
+		font-size:28px;
+		line-height:32px;
+		color:$color-black;
+		@include screen(custom, max, $max-sm) {
+			// font-size:20px;
+			// line-height:26px;
+			font-size:24px;
+		}
+	}
+	.modal-body {
+		padding:0 30px;
+		color:$color-dimgray;
+		@include font-family($font-regular);
+		@include screen(custom, max, $max-sm) {
+			padding-left:20px;padding-right:20px;
+		}
+		p {margin:0;}
+	}
+	.modal-footer {
+		border:0;
+		padding:20px 30px 30px;
+		text-align:center;
+		display:flex;
+		justify-content: center;
+		flex-flow: row;
+		align-items: normal;
+		@include screen(custom, max, $max-sm) {
+			padding:20px;
+		}
+		.btn {
+			margin:0 5px;
+			width: 48%;
+			max-width:200px;
+			@include screen(custom, max, 360) {
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+			&:only-child{
+				width:auto !important;				
+				@include screen(custom, max, $max-sm) {
+					max-width:none !important;
+					min-width:none !important;
+				}
+			}
+			&.btn-full{
+				max-width:100% !important;
+				min-width:auto !important;
+			}
+			&.btn-block {
+				margin:0;
+				+ .btn-block {
+					margin-top:10px;
+				}
+			}
+			//PJTPMREVIEW-2 start
+			&.btn-back {
+				position: relative;
+				padding-left: 30px;
+				padding-right: 15px;
+				[dir="rtl"] & {
+					padding-left: 15px;
+					padding-right: 30px;
+				}
+				&:before {
+					position: absolute;
+					left: 10px;
+					top: 50%;
+					margin: -5px 5px;
+					width: 11px;
+					height: 11px;
+					background: url('/lg5-common-gp/images/common/icons/arrow-up.svg') no-repeat 50% 50%;
+					background-size: 20px 20px;
+					transform: rotate(-90deg) translateY(-50%);
+					content:'';
+					[dir="rtl"] & {
+						left: auto;
+						right: 10px;
+						transform: rotate(90deg) translateY(-50%);
+					}
+				}
+			}
+			//PJTPMREVIEW-2 end
+		}
+		&.type-vertical{
+			flex-direction: column;
+			align-items: center;
+			.btn{
+				max-width:240px;
+			}
+			&>:not(:last-child){
+				margin-left: 0 !important;
+				margin-right: 0 !important;
+				margin-top:0;				
+			}
+			&>:not(:first-child){
+				margin-left: 0 !important;
+				margin-right: 0 !important;
+				margin-top:5px;
+			}
+		}
+	}
+	// LGECI-603 start
+	.list-sty-dot {
+		font-size: 16px;
+		color: $color-nightrider;
+		@include screen(custom, max, $max-sm) {
+			font-size: 14px;
+		}
+		li {
+			position: relative;
+			padding-left: 10px;
+			margin-top: 10px;
+			[dir="rtl"] & {
+				padding-left: 0;
+				padding-right: 10px;
+			}
+			&:before {
+				content: "";
+				position: absolute;
+				top: 11px;
+				left: 0;
+				width: 3px;
+				height: 3px;
+				background: $bg-nightrider;
+				border-radius: 50%;
+				@include screen(custom, max, $max-sm) {
+					top: 9px;
+				}
+				[dir="rtl"] & {
+					left: auto;
+					right: 0;
+				}
+			}
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+		.link-text.gray-type {
+			color: $color-nightrider;
+			&:after {
+				background-image: url('/lg5-common-gp/images/common/icons/blank-dimgray.svg');
+			}
+		}
+	}
+	// LGECI-603 end
+	
+	// [Start] BTOBGLOBAL-590
+	.modal-content.only-password {
+		padding-bottom: 50px;
+		.password-popup-area {
+			text-align: center;
+		}
+		.password-block {
+			margin-bottom: 0;
+			@include screen(custom, min, $min-sm) {
+				display: inline-block;
+				width: 40%;
+				max-width: 300px;
+			}
+			input[type="password"] {
+				width: 100%;
+			}
+			& + .btn-area {
+				@include screen(custom, min, $min-sm) {
+					display: inline-block;
+					vertical-align: top;
+				}
+				.btn {
+					height: 44px;
+					@include screen(custom, max, $max-xs) {
+						width: 100%;
+					}
+				}
+			}
+		}
+		.incorrect-password {
+			display: none;
+			text-align: left;
+		}
+	}
+	// LGECI-603 start
+	.list-sty-dot {
+		font-size: 16px;
+		color: $color-nightrider;
+		@include screen(custom, max, $max-sm) {
+			font-size: 14px;
+		}
+		li {
+			position: relative;
+			padding-left: 10px;
+			margin-top: 10px;
+			[dir="rtl"] & {
+				padding-left: 0;
+				padding-right: 10px;
+			}
+			&:before {
+				content: "";
+				position: absolute;
+				top: 11px;
+				left: 0;
+				width: 3px;
+				height: 3px;
+				background: $bg-nightrider;
+				border-radius: 50%;
+				@include screen(custom, max, $max-sm) {
+					top: 9px;
+				}
+				[dir="rtl"] & {
+					left: auto;
+					right: 0;
+				}
+			}
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+		.link-text.gray-type {
+			color: $color-nightrider;
+			&:after {
+				background-image: url('/lg5-common-gp/images/common/icons/blank-dimgray.svg');
+			}
+		}
+	}
+	// LGECI-603 end
+	
+	// [Start] BTOBGLOBAL-590
+	.modal-content.only-password {
+		padding-bottom: 50px;
+		.password-popup-area {
+			text-align: center;
+		}
+		.password-block {
+			margin-bottom: 0;
+			@include screen(custom, min, $min-sm) {
+				display: inline-block;
+				width: 40%;
+				max-width: 300px;
+			}
+			input[type="password"] {
+				width: 100%;
+			}
+			& + .btn-area {
+				@include screen(custom, min, $min-sm) {
+					display: inline-block;
+					vertical-align: top;
+				}
+				.btn {
+					height: 44px;
+					@include screen(custom, max, $max-xs) {
+						width: 100%;
+					}
+				}
+			}
+		}
+		.incorrect-password {
+			display: none;
+			text-align: left;
+		}
+	}
+	// [End] BTOBGLOBAL-590
+
+	// [Start] LGEMS-256
+	&.type2 { // type2:하단 설명부분 추가 형식
+		.modal-body {
+			font-size: 16px;
+			color: #333;
+		}
+		.modal-footer {
+			text-align: center;
+			flex-flow: column wrap;
+			align-items: center;
+			.info-box {
+				align-self: stretch;
+				margin: 30px 0 0;
+				padding-top: 13px;
+				text-align: left;
+				border-top: 1px solid #e4e4e4;
+				font-size: 16px;
+				color: #6b6b6b;
+				[dir="rtl"] & {
+					text-align: right;
+				}
+			}
+		}
+	}
+	// [End] LGEMS-256
+}

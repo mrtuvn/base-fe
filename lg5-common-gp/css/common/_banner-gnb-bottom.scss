@@ -1,0 +1,189 @@
+.gnb-bottom-banner{
+	margin: 0 -15px;
+	background:$bg-whitesmoke;
+	border-bottom: 1px solid $line-lightgray;
+	position: relative;
+    z-index: 1;
+	.bg-inner{
+		max-width:1600px;
+		width:100%;
+		text-align:right;
+		padding:10px 32px;
+		margin:0 auto;
+		[dir="rtl"] & {
+			text-align: left;
+		}
+		.banner-coupon{
+			display:inline-block;
+			p{
+				position: relative;
+				font-size:18px;
+				color:$color-black;
+				display: inline-block;
+				vertical-align:middle;
+				span{
+					color:$color-carmine;
+				}
+				margin:0 0;
+			}
+			a{
+				display: inline-block;
+				margin-left:8px;
+				height:30px;
+				padding:6px 10px 7px;
+				font-size:14px;
+				min-width: 110px;
+				[dir="rtl"] & {
+					margin-left: 0;
+					margin-right: 8px;
+				}
+			}
+			button{
+				&.close-bnr{
+					width:30px;
+					height:30px;
+					display:inline-block;
+					margin-left:30px;
+					background:url(/lg5-common-gp/images/common/icons/popover-close.svg) no-repeat center center;
+					background-size:12px;
+					vertical-align:middle;
+					border:0 !important;
+					[dir="rtl"] & {
+						margin-left: 0;
+						margin-right: 30px;
+					}
+				}    
+			}
+		}
+		@include screen(custom, max, $max-sm) {
+			text-align:center;
+			padding:5px 0 10px;
+			[dir="rtl"] & {
+				text-align:center;
+			}
+			.banner-coupon{
+				position: relative;
+				padding:0 32px;
+				display: flex;
+				justify-content: center;
+				flex-flow: column;
+				p{
+					font-size:16px;
+					text-align:left;
+					margin:0 auto;
+					[dir="rtl"] & {
+						text-align: right;
+					}
+				}
+				a{
+					margin:10px auto 0;
+					height:auto;
+					[dir="rtl"] & {
+						margin: 10px auto 0;
+					}
+				}
+				button{
+					&.close-bnr{
+						position:absolute;
+						right:13px;
+						top:3px;
+						z-index:3;
+						width:20px;
+						height:20px;
+						display:block;
+						margin-left:0;
+						cursor: pointer;
+						[dir="rtl"] & {
+							left: 13px;
+							right: auto;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+[data-countrycode="hu"] {
+	.gnb-bottom-banner {
+		background: $bg-white;
+		.bg-inner {
+			position: relative;
+			padding: 10px 70px;
+			text-align:center;
+			.banner-coupon {
+				p {
+					font-size:16px;
+					font-weight: 600;
+				}
+				a {
+					display: inline;
+					padding:0;
+					height:auto;
+					background: 0 !important;
+					border: 0;
+					color: $color-carmine !important;
+					font-weight: 600;
+					text-decoration: underline;
+					&:after {
+						display: inline-block;
+						margin-left: 3px;
+						margin-top: -1px;
+						width: 12px;
+						height: 12px;
+						background: url('/lg5-common-gp/images/common/icons/link-right-carmine.svg') no-repeat 50% 50%;
+						background-size: 10px;
+						vertical-align: middle;
+						content: '';
+					}
+				}
+				button {
+					&.close-bnr{
+						position: absolute;
+						top: 10px;
+						right: 32px;
+					}
+				}
+			}
+			@include screen(custom, max, $max-sm) {
+				padding: 15px 50px 15px;
+				.banner-coupon {
+					position: static;
+					padding: 0;
+					justify-content: space-between;
+					align-items: center;
+					p {
+						font-size: 14px;
+						margin: 0;
+						text-align: center;
+					}
+					a {
+						display: inline-block;
+						margin: 3px 0 0;
+						&:after {
+							margin-left: 0;
+							margin-right: 3px;
+						}
+					}
+					button {
+						&.close-bnr {
+							right: 22px;
+						}
+					}
+				}
+			}
+		}
+	}
+	&[dir="rtl"] {
+		.gnb-bottom-banner .bg-inner .banner-coupon {
+			button.close-bnr {
+				left: 32px;
+				right: auto;
+				@include screen(custom, max, $max-sm) {
+					left: 22px;
+				}
+			}
+		}
+	}
+}

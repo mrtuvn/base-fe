@@ -1,0 +1,211 @@
+
+.component { 
+	// 20200511 START 박지영 - 불필요한 css 삭제
+	// 20200511 END
+	.sns-area { // for sns share
+		.sns {
+			cursor:pointer;
+			display:block;
+			height:20px;
+			border:0;
+			font-size:14px;
+			line-height:20px;
+			color:$color-dimgray;
+			text-transform:uppercase;
+			@include font-family($font-bold);
+			padding:0 0 0 28px;
+			background:url('/lg5-common-gp/images/common/icons/sns-share.svg') no-repeat 0 0;
+			[dir="rtl"] & {
+				padding:0 28px 0 0;
+				background-position:100% 0;
+			}
+		}
+		.list {
+			display:none;
+			position:absolute;
+			z-index:10;
+			right:0; 
+			top:30px;
+			// 20200511 START 박지영 - 불필요한 css 삭제
+			//[dir="rtl"] & {
+			//	right:auto;
+			//	left:0;
+			//}
+			// 20200511 END
+			width:226px;
+			padding:8px 0 0;
+			&.active {
+				display:block;
+				// 20200520 START 이상현 - sns 레이어 팝업이 프린팅되는 것 방지함. 
+				@media print{
+					display:none;
+				}
+				// 20200520 END
+			}
+			&.left-side {
+				right: auto;
+				left: 0;
+				&:before {
+					left: 15px;
+					right: auto;
+				}
+			}
+			&.center {
+				right:50%;
+				transform: translateX(50%);
+				-ms-transform: translateX(50%);
+				-moz-transform: translateX(50%);
+				-o-transform: translateX(50%);
+				&:before {
+					right:50%;
+					margin-right:-5px;
+				}
+			}
+			&:before {
+				content:'';
+				border-color: $line-gray;
+				border-style: solid;
+				border-width: 0 0 1px 1px;
+				background: $bg-white;
+				width: 11px;
+				height: 11px;
+				transform: rotate(135deg);
+				position: absolute;
+				top:2px; right:15px;
+				// 20200511 START 박지영 - 불필요한 css 삭제
+				//[dir="rtl"] & {
+				//	right:auto;
+				//	left:15px;
+				//}
+				// 20200511 END
+			}
+			.sns-inner {
+				padding:16px 24px 24px;
+				border:1px solid $line-gray;
+				border-radius:2px;
+				background:$bg-white;
+				box-shadow:0 5px 10px rgba(0,0,0,0.1);
+				text-align:left;
+				[dir=rtl] & {text-align:right;}
+				.sns-top-desc, /* // 20201005 LGERU-116 Adding CTA to Share-buttons */
+				strong {
+					display:block;
+					font-size:14px;
+					line-height:20px;
+					color:$color-nightrider;
+					@include font-family($font-regular);
+				}
+				/* 20201005 LGERU-116 Adding CTA to Share-buttons */
+				.sns-top-desc {
+					margin: 0 0 15px;
+					.em {
+						display:inline-block;
+						vertical-align:top;
+						padding:3px 7px;
+						border:1px solid $line-carmine;
+						border-radius:3px;
+						line-height:1em;
+						color:$color-carmine;
+						font-size: 12px;
+						@include font-family($font-bold);
+						text-transform:uppercase;
+					}
+					.text-gray {
+						color: $color-gray;
+					}
+					.link-text {
+						margin-top: 15px;
+						font-size: 13px;
+					}
+				}
+				/* // 20201005 LGERU-116 Adding CTA to Share-buttons */
+				ul {
+					margin:10px 0 0;
+					display: -webkit-box;
+					display: -moz-box;
+					display: -ms-flexbox;
+					display: -webkit-flex;
+					display: flex;
+					-webkit-flex-direction: row;
+					-ms-flex-direction: row;
+					flex-direction: row;
+					-webkit-box-lines: single;
+					-ms-flex-wrap: wrap;
+					flex-wrap:wrap;
+					margin-left:-10px;
+				}
+				li {
+					display:inline-block;
+					margin-top:10px;
+					margin-left:10px;
+					a {
+						overflow:hidden;
+						white-space:nowrap;
+						display:inline-block;
+						vertical-align: top;
+						width:35px;
+						height:35px;
+						margin:0 0 0 0;
+						font-size:12px;
+						color:transparent;
+						[dir=rtl] & {margin:0 0 0 0;}
+						&.external-link {
+							text-indent:0;
+							[dir=rtl] & {text-indent:0;}
+							&.mobile-only {display:none;}
+						}
+						&.share-facebook {
+							background:url('/lg5-common-gp/images/common/icons/facebook-circle-fill.svg') no-repeat 0 0;
+						}
+						&.share-twitter {
+							background:url('/lg5-common-gp/images/common/icons/twitter-circle-fill.svg') no-repeat 0 0;
+						}
+						&.share-pinterest {
+							background:url('/lg5-common-gp/images/common/icons/pinterest-circle-fill.svg') no-repeat 0 0;
+						}
+						&.share-vk {
+							background:url('/lg5-common-gp/images/common/icons/vk-circle-fill.svg') no-repeat 0 0;
+						}
+						&.share-ok {
+							background:url('/lg5-common-gp/images/common/icons/ok-circle-fill.svg') no-repeat 0 0;
+						}
+						&.share-delicious {
+							background:url('/lg5-common-gp/images/common/icons/delicious-circle-fill.svg') no-repeat 0 0;
+						}
+						&.share-linkedin {
+							background:url('/lg5-common-gp/images/common/icons/linkedin-circle-fill.svg') no-repeat 0 0;
+						}
+						&.share-youtube {
+							background:url('/lg5-common-gp/images/common/icons/youtube-circle-fill.svg') no-repeat 0 0;
+						}
+						&.share-instagram {
+							background:url('/lg5-common-gp/images/common/icons/instagram-circle-fill.svg') no-repeat 0 0;
+						}
+						&.share-weibo {
+							background:url('/lg5-common-gp/images/common/icons/weibo-circle-fill.svg') no-repeat 0 0;
+						}
+						&.share-wechat {
+							background:url('/lg5-common-gp/images/common/icons/wechat-circle-fill.svg') no-repeat 0 0;
+						}
+						&.article-email {
+							background:url('/lg5-common-gp/images/common/icons/email-circle-fill.svg') no-repeat 0 0;
+						}
+						&.article-link {
+							background:url('/lg5-common-gp/images/common/icons/link-circle-fill.svg') no-repeat 0 0;
+						}
+					}
+				}
+			}
+		}
+		/* 20201005 LGERU-116 Adding CTA to Share-buttons */
+		&.large-width {
+			.list {
+				width: 300px;
+				@include screen(custom, max, $max-sm) {
+					width: 269px;
+				}
+			}
+		}
+		/* // 20201005 LGERU-116 Adding CTA to Share-buttons */
+	}
+}
