@@ -1,526 +1,605 @@
 @charset 'UTF-8';
-@import './setting/variables';
+@use "sass:math";
+@import "./setting/variables";
 
 // common
 .GPC0059 {
-	max-width:(1284px+60px);
-	padding-left:30px;
-	padding-right:30px;
-	@include screen(custom, max, $max-sm) {
-		padding-left:0;
-		padding-right:0;
-	}
-	// 1200px ~
-	@include screen(xl){
-		padding-top:(24px * 100%) / 1284px;
-	}
-	// 768px ~ 1199px
-	@include screen(custom, min, $min-md){
-		@include screen(custom, max, $max-lg){
-			padding-top:(24px * 100%) / 992px;
-		}
-	}
-	.square {
-		display:inline-block;
-		vertical-align:top;
-		// 320px ~ 767px
-		@include screen(custom, max, $max-sm){
-			width:100%;
-		}
-		.common-area {
-			position:relative;
-			display:block;
-			width:100%;
-			height:100%;
-			&.case-of-video:before {
-				content:"";
-				display:block;
-				width:32px; height:32px; 
-				background : {
-					/* LGEGMC-432 20200812 modify */
-					image: url('/lg5-common-gp/images/components/btn-play.svg');
-					/* //LGEGMC-432 20200812 modify */
-					repeat:no-repeat;
-					position:50% 50%;
-					size:100% 100%;
-					color:rgba(0,0,0,.25);
-				}
-				border-radius:50% 50%;
-				position: absolute;
-				z-index:1;
-				bottom:20px; left:20px;
-				[dir="rtl"] & {
-					left:auto;
-					right:20px;
-				}
-				// 320px ~ 767px
-				@include screen(custom, max, $max-sm){
-					bottom:25px; left:24px;
-					[dir="rtl"] & {right:24px;}
-				}
-			}
-		}
-		.visual-area {
-			position: absolute;
-			width:100%;
-			height:100%;
-			img {
-				display:none;
-				width:100%;
-				height:100%;	// wrong image size check for admin
-			}
-			// 1200px ~
-			@include screen(xl){
-				img.pc-lg {display:block}
-			}
-			// 768px ~ 1199px
-			@include screen(custom, min, $min-md){
-				@include screen(custom, max, $max-lg){
-					img.pc-md {display:block}
-				}
-			}
-			// 320px ~ 767px
-			@include screen(custom, max, $max-sm){
-				img.mobile {display:block}
-			}
-		}
-		.copy-boxing-area {
-			position: absolute;
-			z-index:1;
-			top:25px; left:20px; right:20px; bottom:20px;
-			margin:auto;
-			background-color:transparent;
-			font-size:16px;
-			line-height:24px;
-			.category, 
-			.head{
-				@include font-family($font-semibold);
-			}
-			.category {max-width:220px;}
-			.head {
-				h2, h3, h4, h5, h6 {
-					font-size:inherit;
-					line-height:inherit;
-					// 20200429 START 박지영 - font-weight 추가
-					font-weight:inherit;
-					// 20200429 END
-				}
-			}
-			.desc {
-				max-width:320px;
-				// 320px ~ 767px
-				@include screen(custom, max, $max-sm){
-					display:none;
-				}
-			}
-		}
-		&.text-white {
-			// background-color: $bg-gray;
-			color:$color-white;
-			.copy-boxing-area {
-				color:$color-white;
-			}
-		}
-		&.text-black {
-			// background-color: $bg-white;
-			color:$color-black;
-			.copy-boxing-area {
-				color:$color-white;
-				.category {color:$color-nightrider;}
-				.head {color:$color-black;}
-				.desc {color:$color-dimgray;}
-			}
-		}
-	}
+  max-width: (1284px+60px);
+  padding-left: 30px;
+  padding-right: 30px;
+  @include screen(custom, max, $max-sm) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  // 1200px ~
+  @include screen(xl) {
+    padding-top: math.div((24px * 100%), 1284px);
+  }
+  // 768px ~ 1199px
+  @include screen(custom, min, $min-md) {
+    @include screen(custom, max, $max-lg) {
+      padding-top: math.div((24px * 100%), 992px);
+    }
+  }
+  .square {
+    display: inline-block;
+    vertical-align: top;
+    // 320px ~ 767px
+    @include screen(custom, max, $max-sm) {
+      width: 100%;
+    }
+    .common-area {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      &.case-of-video:before {
+        content: "";
+        display: block;
+        width: 32px;
+        height: 32px;
+        background : {
+          /* LGEGMC-432 20200812 modify */
+          image: url("/lg5-common-gp/images/components/btn-play.svg");
+          /* //LGEGMC-432 20200812 modify */
+          repeat: no-repeat;
+          position: 50% 50%;
+          size: 100% 100%;
+          color: rgba(0, 0, 0, 0.25);
+        }
+        border-radius: 50% 50%;
+        position: absolute;
+        z-index: 1;
+        bottom: 20px;
+        left: 20px;
+        [dir="rtl"] & {
+          left: auto;
+          right: 20px;
+        }
+        // 320px ~ 767px
+        @include screen(custom, max, $max-sm) {
+          bottom: 25px;
+          left: 24px;
+          [dir="rtl"] & {
+            right: 24px;
+          }
+        }
+      }
+    }
+    .visual-area {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      img {
+        display: none;
+        width: 100%;
+        height: 100%; // wrong image size check for admin
+      }
+      // 1200px ~
+      @include screen(xl) {
+        img.pc-lg {
+          display: block;
+        }
+      }
+      // 768px ~ 1199px
+      @include screen(custom, min, $min-md) {
+        @include screen(custom, max, $max-lg) {
+          img.pc-md {
+            display: block;
+          }
+        }
+      }
+      // 320px ~ 767px
+      @include screen(custom, max, $max-sm) {
+        img.mobile {
+          display: block;
+        }
+      }
+    }
+    .copy-boxing-area {
+      position: absolute;
+      z-index: 1;
+      top: 25px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      margin: auto;
+      background-color: transparent;
+      font-size: 16px;
+      line-height: 24px;
+      .category,
+      .head {
+        @include font-family($font-semibold);
+      }
+      .category {
+        max-width: 220px;
+      }
+      .head {
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          font-size: inherit;
+          line-height: inherit;
+          // 20200429 START 박지영 - font-weight 추가
+          font-weight: inherit;
+          // 20200429 END
+        }
+      }
+      .desc {
+        max-width: 320px;
+        // 320px ~ 767px
+        @include screen(custom, max, $max-sm) {
+          display: none;
+        }
+      }
+    }
+    &.text-white {
+      // background-color: $bg-gray;
+      color: $color-white;
+      .copy-boxing-area {
+        color: $color-white;
+      }
+    }
+    &.text-black {
+      // background-color: $bg-white;
+      color: $color-black;
+      .copy-boxing-area {
+        color: $color-white;
+        .category {
+          color: $color-nightrider;
+        }
+        .head {
+          color: $color-black;
+        }
+        .desc {
+          color: $color-dimgray;
+        }
+      }
+    }
+  }
 }
 // 5 ~ 3 squares
 .GPC0059 {
-	// mixin
-	@mixin square($calc-type, $part-size, $container-size, $rtlUse:null){
-		@if($calc-type == "w"){
-			width:($part-size * 100%) / $container-size;
-		};
-		@if($calc-type == "h"){
-			height:($part-size * 100%) / $container-size;
-		};
-		@if($calc-type == "mr"){
-			margin-right:($part-size * 100%) / $container-size;
-			@if($rtlUse == "true"){
-				[dir="rtl"] & {
-					margin-right:0;
-					margin-left:($part-size * 100%) / $container-size;
-				}
-			};
-		};
-		@if($calc-type == "ml"){
-			margin-left:($part-size * 100%) / $container-size;
-			@if($rtlUse == "true"){
-				[dir="rtl"] & {
-					margin-left:0;
-					margin-right:($part-size * 100%) / $container-size;
-				}
-			};
-		};
-	}
-	// component level
-	&.flow-right {
-		text-align:right;
-		.square-partition {
-			&.top, &.bottom {
-				// 1200px ~ all
-				@include screen(custom, min, $min-md){
-					left:0;
-				}
-				// 1200px ~ 
-				@include screen(xl){
-					.square:first-child{
-						@include square(mr, 24px, (1284px - 521px - 24px), "true");
-					}
-				}
-			}
-			&.bottom {
-				// 768px ~ 1199px
-				@include screen(custom, min, $min-md){
-					@include screen(custom, max, $max-lg){
-						.square:first-child:not(.length-lg) {
-							@include square(mr, 24px, 992px, "true");
-						}
-					}
-				}
-			}
-		}
-	}
-	&.flow-left {
-		// 20200507 START 이상현 - GPC0059 rtl 수정
-		[dir="rtl"] & {
-			@include screen(custom, min, $min-md){
-				direction:ltr;
-			}
-		}
-		// 20200507 END
-		.square-partition {
-			&.top, &.bottom {
-				// 1200px ~ all
-				@include screen(custom, min, $min-md){
-					right:0;
-				}
-				// 1200px ~ 
-				@include screen(xl){
-					.square:first-child{
-						@include square(mr, 24px, (1284px - 521px - 24px));
-					}
-				}
-			}
-			&.bottom {
-				// 768px ~ 1199px
-				@include screen(custom, min, $min-md){
-					@include screen(custom, max, $max-lg){
-						.square:first-child:not(.length-lg) {
-							@include square(mr, 24px, 992px);
-						}
-					}
-				}
-			}
-		}
-	}
-	&.flow-mix {
-		@extend .flow-right;
-		// 768px ~ 1199px
-		@include screen(custom, min, $min-md){
-			@include screen(custom, max, $max-lg){
-				.square-partition.top {position:relative !important;width:100% !important;height:auto !important;}
-				.square-partition.top .square.sub {position:relative !important;bottom:auto !important;}
-				.square-partition.bottom {clear:both;float:left;@include square(w, 375px, 992px);}
-				.square-partition.bottom .square.sub {clear:both !important;width:100% !important;margin-right:0 !important;}
-				.square-partition.bottom .square.sub + .square.sub {padding-top:(24px*100%/363px);}
-				.square-partition.tall {padding-top:(24px*100%/992px);}
-			}
-		}
-	}
-	.component-inner {
-		position:relative;
-		font-size:0;
-	}
-	// square block level
-	.square-partition {
-		display:inline-block;
-		vertical-align:top;
-		text-align: left;
-		&.tall {
-			// 1200px ~ 
-			@include screen(xl){
-				@include square(w, 521px, 1284px);
-			}
-			// 768px ~ 1199px
-			@include screen(custom, min, $min-md){
-				@include screen(custom, max, $max-lg){
-					@include square(w, 593px, 992px);
-				}
-			}
-			// 320~ 767px  
-			@include screen(custom, max, $max-sm){
-				width:100%;
-			}
-		}
-		&.top, &.bottom {
-			width:100%;
-			// 768px ~ 
-			@include screen(custom, min, $min-md){
-				position: absolute;
-			}
-			// 1200px ~ 
-			@include screen(xl){
-				@include square(w, (1284px - 521px - 24px), 1284px);
-			}
-			
-		}
-		&.top {
-			// 768px ~ 
-			@include screen(custom, min, $min-md){
-				top:0;
-			}
-			// 768px ~ 1199px
-			@include screen(custom, min, $min-md){
-				@include screen(custom, max, $max-lg){
-					@include square(w, (992px - 593px - 24px), 992px);
-					.square {
-						width:100%;
-					}
-				}
-			}
-		}
-		&.bottom {
-			// 768px ~ 
-			@include screen(custom, min, $min-md){
-				bottom:0;
-			}
-		}
-	}
-	&.type-triple .square-partition{
-		&.top, &.bottom {
-			// 768px ~ 1199px
-			@include screen(custom, min, $min-md){
-				@include screen(custom, max, $max-lg){
-					@include square(w, (992px - 593px - 24px), 992px);
-					@include square(h, 363px, 750px);
-					.square {
-						width:100%;
-					}
-				}
-			}
-		}
-	}
-	&:not(.type-triple) .square-partition{
-		&.top, &.bottom {
-			// 1200px ~ 
-			@include screen(xl){
-				@include square(h, 363px, 750px);
-			}
-		}
-		&.top {
-			// 768px ~ 1199px
-			@include screen(custom, min, $min-md){
-				@include screen(custom, max, $max-lg){
-					@include square(h, (363px*2 + 24px), 1134px);
-					.square:last-child {
-						position:absolute;
-						bottom:0; left:0;
-					}
-				}
-			}
-		}
-		&.bottom {
-			$margin : (24px * 100%) / 992px;
-			// 768px ~ 1199px
-			@include screen(custom, min, $min-md){
-				@include screen(custom, max, $max-lg){
-					padding-top: $margin;
-					position: static;
-					.square:not(.length-lg) {
-						width:calc(100%/2 - #{$margin}/2);
-					}
-				}
-			}
-		}
-	}
-	// square level
-	.square {
-		width:100%;
-		// 20200507 START 이상현 - GPC0059 rtl 수정
-		[dir="rtl"] & {
-			direction:rtl;
-			text-align:right;
-		}
-		// 20200507 END
-		// 1200px ~
-		@include screen(xl){
-			&.length-md {
-				@include square(w, 412px, (1284px - 521px - 24px));
-			}
-			&.length-sm {
-				@include square(w, 303px, (1284px - 521px - 24px));
-			}
-		}
-		// 768px ~
-		@include screen(custom, min, $min-md){
-			&.main {
-				text-align: center;
-				.copy-boxing-area {
-					top:54px;
-				}
-			}
-		}
-		// 320px ~ 767px
-		@include screen(custom, max, $max-sm){
-			margin-top:10px;
-		}
-		&.main {
-			// 20200507 START 이상현 - GPC0059 rtl 수정
-			// 20200506 START 이상현 - rtl 모바일 텍스트 정렬 수정
-			// .copy-boxing-area {
-			// 	@include screen(custom, max, $max-sm){
-			// 		[dir="rtl"] & {text-align:right;}
-			// 	}
-			// }
-			// 20200506 END
-			// 20200507 END
-			.head{
-				max-width:300px;
-				font-size:32px;
-				line-height:36px;
-				margin-top:2px;
-				@include screen(custom, max, $max-md){
-					font-size:24px;
-					line-height: 28px;
-				}
-				@include screen(custom, max, $max-sm){
-					max-width:210px;
-				}
-			}
-			.category,
-			.head,
-			.desc {
-				@include screen(custom, min, $min-md){
-					margin-left: auto;
-					margin-right: auto;
-				}
-			}
-		}
-		&.sub {
-			// 20200507 START 이상현 - GPC0059 rtl 수정
-			// .copy-boxing-area {
-			// 	[dir="rtl"] & {
-			// 		direction:rtl;
-			// 		text-align:right;
-			// 	}
-			// }
-			// 20200507 END
-			.head {
-				max-width:250px;
-				font-size:28px;
-				line-height:32px;
-				margin-top:1px;
-				@include screen(custom, max, $max-md){
-					font-size:20px;
-					line-height:26px;
-				}
-				@include screen(custom, max, $max-sm){
-					max-width:210px;
-				}
-			}
-		}
-		.copy-boxing-area {
-			.desc{
-				margin-top: 11px;
-			}
-			// 320px ~ 767px
-			@include screen(custom, max, $max-sm){
-				top:18px; left:24px; right:24px; bottom:25px;
-			}
-		}
-	}
-	// exception
-	.tall .square .common-area.case-of-video:before {
-		// 768px ~
-		@include screen(custom, min, $min-md){
-			/* LGEGMC-432 20200812 modify */
-			width:48px; height:48px;
-			/* //LGEGMC-432 20200812 modify */
-			top:0; right:0; bottom:0; left:0;
-			margin:auto;
-			background-image:url('/lg5-common-gp/images/components/btn-play.svg');
-		}
-	}
-	// image size 
-	.square {
-		// 1200px ~
-		@include screen(xl){
-			&.main {
-				.common-area {padding-bottom:144%;}
-			}
-			&.length-lg {
-				.common-area {padding-bottom:49.122%;}
-			}
-			&.length-md {
-				.common-area {padding-bottom:88.11%;}
-			}
-			&.length-sm {
-				.common-area {padding-bottom:120%;}
-			}
-		}
-		// 768px ~ 1199px
-		@include screen(custom, min, $min-md){
-			@include screen(custom, max, $max-lg){
-				&.main {
-					.common-area {padding-bottom:126.476%;}
-				}
-				&.length-lg {
-					.common-area {padding-bottom:36.594%;}
-				}
-				&.length-md,
-				&.length-sm {
-					.common-area {padding-bottom:96.8%;}
-				}
-			}
-		}
-		// 320px ~ 767px
-		@include screen(custom, max, $max-sm){
-			&.main {
-				.common-area {padding-bottom:93.75%;}
-			}
-			&.length-lg,
-			&.length-md,
-			&.length-sm {
-				.common-area {padding-bottom:66.563%;}
-			}
-		}
-	}
-	@include screen(custom, min, $min-md){
-		@include screen(custom, max, $max-lg){
-			&:not(.flow-mix) {
-				.square-partition.bottom {
-					.length-md,
-					.length-sm {
-						.common-area {padding-bottom:75%;}
-					}
-				}
-			}
-			&.type-triple {
-				.square-partition {
-					.length-lg {
-						.common-area {padding-bottom:96.8%;}
-					}
-				}
-			}
-		}
-	}
-	
+  // mixin
+  @mixin square($calc-type, $part-size, $container-size, $rtlUse: null) {
+    @if ($calc-type == "w") {
+      width: math.div($part-size * 100%, $container-size);
+    }
+    @if ($calc-type == "h") {
+      height: math.div($part-size * 100%, $container-size);
+    }
+    @if ($calc-type == "mr") {
+      margin-right: math.div($part-size * 100%, $container-size);
+      @if ($rtlUse == "true") {
+        [dir="rtl"] & {
+          margin-right: 0;
+          margin-left: math.div($part-size * 100%, $container-size);
+        }
+      }
+    }
+    @if ($calc-type == "ml") {
+      margin-left: math.div($part-size * 100%, $container-size);
+      @if ($rtlUse == "true") {
+        [dir="rtl"] & {
+          margin-left: 0;
+          margin-right: math.div($part-size * 100%, $container-size);
+        }
+      }
+    }
+  }
+  // component level
+  &.flow-right {
+    text-align: right;
+    .square-partition {
+      &.top,
+      &.bottom {
+        // 1200px ~ all
+        @include screen(custom, min, $min-md) {
+          left: 0;
+        }
+        // 1200px ~
+        @include screen(xl) {
+          .square:first-child {
+            @include square(mr, 24px, (1284px - 521px - 24px), "true");
+          }
+        }
+      }
+      &.bottom {
+        // 768px ~ 1199px
+        @include screen(custom, min, $min-md) {
+          @include screen(custom, max, $max-lg) {
+            .square:first-child:not(.length-lg) {
+              @include square(mr, 24px, 992px, "true");
+            }
+          }
+        }
+      }
+    }
+  }
+  &.flow-left {
+    // 20200507 START 이상현 - GPC0059 rtl 수정
+    [dir="rtl"] & {
+      @include screen(custom, min, $min-md) {
+        direction: ltr;
+      }
+    }
+    // 20200507 END
+    .square-partition {
+      &.top,
+      &.bottom {
+        // 1200px ~ all
+        @include screen(custom, min, $min-md) {
+          right: 0;
+        }
+        // 1200px ~
+        @include screen(xl) {
+          .square:first-child {
+            @include square(mr, 24px, (1284px - 521px - 24px));
+          }
+        }
+      }
+      &.bottom {
+        // 768px ~ 1199px
+        @include screen(custom, min, $min-md) {
+          @include screen(custom, max, $max-lg) {
+            .square:first-child:not(.length-lg) {
+              @include square(mr, 24px, 992px);
+            }
+          }
+        }
+      }
+    }
+  }
+  &.flow-mix {
+    @extend .flow-right;
+    // 768px ~ 1199px
+    @include screen(custom, min, $min-md) {
+      @include screen(custom, max, $max-lg) {
+        .square-partition.top {
+          position: relative !important;
+          width: 100% !important;
+          height: auto !important;
+        }
+        .square-partition.top .square.sub {
+          position: relative !important;
+          bottom: auto !important;
+        }
+        .square-partition.bottom {
+          clear: both;
+          float: left;
+          @include square(w, 375px, 992px);
+        }
+        .square-partition.bottom .square.sub {
+          clear: both !important;
+          width: 100% !important;
+          margin-right: 0 !important;
+        }
+        .square-partition.bottom .square.sub + .square.sub {
+          padding-top: math.div(24px * 100%, 363px);
+        }
+        .square-partition.tall {
+          padding-top: math.div(24px * 100%, 992px);
+        }
+      }
+    }
+  }
+  .component-inner {
+    position: relative;
+    font-size: 0;
+  }
+  // square block level
+  .square-partition {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    &.tall {
+      // 1200px ~
+      @include screen(xl) {
+        @include square(w, 521px, 1284px);
+      }
+      // 768px ~ 1199px
+      @include screen(custom, min, $min-md) {
+        @include screen(custom, max, $max-lg) {
+          @include square(w, 593px, 992px);
+        }
+      }
+      // 320~ 767px
+      @include screen(custom, max, $max-sm) {
+        width: 100%;
+      }
+    }
+    &.top,
+    &.bottom {
+      width: 100%;
+      // 768px ~
+      @include screen(custom, min, $min-md) {
+        position: absolute;
+      }
+      // 1200px ~
+      @include screen(xl) {
+        @include square(w, (1284px - 521px - 24px), 1284px);
+      }
+    }
+    &.top {
+      // 768px ~
+      @include screen(custom, min, $min-md) {
+        top: 0;
+      }
+      // 768px ~ 1199px
+      @include screen(custom, min, $min-md) {
+        @include screen(custom, max, $max-lg) {
+          @include square(w, (992px - 593px - 24px), 992px);
+          .square {
+            width: 100%;
+          }
+        }
+      }
+    }
+    &.bottom {
+      // 768px ~
+      @include screen(custom, min, $min-md) {
+        bottom: 0;
+      }
+    }
+  }
+  &.type-triple .square-partition {
+    &.top,
+    &.bottom {
+      // 768px ~ 1199px
+      @include screen(custom, min, $min-md) {
+        @include screen(custom, max, $max-lg) {
+          @include square(w, (992px - 593px - 24px), 992px);
+          @include square(h, 363px, 750px);
+          .square {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  &:not(.type-triple) .square-partition {
+    &.top,
+    &.bottom {
+      // 1200px ~
+      @include screen(xl) {
+        @include square(h, 363px, 750px);
+      }
+    }
+    &.top {
+      // 768px ~ 1199px
+      @include screen(custom, min, $min-md) {
+        @include screen(custom, max, $max-lg) {
+          @include square(h, (363px * 2 + 24px), 1134px);
+          .square:last-child {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+          }
+        }
+      }
+    }
+    &.bottom {
+      $margin: math.div(24px * 100%, 992px);
+      // 768px ~ 1199px
+      @include screen(custom, min, $min-md) {
+        @include screen(custom, max, $max-lg) {
+          padding-top: $margin;
+          position: static;
+          .square:not(.length-lg) {
+            width: calc(100% / 2 - #{$margin}/ 2);
+          }
+        }
+      }
+    }
+  }
+  // square level
+  .square {
+    width: 100%;
+    // 20200507 START 이상현 - GPC0059 rtl 수정
+    [dir="rtl"] & {
+      direction: rtl;
+      text-align: right;
+    }
+    // 20200507 END
+    // 1200px ~
+    @include screen(xl) {
+      &.length-md {
+        @include square(w, 412px, (1284px - 521px - 24px));
+      }
+      &.length-sm {
+        @include square(w, 303px, (1284px - 521px - 24px));
+      }
+    }
+    // 768px ~
+    @include screen(custom, min, $min-md) {
+      &.main {
+        text-align: center;
+        .copy-boxing-area {
+          top: 54px;
+        }
+      }
+    }
+    // 320px ~ 767px
+    @include screen(custom, max, $max-sm) {
+      margin-top: 10px;
+    }
+    &.main {
+      // 20200507 START 이상현 - GPC0059 rtl 수정
+      // 20200506 START 이상현 - rtl 모바일 텍스트 정렬 수정
+      // .copy-boxing-area {
+      // 	@include screen(custom, max, $max-sm){
+      // 		[dir="rtl"] & {text-align:right;}
+      // 	}
+      // }
+      // 20200506 END
+      // 20200507 END
+      .head {
+        max-width: 300px;
+        font-size: 32px;
+        line-height: 36px;
+        margin-top: 2px;
+        @include screen(custom, max, $max-md) {
+          font-size: 24px;
+          line-height: 28px;
+        }
+        @include screen(custom, max, $max-sm) {
+          max-width: 210px;
+        }
+      }
+      .category,
+      .head,
+      .desc {
+        @include screen(custom, min, $min-md) {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+    &.sub {
+      // 20200507 START 이상현 - GPC0059 rtl 수정
+      // .copy-boxing-area {
+      // 	[dir="rtl"] & {
+      // 		direction:rtl;
+      // 		text-align:right;
+      // 	}
+      // }
+      // 20200507 END
+      .head {
+        max-width: 250px;
+        font-size: 28px;
+        line-height: 32px;
+        margin-top: 1px;
+        @include screen(custom, max, $max-md) {
+          font-size: 20px;
+          line-height: 26px;
+        }
+        @include screen(custom, max, $max-sm) {
+          max-width: 210px;
+        }
+      }
+    }
+    .copy-boxing-area {
+      .desc {
+        margin-top: 11px;
+      }
+      // 320px ~ 767px
+      @include screen(custom, max, $max-sm) {
+        top: 18px;
+        left: 24px;
+        right: 24px;
+        bottom: 25px;
+      }
+    }
+  }
+  // exception
+  .tall .square .common-area.case-of-video:before {
+    // 768px ~
+    @include screen(custom, min, $min-md) {
+      /* LGEGMC-432 20200812 modify */
+      width: 48px;
+      height: 48px;
+      /* //LGEGMC-432 20200812 modify */
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      background-image: url("/lg5-common-gp/images/components/btn-play.svg");
+    }
+  }
+  // image size
+  .square {
+    // 1200px ~
+    @include screen(xl) {
+      &.main {
+        .common-area {
+          padding-bottom: 144%;
+        }
+      }
+      &.length-lg {
+        .common-area {
+          padding-bottom: 49.122%;
+        }
+      }
+      &.length-md {
+        .common-area {
+          padding-bottom: 88.11%;
+        }
+      }
+      &.length-sm {
+        .common-area {
+          padding-bottom: 120%;
+        }
+      }
+    }
+    // 768px ~ 1199px
+    @include screen(custom, min, $min-md) {
+      @include screen(custom, max, $max-lg) {
+        &.main {
+          .common-area {
+            padding-bottom: 126.476%;
+          }
+        }
+        &.length-lg {
+          .common-area {
+            padding-bottom: 36.594%;
+          }
+        }
+        &.length-md,
+        &.length-sm {
+          .common-area {
+            padding-bottom: 96.8%;
+          }
+        }
+      }
+    }
+    // 320px ~ 767px
+    @include screen(custom, max, $max-sm) {
+      &.main {
+        .common-area {
+          padding-bottom: 93.75%;
+        }
+      }
+      &.length-lg,
+      &.length-md,
+      &.length-sm {
+        .common-area {
+          padding-bottom: 66.563%;
+        }
+      }
+    }
+  }
+  @include screen(custom, min, $min-md) {
+    @include screen(custom, max, $max-lg) {
+      &:not(.flow-mix) {
+        .square-partition.bottom {
+          .length-md,
+          .length-sm {
+            .common-area {
+              padding-bottom: 75%;
+            }
+          }
+        }
+      }
+      &.type-triple {
+        .square-partition {
+          .length-lg {
+            .common-area {
+              padding-bottom: 96.8%;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-@media screen and (-ms-high-contrast: active ) {
-	.GPC0059 .visual-area {
-		img {
-			visibility: hidden;
-		}
-	}
+@media screen and (-ms-high-contrast: active) {
+  .GPC0059 .visual-area {
+    img {
+      visibility: hidden;
+    }
+  }
 }

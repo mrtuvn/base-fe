@@ -1,402 +1,447 @@
 @charset 'UTF-8';
-@import './setting/variables';
+@use "sass:math";
+@import "./setting/variables";
 
 .GPC0078 {
-	// image box area
-	.carousel-wrap {
-		position:relative;
-		width:100%;
-		clear:both;
-		overflow:hidden;
-		@extend %clearfix;
-		opacity:0;
-		&.active {
-			opacity:1;
-		}
-		.slick-list {
-			width:auto;
-			height:100%;
-			overflow:hidden;
-		}
-		.slick-track {
-			&:after {
-				content:'';
-				display:block;
-				width:100%;
-				height:0;
-				clear:both;
-			}
-		}
-		.slick-arrow {
-			padding:0;
-			cursor:pointer;
-			&.slick-prev,
-			&.slick-next {
-				position:absolute;
-				z-index:99;
-				top:50%;
-				width:22px;
-				height:40px;
-				transform: translate(0,-50%);
-				[dir="rtl"] & {
-					transform:translate(0,-50%) rotate(180deg);
-				}
-			}
-			&.slick-prev {
-				left:40px;
-				[dir="rtl"] & {
-					left:auto;
-					right:40px;
-				}
-			}
-			&.slick-next {
-				right:40px;
-				[dir="rtl"] & {
-					right:auto;
-					left:40px;
-				}
-			}
-			@include screen(custom, max, $max-lg) {
-				&.slick-prev {
-					left:30px;
-					[dir="rtl"] & {right:30px;}
-				}
-				&.slick-next {
-					right:30px;
-					[dir="rtl"] & {left:30px;}
-				}
-			}
-			&.slick-disabled {
-				opacity:0.3;
-			}
-		}
-		.carousel-box {
-			position:relative;
-			width:100%;
-			float:left;
-			[dir="rtl"] & {float:right;}
-		}
-		.visual-area {
-			position:relative;
-			overflow:hidden;
-			z-index:1;
-			img {
-				position:relative;
-				width:100%;
-				height:auto;
-				&.pc {display:inline;}
-				&.mobile {display:none;}
-				@include screen(custom, max, $max-sm) {
-					&.pc {display:none;}
-					&.mobile {display:inline;}
-				}
-				&.lazyload,
-				&.lazyloading {
-					opacity:0;
-					&.lazyloaded {
-						opacity:1;
-					}
-				}
-			}
-		}
-		.carousel-box {
-			position:relative;
-			width:100%;
-			overflow:hidden;
-			// font black
-			&.text-black {
-				color:$color-black;
-				background-color: $bg-white;
-				.text-wrap {
-					.title, .title h1, .title h2, .title h3, .title h4, .title h5, .title h6 {
-						color:$color-black;
-					}
-					.copy {
-						color:$color-nightrider;
-					}
-					.eyebrow {
-						color:$color-nightrider;
-					}
-					.cta {
-						.link-text {
-							color:$color-nightrider;
-							&:after {
-								background-image:url('/lg5-common-gp/images/common/icons/link-right-nightrider.svg');
-							}
-						} 
-						.btn-outline-secondary {
-							border-color:$line-dimgray !important;;
-							color:$color-dimgray !important;;
-						}
-					}
-					.video-link {
-						.link-text {color:$color-nightrider;}
-						.ico-left {
-							&:before {
-								background-image:url('/lg5-common-gp/images/components/btn-play-black.svg');
-							}
-						}
-					}
-				}
-			}
-			// font white
-			&.text-white {
-				background-color: $bg-gray;
-				color:$color-white;
-				.text-wrap {
-					color:$color-white;
-					.eyebrow,
-					.title {
-						color:$color-white;
-					}
-					.cta {
-						.link-text {
-							color:$color-white;
-							&:after {
-								background-image:url('/lg5-common-gp/images/common/icons/link-right-white.svg');
-							}
-						} 
-						.btn-outline-secondary {
-							border-color:$line-white !important;
-							color:$color-white !important;
-							&:not([disabled]):hover, &:not([disabled]):focus {
-								border-color:$line-white !important;
-								background-color:$color-white !important;
-								color:$color-black !important;
-							}
-						}
-					}
-					.video-link {
-						.link-text {color:$color-white;}
-						.ico-left {
-							&:before {
-								background:url('/lg5-common-gp/images/components/btn-play.svg') no-repeat;
-								background-size:20px 20px;
-							}
-						}
-					}
-				}
-			}
-		}
-		.text-area {
-			position:absolute;
-			left:0;
-			padding:0 30px;
-			@include screen(custom, max, $max-sm) {
-				padding:0 24px;
-			}
-			width:100%;
-			z-index:2;
-			&.align-left {
-				.text-wrap .inner {
-					float:left;
-					text-align:left;
-					[dir="rtl"] & {text-align:right;}
-				}
-			}
-			&.align-right {
-				.text-wrap .inner {
-					float:right;
-					text-align:left;
-					[dir="rtl"] & {text-align:right;}
-				}
-			}
-			&.align-left,
-			&.align-right {
-				.text-wrap {
-					// .cta,
-					// .video-link {
-					// 	clear:both;
-					// 	float:left;
-					// 	text-align:left;
-					// }
-					.cta-button {
-						.btn {
-							margin:0 6px 10px 0;
-							[dir="rtl"] & {margin:0 0 10px 6px;}
-						}
-					}
-					.cta-link {
-						.link-text {
-							margin:0 18px 11px 0;
-							[dir="rtl"] & {margin:0 0 11px 18px;}
-						}
-					}
-					@include screen(custom, max, $max-sm) {
-						.cta,
-						.video-link {
-							text-align:center;
-							width:100%;
-							// float:none;
-						}
-						.cta-button {
-							.btn {margin:0 3px 10px 3px;}
-						}
-					}
-					@include screen(custom, min, $min-md) {
-						.inner {
-							.cta {
-								&:last-child {
-									margin-bottom:-23px;
-								}
-							}
-						}
-					}
-				}
-			}
-			&.align-center {
-				.text-wrap .inner {
-					// float:none;
-					margin:0 auto;
-				}
-				.text-wrap {
-					
-					.text-block {
-						margin:0 auto;
-						text-align:center;
-					}
-					.cta-button {
-						.btn {margin:0 3px 10px 3px;}
-					}
-					.cta-link {
-						.link-text {margin:0 9px 11px 9px;}
-					}
-				}
-			}
-			&.align-middle {
-				top:50%;
-				transform:translateY(-50%);
-			}
-		}
-		.text-wrap {
-			position:relative;
-			width:100%;
-			max-width:1284px;
-			margin:0 auto;
-			.eyebrow {
-				@include font-family($font-semibold);
-			}
-			.title, .title h1, .title h2, .title h3, .title h4, .title h5, .title h6 {
-				@include font-family($font-semibold);
-				// 20200311 START 박지영 - hu 국가에 Fagyasztószekrények 와 같이 긴 텍스트가 존재해서 줄바꿈 처리 수정
-				word-break: normal;
-				word-wrap: normal;
-				// 20200311 END
-			}
-			.cta {
-				.cta-button {
-					// text link에 위아래 8픽셀의 여백이 있어서 맞춰주기 위해 버튼에도 동일하게 처리함
-					padding-top:8px;
-					padding-bottom:8px;
-				}
-				.cta-link {
-				}
-			}
-			.video-link {
-				.link-text {
-					color:$color-nightrider;
-					/* LGEGMC-432 20200812 modify */
-					font-size: 16px;
-					font-weight: 700;
-					/* //LGEGMC-432 20200812 modify */
-				}
-			}
-		}
-		.text-area.align-center {
-			.text-wrap .inner {
-				max-width:100%;
-				.text-block {
-					max-width:900px;
-					margin-left:auto;
-					margin-right:auto;
-					@include screen(custom, max, $max-lg) {
-						max-width:(900px*100%/1200px);
-						@include screen(custom, min, 880) {
-						}
-					}
-					@include screen(custom, max, $max-sm) {
-						max-width:100%;
-					}
-				}
-			}
-		}
-		.text-area.align-left,
-		.text-area.align-right {
-			.text-wrap .inner {
-				max-width:500px;
-				width:100%;
-				@include screen(custom, max, 1293) {
-					max-width:(465px*100%/(1200px - 200px));
-				}
-				@include screen(custom, max, $max-lg) {
-					//max-width:(500px*100%/1200px);
-					max-width:(390px*100%/(992px - 160px));
-				}
-				@include screen(custom, max, ($max-md)) {
-					max-width:(300px*100%/(768px - 120px));
-				}
-				@include screen(custom, max, $max-sm) {
-					max-width:100%;
-					float:none;
-				}
-			}
-		}
-		.text-area {
-			&.align-left .text-wrap,
-			&.align-right .text-wrap {
-				padding-left:70px;
-				padding-right:70px;
-				max-width:(1284px+140px);
-				@include screen(custom, max, $max-lg) {
-					padding-left:50px;
-					padding-right:50px;
-				}
-				@include screen(custom, max, ($max-md)) {
-					padding-left:30px;
-					padding-right:30px;
-				}
-			}
-			@include screen(custom, max, $max-sm) {
-				&.align-left .text-wrap,
-				&.align-right .text-wrap {
-					padding-left:0;
-					padding-right:0;
-				}
-				&.align-left .text-wrap .inner {
-					padding-left:0;
-				}
-				&.align-right .text-wrap .inner {
-					padding-right:0;
-				}
-			}
-			@include screen(custom, max, $max-sm) {
-				// mobile
-				&.align-top {
-					top:34px;
-				}
-				/*
+  // image box area
+  .carousel-wrap {
+    position: relative;
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+    @extend %clearfix;
+    opacity: 0;
+    &.active {
+      opacity: 1;
+    }
+    .slick-list {
+      width: auto;
+      height: 100%;
+      overflow: hidden;
+    }
+    .slick-track {
+      &:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 0;
+        clear: both;
+      }
+    }
+    .slick-arrow {
+      padding: 0;
+      cursor: pointer;
+      &.slick-prev,
+      &.slick-next {
+        position: absolute;
+        z-index: 99;
+        top: 50%;
+        width: 22px;
+        height: 40px;
+        transform: translate(0, -50%);
+        [dir="rtl"] & {
+          transform: translate(0, -50%) rotate(180deg);
+        }
+      }
+      &.slick-prev {
+        left: 40px;
+        [dir="rtl"] & {
+          left: auto;
+          right: 40px;
+        }
+      }
+      &.slick-next {
+        right: 40px;
+        [dir="rtl"] & {
+          right: auto;
+          left: 40px;
+        }
+      }
+      @include screen(custom, max, $max-lg) {
+        &.slick-prev {
+          left: 30px;
+          [dir="rtl"] & {
+            right: 30px;
+          }
+        }
+        &.slick-next {
+          right: 30px;
+          [dir="rtl"] & {
+            left: 30px;
+          }
+        }
+      }
+      &.slick-disabled {
+        opacity: 0.3;
+      }
+    }
+    .carousel-box {
+      position: relative;
+      width: 100%;
+      float: left;
+      [dir="rtl"] & {
+        float: right;
+      }
+    }
+    .visual-area {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      img {
+        position: relative;
+        width: 100%;
+        height: auto;
+        &.pc {
+          display: inline;
+        }
+        &.mobile {
+          display: none;
+        }
+        @include screen(custom, max, $max-sm) {
+          &.pc {
+            display: none;
+          }
+          &.mobile {
+            display: inline;
+          }
+        }
+        &.lazyload,
+        &.lazyloading {
+          opacity: 0;
+          &.lazyloaded {
+            opacity: 1;
+          }
+        }
+      }
+    }
+    .carousel-box {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      // font black
+      &.text-black {
+        color: $color-black;
+        background-color: $bg-white;
+        .text-wrap {
+          .title,
+          .title h1,
+          .title h2,
+          .title h3,
+          .title h4,
+          .title h5,
+          .title h6 {
+            color: $color-black;
+          }
+          .copy {
+            color: $color-nightrider;
+          }
+          .eyebrow {
+            color: $color-nightrider;
+          }
+          .cta {
+            .link-text {
+              color: $color-nightrider;
+              &:after {
+                background-image: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg");
+              }
+            }
+            .btn-outline-secondary {
+              border-color: $line-dimgray !important;
+              color: $color-dimgray !important;
+            }
+          }
+          .video-link {
+            .link-text {
+              color: $color-nightrider;
+            }
+            .ico-left {
+              &:before {
+                background-image: url("/lg5-common-gp/images/components/btn-play-black.svg");
+              }
+            }
+          }
+        }
+      }
+      // font white
+      &.text-white {
+        background-color: $bg-gray;
+        color: $color-white;
+        .text-wrap {
+          color: $color-white;
+          .eyebrow,
+          .title {
+            color: $color-white;
+          }
+          .cta {
+            .link-text {
+              color: $color-white;
+              &:after {
+                background-image: url("/lg5-common-gp/images/common/icons/link-right-white.svg");
+              }
+            }
+            .btn-outline-secondary {
+              border-color: $line-white !important;
+              color: $color-white !important;
+              &:not([disabled]):hover,
+              &:not([disabled]):focus {
+                border-color: $line-white !important;
+                background-color: $color-white !important;
+                color: $color-black !important;
+              }
+            }
+          }
+          .video-link {
+            .link-text {
+              color: $color-white;
+            }
+            .ico-left {
+              &:before {
+                background: url("/lg5-common-gp/images/components/btn-play.svg")
+                  no-repeat;
+                background-size: 20px 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .text-area {
+      position: absolute;
+      left: 0;
+      padding: 0 30px;
+      @include screen(custom, max, $max-sm) {
+        padding: 0 24px;
+      }
+      width: 100%;
+      z-index: 2;
+      &.align-left {
+        .text-wrap .inner {
+          float: left;
+          text-align: left;
+          [dir="rtl"] & {
+            text-align: right;
+          }
+        }
+      }
+      &.align-right {
+        .text-wrap .inner {
+          float: right;
+          text-align: left;
+          [dir="rtl"] & {
+            text-align: right;
+          }
+        }
+      }
+      &.align-left,
+      &.align-right {
+        .text-wrap {
+          // .cta,
+          // .video-link {
+          // 	clear:both;
+          // 	float:left;
+          // 	text-align:left;
+          // }
+          .cta-button {
+            .btn {
+              margin: 0 6px 10px 0;
+              [dir="rtl"] & {
+                margin: 0 0 10px 6px;
+              }
+            }
+          }
+          .cta-link {
+            .link-text {
+              margin: 0 18px 11px 0;
+              [dir="rtl"] & {
+                margin: 0 0 11px 18px;
+              }
+            }
+          }
+          @include screen(custom, max, $max-sm) {
+            .cta,
+            .video-link {
+              text-align: center;
+              width: 100%;
+              // float:none;
+            }
+            .cta-button {
+              .btn {
+                margin: 0 3px 10px 3px;
+              }
+            }
+          }
+          @include screen(custom, min, $min-md) {
+            .inner {
+              .cta {
+                &:last-child {
+                  margin-bottom: -23px;
+                }
+              }
+            }
+          }
+        }
+      }
+      &.align-center {
+        .text-wrap .inner {
+          // float:none;
+          margin: 0 auto;
+        }
+        .text-wrap {
+          .text-block {
+            margin: 0 auto;
+            text-align: center;
+          }
+          .cta-button {
+            .btn {
+              margin: 0 3px 10px 3px;
+            }
+          }
+          .cta-link {
+            .link-text {
+              margin: 0 9px 11px 9px;
+            }
+          }
+        }
+      }
+      &.align-middle {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    .text-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 1284px;
+      margin: 0 auto;
+      .eyebrow {
+        @include font-family($font-semibold);
+      }
+      .title,
+      .title h1,
+      .title h2,
+      .title h3,
+      .title h4,
+      .title h5,
+      .title h6 {
+        @include font-family($font-semibold);
+        // 20200311 START 박지영 - hu 국가에 Fagyasztószekrények 와 같이 긴 텍스트가 존재해서 줄바꿈 처리 수정
+        word-break: normal;
+        word-wrap: normal;
+        // 20200311 END
+      }
+      .cta {
+        .cta-button {
+          // text link에 위아래 8픽셀의 여백이 있어서 맞춰주기 위해 버튼에도 동일하게 처리함
+          padding-top: 8px;
+          padding-bottom: 8px;
+        }
+        .cta-link {
+        }
+      }
+      .video-link {
+        .link-text {
+          color: $color-nightrider;
+          /* LGEGMC-432 20200812 modify */
+          font-size: 16px;
+          font-weight: 700;
+          /* //LGEGMC-432 20200812 modify */
+        }
+      }
+    }
+    .text-area.align-center {
+      .text-wrap .inner {
+        max-width: 100%;
+        .text-block {
+          max-width: 900px;
+          margin-left: auto;
+          margin-right: auto;
+          @include screen(custom, max, $max-lg) {
+            max-width: (math.div(900px * 100%, 1200px));
+            @include screen(custom, min, 880) {
+            }
+          }
+          @include screen(custom, max, $max-sm) {
+            max-width: 100%;
+          }
+        }
+      }
+    }
+    .text-area.align-left,
+    .text-area.align-right {
+      .text-wrap .inner {
+        max-width: 500px;
+        width: 100%;
+        @include screen(custom, max, 1293) {
+          max-width: (math.div(465px * 100%, (1200px - 200px)));
+        }
+        @include screen(custom, max, $max-lg) {
+          max-width: (math.div(390px * 100%, (992px - 160px)));
+        }
+        @include screen(custom, max, ($max-md)) {
+          max-width: (math.div(300px * 100%, (768px - 120px)));
+        }
+        @include screen(custom, max, $max-sm) {
+          max-width: 100%;
+          float: none;
+        }
+      }
+    }
+    .text-area {
+      &.align-left .text-wrap,
+      &.align-right .text-wrap {
+        padding-left: 70px;
+        padding-right: 70px;
+        max-width: (1284px+140px);
+        @include screen(custom, max, $max-lg) {
+          padding-left: 50px;
+          padding-right: 50px;
+        }
+        @include screen(custom, max, ($max-md)) {
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+      }
+      @include screen(custom, max, $max-sm) {
+        &.align-left .text-wrap,
+        &.align-right .text-wrap {
+          padding-left: 0;
+          padding-right: 0;
+        }
+        &.align-left .text-wrap .inner {
+          padding-left: 0;
+        }
+        &.align-right .text-wrap .inner {
+          padding-right: 0;
+        }
+      }
+      @include screen(custom, max, $max-sm) {
+        // mobile
+        &.align-top {
+          top: 34px;
+        }
+        /*
 				&.align-bottom {
 					bottom:34px;
 				}
 				*/
-			}
-			@include screen(custom, min, $min-md) {
-				// desktop
-				&.align-left,
-				&.align-right {
-					top:50%;
-					transform:translateY(-50%);
-				}
-				&.align-center.align-top {
-					top:57px;
-					@include screen(custom, max, $max-lg) {
-						top:52px;
-					}
-					@include screen(custom, max, ($max-md)) {
-						top:37px;
-					}
-				}
-				/*
+      }
+      @include screen(custom, min, $min-md) {
+        // desktop
+        &.align-left,
+        &.align-right {
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        &.align-center.align-top {
+          top: 57px;
+          @include screen(custom, max, $max-lg) {
+            top: 52px;
+          }
+          @include screen(custom, max, ($max-md)) {
+            top: 37px;
+          }
+        }
+        /*
 				&.align-center.align-bottom {
 					bottom:57px;
 					@include screen(custom, max, $max-lg) {
@@ -407,74 +452,80 @@
 					}
 				}
 				*/
-			}
-		}
-		.text-wrap {
-			@extend %clearfix;
-			.eyebrow {
-				font-size:30px;
-				line-height:36px;
-				margin-bottom:10px;
-				@include screen(custom, max, $max-lg) {
-					font-size:18px;
-					line-height:24px;
-					margin-bottom:7px;
-				}
-				@include screen(custom, max, $max-sm) {
-					font-size:16px;
-					line-height:24px;
-					margin-bottom:4px;
-				}
-			}
-			.title {
-				margin-bottom:20px;
-				@include screen(custom, max, $max-lg) {
-					margin-bottom:12px;
-				}
-				@include screen(custom, max, $max-sm) {
-					margin-bottom:6px;
-				}
-			}
-			.title, .title h1, .title h2, .title h3, .title h4, .title h5, .title h6 {
-				font-size:60px;
-				line-height:60px;
-				@include screen(custom, max, 1355) {
-					font-size:48px;
-					line-height:50px;
-				}
-				@include screen(custom, max, $max-lg) {
-					font-size:36px;
-					line-height:40px;
-				}
-				@include screen(custom, max, $max-sm) {
-					font-size:32px;
-					line-height:36px;
-				}
-				@include screen(custom, max, 374) {
-					font-size:26px;
-					line-height:30px;
-				}
-			}
-			.copy {
-				font-size:20px; 
-				line-height:26px;
-				margin-bottom:17px;
-				@include screen(custom, max, $max-lg) {
-					font-size:16px;
-					line-height:24px;
-				}
-				@include screen(custom, max, $max-sm) {
-					// LGEPA-572 start
-					font-size: 14px;
-					line-height: 20px;
-					// LGEPA-572 end
-					margin-bottom:11px;
-				}
-			}
-			.cta {
-				padding-bottom:5px;
-			}
-			/*
+      }
+    }
+    .text-wrap {
+      @extend %clearfix;
+      .eyebrow {
+        font-size: 30px;
+        line-height: 36px;
+        margin-bottom: 10px;
+        @include screen(custom, max, $max-lg) {
+          font-size: 18px;
+          line-height: 24px;
+          margin-bottom: 7px;
+        }
+        @include screen(custom, max, $max-sm) {
+          font-size: 16px;
+          line-height: 24px;
+          margin-bottom: 4px;
+        }
+      }
+      .title {
+        margin-bottom: 20px;
+        @include screen(custom, max, $max-lg) {
+          margin-bottom: 12px;
+        }
+        @include screen(custom, max, $max-sm) {
+          margin-bottom: 6px;
+        }
+      }
+      .title,
+      .title h1,
+      .title h2,
+      .title h3,
+      .title h4,
+      .title h5,
+      .title h6 {
+        font-size: 60px;
+        line-height: 60px;
+        @include screen(custom, max, 1355) {
+          font-size: 48px;
+          line-height: 50px;
+        }
+        @include screen(custom, max, $max-lg) {
+          font-size: 36px;
+          line-height: 40px;
+        }
+        @include screen(custom, max, $max-sm) {
+          font-size: 32px;
+          line-height: 36px;
+        }
+        @include screen(custom, max, 374) {
+          font-size: 26px;
+          line-height: 30px;
+        }
+      }
+      .copy {
+        font-size: 20px;
+        line-height: 26px;
+        margin-bottom: 17px;
+        @include screen(custom, max, $max-lg) {
+          font-size: 16px;
+          line-height: 24px;
+        }
+        @include screen(custom, max, $max-sm) {
+          // LGEPA-572 start
+          font-size: 14px;
+          line-height: 20px;
+          // LGEPA-572 end
+          margin-bottom: 11px;
+        }
+      }
+      .cta {
+        padding-bottom: 5px;
+      }
+      /*
 			.video-link {
 				padding-bottom:24px;
 				@include screen(custom, max, $max-sm) {
@@ -482,11 +533,11 @@
 				}
 			}
 			*/
-		}
-		// slick
-		&.slick-initialized {
-			.text-area {
-				/*
+    }
+    // slick
+    &.slick-initialized {
+      .text-area {
+        /*
 				@include screen(custom, max, $max-sm) {
 					// mobile
 					&.align-bottom {
@@ -503,382 +554,390 @@
 					}
 				}
 				*/
-				.text-block {
-					user-select: none;
-				}
-			}
-			.animation-box .animation-area .controller-wrap {
-				margin-bottom:(42px + 15px);
-				@include screen(custom, max, $max-sm) {
-					margin-bottom:(30px + 12px);
-				}
-			}
-		}
-		// hero에서는 모바일일 경우 텍스트가 무조건 센터 정렬
-		@include screen(custom, max, $max-sm) {
-			.align-left,
-			.align-right {
-				.text-wrap {
-					.text-block,
-					.cta, 
-					.video-link {
-						// float:none;
-						text-align:center;
-					}
-				}
-			}
-		}
-	}
-	// slick slider 
-	.slick-slider {
-		opacity:0;
-		&.slick-initialized {
-			opacity:1;
-		}
-		button {
-			appearance:none;
-			border:none;
-			background-color:transparent;
-		}
-		.slick-arrow {
-			line-height:0;
-			color:$color-nightrider;
-			overflow:hidden;
-			text-indent:-10em;
-			[dir="rtl"] & {text-indent:10em;}
-			&:not([disabled]):hover,
-			&:not([disabled]):focus {
-				color:$color-black;
-			}
-			@include screen(custom, max, $max-sm) {
-				display:none !important;// 모바일에서는 좌우 화살표 출력하지 않음
-			}
-			svg {display:block;}
-		}
-		&.slick-white .slick-arrow {
-			color:#ccc;
-			&:not([disabled]):hover,
-			&:not([disabled]):focus {
-				color:$color-white;
-			}
-		}
-	}
-	.slick-indicator {
-		position:absolute;
-		bottom:0;
-		left:0;
-		width:100%;
-		height:42px;
-		text-align:center;
-		z-index:2;
-		@include screen(custom, max, $max-sm) {
-			height:32px;
-		}
-		.slick-dot-wrap {
-			display:inline-block;
-			vertical-align:top;
-		}
-		.slide-pause {
-			display:none;
-			overflow:hidden;
-			white-space:nowrap;
-			vertical-align:top;
-			width:12px;
-			height:14px;
-			background:url('/lg5-common-gp/images/common/icons/pause-white-lg.svg') no-repeat;
-			background-size:100% 100%;
-			color:transparent;
-			margin-top:-1px;
-			margin-left:17px - 5px;
-			@include screen(custom, max, $max-sm) {
-				margin-top:-2px;
-				margin-left:17px - 4px;
-			}
-			[dir="rtl"] & {
-				margin-left:0;
-				margin-right:17px - 5px;
-				@include screen(custom, max, $max-sm) {
-					margin-right:17px - 4px;
-				}
-			}
-			&.play {
-				background-image:url('/lg5-common-gp/images/common/icons/play-white-lg.svg');
-			}
-			&.active {
-				display:inline-block;
-			}
-		}
-		.slick-dots {
-			li {
-				position:relative;
-				display:inline-block;
-				vertical-align:top;
-				width:12px;
-				height:12px;
-				margin:0 5px;
-				border-radius:50%;
-				border:1px solid rgba(0,0,0, 0.5);;
-				line-height:normal;
-				@include screen(custom, max, $max-sm) {
-					width:10px;
-					height:10px;
-					margin:0 4px;
-				}
-				a, button {
-					background: $color-white;
-					display:block;
-					width:100%;
-					height:100%;
-					margin:0;
-					padding:0;
-					border:0;
-					border-radius:50%;
-					overflow:hidden;
-					color:transparent;
-					cursor: pointer;
-					&:focus {
-						outline:1px dotted;
-						outline:5px auto -webkit-focus-ring-color;
-					}
-				}
-				&.slick-active {
-					border:1px solid $color-carmine;
-					a, button {
-						background:$color-carmine;
-						&:focus {		
-							outline: 2px solid #000 !important;/* LGECI-297 : 20201214 edit */
-						}
-					}
-				}
-				&:only-child {
-					display:none;
-				}
-			}
-		}
-	}
-	&.js-invisible-nav {
-		.slick-indicator,
-		.slick-arrow {
-			z-index: -1 !important;
-		}
-	}
+        .text-block {
+          user-select: none;
+        }
+      }
+      .animation-box .animation-area .controller-wrap {
+        margin-bottom: (42px + 15px);
+        @include screen(custom, max, $max-sm) {
+          margin-bottom: (30px + 12px);
+        }
+      }
+    }
+    // hero에서는 모바일일 경우 텍스트가 무조건 센터 정렬
+    @include screen(custom, max, $max-sm) {
+      .align-left,
+      .align-right {
+        .text-wrap {
+          .text-block,
+          .cta,
+          .video-link {
+            // float:none;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+  // slick slider
+  .slick-slider {
+    opacity: 0;
+    &.slick-initialized {
+      opacity: 1;
+    }
+    button {
+      appearance: none;
+      border: none;
+      background-color: transparent;
+    }
+    .slick-arrow {
+      line-height: 0;
+      color: $color-nightrider;
+      overflow: hidden;
+      text-indent: -10em;
+      [dir="rtl"] & {
+        text-indent: 10em;
+      }
+      &:not([disabled]):hover,
+      &:not([disabled]):focus {
+        color: $color-black;
+      }
+      @include screen(custom, max, $max-sm) {
+        display: none !important; // 모바일에서는 좌우 화살표 출력하지 않음
+      }
+      svg {
+        display: block;
+      }
+    }
+    &.slick-white .slick-arrow {
+      color: #ccc;
+      &:not([disabled]):hover,
+      &:not([disabled]):focus {
+        color: $color-white;
+      }
+    }
+  }
+  .slick-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 42px;
+    text-align: center;
+    z-index: 2;
+    @include screen(custom, max, $max-sm) {
+      height: 32px;
+    }
+    .slick-dot-wrap {
+      display: inline-block;
+      vertical-align: top;
+    }
+    .slide-pause {
+      display: none;
+      overflow: hidden;
+      white-space: nowrap;
+      vertical-align: top;
+      width: 12px;
+      height: 14px;
+      background: url("/lg5-common-gp/images/common/icons/pause-white-lg.svg")
+        no-repeat;
+      background-size: 100% 100%;
+      color: transparent;
+      margin-top: -1px;
+      margin-left: 17px - 5px;
+      @include screen(custom, max, $max-sm) {
+        margin-top: -2px;
+        margin-left: 17px - 4px;
+      }
+      [dir="rtl"] & {
+        margin-left: 0;
+        margin-right: 17px - 5px;
+        @include screen(custom, max, $max-sm) {
+          margin-right: 17px - 4px;
+        }
+      }
+      &.play {
+        background-image: url("/lg5-common-gp/images/common/icons/play-white-lg.svg");
+      }
+      &.active {
+        display: inline-block;
+      }
+    }
+    .slick-dots {
+      li {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        width: 12px;
+        height: 12px;
+        margin: 0 5px;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        line-height: normal;
+        @include screen(custom, max, $max-sm) {
+          width: 10px;
+          height: 10px;
+          margin: 0 4px;
+        }
+        a,
+        button {
+          background: $color-white;
+          display: block;
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          border: 0;
+          border-radius: 50%;
+          overflow: hidden;
+          color: transparent;
+          cursor: pointer;
+          &:focus {
+            outline: 1px dotted;
+            outline: 5px auto -webkit-focus-ring-color;
+          }
+        }
+        &.slick-active {
+          border: 1px solid $color-carmine;
+          a,
+          button {
+            background: $color-carmine;
+            &:focus {
+              outline: 2px solid #000 !important; /* LGECI-297 : 20201214 edit */
+            }
+          }
+        }
+        &:only-child {
+          display: none;
+        }
+      }
+    }
+  }
+  &.js-invisible-nav {
+    .slick-indicator,
+    .slick-arrow {
+      z-index: -1 !important;
+    }
+  }
 
-	// bottom
-	&.component {
-		// align-bottom margin (for desktop)
-		@include screen(custom, min, $min-md) {
-			// nomral
-			.text-area.align-center.align-bottom {
-				.text-wrap {
-					.inner {
-						.cta {
-							&:last-child {
-								margin-bottom:-23px;
-							}
-						}
-					}
-				}
-				bottom:70px;
-				@include screen(custom, max, 1199) {
-					bottom:65px;
-				}
-				@include screen(custom, max, 991) {
-					bottom:45px;
-				}
-			}
-			// animation 
-			.animation-area + .text-area.align-center.align-bottom {
-				bottom:90px;
-				@include screen(custom, max, 1199) {
-					bottom:80px;
-				}
-				@include screen(custom, max, 991) {
-					bottom:80px;
-				}
-			}
-			// carousel
-			.carousel-wrap.slick-slider .text-area.align-center.align-bottom {
-				bottom:90px;
-				@include screen(custom, max, 1199) {
-					bottom:80px;
-				}
-				@include screen(custom, max, 991) {
-					bottom:80px;
-				}
-			}
-			// animation + carousel 
-			.carousel-wrap.slick-slider .animation-area + .text-area.align-center.align-bottom {
-				bottom:120px;
-				@include screen(custom, max, 1199) {
-					bottom:110px;
-				}
-				@include screen(custom, max, 991) {
-					bottom:110px;
-				}
-			}
-
-		}
-		// align-bottom margin (for mobile)
-		@include screen(custom, max, $max-sm) {
-			// normal
-			.text-area.align-bottom {
-				.text-wrap {
-					.inner {
-						.cta {
-							&:last-child {
-								margin-bottom:-23px;
-							}
-						}
-					}
-				}
-				bottom:40px;
-			}
-			// animation 
-			.animation-area + .text-area.align-bottom {
-				bottom:65px;
-			}
-			// carousel
-			.carousel-wrap.slick-slider .text-area.align-bottom {
-				bottom:65px;
-			}
-			// animation + carousel 
-			.carousel-wrap.slick-slider .animation-area + .text-area.align-bottom {
-				bottom:85px;
-			}
-		}
-	}
-	// LGEPA-572 start
-	.count-timer-box {
-		.countdown-row {
-			display: inline-block;
-			padding-bottom: 38px;
-			font-size: 0;
-			line-height: 1;
-			@include screen(custom, max, 1355) {
-				padding-bottom: 25px;
-			}
-			.countdown-section {
-				position: relative;
-				display: inline-block;
-				margin-right: 44px;
-				font-size: 60px;
-				font-weight: 700;
-				[dir="rtl"] & {
-					margin-right: 0;
-					margin-left: 44px;
-				}
-				@include screen(custom, max, 1355) {
-					font-size: 48px;
-				}
-				@include screen(custom, max, $max-lg) {
-					margin-right: 32px;
-					font-size: 36px;
-					[dir="rtl"] & {
-						margin-right: 0;
-						margin-left: 32px;
-					}
-				}
-				@include screen(custom, max, $max-sm) {
-					margin-right: 23px;
-					font-size: 32px;
-					[dir="rtl"] & {
-						margin-right: 0;
-						margin-left: 23px;
-					}
-				}
-				@include screen(custom, max, 320) {
-					margin-right: 18px;
-					font-size: 26px;
-					[dir="rtl"] & {
-						margin-right: 0;
-						margin-left: 18px;
-					}
-				}
-				&:before {
-					position: absolute;
-					right: -44px;
-					top: 0;
-					width: 44px;
-					text-align: center;
-					content:':';
-					[dir="rtl"] & {
-						right: auto;
-						left: -44px;
-					}
-					@include screen(custom, max, $max-lg) {
-						right: -32px;
-						width: 32px;
-						[dir="rtl"] & {
-							right: auto;
-							left: -32px;
-						}
-					}
-					@include screen(custom, max, $max-sm) {
-						right: -23px;
-						width: 23px;
-						[dir="rtl"] & {
-							right: auto;
-							left: -23px;
-						}
-					}
-					@include screen(custom, max, 320) {
-						right: -18px;
-						width: 18px;
-						[dir="rtl"] & {
-							right: auto;
-							left: -18px;
-						}
-					}
-				}
-			}
-			&.countdown-show4 {
-				.countdown-section {
-					&:first-of-type:before {
-						content: '-';
-					}
-					&:last-of-type:before {
-						content: '';
-					}
-					&:last-of-type {
-						margin-right: 0;
-						[dir="rtl"] & {
-							margin-left: 0;
-						}
-					}
-				}
-			}
-			.countdown-period {
-				position: absolute;
-				left: 50%;
-				bottom: -15px;
-				font-size: 14px;
-				transform: translateX(-50%);
-				font-weight: 400;
-				word-break: normal;
-				text-transform: uppercase;
-				[dir="rtl"] & {
-					left: auto;
-					right: 50%;
-					transform: translateX(50%);
-				}
-				@include screen(custom, max, 1355) {
-					font-size: 12px;
-				}
-				@include screen(custom, max, $max-lg) {
-					font-size: 11px;
-				}
-				@include screen(custom, max, $max-sm) {
-					font-size: 10px;
-				}
-			}
-		}
-	}
-	// LGEPA-572 end
+  // bottom
+  &.component {
+    // align-bottom margin (for desktop)
+    @include screen(custom, min, $min-md) {
+      // nomral
+      .text-area.align-center.align-bottom {
+        .text-wrap {
+          .inner {
+            .cta {
+              &:last-child {
+                margin-bottom: -23px;
+              }
+            }
+          }
+        }
+        bottom: 70px;
+        @include screen(custom, max, 1199) {
+          bottom: 65px;
+        }
+        @include screen(custom, max, 991) {
+          bottom: 45px;
+        }
+      }
+      // animation
+      .animation-area + .text-area.align-center.align-bottom {
+        bottom: 90px;
+        @include screen(custom, max, 1199) {
+          bottom: 80px;
+        }
+        @include screen(custom, max, 991) {
+          bottom: 80px;
+        }
+      }
+      // carousel
+      .carousel-wrap.slick-slider .text-area.align-center.align-bottom {
+        bottom: 90px;
+        @include screen(custom, max, 1199) {
+          bottom: 80px;
+        }
+        @include screen(custom, max, 991) {
+          bottom: 80px;
+        }
+      }
+      // animation + carousel
+      .carousel-wrap.slick-slider
+        .animation-area
+        + .text-area.align-center.align-bottom {
+        bottom: 120px;
+        @include screen(custom, max, 1199) {
+          bottom: 110px;
+        }
+        @include screen(custom, max, 991) {
+          bottom: 110px;
+        }
+      }
+    }
+    // align-bottom margin (for mobile)
+    @include screen(custom, max, $max-sm) {
+      // normal
+      .text-area.align-bottom {
+        .text-wrap {
+          .inner {
+            .cta {
+              &:last-child {
+                margin-bottom: -23px;
+              }
+            }
+          }
+        }
+        bottom: 40px;
+      }
+      // animation
+      .animation-area + .text-area.align-bottom {
+        bottom: 65px;
+      }
+      // carousel
+      .carousel-wrap.slick-slider .text-area.align-bottom {
+        bottom: 65px;
+      }
+      // animation + carousel
+      .carousel-wrap.slick-slider .animation-area + .text-area.align-bottom {
+        bottom: 85px;
+      }
+    }
+  }
+  // LGEPA-572 start
+  .count-timer-box {
+    .countdown-row {
+      display: inline-block;
+      padding-bottom: 38px;
+      font-size: 0;
+      line-height: 1;
+      @include screen(custom, max, 1355) {
+        padding-bottom: 25px;
+      }
+      .countdown-section {
+        position: relative;
+        display: inline-block;
+        margin-right: 44px;
+        font-size: 60px;
+        font-weight: 700;
+        [dir="rtl"] & {
+          margin-right: 0;
+          margin-left: 44px;
+        }
+        @include screen(custom, max, 1355) {
+          font-size: 48px;
+        }
+        @include screen(custom, max, $max-lg) {
+          margin-right: 32px;
+          font-size: 36px;
+          [dir="rtl"] & {
+            margin-right: 0;
+            margin-left: 32px;
+          }
+        }
+        @include screen(custom, max, $max-sm) {
+          margin-right: 23px;
+          font-size: 32px;
+          [dir="rtl"] & {
+            margin-right: 0;
+            margin-left: 23px;
+          }
+        }
+        @include screen(custom, max, 320) {
+          margin-right: 18px;
+          font-size: 26px;
+          [dir="rtl"] & {
+            margin-right: 0;
+            margin-left: 18px;
+          }
+        }
+        &:before {
+          position: absolute;
+          right: -44px;
+          top: 0;
+          width: 44px;
+          text-align: center;
+          content: ":";
+          [dir="rtl"] & {
+            right: auto;
+            left: -44px;
+          }
+          @include screen(custom, max, $max-lg) {
+            right: -32px;
+            width: 32px;
+            [dir="rtl"] & {
+              right: auto;
+              left: -32px;
+            }
+          }
+          @include screen(custom, max, $max-sm) {
+            right: -23px;
+            width: 23px;
+            [dir="rtl"] & {
+              right: auto;
+              left: -23px;
+            }
+          }
+          @include screen(custom, max, 320) {
+            right: -18px;
+            width: 18px;
+            [dir="rtl"] & {
+              right: auto;
+              left: -18px;
+            }
+          }
+        }
+      }
+      &.countdown-show4 {
+        .countdown-section {
+          &:first-of-type:before {
+            content: "-";
+          }
+          &:last-of-type:before {
+            content: "";
+          }
+          &:last-of-type {
+            margin-right: 0;
+            [dir="rtl"] & {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+      .countdown-period {
+        position: absolute;
+        left: 50%;
+        bottom: -15px;
+        font-size: 14px;
+        transform: translateX(-50%);
+        font-weight: 400;
+        word-break: normal;
+        text-transform: uppercase;
+        [dir="rtl"] & {
+          left: auto;
+          right: 50%;
+          transform: translateX(50%);
+        }
+        @include screen(custom, max, 1355) {
+          font-size: 12px;
+        }
+        @include screen(custom, max, $max-lg) {
+          font-size: 11px;
+        }
+        @include screen(custom, max, $max-sm) {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+  // LGEPA-572 end
 }
-@media screen and (-ms-high-contrast: active ) {
-	.GPC0078 .carousel-wrap .visual-area {
-		img {
-			visibility: hidden;
-		}
-	}
+@media screen and (-ms-high-contrast: active) {
+  .GPC0078 .carousel-wrap .visual-area {
+    img {
+      visibility: hidden;
+    }
+  }
 }
