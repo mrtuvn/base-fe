@@ -1,1344 +1,1763 @@
-
-$sizeImage :800px;
-$sizeLarge :40px;
-$sizeDesktop :20px;
-$sizeMobile :12px;
+$sizeImage: 800px;
+$sizeLarge: 40px;
+$sizeDesktop: 20px;
+$sizeMobile: 12px;
 
 @mixin calPos($a, $b) {
-	background-position:($a - 1)*$sizeDesktop*-1 ($b - 1)*$sizeDesktop*-1;
-	@include screen(custom, max, $max-sm) {
-		background-position:($a - 1)*$sizeMobile*-1 ($b - 1)*$sizeMobile*-1;
-	}
-	&+.large {
-		background-position:($a - 1)*$sizeLarge*-1 ($b - 1)*$sizeLarge*-1;
-	}
-	.GPC0009 &,
-	.swatch-list-box & { // for filter
-		background-position:($a - 1)*$sizeDesktop*-1 ($b - 1)*$sizeDesktop*-1;
-		background-size:$sizeImage/(40px/$sizeDesktop); // half size
-	}
+  background-position: ($a - 1) * $sizeDesktop * -1 ($b - 1) * $sizeDesktop * -1;
+  @include screen(custom, max, $max-sm) {
+    background-position: ($a - 1) * $sizeMobile * -1 ($b - 1) * $sizeMobile * -1;
+  }
+  & + .large {
+    background-position: ($a - 1) * $sizeLarge * -1 ($b - 1) * $sizeLarge * -1;
+  }
+  .GPC0009 &,
+  .swatch-list-box & {
+    // for filter
+    background-position: ($a - 1) * $sizeDesktop * -1 ($b - 1) * $sizeDesktop *
+      -1;
+    background-size: calc($sizeImage / (40px / $sizeDesktop)); // half size
+  }
 }
-.swatch{
-	background-position:0% 0%; // bg image default position
-	background-image:url(/lg5-common-gp/images/common/colorchip.jpg); // width = 800 image
-	background-size:$sizeImage/(40px/$sizeDesktop); // half size
-	@include screen(custom, max, $max-sm) {
-		background-size:$sizeImage/(40px/$sizeMobile); // mobile size
-		// 20200325 START 이상현 - filter colorchip의 bg image 이상 출력 수정
-		.swatch-list-box & { // for filter
-			background-size:$sizeImage/(40px/$sizeDesktop); // half size
-		}
-		// 20200325 END
-	}
-	&.large{
-		background-size:$sizeImage/(40px/$sizeLarge); // original size
-	}
-	// Alphabetical :except for white
-	&.acabado-arte-floral-blanco {
-		@include calPos(2, 1);	// (1, 1) is no match or not use image.
-	}
-	&.acabado-arte-floral-vino-tinto {
-		@include calPos(3, 1);
-	}
-	&.acabado-espejo {
-		background:#cdcdcd;color:#000000 !important;
-	}
-	&.acciaio {
-		background:#a4acae;color:#000000 !important;
-	}
-	&.acciaio-inox {
-		background:#d2d2d2;color:#000000 !important;
-	}
-	&.acciaio-inox-antimpronta {
-		background:#908f8d;color:#000000 !important;
-	}
-	&.Acero-antihuellas {
-		background:#a3a5b4;color:#000000 !important;
-	}
-	&.acero-inoxidable {
-		background:#9e9e9e;color:#000000 !important;
-	}
-	&.AcierinoxydableNoir,
-	&.sjajni-antracit {
-		background:#575757;color:#ffffff !important;
-	}
-	&.Acier-inoxydable-noir {
-		background:#776d6b;color:#ffffff !important;
-	}
-	&.almendra {
-		background:#ded7c5;color:#000000 !important;
-	}
-	&.aluminum,
-	&.aluminium {
-		background:#ced0cd;color:#000000 !important;
-	}
-	&.Aluminium-coated-metal {
-		background:#a7abac;color:#000000 !important;
-	}
-	&.Amarillo {
-		background:#e1bb2c;color:#000000 !important;
-	}
-	&.Argent {
-		background:#f5f5f5;color:#000000 !important;
-	}
-	&.argent {
-		background:#b0b6b8;color:#000000 !important;
-	}
-	&.Argent_Platine {
-		background:#9c9899;color:#000000 !important;
-	}
-	&.argent-platine {
-		background:#a7a7a9;color:#000000 !important;
-	}
-	&.argento {
-		background:#a8a7a3;color:#000000 !important;
-	}
-	&.art-flower-redwine {
-		background:#8a1f24;color:#ffffff !important;
-	}
-	&.astro-black,
-	&.Astro_Black {
-		background:#2b3336;color:#ffffff !important;
-	}
-	&.azul {
-		background:#aac6d4;color:#000000 !important;
-	}
-	&.azul-claro {
-		background:#94c2c2;color:#000000 !important;
-	}
-	&.azul-marino {
-		background:#180467;color:#ffffff !important;
-	}
-	&.bahama-blue {
-		background:#8ebfc4;color:#000000 !important;
-	}
-	&.bianco,
-	&.chrome {
-		background:#c1c1c1;color:#000000 !important;
-	}
-	&.AstroBlack,
-	&.Black,
-	&.black,
-	&.MC_DualScreen_AuroraBlack,
-	&.MC_DualScreen_NewAuroraBlack,
-	&.MC_G6_Astro_Black,
-	&.MC_G6_Plus_Optical_Black,
-	&.MC_G8XThinQ_AuroraBlack,
-	&.MC_G8S_MirrorBlack,
-	&.MC_K10_2017_Shiny_Black,
-	&.MC_K11_Aurora_Black,
-	&.MC_K30_AuroraBlack,
-	&.MC_K40_NewAuroraBlack,
-	&.MC_K40S_NewAuroraBlack,
-	&.MC_K50_AuroraBlack,
-	&.MC_K50S_NewAuroraBlack,
-	&.MC_K9_Aurora_Black,
-	&.MC_Q6_Alpha_Astro_Black,
-	&.MC_Q6_Astro_Black,
-	&.MC_Q6_Plus_Astro_Black,
-	&.MC_Q60_NewAuroraBlack,
-	&.MC_Stylo5_NewAuroraBlack,
-	&.MC_Stylus2_Black,
-	&.MC_V30_Aurora_Black,
-	&.MC_V50ThinQ_AstroBlack,
-	&.MC_X_Power2_Qualcomm_Black_Titan,
-	&.MC_X_Venture_Black,
-	&.schwarz,
-	&.smooth-black {
-		background:#000;color:#ffffff !important;
-	}
-	&.black-acqua-blue {
-		@include calPos(4, 1);color:#000000 !important;
-	}
-	&.black-brushed-steel {
-		@include calPos(3, 2);color:#ffffff !important;
-	}
-	&.Black_Gray {
-		background:#1f1f1f;color:#ffffff !important;
-	}
-	&.black-silver-door {
-		background:#2a2829;color:#ffffff !important;
-	}
-	&.black-mirror,
-	&.Black-Stainless-Steel,
-	&.black-stainless-steel {
-		background:#0f0f0f;color:#ffffff !important;
-	}
-	&.blanc-laque {
-		background:#f1f1f1;color:#000000 !important;
-	}
-	&.blanc-magic {
-		background:#f2eeef;color:#000000 !important;
-	}
-	&.blanco,
-	&.branco,
-	&.bianco-mirror,
-	&.texture-white {
-		background:#f8f8f8;color:#000000 !important;
-	}
-	&.blanco-floral {
-		@include calPos(5, 1);
-	}
-	&.blanco-oro {
-		@include calPos(6, 1);
-	}
-	&.blanco-plata {
-		background:#d7d8dd;color:#000000 !important;
-	}
-	&.blanco-rosa {
-		@include calPos(7, 1);
-	}
-	&.blanco-y-platinium-silver {
-		@include calPos(8, 1);
-	}
-	&.blanco-y-titanium {
-		@include calPos(9, 1);
-	}
-	&.blau {
-		background:#01a3d9;color:#000000 !important;
-	}
-	&.Bleu,
-	&.bleu {
-		background:#318ce7;color:#000000 !important;
-	}
-	&.Blue {
-		background:#111e4b;color:#ffffff !important;
-	}
-	&.blue {
-		background:#008fde;color:#000000 !important;
-	}
-	&.bleu-platine {
-		background:#aaaaac;color:#000000 !important;
-	}
-	&.bordaux {
-		background:#b71928;color:#ffffff !important;
-	}
-	&.Brown	{
-		background:#93674a;color:#ffffff !important;
-	}
-	&.bruseni-celik {
-		background:#797a7f;color:#000000 !important;
-	}
-	&.brushed-steel {
-		background:#9ba5a7;color:#ffffff !important;
-	}
-	&.brushed-graphite {
-		background:#797880;color:#000000 !important;
-	}
-	&.Burdeos {
-		background:#6f3a44;color:#ffffff !important;
-	}
-	&.camel,
-	&.Marron-claro {
-		background:#cd754f;color:#000000 !important;
-	}
-	&.Chardonnay {
-		background:#cfbc94;color:#000000 !important;
-	}
-	&.cherry {
-		background:#a41a2d;color:#ffffff !important;
-	}
-	&.cherry-red {
-		background:#a2192d;color:#ffffff !important;
-	}
-	// &.Choco-Bronze {
-	// 	background:#c35929;
-	// }
-	&.choco-bronze {
-		background:#dd7c0b;color:#000000 !important;
-	}
-	&.Cloud,
-	&.CloudSilver,
-	&.cloud-silver,
-	&.MC_V30_Cloud_Silver {
-		background:#aeaeae;color:#000000 !important;
-	}
-	&.cream-silver {
-		background:#bebebe;color:#000000 !important;
-	}
-	&.dark-red-con-flores {
-		background:#942b27;color:#ffffff !important;
-	}
-	&.design-inox,
-	&.gris-perla {
-		background:#d9d9d9;color:#000000 !important;
-	}
-	&.donker-titaan {
-		background:#4f4d5a;color:#ffffff !important;
-	}
-	&.Dorado {
-		background:#a39588;color:#000000 !important;
-	}
-	&.edelstahl,
-	&.inox,
-	&.inox-pro,
-	&.inox-style {
-		background:#d4d4d4;color:#000000 !important;
-	}
-	&.Espejo {
-		background:#c5c5c5;color:#000000 !important;
-	}
-	&.Espresso {
-		background:#4f3e36;color:#ffffff !important;
-	}
-	&.facade-noir {
-		background:#202028;color:#ffffff !important;
-	}
-	&.floral {
-		@include calPos(10, 1);
-	}
-	&.grafit {
-		background:#545459;color:#ffffff !important;
-	}
-	&.grau {
-		background:#43545c;color:#ffffff !important;
-	}
-	&.Goud {
-		background:#b7a382;color:#000000 !important;
-	}
-	&.Gold,
-	&.gold,
-	&.MC_G5_Speed_Gold,
-	&.MC_K8_2017_Gold,
-	&.Or {
-		background:#c5b091;color:#000000 !important;
-	}
-	&.graphite,
-	&.Graphite {
-		background:#939297;color:#000000 !important;
-	}
-	&.green {
-		background:#026429;color:#ffffff !important;
-	}
-	&.GraphiteGray,
-	&.graphite-steel {
-		background:#928d89;color:#000000 !important;
-	}
-	&.Gray,
-	&.metallic {
-		background:#736d77;color:#ffffff !important;
-	}
-	&.Grey,
-	&.grey {
-		background:#c6c6c6;color:#000000 !important;
-	}
-	&.gris {
-		background:#918d8a;color:#000000 !important;
-	}
-	&.gris-plata {
-		background:#f4f3f1;color:#000000 !important;
-	}
-	&.HA_CookingAppliance_Matte_Black_Stainless_Steel,
-	&.HA_DW_Matte_Black_Stainless_Steel,
-	&.HA_MWO_Matte_Black_Stainless_Steel,
-	&.HA_Oven_Matte_Black_Stainless_Steel,
-	&.HA_REF_Matte_Black_Stainless_Steel {
-		background:#393939;color:#ffffff !important;
-	}
-	&.HA_REF_Black_Mirror {
-		background:#222023;color:#ffffff !important;
-	}
-	&.HA_REF_SIGNATURE_Textured_Steel {
-		background:#a2a2a2;color:#000000 !important;
-	}
-	&.HA_REF_Skin_Beige {
-		background:#ddd7c1;color:#000000 !important;
-	}
-	&.HA_REF_Beige {
-		background:#e4ddcd;color:#000000 !important;
-	}
-	&.HA_REF_Beige_Dancing_Flower_Silver {
-		background:#aeaeb7;color:#000000 !important;
-	}
-	&.HA_REF_Beige_Dancing_Flower_Wine_Red {
-		background:#712328;color:#ffffff !important;
-	}
-	&.HA_Styler_Mirror {
-		@include calPos(11, 1);
-	}
-	&.HA_VCC_HOMBOT_Ocean_Black {
-		background:#0d0d0f;color:#ffffff !important;
-	}
-	&.HA_VCC_HOMBOT_Ruby_Red {
-		background:#2b090f;color:#ffffff !important;
-	}
-	&.HA_VCC_Matte_Grey {
-		background:#3e404e;color:#ffffff !important;
-	}
-	&.HA_VCC_Matte_Red {
-		background:#a64045;color:#ffffff !important;
-	}
-	&.HA_VCC_Matte_Silver {
-		background:#b3b3b3;color:#000000 !important;
-	}
-	&.inox-art-flower {
-		background:#57585d;color:#ffffff !important;
-	}
-	&.inox-graphite {
-		background:#adb2b8;color:#000000 !important;
-	}
-	&.inox-mirror {
-		background:#b7b6bb;color:#000000 !important;
-	}
-	&.inox-platinum {
-		background:#c3c2c0;color:#000000 !important;
-	}
-	&.inox-premium {
-		background:#969ba1;color:#000000 !important;
-	}
-	&.inox-titanium {
-		background:#949691;color:#000000 !important;
-	}
-	&.k-design-blanc {
-		background:#e7e5f3;color:#000000 !important;
-	}
-	&.k-design-miroir {
-		background:#bdbdc5;color:#000000 !important;
-	}
-	&.IcePlatinum,
-	&.Ice-Platinum,
-	&.Ice-platinum,
-	&.ice-platinum,
-	&.LGM {
-		background:#a4a4a6;color:#000000 !important;
-	}
-	&.italian-red {
-		background:#880002;color:#ffffff !important;
-	}
-	&.Lima {
-		background:#a0dc08;color:#000000 !important;
-	}
-	&.lime {
-		background:#cbff00;color:#000000 !important;
-	}
-	&.madera {
-		background:#dab88a;color:#000000 !important;
-	}
-	&.marmorizzato {
-		background:#b0b0b2;color:#000000 !important;
-	}
-	&.Marron {
-		background:#a86135;color:#ffffff !important;
-	}
-	&.Marron-oscuro	{
-		background:#634f51;color:#ffffff !important;
-	}
-	&.MC_Fortune2_TitanBlack {
-		background:#2d2d2d;color:#ffffff !important;
-	}
-	&.MC_G5_Speed_Pink {
-		background:#e6b0c7;color:#000000 !important;
-	}
-	&.MC_G5_Speed_Silver,
-	&.MC_Watch_Style_Silver {
-		background:#c2c2c2;color:#000000 !important;
-	}
-	&.MC_G6_Plus_Terra_Gold {
-		background:#b5938a;color:#000000 !important;
-	}
-	&.MC_G6_RaspberryRose,
-	&.MC_V30_Raspberry_Rose {
-		background:#a5405e;color:#ffffff !important;
-	}
-	&.MC_G6_Terra_Gold {
-		background:#b5948b;color:#000000 !important;
-	}
-	&.MC_G7_Fit_Platinum_Gray,
-	&.MC_G7_NewPlatinumGray,
-	&.MC_Stylo5_NewPlatinumGray {
-		background:#9397a0;color:#000000 !important;
-	}
-	&.MC_G7_RaspberryRose {
-		background:#c33e69;color:#ffffff !important;
-	}
-	&.MC_G8S_MirrorTeal {
-		background:#00807f;color:#ffffff !important;
-	}
-	&.MC_K10_2017_Shiny_Gold,
-	&.MC_K4_2017_Brown,
-	&.terra-gold {
-		background:#c4af90;color:#000000 !important;
-	}
-	&.MC_K10_2017_Shiny_Titan {
-		background:#615e65;color:#ffffff !important;
-	}
-	&.MC_K11_Terra_Gold {
-		background:#d4baa9;color:#000000 !important;
-	}
-	&.MC_K40_NewPlatinumGray {
-		background:#646462;color:#ffffff !important;
-	}
-	&.MC_V40_ThinQ_NewPlatinumGray {
-		background:#676765;color:#ffffff !important;
-	}
-	&.MC_Watch_Style_Rose_Gold {
-		background:#cbafab;color:#000000 !important;
-	}
-	&.MC_Watch_Style_Titanium,
-	&.MC_X_Mach_Titan,
-	&.MC_X_Style_Titan {
-		background:#656269;color:#ffffff !important;
-	}
-	&.MC_X_Cam_Pink_Gold {
-		background:#cbafac;color:#000000 !important;
-	}
-	&.MC_X_Power_Gold {
-		background:#c8b394;color:#000000 !important;
-	}
-	&.MC_Watch_Sport_Dark_Blue,
-	&.MC_X_Power_Indigo,
-	&.MC_X_Power2_Shiny_Blue {
-		background:#262932;color:#ffffff !important;
-	}
-	&.MC_X_Power2_Shiny_Gold {
-		background:#b1997f;color:#000000 !important;
-	}
-	&.MC_X_Power2_Shiny_Titan {
-		background:#8f8f8f;color:#000000 !important;
-	}
-	&.MC_K8_2017_Dark_Blue {
-		background:#252932;color:#ffffff !important;
-	}
-	&.MC_K50_PlatinumGray {
-		background:#92969f;color:#000000 !important;
-	}
-	&.MC_K4_2017_Titan,
-	&.MC_Watch_Sport_Titanium_Silver {
-		background:#66636a;color:#ffffff !important;
-	}
+.swatch {
+  background-position: 0% 0%; // bg image default position
+  background-image: url(/lg5-common-gp/images/common/colorchip.jpg); // width = 800 image
+  background-size: calc($sizeImage / (40px / $sizeDesktop)); // half size
+  @include screen(custom, max, $max-sm) {
+    background-size: calc($sizeImage / (40px / $sizeMobile)); // mobile size
+    // 20200325 START 이상현 - filter colorchip의 bg image 이상 출력 수정
+    .swatch-list-box & {
+      // for filter
+      background-size: calc($sizeImage / (40px / $sizeDesktop)); // half size
+    }
+    // 20200325 END
+  }
+  &.large {
+    background-size: calc($sizeImage / (40px / $sizeLarge)); // original size
+  }
+  // Alphabetical :except for white
+  &.acabado-arte-floral-blanco {
+    @include calPos(2, 1); // (1, 1) is no match or not use image.
+  }
+  &.acabado-arte-floral-vino-tinto {
+    @include calPos(3, 1);
+  }
+  &.acabado-espejo {
+    background: #cdcdcd;
+    color: #000000 !important;
+  }
+  &.acciaio {
+    background: #a4acae;
+    color: #000000 !important;
+  }
+  &.acciaio-inox {
+    background: #d2d2d2;
+    color: #000000 !important;
+  }
+  &.acciaio-inox-antimpronta {
+    background: #908f8d;
+    color: #000000 !important;
+  }
+  &.Acero-antihuellas {
+    background: #a3a5b4;
+    color: #000000 !important;
+  }
+  &.acero-inoxidable {
+    background: #9e9e9e;
+    color: #000000 !important;
+  }
+  &.AcierinoxydableNoir,
+  &.sjajni-antracit {
+    background: #575757;
+    color: #ffffff !important;
+  }
+  &.Acier-inoxydable-noir {
+    background: #776d6b;
+    color: #ffffff !important;
+  }
+  &.almendra {
+    background: #ded7c5;
+    color: #000000 !important;
+  }
+  &.aluminum,
+  &.aluminium {
+    background: #ced0cd;
+    color: #000000 !important;
+  }
+  &.Aluminium-coated-metal {
+    background: #a7abac;
+    color: #000000 !important;
+  }
+  &.Amarillo {
+    background: #e1bb2c;
+    color: #000000 !important;
+  }
+  &.Argent {
+    background: #f5f5f5;
+    color: #000000 !important;
+  }
+  &.argent {
+    background: #b0b6b8;
+    color: #000000 !important;
+  }
+  &.Argent_Platine {
+    background: #9c9899;
+    color: #000000 !important;
+  }
+  &.argent-platine {
+    background: #a7a7a9;
+    color: #000000 !important;
+  }
+  &.argento {
+    background: #a8a7a3;
+    color: #000000 !important;
+  }
+  &.art-flower-redwine {
+    background: #8a1f24;
+    color: #ffffff !important;
+  }
+  &.astro-black,
+  &.Astro_Black {
+    background: #2b3336;
+    color: #ffffff !important;
+  }
+  &.azul {
+    background: #aac6d4;
+    color: #000000 !important;
+  }
+  &.azul-claro {
+    background: #94c2c2;
+    color: #000000 !important;
+  }
+  &.azul-marino {
+    background: #180467;
+    color: #ffffff !important;
+  }
+  &.bahama-blue {
+    background: #8ebfc4;
+    color: #000000 !important;
+  }
+  &.bianco,
+  &.chrome {
+    background: #c1c1c1;
+    color: #000000 !important;
+  }
+  &.AstroBlack,
+  &.Black,
+  &.black,
+  &.MC_DualScreen_AuroraBlack,
+  &.MC_DualScreen_NewAuroraBlack,
+  &.MC_G6_Astro_Black,
+  &.MC_G6_Plus_Optical_Black,
+  &.MC_G8XThinQ_AuroraBlack,
+  &.MC_G8S_MirrorBlack,
+  &.MC_K10_2017_Shiny_Black,
+  &.MC_K11_Aurora_Black,
+  &.MC_K30_AuroraBlack,
+  &.MC_K40_NewAuroraBlack,
+  &.MC_K40S_NewAuroraBlack,
+  &.MC_K50_AuroraBlack,
+  &.MC_K50S_NewAuroraBlack,
+  &.MC_K9_Aurora_Black,
+  &.MC_Q6_Alpha_Astro_Black,
+  &.MC_Q6_Astro_Black,
+  &.MC_Q6_Plus_Astro_Black,
+  &.MC_Q60_NewAuroraBlack,
+  &.MC_Stylo5_NewAuroraBlack,
+  &.MC_Stylus2_Black,
+  &.MC_V30_Aurora_Black,
+  &.MC_V50ThinQ_AstroBlack,
+  &.MC_X_Power2_Qualcomm_Black_Titan,
+  &.MC_X_Venture_Black,
+  &.schwarz,
+  &.smooth-black {
+    background: #000;
+    color: #ffffff !important;
+  }
+  &.black-acqua-blue {
+    @include calPos(4, 1);
+    color: #000000 !important;
+  }
+  &.black-brushed-steel {
+    @include calPos(3, 2);
+    color: #ffffff !important;
+  }
+  &.Black_Gray {
+    background: #1f1f1f;
+    color: #ffffff !important;
+  }
+  &.black-silver-door {
+    background: #2a2829;
+    color: #ffffff !important;
+  }
+  &.black-mirror,
+  &.Black-Stainless-Steel,
+  &.black-stainless-steel {
+    background: #0f0f0f;
+    color: #ffffff !important;
+  }
+  &.blanc-laque {
+    background: #f1f1f1;
+    color: #000000 !important;
+  }
+  &.blanc-magic {
+    background: #f2eeef;
+    color: #000000 !important;
+  }
+  &.blanco,
+  &.branco,
+  &.bianco-mirror,
+  &.texture-white {
+    background: #f8f8f8;
+    color: #000000 !important;
+  }
+  &.blanco-floral {
+    @include calPos(5, 1);
+  }
+  &.blanco-oro {
+    @include calPos(6, 1);
+  }
+  &.blanco-plata {
+    background: #d7d8dd;
+    color: #000000 !important;
+  }
+  &.blanco-rosa {
+    @include calPos(7, 1);
+  }
+  &.blanco-y-platinium-silver {
+    @include calPos(8, 1);
+  }
+  &.blanco-y-titanium {
+    @include calPos(9, 1);
+  }
+  &.blau {
+    background: #01a3d9;
+    color: #000000 !important;
+  }
+  &.Bleu,
+  &.bleu {
+    background: #318ce7;
+    color: #000000 !important;
+  }
+  &.Blue {
+    background: #111e4b;
+    color: #ffffff !important;
+  }
+  &.blue {
+    background: #008fde;
+    color: #000000 !important;
+  }
+  &.bleu-platine {
+    background: #aaaaac;
+    color: #000000 !important;
+  }
+  &.bordaux {
+    background: #b71928;
+    color: #ffffff !important;
+  }
+  &.Brown {
+    background: #93674a;
+    color: #ffffff !important;
+  }
+  &.bruseni-celik {
+    background: #797a7f;
+    color: #000000 !important;
+  }
+  &.brushed-steel {
+    background: #9ba5a7;
+    color: #ffffff !important;
+  }
+  &.brushed-graphite {
+    background: #797880;
+    color: #000000 !important;
+  }
+  &.Burdeos {
+    background: #6f3a44;
+    color: #ffffff !important;
+  }
+  &.camel,
+  &.Marron-claro {
+    background: #cd754f;
+    color: #000000 !important;
+  }
+  &.Chardonnay {
+    background: #cfbc94;
+    color: #000000 !important;
+  }
+  &.cherry {
+    background: #a41a2d;
+    color: #ffffff !important;
+  }
+  &.cherry-red {
+    background: #a2192d;
+    color: #ffffff !important;
+  }
+  // &.Choco-Bronze {
+  // 	background:#c35929;
+  // }
+  &.choco-bronze {
+    background: #dd7c0b;
+    color: #000000 !important;
+  }
+  &.Cloud,
+  &.CloudSilver,
+  &.cloud-silver,
+  &.MC_V30_Cloud_Silver {
+    background: #aeaeae;
+    color: #000000 !important;
+  }
+  &.cream-silver {
+    background: #bebebe;
+    color: #000000 !important;
+  }
+  &.dark-red-con-flores {
+    background: #942b27;
+    color: #ffffff !important;
+  }
+  &.design-inox,
+  &.gris-perla {
+    background: #d9d9d9;
+    color: #000000 !important;
+  }
+  &.donker-titaan {
+    background: #4f4d5a;
+    color: #ffffff !important;
+  }
+  &.Dorado {
+    background: #a39588;
+    color: #000000 !important;
+  }
+  &.edelstahl,
+  &.inox,
+  &.inox-pro,
+  &.inox-style {
+    background: #d4d4d4;
+    color: #000000 !important;
+  }
+  &.Espejo {
+    background: #c5c5c5;
+    color: #000000 !important;
+  }
+  &.Espresso {
+    background: #4f3e36;
+    color: #ffffff !important;
+  }
+  &.facade-noir {
+    background: #202028;
+    color: #ffffff !important;
+  }
+  &.floral {
+    @include calPos(10, 1);
+  }
+  &.grafit {
+    background: #545459;
+    color: #ffffff !important;
+  }
+  &.grau {
+    background: #43545c;
+    color: #ffffff !important;
+  }
+  &.Goud {
+    background: #b7a382;
+    color: #000000 !important;
+  }
+  &.Gold,
+  &.gold,
+  &.MC_G5_Speed_Gold,
+  &.MC_K8_2017_Gold,
+  &.Or {
+    background: #c5b091;
+    color: #000000 !important;
+  }
+  &.graphite,
+  &.Graphite {
+    background: #939297;
+    color: #000000 !important;
+  }
+  &.green {
+    background: #026429;
+    color: #ffffff !important;
+  }
+  &.GraphiteGray,
+  &.graphite-steel {
+    background: #928d89;
+    color: #000000 !important;
+  }
+  &.Gray,
+  &.metallic {
+    background: #736d77;
+    color: #ffffff !important;
+  }
+  &.Grey,
+  &.grey {
+    background: #c6c6c6;
+    color: #000000 !important;
+  }
+  &.gris {
+    background: #918d8a;
+    color: #000000 !important;
+  }
+  &.gris-plata {
+    background: #f4f3f1;
+    color: #000000 !important;
+  }
+  &.HA_CookingAppliance_Matte_Black_Stainless_Steel,
+  &.HA_DW_Matte_Black_Stainless_Steel,
+  &.HA_MWO_Matte_Black_Stainless_Steel,
+  &.HA_Oven_Matte_Black_Stainless_Steel,
+  &.HA_REF_Matte_Black_Stainless_Steel {
+    background: #393939;
+    color: #ffffff !important;
+  }
+  &.HA_REF_Black_Mirror {
+    background: #222023;
+    color: #ffffff !important;
+  }
+  &.HA_REF_SIGNATURE_Textured_Steel {
+    background: #a2a2a2;
+    color: #000000 !important;
+  }
+  &.HA_REF_Skin_Beige {
+    background: #ddd7c1;
+    color: #000000 !important;
+  }
+  &.HA_REF_Beige {
+    background: #e4ddcd;
+    color: #000000 !important;
+  }
+  &.HA_REF_Beige_Dancing_Flower_Silver {
+    background: #aeaeb7;
+    color: #000000 !important;
+  }
+  &.HA_REF_Beige_Dancing_Flower_Wine_Red {
+    background: #712328;
+    color: #ffffff !important;
+  }
+  &.HA_Styler_Mirror {
+    @include calPos(11, 1);
+  }
+  &.HA_VCC_HOMBOT_Ocean_Black {
+    background: #0d0d0f;
+    color: #ffffff !important;
+  }
+  &.HA_VCC_HOMBOT_Ruby_Red {
+    background: #2b090f;
+    color: #ffffff !important;
+  }
+  &.HA_VCC_Matte_Grey {
+    background: #3e404e;
+    color: #ffffff !important;
+  }
+  &.HA_VCC_Matte_Red {
+    background: #a64045;
+    color: #ffffff !important;
+  }
+  &.HA_VCC_Matte_Silver {
+    background: #b3b3b3;
+    color: #000000 !important;
+  }
+  &.inox-art-flower {
+    background: #57585d;
+    color: #ffffff !important;
+  }
+  &.inox-graphite {
+    background: #adb2b8;
+    color: #000000 !important;
+  }
+  &.inox-mirror {
+    background: #b7b6bb;
+    color: #000000 !important;
+  }
+  &.inox-platinum {
+    background: #c3c2c0;
+    color: #000000 !important;
+  }
+  &.inox-premium {
+    background: #969ba1;
+    color: #000000 !important;
+  }
+  &.inox-titanium {
+    background: #949691;
+    color: #000000 !important;
+  }
+  &.k-design-blanc {
+    background: #e7e5f3;
+    color: #000000 !important;
+  }
+  &.k-design-miroir {
+    background: #bdbdc5;
+    color: #000000 !important;
+  }
+  &.IcePlatinum,
+  &.Ice-Platinum,
+  &.Ice-platinum,
+  &.ice-platinum,
+  &.LGM {
+    background: #a4a4a6;
+    color: #000000 !important;
+  }
+  &.italian-red {
+    background: #880002;
+    color: #ffffff !important;
+  }
+  &.Lima {
+    background: #a0dc08;
+    color: #000000 !important;
+  }
+  &.lime {
+    background: #cbff00;
+    color: #000000 !important;
+  }
+  &.madera {
+    background: #dab88a;
+    color: #000000 !important;
+  }
+  &.marmorizzato {
+    background: #b0b0b2;
+    color: #000000 !important;
+  }
+  &.Marron {
+    background: #a86135;
+    color: #ffffff !important;
+  }
+  &.Marron-oscuro {
+    background: #634f51;
+    color: #ffffff !important;
+  }
+  &.MC_Fortune2_TitanBlack {
+    background: #2d2d2d;
+    color: #ffffff !important;
+  }
+  &.MC_G5_Speed_Pink {
+    background: #e6b0c7;
+    color: #000000 !important;
+  }
+  &.MC_G5_Speed_Silver,
+  &.MC_Watch_Style_Silver {
+    background: #c2c2c2;
+    color: #000000 !important;
+  }
+  &.MC_G6_Plus_Terra_Gold {
+    background: #b5938a;
+    color: #000000 !important;
+  }
+  &.MC_G6_RaspberryRose,
+  &.MC_V30_Raspberry_Rose {
+    background: #a5405e;
+    color: #ffffff !important;
+  }
+  &.MC_G6_Terra_Gold {
+    background: #b5948b;
+    color: #000000 !important;
+  }
+  &.MC_G7_Fit_Platinum_Gray,
+  &.MC_G7_NewPlatinumGray,
+  &.MC_Stylo5_NewPlatinumGray {
+    background: #9397a0;
+    color: #000000 !important;
+  }
+  &.MC_G7_RaspberryRose {
+    background: #c33e69;
+    color: #ffffff !important;
+  }
+  &.MC_G8S_MirrorTeal {
+    background: #00807f;
+    color: #ffffff !important;
+  }
+  &.MC_K10_2017_Shiny_Gold,
+  &.MC_K4_2017_Brown,
+  &.terra-gold {
+    background: #c4af90;
+    color: #000000 !important;
+  }
+  &.MC_K10_2017_Shiny_Titan {
+    background: #615e65;
+    color: #ffffff !important;
+  }
+  &.MC_K11_Terra_Gold {
+    background: #d4baa9;
+    color: #000000 !important;
+  }
+  &.MC_K40_NewPlatinumGray {
+    background: #646462;
+    color: #ffffff !important;
+  }
+  &.MC_V40_ThinQ_NewPlatinumGray {
+    background: #676765;
+    color: #ffffff !important;
+  }
+  &.MC_Watch_Style_Rose_Gold {
+    background: #cbafab;
+    color: #000000 !important;
+  }
+  &.MC_Watch_Style_Titanium,
+  &.MC_X_Mach_Titan,
+  &.MC_X_Style_Titan {
+    background: #656269;
+    color: #ffffff !important;
+  }
+  &.MC_X_Cam_Pink_Gold {
+    background: #cbafac;
+    color: #000000 !important;
+  }
+  &.MC_X_Power_Gold {
+    background: #c8b394;
+    color: #000000 !important;
+  }
+  &.MC_Watch_Sport_Dark_Blue,
+  &.MC_X_Power_Indigo,
+  &.MC_X_Power2_Shiny_Blue {
+    background: #262932;
+    color: #ffffff !important;
+  }
+  &.MC_X_Power2_Shiny_Gold {
+    background: #b1997f;
+    color: #000000 !important;
+  }
+  &.MC_X_Power2_Shiny_Titan {
+    background: #8f8f8f;
+    color: #000000 !important;
+  }
+  &.MC_K8_2017_Dark_Blue {
+    background: #252932;
+    color: #ffffff !important;
+  }
+  &.MC_K50_PlatinumGray {
+    background: #92969f;
+    color: #000000 !important;
+  }
+  &.MC_K4_2017_Titan,
+  &.MC_Watch_Sport_Titanium_Silver {
+    background: #66636a;
+    color: #ffffff !important;
+  }
 
-	&.MC_G6_Ice_Platinum {
-		background:#7f8897;color:#000000 !important;
-	}
-	&.MC_G6_LavenderViolet,
-	&.MC_Q6_LavenderViolet,
-	&.MC_V30_Lavender_Violet {
-		background:#afa3b9;color:#000000 !important;
-	}
-	&.MC_G6_Mystic_White,
-	&.MC_Q6_Mystic_White,
-	&.glossy-white,
-	&.TitanSilver,
-	&.titan-silver {
-		background:#f9f9f9;color:#000000 !important;
-	}
-	&.MC_G6_Marine_Blue,
-	&.MC_G6_Plus_Marine_Blue,
-	&.MC_Q6_Plus_Marine_Blue {
-		background:#7187b6;color:#000000 !important;
-	}
-	&.MC_G7_Fit_Aurora_Black,
-	&.MC_G7_NewAuroraBlack{
-		background:#141c31;color:#ffffff !important;
-	}
-	&.MC_G6_MorocanBlue,
-	&.MC_Q6_MoroccanBlue {
-		background:#203c54;color:#ffffff !important;
-	}
-	&.MC_G7_NewMoroccanBlue{
-		background:#004b6b;color:#ffffff !important;
-	}
-	&.MC_K11_Moroccan_Blue,
-	&.MC_K9_Moroccan_Blue,
-	&.MC_Q7_Alpha_MoroccanBlue,
-	&.MC_Q7_Plus_MoroccanBlue_Hair,
-	&.MC_Q7_Plus_MoroccanBlue_Wave,
-	&.MC_Q7_Prime_MoroccanBlue,
-	&.MC_Qstylus_MoroccanBlue,
-	&.MC_XPower3_MoroccanBlue,
-	&.medini {
-		background:#014a6b;color:#ffffff !important;
-	}
-	&.MC_V40_ThinQ_NewMoroccanBlue,
-	&.MC_K30_MoroccanBlue,
-	&.MC_K40_NewMoroccanBlue,
-	&.MC_K40S_NewMoroccanBlue,
-	&.MC_K50S_NewMoroccanBlue,
-	&.MC_Q60_NewMoroccanBlue {
-		background:#01456a;color:#ffffff !important;
-	}
-	&.MC_K50_MoroccanBlue {
-		background:#03476a;color:#ffffff !important;
-	}
-	&.MC_K8_MoroccanBlue{
-		background:#04344a;color:#ffffff !important;
-	}
-	&.MC_K9_Terra_Gold{
-		background:#C7AB83;color:#000000 !important;
-	}
-	&.MC_Q6_Alpha_Ice_Platinum,
-	&.MC_Q6_Ice_Platinum,
-	&.MC_Q6_Plus_Ice_Platinum {
-		background:#84a1af;color:#000000 !important;
-	}
-	&.MC_Q6_Alpha_Terra_Gold,
-	&.MC_Q6_Terra_Gold {
-		background:#bf9972;color:#000000 !important;
-	}
-	&.MC_Q7_Plus_LavenderViolet,
-	&.MC_Q7_Prime_LavenderViolet {
-		background:#968bad;color:#000000 !important;
-	}
-	&.MC_Q7_Plus_AuroraBlack,
-	&.MC_Q7_Prime_AuroraBlack,
-	&.MC_Qstylus_AuroraBlack {
-		background:#151d32;color:#ffffff !important;
-	}
-	&.MC_Stylus2_Brown,
-	&.MC_Stylus2_Gold,
-	&.MC_Stylus3_Gold,
-	&.MC_X_Style_Gold {
-		background:#c6b192;color:#000000 !important;
-	}
-	&.MC_Stylo5_BlondeRose {
-		background:#dea6a5;color:#000000 !important;
-	}
-	&.MC_Stylo5_SilveryWhite {
-		background:#d1d1d1;color:#000000 !important;
-	}
-	&.mc_stylus3_PINK,
-	&.MC_V20_Pink {
-		background:#e2b8ba;color:#000000 !important;
-	}
-	&.MC_Stylus3_Rose_Gold {
-		background:#d0b4b0;color:#000000 !important;
-	}
-	&.MC_Stylus3_Titan {
-		background:#6b696e;color:#ffffff !important;
-	}
-	&.MC_V20_Silver {
-		background:#b9b9bb;color:#000000 !important;
-	}
-	&.MC_V20_Titan {
-		background:#4d4d4d;color:#ffffff !important;
-	}
-	&.MC_V30_Moroccan_Blue,
-	&.moroccan-blue,
-	&.MoroccanBlue {
-		background:#1f3b53;color:#ffffff !important;
-	}
-	&.MC_V30S_ThinQ_NewMoroccanBlue {
-		background:#0c5f7f;color:#ffffff !important;
-	}
-	&.MC_V30S_ThinQ_NewPlatinumGray {
-		background:#8b8e93;color:#000000 !important;
-	}
-	&.MC_V40_ThinQ_CarmineRed {
-		background:#7e193b;color:#ffffff !important;
-	}
-	&.Mint {
-		background:#50becb;color:#000000 !important;
-	}
-	&.mirror {
-		background:#30373f;color:#ffffff !important;
-	}
-	&.MysticWhite,
-	&.Mystic-white,
-	&.mystic-white {
-		background:#f1edea;color:#000000 !important;
-	}
-	&.Navy,
-	&.navy {
-		background:#384965;color:#ffffff !important;
-	}
-	&.Navy-Blue {
-		background:#21224e;color:#ffffff !important;
-	}
-	&.Naranja {
-		background:#ff8808;color:#000000 !important;
-	}
-	&.navy-blue{
-		background:#170569;color:#ffffff !important;
-	}
-	&.nero {
-		background:#d3d3d5;color:#000000 !important;
-	}
-	&.negro,
-	&.neroinox {
-		background:#131313;color:#ffffff !important;
-	}
-	&.negro-azul {
-		@include calPos(12, 1);
-	}
-	&.negro-rojo {
-		@include calPos(13, 1);
-	}
-	&.Noir,
-	&.noir {
-		background:#181818;color:#ffffff !important;
-	}
-	&.noir-rouge {
-		@include calPos(14, 1);
-	}
-	&.Orange,
-	&.orange,
-	&.oranje {
-		background:#fd7a06;color:#000000 !important;
-	}
-	&.oro {
-		background:#b2947c;color:#000000 !important;
-	}
-	&.pearl-bianco {
-		@include calPos(15, 1);
-	}
-	&.pessego {
-		background:#cbaba0;color:#000000 !important;
-	}
-	&.PINK,
-	&.Pink,
-	&.pink {
-		background:#f55d69;color:#000000 !important;
-	}
-	&.plata,
-	&.vcm  {
-		background:#c3c3c3;color:#000000 !important;
-	}
-	&.Platinum_Silver {
-		background:#827974;color:#000000 !important;
-	}
-	&.platinum-silber {
-		background:#b9b9b9;color:#000000 !important;
-	}
-	&.platinum-silver {
-		background:#aeb5bf;color:#000000 !important;
-	}
-	&.platinium-antihuellas {
-		background:#636564;color:#ffffff !important;
-	}
-	&.Platinum {
-		background:#8593a0;color:#000000 !important;
-	}
-	&.preto {
-		background:#101010;color:#ffffff !important;
-	}
-	&.pure-silver {
-		background:#cecacb;color:#000000 !important;
-	}
-	&.Purple,
-	&.purple {
-		background:#938cc0;color:#000000 !important;
-	}
-	&.Red,
-	&.red {
-		background:#a60402;color:#ffffff !important;
-	}
-	&.red-art-flower {
-		background:#c32c4f;color:#ffffff !important;
-	}
-	&.red-flower {
-		background:#a31f1a;color:#ffffff !important;
-	}
-	&.red-night {
-		background:#583038;color:#ffffff !important;
-	}
-	&.red-wine {
-		background:#bb1b25;color:#ffffff !important;
-	}
-	&.riviera-blue {
-		background:#161e5d;color:#ffffff !important;
-	}
-	&.rojo {
-		background:#fe0000;color:#000000 !important;
-	}
-	&.Rosa,
-	&.rosa,
-	&.Rose,
-	&.rose {
-		background:#e6aec7;color:#000000 !important;
-	}
-	&.RoseGold {
-		background:#c9a49c;color:#000000 !important;
-	}
-	&.rojo-floral {
-		background:#860104;color:#ffffff !important;
-	}
-	&.rot,
-	&.rosso,
-	&.rosso-flower {
-		background:#a0182e;color:#ffffff !important;
-	}
-	&.rojo-metalizado {
-		background:#f1d2cf;color:#000000 !important;
-	}
-	&.rouge {
-		background:#ee0000;color:#ffffff !important;
-	}
-	&.sabbia {
-		background:#531314;color:#ffffff !important;
-	}
-	&.schwarz-rot {
-		@include calPos(16, 1);
-	}
-	&.silver-black {
-		@include calPos(17, 1);
-	}
-	&.Shiny {
-		@include calPos(18, 1);
-	}
-	&.silber {
-		background:#c0c0c0;color:#000000 !important;
-	}
-	&.SILVER,
-	&.Silver,
-	&.silver {
-		background:#d0d0d0;color:#000000 !important;
-	}
-	&.silver1 {
-		background:#bdbdbd;color:#000000 !important;
-	}
-	&.silver-art-flower {
-		background:#b5b4b9;color:#000000 !important;
-	}
-	&.silver-steel {
-		background:#939b9e;color:#000000 !important;
-	}
-	&.specchio {
-		@include calPos(19, 1);
-	}
-	&.spring-design-blanc {
-		@include calPos(20, 1);
-	}
-	&.spring-design-rouge {
-		@include calPos(1, 2);
-	}
-	&.stainless {
-		background:#b4b9bd;color:#000000 !important;
-	}
-	&.StainlessSteel,
-	&.stainless-steel,
-	&.Stainless_Silver,
-	&.HA_Smudge-Resistant-Stainless-Steel	{ //LGECI-378 add
-		background:#e3e3e3;color:#000000 !important;
-	}
-	&.staubsauger-blau {
-		background:#4b76a0;color:#ffffff !important;
-	}
-	&.stone-silver {
-		background:#8e8e8e;color:#000000 !important;
-	}
-	&.super-white {
-		background:#e7e7e7;color:#000000 !important;
-	}
-	&.swarovski-bordeaux {
-		background:#942128;color:#ffffff !important;
-	}
-	&.texture-black,
-	&.HA_Black-Stainless-Steel { //LGECI-378 add
-		@include calPos(2, 2);
-	}
-	&.TerraGold {
-		background:#c7b398;color:#000000 !important;
-	}
-	&.Titan,
-	&.titan{
-		background:#484745;color:#ffffff !important;
-	}
-	&.Titane {
-		background:#c1c1c1;color:#000000 !important;
-	}
-	&.Titanium,
-	&.titanium {
-		background:#b7b7b9;color:#000000 !important;
-	}
-	&.titanium-antihuellas {
-		background:#aeb7bc;color:#000000 !important;
-	}
-	&.titanium-silver {
-		background:#aaa6a3;color:#000000 !important;
-	}
-	&.total-inox {
-		background:#9b9d9c;color:#000000 !important;
-	}
-	&.Turquesa {
-		background:#afcbd9;color:#000000 !important;
-	}
-	&.verde {
-		background:#0a0a0a;color:#ffffff !important;
-	}
-	&.Vert {
-		background:#b3cf7a;color:#000000 !important;
-	}
-	&.vert {
-		background:#809a2d;color:#000000 !important;
-	}
-	&.vino {
-		background:#e1c1c2;color:#000000 !important;
-	}
-	&.Violet,
-	&.voilet {
-		background:#825d90;color:#ffffff !important;
-	}
-	&.weib {
-		background:#fefefe;color:#000000 !important;
-	}
-	&.Weiss	{
-		background:#e9e9e9;color:#000000 !important;
-	}
-	&.western-black {
-		background:#303030;color:#ffffff !important;
-	}
-	&.white,
-	&.White,
-	&.acabado-espejo-negro,
-	&.Blanc,
-	&.blanc,
-	&.MC_G8S_MirrorWhite,
-	&.MC_X_Mach_White,
-	&.MC_X_Power_White,
-	&.MC_X_Style_White,
-	&.smooth-white {
-		background:#fff;color:#000000 !important;
-	}
-	&.wave-blue {
-		background:#354964;color:#ffffff !important;
-	}
-	&.weinrot-swarovski {
-		background:#8e2424;color:#ffffff !important;
-	}
-	&.white-art-flower {
-		background:#e4e6e5;color:#000000 !important;
-	}
-	&.wijnrood {
-		background:#a1172e;color:#ffffff !important;
-	}
-	&.wild-cherry {
-		background:#a61b2e;color:#ffffff !important;
-	}
-	&.white-silver {
-		background:#eeeeee;color:#000000 !important;
-	}
-	&.with-red-flowers {
-		background:#9c1d28;color:#ffffff !important;
-	}
-	&.yellow {
-		background:#f47f0b;color:#ffffff !important;
-	}
-	&.Yellow {
-		background:#c1b841;color:#000000 !important;
-	}
-	// not use or can't replaced 4.0 class
-	// &.2-tone-inox,
-	&.acabado.Arte.Floral.Blanco,
-	&.acciaio-inox-antimpronta-black-chic,
-	&.acero-negro,
-	&.alb,
-	&.alb-argintiu,
-	&.AmberLuxe,
-	&.Apple.Green,
-	&.Apple.Red,
-	&.aqua-blue,
-	&.argent,
-	&.ArianaWhite,
-	&.Ariana-White,
-	&.AriaWhite,
-	&.Art.Flower.Wine.Red,
-	&.astro-black-dual-sim,
-	&.azul-pastel,
-	&.Biela-biele-dvierka,
-	&.Biela-strieborna-dvierka,
-	&.Bila,
-	&.Black_and_Gray,
-	&.Black-Black-Ocean,
-	&.Black-blue,
-	&.blackgold,
-	&.black-mirror,
-	&.Black-Ocean-Black,
-	&.Black-Ruby-Red,
-	&.black-white,
-	&.black-with-flowers,
-	&.Blanco-Nacarado,
-	&.blanco-titanium,
-	&.blindtext,
-	&.blue-metal-with-flowers,
-	&.blue-with-flowers,
-	&.Bouquet.White,
-	&.bouquet_blanco,
-	&.bouquet_vino,
-	&.brushed.steel,
-	&.Burgandy, 
-	&.Light.Inox, 
-	&.Cosmic.Inox,
-	&.burgundy,
-	&.Burgundy,
-	&.candy-apple-red,
-	&.champagne,
-	&.Champagne-color,
-	&.Choco.Bronze,
-	&.Chocolate,
-	&.Ciernedvierka,
-	&.colorcz,
-	&.combination-of-stainless-steel-and-black,
-	&.cool-grey,
-	&.cor-de-rosa,
-	&.Cosmic.Inox,
-	&.crimson-modern,
-	&.Crystal.Eden,
-	&.Blush.Eden, 
-	&.Twilight.Eden,
-	&.cuadro,
-	&.Dark.Red,
-	&.Dark.Red
-	&.Free.Silver,
-	&.Dark_Titan,
-	&.DarkPurple,
-	&.dark-red,
-	&.DazzleSteel,
-	&.deluxe-steel,
-	&.DiamondBlack,
-	&.Dorado-Metalizado,
-	&.duoTono,
-	&.easy_steel,
-	&.fantasy-blue,
-	&.Ferrari.Red,
-	&.free-silver,
-	&.glossy-silver,
-	&.green-desaturated,
-	&.green-saturated,
-	&.green-tea,
-	&.green-white,
-	&.grey-black,
-	&.gris-lux,
-	&.HazelAster,
-	&.HazelDazzle,
-	&.Hazle,
-	&.HazleDazzle,
-	&.hbs,
-	&.Ice.Grey,
-	&.iceberg,
-	&.ice-platinum_terra-gold,
-	&.Indigo-black,
-	&.IndigoBlue,
-	&.Ink.Blue,
-	&.Royal.Grey,
-	&.InoxSabbia,
-	&.investment-aluminum,
-	&.japans-blauw,
-	&.LGM,
-	&.Light.Silver,
-	&.light-inox,
-	&.lila,
-	&.linear-blue-tango,
-	&.Lotus.Pink
-	&.Cool.Grey,
-	&.lotus-red,
-	&.lotus-silver,
-	&.Luxury.Silver,
-	&.magic-weib,
-	&.marble-skin-beige,
-	&.Marine.Blue,
-	&.Cool.Grey,
-	&.MarineTango,
-	&.mat-dark-titan,
-	&.mc_stylus3_GREY,
-	&.medini,
-	&.metal,
-	&.metallic-silver,
-	&.metal-silver,
-	&.midnight-dazzle,
-	&.Mirror.Finish,
-	&.negro,
-	&.negro-metalizado,
-	&.negro-perla-burdeos,
-	&.negro-plateado,
-	&.negru,
-	&.niebieski,
-	&.Noble_Steel,
-	&.Nuage_argente,
-	&.Ocean.Glaze,
-	&.off-white,
-	&.Pink.Blossom,
-	&.Silk.Blossom, 
-	&.Wine.Blossom,
-	&.Coral.Blossom,
-	&.pink-brown,
-	&.pink-desaturated,
-	&.pink-modern,
-	&.pink-tango,
-	&.Plata-Metalizado,
-	&.plata-y-espejo,
-	&.plata-y-negro,
-	&.PremiumGold,
-	&.preto-castanho,
-	&.Purple_Orchid,
-	&.PurpleDazzle,
-	&.PurpleHeart,
-	&.Purpura,
-	&.Red.Floral,
-	&.Red.Floral.Pattern,
-	&.red--black,
-	&.red-flowers-silver-door,
-	&.red-metal-with-flowers,
-	&.red-modern-flower,
-	&.Red-Ruby-Red,
-	&.red-with-flowers,
-	&.Rojo,
-	&.rojo-cereza,
-	&.rosu,
-	&.rosu-ferrari,
-	&.rosu-night,
-	&.royal-grey,
-	&.Ruby,
-	&.ScarletAster,
-	&.ScarletDazzle,
-	&.ScarletHeart,
-	&.ScarletOrchid,
-	&.schwarz-lila,
-	&.ShinySteel,
-	&.Silk.Blossom, 
-	&.Pink.Blossom, 
-	&.Wine.Blossom,
-	&.Silver.Ultima,
-	&.silver-blue,
-	&.silver-grey,
-	&.Silver-Metal-Silver,
-	&.silver-top-negro,
-	&.snow-white,
-	&.Srebrny,
-	&.Stainless.Steel,
-	&.Stainless.Silver,
-	&.stainless-silver,
-	&.staubsauger-lila,
-	&.Strieborn,
-	&.strieborny,
-	&.STS,
-	&.sts_etching,
-	&.super-inox,
-	&.Swarovski.Trimkit,
-	&.tango-blue,
-	&.Tom.Purple,
-	&.TwilightMagic,
-	&.vino_blanco,
-	&.vino-floral,
-	&.white_black_door,
-	&.wine-red,
-	&.Wooden.Tango, 
-	&.Crimson.Tango,
-	&.wooden-tango,
-	&.yellow {
-		background:#000;color:#ffffff !important;
-	}
-	// 2020.02.20 added
-	&.MC-K41S-Black {
-		background:#000;color:#ffffff !important;
-	}
-	&.MC-K51S-Pink {
-		background:#703a47;color:#ffffff !important;
-	}
-	&.MC-K41S-Titan,
-	&.MC-K51S-Titan,
-	&.MC-K61-Titan {
-		background:#474c50;color:#ffffff !important;
-	}
-	&.MC-K61-White {
-		background:#f4f5f7;color:#000000 !important;
-	}
-	// 20200312 START 이상현 - colorchip 업데이트
-	// 2020.03.03 ~ 03.11 Added
-	&.Apple-Green,
-	&.melon-green {
-		background:#076158;color:#ffffff !important;
-	}
-	&.Beige,
-	&.beige {
-		background:#d1caae;color:#000000 !important;
-	}
-	&.Biela {
-		background:#ebebed;color:#000000 !important;
-	}
-	&.Blue-IN,
-	&.blue-white {
-		background:#111e4b;color:#ffffff !important;
-	}
-	&.Dourado {
-		background:#c5b091;color:#ffffff !important;
-	}
-	&.dark-brown {
-		background:#332927;color:#ffffff !important;
-	}
-	&.Graphhite {
-		background:#b2b1b7;color:#000000 !important;
-	}
-	&.Indigo,
-	&.indigo {
-		background:#174a9b;color:#ffffff !important;
-	}
-	&.Mocha {
-		background:#362e2c;color:#ffffff !important;
-	}
-	&.Gold-Metal-Gold {
-		background:#fae5d2;color:#000000 !important;
-	}
-	&.normal-silver,
-	&.prata {
-		background:#d0d0d0;color:#000000 !important;
-	}
-	&.silver-new {
-		background:#b3b3b5;color:#ffffff !important;
-	}
-	// 20200312 END
-	// 20200316 START 이상현 - colorchip 업데이트
-	&.Negro{
-		background:#000;color:#ffffff !important;
-	}
-	&.platinum{
-		background:#ccc;color:#000000 !important;
-	}
-	&.pinkwhite {
-		background:#efa0bf;color:#000000 !important;
-	}
-	&.mint_blue {
-		background:#bfdee3;color:#000000 !important;
-	}
-	&.Terra-Gold {
-		background:#d4a593;color:#000000 !important;
-	}
-	&.brown{
-		background:#8e7066;color:#ffffff !important;
-	}
-	&.Pink-Gold{
-		background:#e6afc6;color:#000000 !important;
-	}
-	// 20200316 END
-	// 20200323 START 이상현 - colorchip 업데이트
-	&.MC_V60_ClassyBlue {
-		background:#1d264d;color:#ffffff !important;
-	}
-	&.MC_V60_ClassyWhite {
-		background:#fff;color:#000000 !important;
-	}
-	&.MC_V60_TheBlack {
-		background:#000;color:#ffffff !important;
-	}
-	// 20200326 START 이상현 - colorchip 업데이트
-	&.white2 {
-		background:#fff;color:#000000 !important;
-	}
-	// 20200326 END
-	// 20200401 START 이상현 - colorchip 업데이트
-	&.metallic-Golden {
-		background:#dec9ae;color:#000000 !important;
-	}
-	&.steel {
-		background:#847e80;color:#000000 !important;
-	}
-	// 20200401 END
-	// 20200413 START 이상현 - colorchip 업데이트
-	&.AuroraBlack {
-		background:#060606;color:#ffffff !important;
-	}
-	&.Green {
-		background:#ccd963;color:#000000 !important;
-	}
-	&.Indigoblue {
-		background:#161616;color:#ffffff !important;
-	}
-	&.Lime {
-		background:#cbff00;color:#000000 !important;
-	}
-	&.Navy_Blue {
-		background:#1a2539;color:#ffffff !important;
-	}
-	&.Rose_Gold,
-	&.Rose-Gold {
-		background:#f3d6d2;color:#000000 !important;
-	}
-	// 20200413 END
-	// 20200416 START 이상현 - colorchip 업데이트
-	&.MC_Velvet_AuroraGreen {background:#01514e;color:#ffffff !important;}
-	&.MC_Velvet_AuroraGrey {background:#46474b;color:#ffffff !important;}
-	&.MC_Velvet_AuroraSilver {background:#dad9d7;color:#000000 !important;}
-	// 20200421 START 이상현 - colorchip 업데이트
-	&.MC_Velvet_IllusionSunset {background:#d61969;color:#ffffff !important;}
-	// 20200421 END
-	&.MC_Velvet_AuroraWhite {background:#fff;color:#000000 !important;}
-	&.MC_Velvet_NewBlack {background:#000;color:#ffffff !important;}
-	// 20200416 END
-	// 20200421 START 이상현 - colorchip 업데이트
-	&.Indigo_Blue {background:#161616;color:#ffffff !important;}
-	&.Indigo-blue {background:#020202;color:#ffffff !important;}
-	&.Gold-Shor {background:#ebd1c0;color:#000000 !important;}
-	&.dsds {background:#cfcbc0;color:#000000 !important;}
-	&.b {background:#000;color:#ffffff !important;}
-	&.TItan {background:#9e9e9e;color:#000000 !important;}
-	&.Black-Red {@include calPos(4, 2);color:#ffffff !important;}
-	&.Powder_Blue {background:#a7cbe5;color:#000000 !important;}
-	// 20200421 END
-	// 20200429 START 이상현 - colorchip 업데이트
-	&.Black-stainless-steel {background:#424242;color:#ffffff !important;}
-	&.MC_G5_Speed_Titan {background:#393532;color:#ffffff !important;}
-	// 20200429 END
-	// 20200514 START 이상현 - colorchip 업데이트
-	&.MC_K51S_Pink {background:#d37992;color:#000000 !important;}
-	&.MC_K51S_Titan {background:#6d7582;color:#ffffff !important;}
-	&.MC_K61_Titan {background:#727c88;color:#000000 !important;}
-	// 20200514 END
-	// 20200520 START 이상현 - colorchip 업데이트
-	&.indigo-blue {background:#22293b;color:#ffffff !important;}
-	// 20200520 END
-	/* LGEGMC-310 : 20200529 add */
-	&.HE_TWS_ModernWhite {background:#ffffff;color:#000000 !important;}
-	&.HE_TWS_StylishBlack {background:#1a1915;color:#ffffff !important;}
-	/* //LGEGMC-310 : 20200529 add */
-	/* LGEGMC-373 : 20200624 add */
-	&.MC_K22_Titan {background:#7f8084;color:#000000 !important;}
-	&.MC_K22_Blue {background:#36159a;color:#ffffff !important;}
-	&.MC_K22_Red {background:#ae2738;color:#ffffff !important;}
-	/* //LGEGMC-373 : 20200624 add */
+  &.MC_G6_Ice_Platinum {
+    background: #7f8897;
+    color: #000000 !important;
+  }
+  &.MC_G6_LavenderViolet,
+  &.MC_Q6_LavenderViolet,
+  &.MC_V30_Lavender_Violet {
+    background: #afa3b9;
+    color: #000000 !important;
+  }
+  &.MC_G6_Mystic_White,
+  &.MC_Q6_Mystic_White,
+  &.glossy-white,
+  &.TitanSilver,
+  &.titan-silver {
+    background: #f9f9f9;
+    color: #000000 !important;
+  }
+  &.MC_G6_Marine_Blue,
+  &.MC_G6_Plus_Marine_Blue,
+  &.MC_Q6_Plus_Marine_Blue {
+    background: #7187b6;
+    color: #000000 !important;
+  }
+  &.MC_G7_Fit_Aurora_Black,
+  &.MC_G7_NewAuroraBlack {
+    background: #141c31;
+    color: #ffffff !important;
+  }
+  &.MC_G6_MorocanBlue,
+  &.MC_Q6_MoroccanBlue {
+    background: #203c54;
+    color: #ffffff !important;
+  }
+  &.MC_G7_NewMoroccanBlue {
+    background: #004b6b;
+    color: #ffffff !important;
+  }
+  &.MC_K11_Moroccan_Blue,
+  &.MC_K9_Moroccan_Blue,
+  &.MC_Q7_Alpha_MoroccanBlue,
+  &.MC_Q7_Plus_MoroccanBlue_Hair,
+  &.MC_Q7_Plus_MoroccanBlue_Wave,
+  &.MC_Q7_Prime_MoroccanBlue,
+  &.MC_Qstylus_MoroccanBlue,
+  &.MC_XPower3_MoroccanBlue,
+  &.medini {
+    background: #014a6b;
+    color: #ffffff !important;
+  }
+  &.MC_V40_ThinQ_NewMoroccanBlue,
+  &.MC_K30_MoroccanBlue,
+  &.MC_K40_NewMoroccanBlue,
+  &.MC_K40S_NewMoroccanBlue,
+  &.MC_K50S_NewMoroccanBlue,
+  &.MC_Q60_NewMoroccanBlue {
+    background: #01456a;
+    color: #ffffff !important;
+  }
+  &.MC_K50_MoroccanBlue {
+    background: #03476a;
+    color: #ffffff !important;
+  }
+  &.MC_K8_MoroccanBlue {
+    background: #04344a;
+    color: #ffffff !important;
+  }
+  &.MC_K9_Terra_Gold {
+    background: #c7ab83;
+    color: #000000 !important;
+  }
+  &.MC_Q6_Alpha_Ice_Platinum,
+  &.MC_Q6_Ice_Platinum,
+  &.MC_Q6_Plus_Ice_Platinum {
+    background: #84a1af;
+    color: #000000 !important;
+  }
+  &.MC_Q6_Alpha_Terra_Gold,
+  &.MC_Q6_Terra_Gold {
+    background: #bf9972;
+    color: #000000 !important;
+  }
+  &.MC_Q7_Plus_LavenderViolet,
+  &.MC_Q7_Prime_LavenderViolet {
+    background: #968bad;
+    color: #000000 !important;
+  }
+  &.MC_Q7_Plus_AuroraBlack,
+  &.MC_Q7_Prime_AuroraBlack,
+  &.MC_Qstylus_AuroraBlack {
+    background: #151d32;
+    color: #ffffff !important;
+  }
+  &.MC_Stylus2_Brown,
+  &.MC_Stylus2_Gold,
+  &.MC_Stylus3_Gold,
+  &.MC_X_Style_Gold {
+    background: #c6b192;
+    color: #000000 !important;
+  }
+  &.MC_Stylo5_BlondeRose {
+    background: #dea6a5;
+    color: #000000 !important;
+  }
+  &.MC_Stylo5_SilveryWhite {
+    background: #d1d1d1;
+    color: #000000 !important;
+  }
+  &.mc_stylus3_PINK,
+  &.MC_V20_Pink {
+    background: #e2b8ba;
+    color: #000000 !important;
+  }
+  &.MC_Stylus3_Rose_Gold {
+    background: #d0b4b0;
+    color: #000000 !important;
+  }
+  &.MC_Stylus3_Titan {
+    background: #6b696e;
+    color: #ffffff !important;
+  }
+  &.MC_V20_Silver {
+    background: #b9b9bb;
+    color: #000000 !important;
+  }
+  &.MC_V20_Titan {
+    background: #4d4d4d;
+    color: #ffffff !important;
+  }
+  &.MC_V30_Moroccan_Blue,
+  &.moroccan-blue,
+  &.MoroccanBlue {
+    background: #1f3b53;
+    color: #ffffff !important;
+  }
+  &.MC_V30S_ThinQ_NewMoroccanBlue {
+    background: #0c5f7f;
+    color: #ffffff !important;
+  }
+  &.MC_V30S_ThinQ_NewPlatinumGray {
+    background: #8b8e93;
+    color: #000000 !important;
+  }
+  &.MC_V40_ThinQ_CarmineRed {
+    background: #7e193b;
+    color: #ffffff !important;
+  }
+  &.Mint {
+    background: #50becb;
+    color: #000000 !important;
+  }
+  &.mirror {
+    background: #30373f;
+    color: #ffffff !important;
+  }
+  &.MysticWhite,
+  &.Mystic-white,
+  &.mystic-white {
+    background: #f1edea;
+    color: #000000 !important;
+  }
+  &.Navy,
+  &.navy {
+    background: #384965;
+    color: #ffffff !important;
+  }
+  &.Navy-Blue {
+    background: #21224e;
+    color: #ffffff !important;
+  }
+  &.Naranja {
+    background: #ff8808;
+    color: #000000 !important;
+  }
+  &.navy-blue {
+    background: #170569;
+    color: #ffffff !important;
+  }
+  &.nero {
+    background: #d3d3d5;
+    color: #000000 !important;
+  }
+  &.negro,
+  &.neroinox {
+    background: #131313;
+    color: #ffffff !important;
+  }
+  &.negro-azul {
+    @include calPos(12, 1);
+  }
+  &.negro-rojo {
+    @include calPos(13, 1);
+  }
+  &.Noir,
+  &.noir {
+    background: #181818;
+    color: #ffffff !important;
+  }
+  &.noir-rouge {
+    @include calPos(14, 1);
+  }
+  &.Orange,
+  &.orange,
+  &.oranje {
+    background: #fd7a06;
+    color: #000000 !important;
+  }
+  &.oro {
+    background: #b2947c;
+    color: #000000 !important;
+  }
+  &.pearl-bianco {
+    @include calPos(15, 1);
+  }
+  &.pessego {
+    background: #cbaba0;
+    color: #000000 !important;
+  }
+  &.PINK,
+  &.Pink,
+  &.pink {
+    background: #f55d69;
+    color: #000000 !important;
+  }
+  &.plata,
+  &.vcm {
+    background: #c3c3c3;
+    color: #000000 !important;
+  }
+  &.Platinum_Silver {
+    background: #827974;
+    color: #000000 !important;
+  }
+  &.platinum-silber {
+    background: #b9b9b9;
+    color: #000000 !important;
+  }
+  &.platinum-silver {
+    background: #aeb5bf;
+    color: #000000 !important;
+  }
+  &.platinium-antihuellas {
+    background: #636564;
+    color: #ffffff !important;
+  }
+  &.Platinum {
+    background: #8593a0;
+    color: #000000 !important;
+  }
+  &.preto {
+    background: #101010;
+    color: #ffffff !important;
+  }
+  &.pure-silver {
+    background: #cecacb;
+    color: #000000 !important;
+  }
+  &.Purple,
+  &.purple {
+    background: #938cc0;
+    color: #000000 !important;
+  }
+  &.Red,
+  &.red {
+    background: #a60402;
+    color: #ffffff !important;
+  }
+  &.red-art-flower {
+    background: #c32c4f;
+    color: #ffffff !important;
+  }
+  &.red-flower {
+    background: #a31f1a;
+    color: #ffffff !important;
+  }
+  &.red-night {
+    background: #583038;
+    color: #ffffff !important;
+  }
+  &.red-wine {
+    background: #bb1b25;
+    color: #ffffff !important;
+  }
+  &.riviera-blue {
+    background: #161e5d;
+    color: #ffffff !important;
+  }
+  &.rojo {
+    background: #fe0000;
+    color: #000000 !important;
+  }
+  &.Rosa,
+  &.rosa,
+  &.Rose,
+  &.rose {
+    background: #e6aec7;
+    color: #000000 !important;
+  }
+  &.RoseGold {
+    background: #c9a49c;
+    color: #000000 !important;
+  }
+  &.rojo-floral {
+    background: #860104;
+    color: #ffffff !important;
+  }
+  &.rot,
+  &.rosso,
+  &.rosso-flower {
+    background: #a0182e;
+    color: #ffffff !important;
+  }
+  &.rojo-metalizado {
+    background: #f1d2cf;
+    color: #000000 !important;
+  }
+  &.rouge {
+    background: #ee0000;
+    color: #ffffff !important;
+  }
+  &.sabbia {
+    background: #531314;
+    color: #ffffff !important;
+  }
+  &.schwarz-rot {
+    @include calPos(16, 1);
+  }
+  &.silver-black {
+    @include calPos(17, 1);
+  }
+  &.Shiny {
+    @include calPos(18, 1);
+  }
+  &.silber {
+    background: #c0c0c0;
+    color: #000000 !important;
+  }
+  &.SILVER,
+  &.Silver,
+  &.silver {
+    background: #d0d0d0;
+    color: #000000 !important;
+  }
+  &.silver1 {
+    background: #bdbdbd;
+    color: #000000 !important;
+  }
+  &.silver-art-flower {
+    background: #b5b4b9;
+    color: #000000 !important;
+  }
+  &.silver-steel {
+    background: #939b9e;
+    color: #000000 !important;
+  }
+  &.specchio {
+    @include calPos(19, 1);
+  }
+  &.spring-design-blanc {
+    @include calPos(20, 1);
+  }
+  &.spring-design-rouge {
+    @include calPos(1, 2);
+  }
+  &.stainless {
+    background: #b4b9bd;
+    color: #000000 !important;
+  }
+  &.StainlessSteel,
+  &.stainless-steel,
+  &.Stainless_Silver,
+  &.HA_Smudge-Resistant-Stainless-Steel {
+    //LGECI-378 add
+    background: #e3e3e3;
+    color: #000000 !important;
+  }
+  &.staubsauger-blau {
+    background: #4b76a0;
+    color: #ffffff !important;
+  }
+  &.stone-silver {
+    background: #8e8e8e;
+    color: #000000 !important;
+  }
+  &.super-white {
+    background: #e7e7e7;
+    color: #000000 !important;
+  }
+  &.swarovski-bordeaux {
+    background: #942128;
+    color: #ffffff !important;
+  }
+  &.texture-black,
+  &.HA_Black-Stainless-Steel {
+    //LGECI-378 add
+    @include calPos(2, 2);
+  }
+  &.TerraGold {
+    background: #c7b398;
+    color: #000000 !important;
+  }
+  &.Titan,
+  &.titan {
+    background: #484745;
+    color: #ffffff !important;
+  }
+  &.Titane {
+    background: #c1c1c1;
+    color: #000000 !important;
+  }
+  &.Titanium,
+  &.titanium {
+    background: #b7b7b9;
+    color: #000000 !important;
+  }
+  &.titanium-antihuellas {
+    background: #aeb7bc;
+    color: #000000 !important;
+  }
+  &.titanium-silver {
+    background: #aaa6a3;
+    color: #000000 !important;
+  }
+  &.total-inox {
+    background: #9b9d9c;
+    color: #000000 !important;
+  }
+  &.Turquesa {
+    background: #afcbd9;
+    color: #000000 !important;
+  }
+  &.verde {
+    background: #0a0a0a;
+    color: #ffffff !important;
+  }
+  &.Vert {
+    background: #b3cf7a;
+    color: #000000 !important;
+  }
+  &.vert {
+    background: #809a2d;
+    color: #000000 !important;
+  }
+  &.vino {
+    background: #e1c1c2;
+    color: #000000 !important;
+  }
+  &.Violet,
+  &.voilet {
+    background: #825d90;
+    color: #ffffff !important;
+  }
+  &.weib {
+    background: #fefefe;
+    color: #000000 !important;
+  }
+  &.Weiss {
+    background: #e9e9e9;
+    color: #000000 !important;
+  }
+  &.western-black {
+    background: #303030;
+    color: #ffffff !important;
+  }
+  &.white,
+  &.White,
+  &.acabado-espejo-negro,
+  &.Blanc,
+  &.blanc,
+  &.MC_G8S_MirrorWhite,
+  &.MC_X_Mach_White,
+  &.MC_X_Power_White,
+  &.MC_X_Style_White,
+  &.smooth-white {
+    background: #fff;
+    color: #000000 !important;
+  }
+  &.wave-blue {
+    background: #354964;
+    color: #ffffff !important;
+  }
+  &.weinrot-swarovski {
+    background: #8e2424;
+    color: #ffffff !important;
+  }
+  &.white-art-flower {
+    background: #e4e6e5;
+    color: #000000 !important;
+  }
+  &.wijnrood {
+    background: #a1172e;
+    color: #ffffff !important;
+  }
+  &.wild-cherry {
+    background: #a61b2e;
+    color: #ffffff !important;
+  }
+  &.white-silver {
+    background: #eeeeee;
+    color: #000000 !important;
+  }
+  &.with-red-flowers {
+    background: #9c1d28;
+    color: #ffffff !important;
+  }
+  &.yellow {
+    background: #f47f0b;
+    color: #ffffff !important;
+  }
+  &.Yellow {
+    background: #c1b841;
+    color: #000000 !important;
+  }
+  // not use or can't replaced 4.0 class
+  // &.2-tone-inox,
+  &.acabado.Arte.Floral.Blanco,
+  &.acciaio-inox-antimpronta-black-chic,
+  &.acero-negro,
+  &.alb,
+  &.alb-argintiu,
+  &.AmberLuxe,
+  &.Apple.Green,
+  &.Apple.Red,
+  &.aqua-blue,
+  &.argent,
+  &.ArianaWhite,
+  &.Ariana-White,
+  &.AriaWhite,
+  &.Art.Flower.Wine.Red,
+  &.astro-black-dual-sim,
+  &.azul-pastel,
+  &.Biela-biele-dvierka,
+  &.Biela-strieborna-dvierka,
+  &.Bila,
+  &.Black_and_Gray,
+  &.Black-Black-Ocean,
+  &.Black-blue,
+  &.blackgold,
+  &.black-mirror,
+  &.Black-Ocean-Black,
+  &.Black-Ruby-Red,
+  &.black-white,
+  &.black-with-flowers,
+  &.Blanco-Nacarado,
+  &.blanco-titanium,
+  &.blindtext,
+  &.blue-metal-with-flowers,
+  &.blue-with-flowers,
+  &.Bouquet.White,
+  &.bouquet_blanco,
+  &.bouquet_vino,
+  &.brushed.steel,
+  &.Burgandy,
+  &.Light.Inox,
+  &.Cosmic.Inox,
+  &.burgundy,
+  &.Burgundy,
+  &.candy-apple-red,
+  &.champagne,
+  &.Champagne-color,
+  &.Choco.Bronze,
+  &.Chocolate,
+  &.Ciernedvierka,
+  &.colorcz,
+  &.combination-of-stainless-steel-and-black,
+  &.cool-grey,
+  &.cor-de-rosa,
+  &.Cosmic.Inox,
+  &.crimson-modern,
+  &.Crystal.Eden,
+  &.Blush.Eden,
+  &.Twilight.Eden,
+  &.cuadro,
+  &.Dark.Red,
+  &.Dark.Red &.Free.Silver,
+  &.Dark_Titan,
+  &.DarkPurple,
+  &.dark-red,
+  &.DazzleSteel,
+  &.deluxe-steel,
+  &.DiamondBlack,
+  &.Dorado-Metalizado,
+  &.duoTono,
+  &.easy_steel,
+  &.fantasy-blue,
+  &.Ferrari.Red,
+  &.free-silver,
+  &.glossy-silver,
+  &.green-desaturated,
+  &.green-saturated,
+  &.green-tea,
+  &.green-white,
+  &.grey-black,
+  &.gris-lux,
+  &.HazelAster,
+  &.HazelDazzle,
+  &.Hazle,
+  &.HazleDazzle,
+  &.hbs,
+  &.Ice.Grey,
+  &.iceberg,
+  &.ice-platinum_terra-gold,
+  &.Indigo-black,
+  &.IndigoBlue,
+  &.Ink.Blue,
+  &.Royal.Grey,
+  &.InoxSabbia,
+  &.investment-aluminum,
+  &.japans-blauw,
+  &.LGM,
+  &.Light.Silver,
+  &.light-inox,
+  &.lila,
+  &.linear-blue-tango,
+  &.Lotus.Pink &.Cool.Grey,
+  &.lotus-red,
+  &.lotus-silver,
+  &.Luxury.Silver,
+  &.magic-weib,
+  &.marble-skin-beige,
+  &.Marine.Blue,
+  &.Cool.Grey,
+  &.MarineTango,
+  &.mat-dark-titan,
+  &.mc_stylus3_GREY,
+  &.medini,
+  &.metal,
+  &.metallic-silver,
+  &.metal-silver,
+  &.midnight-dazzle,
+  &.Mirror.Finish,
+  &.negro,
+  &.negro-metalizado,
+  &.negro-perla-burdeos,
+  &.negro-plateado,
+  &.negru,
+  &.niebieski,
+  &.Noble_Steel,
+  &.Nuage_argente,
+  &.Ocean.Glaze,
+  &.off-white,
+  &.Pink.Blossom,
+  &.Silk.Blossom,
+  &.Wine.Blossom,
+  &.Coral.Blossom,
+  &.pink-brown,
+  &.pink-desaturated,
+  &.pink-modern,
+  &.pink-tango,
+  &.Plata-Metalizado,
+  &.plata-y-espejo,
+  &.plata-y-negro,
+  &.PremiumGold,
+  &.preto-castanho,
+  &.Purple_Orchid,
+  &.PurpleDazzle,
+  &.PurpleHeart,
+  &.Purpura,
+  &.Red.Floral,
+  &.Red.Floral.Pattern,
+  &.red--black,
+  &.red-flowers-silver-door,
+  &.red-metal-with-flowers,
+  &.red-modern-flower,
+  &.Red-Ruby-Red,
+  &.red-with-flowers,
+  &.Rojo,
+  &.rojo-cereza,
+  &.rosu,
+  &.rosu-ferrari,
+  &.rosu-night,
+  &.royal-grey,
+  &.Ruby,
+  &.ScarletAster,
+  &.ScarletDazzle,
+  &.ScarletHeart,
+  &.ScarletOrchid,
+  &.schwarz-lila,
+  &.ShinySteel,
+  &.Silk.Blossom,
+  &.Pink.Blossom,
+  &.Wine.Blossom,
+  &.Silver.Ultima,
+  &.silver-blue,
+  &.silver-grey,
+  &.Silver-Metal-Silver,
+  &.silver-top-negro,
+  &.snow-white,
+  &.Srebrny,
+  &.Stainless.Steel,
+  &.Stainless.Silver,
+  &.stainless-silver,
+  &.staubsauger-lila,
+  &.Strieborn,
+  &.strieborny,
+  &.STS,
+  &.sts_etching,
+  &.super-inox,
+  &.Swarovski.Trimkit,
+  &.tango-blue,
+  &.Tom.Purple,
+  &.TwilightMagic,
+  &.vino_blanco,
+  &.vino-floral,
+  &.white_black_door,
+  &.wine-red,
+  &.Wooden.Tango,
+  &.Crimson.Tango,
+  &.wooden-tango,
+  &.yellow {
+    background: #000;
+    color: #ffffff !important;
+  }
+  // 2020.02.20 added
+  &.MC-K41S-Black {
+    background: #000;
+    color: #ffffff !important;
+  }
+  &.MC-K51S-Pink {
+    background: #703a47;
+    color: #ffffff !important;
+  }
+  &.MC-K41S-Titan,
+  &.MC-K51S-Titan,
+  &.MC-K61-Titan {
+    background: #474c50;
+    color: #ffffff !important;
+  }
+  &.MC-K61-White {
+    background: #f4f5f7;
+    color: #000000 !important;
+  }
+  // 20200312 START 이상현 - colorchip 업데이트
+  // 2020.03.03 ~ 03.11 Added
+  &.Apple-Green,
+  &.melon-green {
+    background: #076158;
+    color: #ffffff !important;
+  }
+  &.Beige,
+  &.beige {
+    background: #d1caae;
+    color: #000000 !important;
+  }
+  &.Biela {
+    background: #ebebed;
+    color: #000000 !important;
+  }
+  &.Blue-IN,
+  &.blue-white {
+    background: #111e4b;
+    color: #ffffff !important;
+  }
+  &.Dourado {
+    background: #c5b091;
+    color: #ffffff !important;
+  }
+  &.dark-brown {
+    background: #332927;
+    color: #ffffff !important;
+  }
+  &.Graphhite {
+    background: #b2b1b7;
+    color: #000000 !important;
+  }
+  &.Indigo,
+  &.indigo {
+    background: #174a9b;
+    color: #ffffff !important;
+  }
+  &.Mocha {
+    background: #362e2c;
+    color: #ffffff !important;
+  }
+  &.Gold-Metal-Gold {
+    background: #fae5d2;
+    color: #000000 !important;
+  }
+  &.normal-silver,
+  &.prata {
+    background: #d0d0d0;
+    color: #000000 !important;
+  }
+  &.silver-new {
+    background: #b3b3b5;
+    color: #ffffff !important;
+  }
+  // 20200312 END
+  // 20200316 START 이상현 - colorchip 업데이트
+  &.Negro {
+    background: #000;
+    color: #ffffff !important;
+  }
+  &.platinum {
+    background: #ccc;
+    color: #000000 !important;
+  }
+  &.pinkwhite {
+    background: #efa0bf;
+    color: #000000 !important;
+  }
+  &.mint_blue {
+    background: #bfdee3;
+    color: #000000 !important;
+  }
+  &.Terra-Gold {
+    background: #d4a593;
+    color: #000000 !important;
+  }
+  &.brown {
+    background: #8e7066;
+    color: #ffffff !important;
+  }
+  &.Pink-Gold {
+    background: #e6afc6;
+    color: #000000 !important;
+  }
+  // 20200316 END
+  // 20200323 START 이상현 - colorchip 업데이트
+  &.MC_V60_ClassyBlue {
+    background: #1d264d;
+    color: #ffffff !important;
+  }
+  &.MC_V60_ClassyWhite {
+    background: #fff;
+    color: #000000 !important;
+  }
+  &.MC_V60_TheBlack {
+    background: #000;
+    color: #ffffff !important;
+  }
+  // 20200326 START 이상현 - colorchip 업데이트
+  &.white2 {
+    background: #fff;
+    color: #000000 !important;
+  }
+  // 20200326 END
+  // 20200401 START 이상현 - colorchip 업데이트
+  &.metallic-Golden {
+    background: #dec9ae;
+    color: #000000 !important;
+  }
+  &.steel {
+    background: #847e80;
+    color: #000000 !important;
+  }
+  // 20200401 END
+  // 20200413 START 이상현 - colorchip 업데이트
+  &.AuroraBlack {
+    background: #060606;
+    color: #ffffff !important;
+  }
+  &.Green {
+    background: #ccd963;
+    color: #000000 !important;
+  }
+  &.Indigoblue {
+    background: #161616;
+    color: #ffffff !important;
+  }
+  &.Lime {
+    background: #cbff00;
+    color: #000000 !important;
+  }
+  &.Navy_Blue {
+    background: #1a2539;
+    color: #ffffff !important;
+  }
+  &.Rose_Gold,
+  &.Rose-Gold {
+    background: #f3d6d2;
+    color: #000000 !important;
+  }
+  // 20200413 END
+  // 20200416 START 이상현 - colorchip 업데이트
+  &.MC_Velvet_AuroraGreen {
+    background: #01514e;
+    color: #ffffff !important;
+  }
+  &.MC_Velvet_AuroraGrey {
+    background: #46474b;
+    color: #ffffff !important;
+  }
+  &.MC_Velvet_AuroraSilver {
+    background: #dad9d7;
+    color: #000000 !important;
+  }
+  // 20200421 START 이상현 - colorchip 업데이트
+  &.MC_Velvet_IllusionSunset {
+    background: #d61969;
+    color: #ffffff !important;
+  }
+  // 20200421 END
+  &.MC_Velvet_AuroraWhite {
+    background: #fff;
+    color: #000000 !important;
+  }
+  &.MC_Velvet_NewBlack {
+    background: #000;
+    color: #ffffff !important;
+  }
+  // 20200416 END
+  // 20200421 START 이상현 - colorchip 업데이트
+  &.Indigo_Blue {
+    background: #161616;
+    color: #ffffff !important;
+  }
+  &.Indigo-blue {
+    background: #020202;
+    color: #ffffff !important;
+  }
+  &.Gold-Shor {
+    background: #ebd1c0;
+    color: #000000 !important;
+  }
+  &.dsds {
+    background: #cfcbc0;
+    color: #000000 !important;
+  }
+  &.b {
+    background: #000;
+    color: #ffffff !important;
+  }
+  &.TItan {
+    background: #9e9e9e;
+    color: #000000 !important;
+  }
+  &.Black-Red {
+    @include calPos(4, 2);
+    color: #ffffff !important;
+  }
+  &.Powder_Blue {
+    background: #a7cbe5;
+    color: #000000 !important;
+  }
+  // 20200421 END
+  // 20200429 START 이상현 - colorchip 업데이트
+  &.Black-stainless-steel {
+    background: #424242;
+    color: #ffffff !important;
+  }
+  &.MC_G5_Speed_Titan {
+    background: #393532;
+    color: #ffffff !important;
+  }
+  // 20200429 END
+  // 20200514 START 이상현 - colorchip 업데이트
+  &.MC_K51S_Pink {
+    background: #d37992;
+    color: #000000 !important;
+  }
+  &.MC_K51S_Titan {
+    background: #6d7582;
+    color: #ffffff !important;
+  }
+  &.MC_K61_Titan {
+    background: #727c88;
+    color: #000000 !important;
+  }
+  // 20200514 END
+  // 20200520 START 이상현 - colorchip 업데이트
+  &.indigo-blue {
+    background: #22293b;
+    color: #ffffff !important;
+  }
+  // 20200520 END
+  /* LGEGMC-310 : 20200529 add */
+  &.HE_TWS_ModernWhite {
+    background: #ffffff;
+    color: #000000 !important;
+  }
+  &.HE_TWS_StylishBlack {
+    background: #1a1915;
+    color: #ffffff !important;
+  }
+  /* //LGEGMC-310 : 20200529 add */
+  /* LGEGMC-373 : 20200624 add */
+  &.MC_K22_Titan {
+    background: #7f8084;
+    color: #000000 !important;
+  }
+  &.MC_K22_Blue {
+    background: #36159a;
+    color: #ffffff !important;
+  }
+  &.MC_K22_Red {
+    background: #ae2738;
+    color: #ffffff !important;
+  }
+  /* //LGEGMC-373 : 20200624 add */
 
-	/* LGEGMC-510 : 20200724 add*/
-	&.MC-K71-HoloTitan {background:#585f69;color:#ffffff !important;}
-	&.MC-K71-HoloWhite {background:#e8f5fd;color:#000000 !important;}
-	/* //LGEGMC-510 : 20200724 add*/
+  /* LGEGMC-510 : 20200724 add*/
+  &.MC-K71-HoloTitan {
+    background: #585f69;
+    color: #ffffff !important;
+  }
+  &.MC-K71-HoloWhite {
+    background: #e8f5fd;
+    color: #000000 !important;
+  }
+  /* //LGEGMC-510 : 20200724 add*/
 
-	/* LGEGMC-546 20200729 */
-	&.MC_K42_Green{background:#3f4a28;color:#ffffff !important;}
-	&.MC_K42_Grey{background:#747474;color:#ffffff !important;}
-	&.MC_K42_Red{background:#861b39;color:#ffffff !important;}
-	&.MC_K42_SkyBlue{background:#a4d3d9;color:#000000 !important;}
-	/* // LGEGMC-546 20200729 */
+  /* LGEGMC-546 20200729 */
+  &.MC_K42_Green {
+    background: #3f4a28;
+    color: #ffffff !important;
+  }
+  &.MC_K42_Grey {
+    background: #747474;
+    color: #ffffff !important;
+  }
+  &.MC_K42_Red {
+    background: #861b39;
+    color: #ffffff !important;
+  }
+  &.MC_K42_SkyBlue {
+    background: #a4d3d9;
+    color: #000000 !important;
+  }
+  /* // LGEGMC-546 20200729 */
 
-	/* LGEGMC-560 20200811 */
-	&.MC_K52_White {background:#ffffff;color:#000000 !important;}
-	&.MC_K52_Blue {background:#211758;color:#ffffff !important;}
-	&.MC_K52_Red {background:#872521;color:#ffffff !important;}
-	&.MC_K62_White {background:#ffffff;color:#000000 !important;}
-	&.MC_K62_SkyBlue {background:#c7d1ea;color:#000000 !important;}
-	/* // LGEGMC-560 20200811 */
+  /* LGEGMC-560 20200811 */
+  &.MC_K52_White {
+    background: #ffffff;
+    color: #000000 !important;
+  }
+  &.MC_K52_Blue {
+    background: #211758;
+    color: #ffffff !important;
+  }
+  &.MC_K52_Red {
+    background: #872521;
+    color: #ffffff !important;
+  }
+  &.MC_K62_White {
+    background: #ffffff;
+    color: #000000 !important;
+  }
+  &.MC_K62_SkyBlue {
+    background: #c7d1ea;
+    color: #000000 !important;
+  }
+  /* // LGEGMC-560 20200811 */
 
-	/* LGEGMC-722 20201008 */
-	&.MC_Velvet_DarkSky {background:#46474b;color:#ffffff !important;}
-	&.MC_Velvet_Sunrise {background:#d61969;color:#ffffff !important;}
-	/* //LGEGMC-722 20201008 */
+  /* LGEGMC-722 20201008 */
+  &.MC_Velvet_DarkSky {
+    background: #46474b;
+    color: #ffffff !important;
+  }
+  &.MC_Velvet_Sunrise {
+    background: #d61969;
+    color: #ffffff !important;
+  }
+  /* //LGEGMC-722 20201008 */
 
-	/* LGEGMC-728 20201008 */
-	&.MC_Wing_AuroraGray {background:#36373b;color:#ffffff !important;}
-	&.MC_Wing_IllusionSky {background:#bcdbf0;color:#000000 !important;}
-	/* //LGEGMC-728 20201008 */
+  /* LGEGMC-728 20201008 */
+  &.MC_Wing_AuroraGray {
+    background: #36373b;
+    color: #ffffff !important;
+  }
+  &.MC_Wing_IllusionSky {
+    background: #bcdbf0;
+    color: #000000 !important;
+  }
+  /* //LGEGMC-728 20201008 */
 
-	/* LLGEIS-240 20201110 */
-	&.AV_Pink {background:#fbced1;color:#000000 !important;}
-	&.AV_Blue {background:#a6e2e3;color:#000000 !important;}
-	&.AV_Yellow {background:#fde353;color:#000000 !important;}
-	/* //LLGEIS-240 20201110 */
+  /* LLGEIS-240 20201110 */
+  &.AV_Pink {
+    background: #fbced1;
+    color: #000000 !important;
+  }
+  &.AV_Blue {
+    background: #a6e2e3;
+    color: #000000 !important;
+  }
+  &.AV_Yellow {
+    background: #fde353;
+    color: #000000 !important;
+  }
+  /* //LLGEIS-240 20201110 */
 
-	/* LGEGMC-922 20201117 */
-	&.MC_Velvet_AuroraPink{background: #f5a3c7; color:#000000 !important;}
-	/* //LGEGMC-922 20201117 */
+  /* LGEGMC-922 20201117 */
+  &.MC_Velvet_AuroraPink {
+    background: #f5a3c7;
+    color: #000000 !important;
+  }
+  /* //LGEGMC-922 20201117 */
 
-	/* LGEPA-489 20210506 */
-	&.MC_K51S_Blue{background: #211758; color: #ffffff !important;}
-	/* //LGEPA-489 20210506 */
+  /* LGEPA-489 20210506 */
+  &.MC_K51S_Blue {
+    background: #211758;
+    color: #ffffff !important;
+  }
+  /* //LGEPA-489 20210506 */
 
-	/* LGEPE-131 20210507 */
-	&.HA_TS1366NTP_Gris{background: #b2b1b6; color:#000000 !important;}
-	&.HA_WT19DSB_Gris{background: #babbbf; color:#000000 !important;}
-	/* //LGEPE-131 20210507 */
+  /* LGEPE-131 20210507 */
+  &.HA_TS1366NTP_Gris {
+    background: #b2b1b6;
+    color: #000000 !important;
+  }
+  &.HA_WT19DSB_Gris {
+    background: #babbbf;
+    color: #000000 !important;
+  }
+  /* //LGEPE-131 20210507 */
 
-	/* LGECZ-261 20211214 */
-	&.HA_REF_Dark_Graphite{background: #7a7a7a; color:#000000 !important;}
-	&.HA_REF_Platinum_Silver{background: #bebab9; color:#000000 !important;}
-	&.HA_REF_White{background: #fff; color:#000000 !important;}
-	&.HA_REF_Noble_Steel{background: #c6c6c7; color:#000000 !important;}
-	&.HA_REF_Saffiano{background: #9f9f9f; color:#000000 !important;}
-	/* // LGECZ-261 20211214 */
+  /* LGECZ-261 20211214 */
+  &.HA_REF_Dark_Graphite {
+    background: #7a7a7a;
+    color: #000000 !important;
+  }
+  &.HA_REF_Platinum_Silver {
+    background: #bebab9;
+    color: #000000 !important;
+  }
+  &.HA_REF_White {
+    background: #fff;
+    color: #000000 !important;
+  }
+  &.HA_REF_Noble_Steel {
+    background: #c6c6c7;
+    color: #000000 !important;
+  }
+  &.HA_REF_Saffiano {
+    background: #9f9f9f;
+    color: #000000 !important;
+  }
+  /* // LGECZ-261 20211214 */
 }

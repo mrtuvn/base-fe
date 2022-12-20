@@ -1,1658 +1,1746 @@
 @charset 'UTF-8';
-@import './setting/variables';
-@import './GPC0088';
+@use "sass:math";
+@import "./setting/variables";
+@import "./GPC0088";
 
 .GPC0055 {
-	$relative: 1200px;
-	$breakpoint: 1600;
+  $relative: 1200px;
+  $breakpoint: 1600;
 
-	@mixin disclaimerMaxSize(){
-		max-width:500px;
-		@include screen(custom, max, 1600) {
-			max-width:(500px*100%/(1600px-290px));
-		}
-		@include screen(custom, max, $max-lg) {
-			max-width:(360px*100%/(992px-160px));
-		}
-		@include screen(custom, max, ($max-md)) {
-			max-width:(250px*100%/(768px-120px));
-		}
-		@include screen(custom, max, $max-sm) {
-			max-width:100%;
-			// 3줄제한
-			overflow:hidden;
-			text-overflow: ellipsis;
-			display:block;
-			display:-webkit-box;
-			-webkit-line-clamp:3;
-			-webkit-box-orient:vertical;
-		}
-	}
+  @mixin disclaimerMaxSize() {
+    max-width: 500px;
+    @include screen(custom, max, 1600) {
+      max-width: math.div(500px * 100%, (1600px-290px));
+    }
+    @include screen(custom, max, $max-lg) {
+      max-width: math.div(360px * 100%, (992px-160px));
+    }
+    @include screen(custom, max, ($max-md)) {
+      max-width: math.div(250px * 100%, (768px-120px));
+    }
+    @include screen(custom, max, $max-sm) {
+      max-width: 100%;
+      // 3줄제한
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+  }
 
-	// image box area
-	.carousel-wrap {
-		position:relative;
-		width:100%;
-		clear:both;
-		overflow:hidden;
-		opacity:0;
-		@extend %clearfix;
-		&.active {
-			opacity:1;
-		}
-		.slick-list {
-			width:auto;
-			overflow:hidden;
-		}
-		.slick-track {
-			&:after {
-				content:'';
-				display:block;
-				width:100%;
-				height:0;
-				clear:both;
-			}
-		}
-		.slick-arrow {
-			overflow: hidden;
-			padding:0;
-			cursor:pointer;
-			&.slick-prev,
-			&.slick-next {
-				position:absolute;
-				z-index:99;
-				width:22px;
-				top:50%;
-				height:40px;
-				transform: translate(0,-50%);
-				pointer-events: auto;
-				[dir="rtl"] & {
-					transform: translate(0,-50%) rotate(180deg);
-				}
-			}
-			&.slick-prev {
-				left:40px;
-				[dir="rtl"] & {
-					left:auto;
-					right:40px;
-				}
-			}
-			&.slick-next {
-				right:40px;
-				[dir="rtl"] & {
-					right:auto;
-					left:40px;
-				}
-			}
-			@include screen(custom, max, $max-lg) {
-				&.slick-prev {
-					left:30px;
-					[dir="rtl"] & {right:30px;}
-				}
-				&.slick-next {
-					right:30px;
-					[dir="rtl"] & {left:30px;}
-				}
-			}
-			&.slick-disabled {
-				opacity:0.3;
-			}
-		}
-		.carousel-box {
-			position:relative;
-			width:100%;
-			float:left;
-			overflow: hidden;
-			[dir="rtl"] & {float:right;}
+  // image box area
+  .carousel-wrap {
+    position: relative;
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+    opacity: 0;
+    @extend %clearfix;
+    &.active {
+      opacity: 1;
+    }
+    .slick-list {
+      width: auto;
+      overflow: hidden;
+    }
+    .slick-track {
+      &:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 0;
+        clear: both;
+      }
+    }
+    .slick-arrow {
+      overflow: hidden;
+      padding: 0;
+      cursor: pointer;
+      &.slick-prev,
+      &.slick-next {
+        position: absolute;
+        z-index: 99;
+        width: 22px;
+        top: 50%;
+        height: 40px;
+        transform: translate(0, -50%);
+        pointer-events: auto;
+        [dir="rtl"] & {
+          transform: translate(0, -50%) rotate(180deg);
+        }
+      }
+      &.slick-prev {
+        left: 40px;
+        [dir="rtl"] & {
+          left: auto;
+          right: 40px;
+        }
+      }
+      &.slick-next {
+        right: 40px;
+        [dir="rtl"] & {
+          right: auto;
+          left: 40px;
+        }
+      }
+      @include screen(custom, max, $max-lg) {
+        &.slick-prev {
+          left: 30px;
+          [dir="rtl"] & {
+            right: 30px;
+          }
+        }
+        &.slick-next {
+          right: 30px;
+          [dir="rtl"] & {
+            left: 30px;
+          }
+        }
+      }
+      &.slick-disabled {
+        opacity: 0.3;
+      }
+    }
+    .carousel-box {
+      position: relative;
+      width: 100%;
+      float: left;
+      overflow: hidden;
+      [dir="rtl"] & {
+        float: right;
+      }
 
-			// font black
-			&.text-black {
-				background-color:$bg-white;
-				.text-wrap {
-					.title, .title h1, .title h2, .title h3, .title h4, .title h5, .title h6 {
-						color:$color-black;
-					}
-					.copy,
-					.eyebrow, 
-					.nugget {
-						color:$color-nightrider;
-					}
-					.nugget-eyebrow .eyebrow-box:after {background-color:$bg-dimgray;}
-					.date {
-						color:$color-black;
-					}
-					.cta {
-						.link-text {
-							color:$color-nightrider;
-							&:after {
-								background-image:url('/lg5-common-gp/images/common/icons/link-right-nightrider.svg');
-							}
-						}
-					}
-					.video-link {
-						.link-text {color:$color-nightrider;}
-						.ico-left {
-							&:before {
-								background-image:url('/lg5-common-gp/images/components/btn-play-black.svg');
-							}
-						}
-					}
-				}
-				.disclaimer-wrap {
-					color: $color-black;
-				}
-			}
-			// font white
-			&.text-white {
-				 background-color: $bg-gray;
-				.text-wrap {
-					color:$color-white;
-					.eyebrow,
-					.title {
-						color:$color-white;
-					}
-					.cta {
-						.link-text {
-							color:$color-white !important;
-							&:after {
-								background-image:url('/lg5-common-gp/images/common/icons/link-right-white.svg');
-							}
-						} 
-						.btn-outline-secondary {
-							border-color:$line-white !important;
-							color:$color-white !important;
-							&:hover, &:focus {
-								border-color:$line-white !important;
-								background-color:$color-white !important;
-								color:$color-black !important;
-							}
-						}
-					}
-					.video-link {
-						.link-text {color:$color-white;}
-						.ico-left {
-							&:before {
-								background:url('/lg5-common-gp/images/components/btn-play.svg') no-repeat;
-								background-size:20px 20px;
-							}
-						}
-					}
-				}
-				.disclaimer-wrap {
-					color: $color-white;
-				}
-			}
+      // font black
+      &.text-black {
+        background-color: $bg-white;
+        .text-wrap {
+          .title,
+          .title h1,
+          .title h2,
+          .title h3,
+          .title h4,
+          .title h5,
+          .title h6 {
+            color: $color-black;
+          }
+          .copy,
+          .eyebrow,
+          .nugget {
+            color: $color-nightrider;
+          }
+          .nugget-eyebrow .eyebrow-box:after {
+            background-color: $bg-dimgray;
+          }
+          .date {
+            color: $color-black;
+          }
+          .cta {
+            .link-text {
+              color: $color-nightrider;
+              &:after {
+                background-image: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg");
+              }
+            }
+          }
+          .video-link {
+            .link-text {
+              color: $color-nightrider;
+            }
+            .ico-left {
+              &:before {
+                background-image: url("/lg5-common-gp/images/components/btn-play-black.svg");
+              }
+            }
+          }
+        }
+        .disclaimer-wrap {
+          color: $color-black;
+        }
+      }
+      // font white
+      &.text-white {
+        background-color: $bg-gray;
+        .text-wrap {
+          color: $color-white;
+          .eyebrow,
+          .title {
+            color: $color-white;
+          }
+          .cta {
+            .link-text {
+              color: $color-white !important;
+              &:after {
+                background-image: url("/lg5-common-gp/images/common/icons/link-right-white.svg");
+              }
+            }
+            .btn-outline-secondary {
+              border-color: $line-white !important;
+              color: $color-white !important;
+              &:hover,
+              &:focus {
+                border-color: $line-white !important;
+                background-color: $color-white !important;
+                color: $color-black !important;
+              }
+            }
+          }
+          .video-link {
+            .link-text {
+              color: $color-white;
+            }
+            .ico-left {
+              &:before {
+                background: url("/lg5-common-gp/images/components/btn-play.svg")
+                  no-repeat;
+                background-size: 20px 20px;
+              }
+            }
+          }
+        }
+        .disclaimer-wrap {
+          color: $color-white;
+        }
+      }
 
-			&.animation-box {
-				.text-area {
-					padding-bottom: 40px;
-				}
-			}
-			// componentPsitionSet
-			@include componentPsitionSet();
-			.contents-area {
-				.eyebrow,
-				.title,
-				.copy {
-					pointer-events: auto;
-				}
-			}
-		}
+      &.animation-box {
+        .text-area {
+          padding-bottom: 40px;
+        }
+      }
+      // componentPsitionSet
+      @include componentPsitionSet();
+      .contents-area {
+        .eyebrow,
+        .title,
+        .copy {
+          pointer-events: auto;
+        }
+      }
+    }
 
-		.video-asset {
-			z-index: 50;
-		}
-		
-		/* 20200626 component */
-		.contents-area {
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			display:flex;
-			flex-direction:column;
-			flex: 1 1 auto;
-			padding: 0;
-			//background-color: rgba(255,0, 0, 0.1);
-			pointer-events: none;
-			a, button {
-				pointer-events: auto;
-			}
-		}
-		/* // 20200626 component */
+    .video-asset {
+      z-index: 50;
+    }
 
-		.visual-area {
-			position:relative;
-			overflow:hidden;
-			z-index:1;
-			img {
-				position:relative;
-				width:100%;
-				height:auto;
-				&.pc {display:inline;}
-				&.mobile {display:none;}
-				@include screen(custom, max, 1024) {
-					&.pc {display:none;}
-					&.mobile {display:inline;}
-				}
-				&.lazyload,
-				&.lazyloading {
-					opacity:0;
-					&.lazyloaded {
-						opacity:1;
-					}
-				}
-			}
-			.contents-area,
-			.inside-component {
-				pointer-events: auto;
-			}
-		}
-		.inside-component {
-			position: relative;
-			z-index: 1;
-			pointer-events: none;
-			padding: 0 0;
-			.inside-inner{
-				max-width: 1424px;
-				width:100%;
-				margin:0 auto;
-				padding-left:70px;
-				padding-right:70px;
-				.component-wrap{
-					margin-left:0;
-					margin-right:0;
-				}
-				@include screen(custom, max, ($max-lg)) {
-					padding-left:50px;
-					padding-right:50px;
-				}
-				@include screen(custom, max, ($max-md)) {
-					padding-left:30px;
-					padding-right:30px;
-				}
-				@include screen(custom, max, ($max-sm)) {
-					padding-left:24px;
-					padding-right:24px;
-				}
-			}
-			& + .disclaimer-wrap {
-				margin-top: 20px;
-			}
-			.GPC0088 .slick-indicator{bottom:10px;}
-			.GPC0088 .spec-list{
-				&.edge-left,&.edge-right {
-					margin:0 0;
-				}
-			}
-		}	
-		.text-area {
-			position: relative;
-			z-index: 1;
-			pointer-events: none;
-			display: flex;
-			flex-direction:column;
-			flex: 1 1 auto;
-			@include screen(custom, max, $max-sm) {
-				padding:0 24px;
-			}
-			&.type-narrow {
-				@include screen(custom, max, $max-sm) {
-					padding: 14px 24px;
-				}
-			}
-			.video-link *,
-			.cta *,
-			.cta-link *,
-			.cta-button * {
-				pointer-events: auto;
-			}
-			&.align-left,
-			&.align-right {
-				.text-wrap {
-					.cta-button {
-						.btn {margin:0 6px 10px 0;}
-					}
-					.cta-link {
-						.link-text {margin:0 18px 11px 0;}
-					}
-					/* LGEGMC-432 20200812 modify */
-					.video-link {
-						.link-text {
-							font-size: 16px;
-							font-weight: 700;
-						}
-					}
-					/* //LGEGMC-432 20200812 modify */
-					.nugget-eyebrow {
-						.eyebrow-box {
-							display:block;
-							max-width:100%;
-							padding-bottom:10px;
-							&:after {
-								display:none;
-							}
-							&:last-child {
-								padding-bottom:0;
-							}
-						}
-					}
-				}
-			}
-			&.align-left {
-				.text-wrap .inner {
-					float:left;
-					text-align:left;
-					[dir="rtl"] & {text-align:right;}
-				}
-			}
-			&.align-right {
-				.text-wrap .inner {
-					float:right;
-					text-align:left;
-					[dir="rtl"] & {text-align:right;}
-				}
-			}
-			&.align-center {
-				.text-wrap .inner {
-					float:none;
-					margin:0 auto;
-				}
-				.text-wrap {
-					.text-block {
-						margin:0 auto;
-						text-align:center;
-					}
-					.cta-button {
-						.btn {margin:0 3px 10px 3px;}
-					}
-					.cta-link {
-						.link-text {margin:0 9px 11px 9px;}
-					}
-					/* LGEGMC-432 20200812 modify */
-					.video-link {
-						.link-text {
-							font-size: 16px;
-							font-weight: 700;
-						}
-					}
-					/* //LGEGMC-432 20200812 modify */
-				}
-			}
-			// align setting
-			&.align-top {
-				justify-content: flex-start;
-			}
-			&.align-bottom {
-				justify-content: flex-end;
-			}
-			&.align-middle {
-				justify-content: center;
-				@include screen(custom, min, $min-md) {
-					.text-wrap {
-						.inner {
-							.cta {
-								&:last-child {
-									margin-bottom:-23px;
-								}
-							}
-							.video-link {
-								&:last-child {
-									margin-bottom:-23px;
-								}
-							}
-						}
-					}
-				}
-			}
-			@include screen(custom, max, $max-sm) {
-				&.align-mobile-top {
-					justify-content: flex-start;
-					padding-top: 32px;
-				}
-				&.align-mobile-middle {
-					justify-content: center;
-				}
-				&.align-mobile-bottom {
-					justify-content: flex-end;
-					padding-bottom: 32px;
-				}
-			}
-			// disclaimer
-			&.align-left,
-			&.align-center {
-				& ~ .disclaimer-wrap {
-					.disclaimer {
-						float: left;
-						text-align: left;
-					}
-				}
-			}
-			&.align-right {
-				& ~ .disclaimer-wrap {
-					.disclaimer {
-						float: right;
-						text-align: right;
-					}
-				}
-			}
-		}
-		.text-wrap {
-			position:relative;
-			width:100%;
-			max-width:1284px;
-			margin:0 auto;
-			z-index: 1;
-			.eyebrow {
-				@include font-family($font-semibold);
-			}
-			.title, .title h1, .title h2, .title h3, .title h4, .title h5, .title h6 {
-				@include font-family($font-semibold);
-			}
-			.date {
-				@include font-family($font-bold);
-			}
-			.nugget-eyebrow {
-				font-size:0;
-				display:table;
-				// margin-left:auto;
-				// margin-right:auto;
-				
-				.eyebrow-box {
-					position:relative;
-					display:table-cell;
-					vertical-align:middle;
-					max-width:324px;
-					// padding:0 25px;
-					&:after {
-						// 20200507 START 이상현 - GPC0055 : rtl eyebrow 영역 수정
-						margin-top:-16px;
-						width:1px; 
-						height:32px;
-						background:#c0c0c0;
-						@include pseudo();
-						position:absolute;
-						top:50%;
-						right:0;
-						[dir="rtl"] & {right:100%;}
-						// 20200507 END
-					}
-					&:last-child {
-						&:after {
-							display:none;
-						}
-					}
-					@include screen(custom, max, $max-sm) {
-						max-width:100%;
-						display:block;
-						padding-bottom:15px;
-						margin-bottom:12px;
-						padding-left:0;
-						padding-right:0;
-						&:after {
-							right:auto;
-							top:auto;
-							margin-top:0;
-							width:26px;
-							height:1px;
-							bottom:0;
-							left:50%;
-							margin-left:-12px;
-						}
-					}
-				}
-			}
-			.cta {
-				.cta-button {
-					// text link에 위아래 8픽셀의 여백이 있어서 맞춰주기 위해 버튼에도 동일하게 처리함
-					padding-top:8px;
-					padding-bottom:8px;
-				}
-			}
-		}
-		.text-area {
-			&.align-left .text-wrap,
-			&.align-right .text-wrap {
-				padding-left:70px;
-				padding-right:70px;
-				max-width:1424px;
-				@include screen(custom, max, ($max-lg)) {
-					padding-left:50px;
-					padding-right:50px;
-				}
-				@include screen(custom, max, ($max-md)) {
-					padding-left:30px;
-					padding-right:30px;
-				}
-				@include screen(custom, max, ($max-sm)) {
-					padding-left:0;
-					padding-right:0;
-				}
-			}
-			&.align-left,
-			&.align-right {
-				@media (min-width: 768px ) and (max-width: 992px) {
-					.text-wrap {
-						.title, .title h1, .title h2, .title h3, .title h4, .title h5, .title h6 {
-							font-size: 30px;
-    						line-height: 30px;
-							margin-bottom: 8px;
-						}
-						.copy {
-							font-size: 15px;
-							line-height: 19px;
-							margin-bottom: 5px;
-						}
-						.video-link {
-							.link-text {
-								font-size: 12px;
-								margin-top: 7px;
-							}
-						}
-					}
-				}
-			}
-			&.align-center {
-				.nugget-eyebrow {
-					margin:0 auto;
-					.eyebrow-box {padding:0 25px;}
-				}
-			}
-		}
-		.type-wide {
-			.text-wrap .inner {
-				max-width:700px;
-				@include screen(custom, max, 1600) {
-					max-width:(700px*100%/(1600px-290px));
-				}
-				@include screen(custom, max, $max-lg) {
-					max-width:(460px*100%/(992px-160px));
-				}
-				@include screen(custom, max, ($max-md)) {
-					max-width:(350px*100%/(768px-120px));
-				}
-				@include screen(custom, max, $max-sm) {
-					// 20200421 START 이상현 - GPC0055 :  모바일에서 텍스트 영역이 type-wide 옵션에서도 중앙 정렬되도록 수정.
-					max-width:none;
-					width:100%;
-					// 20200421 END
-				}
-			}
-			&.align-center {
-				.text-wrap .inner {
-					max-width:100%;
-					.text-block {
-						// margin-left:auto;
-						// margin-right:auto;
-						max-width:900px;
-						@include screen(custom, max, $breakpoint) {
-							max-width:(900px*100%/$relative);
-						}
-						@include screen(custom, max, $max-sm) {
-							max-width:100%;
-						}
-					}
-				}
-			}
-		}
-		.type-narrow {
-			&.align-left .text-wrap {
-				padding-right:70px;
-				padding-left:70px;
-				@include screen(custom, max, $max-lg) {
-					padding-right:150px;
-					padding-left:30px;
-				}
-				@include screen(custom, max, ($max-md)) {
-					padding-left:30px;
-					padding-right:30px;
-				}
-				@media (min-width: 768px ) and (max-width: 992px) {
-					padding-left: 0;
-					padding-right: 0;
-				}
-			}
-			&.align-right .text-wrap {
-				padding-left:70px;
-				padding-right:70px;
-				@include screen(custom, max, $max-lg) {
-					padding-left:150px;
-					padding-right:30px;
-				}
-				@include screen(custom, max, ($max-md)) {
-					padding-left:30px;
-					padding-right:30px;
-				}
-				@media (min-width: 768px ) and (max-width: 992px) {
-					padding-left: 0;
-					padding-right: 0;
-				}
-			}
-			.text-wrap .inner {
-				width:100%;
-				max-width:500px;
-				@include screen(custom, max, 1293) {
-					max-width:(465px*100%/(1200px-200px));
-				}
-				@include screen(custom, max, $max-lg) {
-					max-width:(390px*100%/(992px-160px));
-				}
-				@include screen(custom, max, ($max-md)) {
-					max-width:(300px*100%/(768px-120px));
-				}
-				@include screen(custom, max, $max-sm) {
-					max-width:100%;
-				}
-				
-			}
-			&.align-center {
-				.text-wrap .inner {
-					max-width:100%;
-					.text-block {
-						max-width:700px;
-						@include screen(custom, max, $breakpoint) {
-							max-width:(700px*100%/$relative);
-						}
-						@include screen(custom, max, $max-sm) {
-							max-width:100%;
-						}
-					}
-					
-				}
-			}
-		}
-		.carousel-box.slick-slide {
-			.type-narrow {
-				&.text-area {
-					&.align-left .text-wrap,
-					&.align-right .text-wrap {
-						padding-left:70px;
-						padding-right:70px;
-						@include screen(custom, max, $max-lg) {
-							padding-left:50px;
-							padding-right:50px;
-						}
-						@include screen(custom, max, ($max-md)) {
-							padding-left:30px;
-							padding-right:30px;
-						}
-						// LGEPA-572 start
-						@include screen(custom, max, ($max-sm)) {
-							padding-left: 0;
-							padding-right: 0;
-						}
-						// LGEPA-572 end
-					}
-				}
-			}
-		}
-		&.type-hero {
-			.text-area {
-				&.align-top {
-					padding-top:82px;
-					// padding-top:40px;
-					@include screen(custom, max, $max-lg) {
-						padding-top:52px;
-						// padding-top:30px;
-					}
-					@include screen(custom, max, $max-sm) {
-						padding-top:32px;
-						// padding-top:24px;
-					}
-				}
-				@include screen(custom, max, $max-sm) {
-					&.align-mobile-top {
-						justify-content: flex-start;
-						padding-top: 32px;
-					}
-					&.align-mobile-middle {
-						justify-content: center;
-					}
-					&.align-mobile-bottom {
-						justify-content: flex-end;
-						padding-bottom: 32px;
-					}
-				}
-			}
-			.text-wrap {
-				@extend %clearfix;
-				.eyebrow {
-					font-size:30px;
-					line-height:36px;
-					margin-bottom:3px;
-					@include screen(custom, max, $max-lg) {
-						font-size:18px;
-						line-height:24px;
-						margin-bottom:4px;
-					}
-					@include screen(custom, max, $max-sm) {
-						font-size:16px;
-						line-height:24px;
-						margin-bottom:2px;
-					}
-				}
-				.title {
-					margin-bottom:15px;
-					@include screen(custom, max, $max-lg) {
-						margin-bottom:12px;
-					}
-					@include screen(custom, max, $max-sm) {
-						margin-bottom:10px;
-					}
-				}
-				.title, .title h1, .title h2, .title h3, .title h4, .title h5, .title h6 {
-					font-size:60px;
-					line-height:60px;
-					@include screen(custom, max, 1355) {
-						font-size:48px;
-						line-height:50px;
-					}
-					@include screen(custom, max, $max-lg) {
-						font-size:36px;
-						line-height:40px;
-					}
-					@include screen(custom, max, $max-sm) {
-						font-size:32px;
-						line-height:36px;
-					}
-					@include screen(custom, max, 374) {
-						font-size:26px;
-						line-height:30px;
-					}
-				}
-				.copy {
-					font-size:20px;
-					line-height:26px;
-					margin-bottom:18px;
-					@include screen(custom, max, $max-lg) {
-						font-size:16px;
-						line-height:24px;
-						margin-bottom:15px;
-					}
-					@include screen(custom, max, $max-sm) {
-						// LGEPA-572 start
-						font-size: 14px;
-						line-height: 20px;
-						// LGEPA-572 end
-						margin-bottom:13px;
-					}
-				}
-				.cta {
-					padding-bottom:5px;
-				}
-				.video-link {
-					padding-bottom:24px;
-					@include screen(custom, max, $max-sm) {
-						padding-bottom:14px;
-					}
-				}
-			}
-			// slick
-			&.slick-initialized {
-				.text-area {
-					// Hero 캐로젤 일 경우, 모바일에서 ...과 텍스트 영역 위치 겹침 해결
-					/*
+    /* 20200626 component */
+    .contents-area {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      padding: 0;
+      //background-color: rgba(255,0, 0, 0.1);
+      pointer-events: none;
+      a,
+      button {
+        pointer-events: auto;
+      }
+    }
+    /* // 20200626 component */
+
+    .visual-area {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      img {
+        position: relative;
+        width: 100%;
+        height: auto;
+        &.pc {
+          display: inline;
+        }
+        &.mobile {
+          display: none;
+        }
+        @include screen(custom, max, 1024) {
+          &.pc {
+            display: none;
+          }
+          &.mobile {
+            display: inline;
+          }
+        }
+        &.lazyload,
+        &.lazyloading {
+          opacity: 0;
+          &.lazyloaded {
+            opacity: 1;
+          }
+        }
+      }
+      .contents-area,
+      .inside-component {
+        pointer-events: auto;
+      }
+    }
+    .inside-component {
+      position: relative;
+      z-index: 1;
+      pointer-events: none;
+      padding: 0 0;
+      .inside-inner {
+        max-width: 1424px;
+        width: 100%;
+        margin: 0 auto;
+        padding-left: 70px;
+        padding-right: 70px;
+        .component-wrap {
+          margin-left: 0;
+          margin-right: 0;
+        }
+        @include screen(custom, max, ($max-lg)) {
+          padding-left: 50px;
+          padding-right: 50px;
+        }
+        @include screen(custom, max, ($max-md)) {
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+        @include screen(custom, max, ($max-sm)) {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+      }
+      & + .disclaimer-wrap {
+        margin-top: 20px;
+      }
+      .GPC0088 .slick-indicator {
+        bottom: 10px;
+      }
+      .GPC0088 .spec-list {
+        &.edge-left,
+        &.edge-right {
+          margin: 0 0;
+        }
+      }
+    }
+    .text-area {
+      position: relative;
+      z-index: 1;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      @include screen(custom, max, $max-sm) {
+        padding: 0 24px;
+      }
+      &.type-narrow {
+        @include screen(custom, max, $max-sm) {
+          padding: 14px 24px;
+        }
+      }
+      .video-link *,
+      .cta *,
+      .cta-link *,
+      .cta-button * {
+        pointer-events: auto;
+      }
+      &.align-left,
+      &.align-right {
+        .text-wrap {
+          .cta-button {
+            .btn {
+              margin: 0 6px 10px 0;
+            }
+          }
+          .cta-link {
+            .link-text {
+              margin: 0 18px 11px 0;
+            }
+          }
+          /* LGEGMC-432 20200812 modify */
+          .video-link {
+            .link-text {
+              font-size: 16px;
+              font-weight: 700;
+            }
+          }
+          /* //LGEGMC-432 20200812 modify */
+          .nugget-eyebrow {
+            .eyebrow-box {
+              display: block;
+              max-width: 100%;
+              padding-bottom: 10px;
+              &:after {
+                display: none;
+              }
+              &:last-child {
+                padding-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+      &.align-left {
+        .text-wrap .inner {
+          float: left;
+          text-align: left;
+          [dir="rtl"] & {
+            text-align: right;
+          }
+        }
+      }
+      &.align-right {
+        .text-wrap .inner {
+          float: right;
+          text-align: left;
+          [dir="rtl"] & {
+            text-align: right;
+          }
+        }
+      }
+      &.align-center {
+        .text-wrap .inner {
+          float: none;
+          margin: 0 auto;
+        }
+        .text-wrap {
+          .text-block {
+            margin: 0 auto;
+            text-align: center;
+          }
+          .cta-button {
+            .btn {
+              margin: 0 3px 10px 3px;
+            }
+          }
+          .cta-link {
+            .link-text {
+              margin: 0 9px 11px 9px;
+            }
+          }
+          /* LGEGMC-432 20200812 modify */
+          .video-link {
+            .link-text {
+              font-size: 16px;
+              font-weight: 700;
+            }
+          }
+          /* //LGEGMC-432 20200812 modify */
+        }
+      }
+      // align setting
+      &.align-top {
+        justify-content: flex-start;
+      }
+      &.align-bottom {
+        justify-content: flex-end;
+      }
+      &.align-middle {
+        justify-content: center;
+        @include screen(custom, min, $min-md) {
+          .text-wrap {
+            .inner {
+              .cta {
+                &:last-child {
+                  margin-bottom: -23px;
+                }
+              }
+              .video-link {
+                &:last-child {
+                  margin-bottom: -23px;
+                }
+              }
+            }
+          }
+        }
+      }
+      @include screen(custom, max, $max-sm) {
+        &.align-mobile-top {
+          justify-content: flex-start;
+          padding-top: 32px;
+        }
+        &.align-mobile-middle {
+          justify-content: center;
+        }
+        &.align-mobile-bottom {
+          justify-content: flex-end;
+          padding-bottom: 32px;
+        }
+      }
+      // disclaimer
+      &.align-left,
+      &.align-center {
+        & ~ .disclaimer-wrap {
+          .disclaimer {
+            float: left;
+            text-align: left;
+          }
+        }
+      }
+      &.align-right {
+        & ~ .disclaimer-wrap {
+          .disclaimer {
+            float: right;
+            text-align: right;
+          }
+        }
+      }
+    }
+    .text-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 1284px;
+      margin: 0 auto;
+      z-index: 1;
+      .eyebrow {
+        @include font-family($font-semibold);
+      }
+      .title,
+      .title h1,
+      .title h2,
+      .title h3,
+      .title h4,
+      .title h5,
+      .title h6 {
+        @include font-family($font-semibold);
+      }
+      .date {
+        @include font-family($font-bold);
+      }
+      .nugget-eyebrow {
+        font-size: 0;
+        display: table;
+        // margin-left:auto;
+        // margin-right:auto;
+
+        .eyebrow-box {
+          position: relative;
+          display: table-cell;
+          vertical-align: middle;
+          max-width: 324px;
+          // padding:0 25px;
+          &:after {
+            // 20200507 START 이상현 - GPC0055 : rtl eyebrow 영역 수정
+            margin-top: -16px;
+            width: 1px;
+            height: 32px;
+            background: #c0c0c0;
+            @include pseudo();
+            position: absolute;
+            top: 50%;
+            right: 0;
+            [dir="rtl"] & {
+              right: 100%;
+            }
+            // 20200507 END
+          }
+          &:last-child {
+            &:after {
+              display: none;
+            }
+          }
+          @include screen(custom, max, $max-sm) {
+            max-width: 100%;
+            display: block;
+            padding-bottom: 15px;
+            margin-bottom: 12px;
+            padding-left: 0;
+            padding-right: 0;
+            &:after {
+              right: auto;
+              top: auto;
+              margin-top: 0;
+              width: 26px;
+              height: 1px;
+              bottom: 0;
+              left: 50%;
+              margin-left: -12px;
+            }
+          }
+        }
+      }
+      .cta {
+        .cta-button {
+          // text link에 위아래 8픽셀의 여백이 있어서 맞춰주기 위해 버튼에도 동일하게 처리함
+          padding-top: 8px;
+          padding-bottom: 8px;
+        }
+      }
+    }
+    .text-area {
+      &.align-left .text-wrap,
+      &.align-right .text-wrap {
+        padding-left: 70px;
+        padding-right: 70px;
+        max-width: 1424px;
+        @include screen(custom, max, ($max-lg)) {
+          padding-left: 50px;
+          padding-right: 50px;
+        }
+        @include screen(custom, max, ($max-md)) {
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+        @include screen(custom, max, ($max-sm)) {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+      &.align-left,
+      &.align-right {
+        @media (min-width: 768px) and (max-width: 992px) {
+          .text-wrap {
+            .title,
+            .title h1,
+            .title h2,
+            .title h3,
+            .title h4,
+            .title h5,
+            .title h6 {
+              font-size: 30px;
+              line-height: 30px;
+              margin-bottom: 8px;
+            }
+            .copy {
+              font-size: 15px;
+              line-height: 19px;
+              margin-bottom: 5px;
+            }
+            .video-link {
+              .link-text {
+                font-size: 12px;
+                margin-top: 7px;
+              }
+            }
+          }
+        }
+      }
+      &.align-center {
+        .nugget-eyebrow {
+          margin: 0 auto;
+          .eyebrow-box {
+            padding: 0 25px;
+          }
+        }
+      }
+    }
+    .type-wide {
+      .text-wrap .inner {
+        max-width: 700px;
+        @include screen(custom, max, 1600) {
+          max-width: math.div(700px * 100%, (1600px-290px));
+        }
+        @include screen(custom, max, $max-lg) {
+          max-width: math.div(460px * 100%, (992px-160px));
+        }
+        @include screen(custom, max, ($max-md)) {
+          max-width: math.div(350px * 100%, (768px-120px));
+        }
+        @include screen(custom, max, $max-sm) {
+          // 20200421 START 이상현 - GPC0055 :  모바일에서 텍스트 영역이 type-wide 옵션에서도 중앙 정렬되도록 수정.
+          max-width: none;
+          width: 100%;
+          // 20200421 END
+        }
+      }
+      &.align-center {
+        .text-wrap .inner {
+          max-width: 100%;
+          .text-block {
+            // margin-left:auto;
+            // margin-right:auto;
+            max-width: 900px;
+            @include screen(custom, max, $breakpoint) {
+              max-width: math.div(900px * 100%, $relative);
+            }
+            @include screen(custom, max, $max-sm) {
+              max-width: 100%;
+            }
+          }
+        }
+      }
+    }
+    .type-narrow {
+      &.align-left .text-wrap {
+        padding-right: 70px;
+        padding-left: 70px;
+        @include screen(custom, max, $max-lg) {
+          padding-right: 150px;
+          padding-left: 30px;
+        }
+        @include screen(custom, max, ($max-md)) {
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+        @media (min-width: 768px) and (max-width: 992px) {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+      &.align-right .text-wrap {
+        padding-left: 70px;
+        padding-right: 70px;
+        @include screen(custom, max, $max-lg) {
+          padding-left: 150px;
+          padding-right: 30px;
+        }
+        @include screen(custom, max, ($max-md)) {
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+        @media (min-width: 768px) and (max-width: 992px) {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+      .text-wrap .inner {
+        width: 100%;
+        max-width: 500px;
+        @include screen(custom, max, 1293) {
+          max-width: math.div(465px * 100%, (1200px-200px));
+        }
+        @include screen(custom, max, $max-lg) {
+          max-width: math.div(390px * 100%, (992px-160px));
+        }
+        @include screen(custom, max, ($max-md)) {
+          max-width: math.div(300px * 100%, (768px-120px));
+        }
+        @include screen(custom, max, $max-sm) {
+          max-width: 100%;
+        }
+      }
+      &.align-center {
+        .text-wrap .inner {
+          max-width: 100%;
+          .text-block {
+            max-width: 700px;
+            @include screen(custom, max, $breakpoint) {
+              max-width: math.div(700px * 100%, $relative);
+            }
+            @include screen(custom, max, $max-sm) {
+              max-width: 100%;
+            }
+          }
+        }
+      }
+    }
+    .carousel-box.slick-slide {
+      .type-narrow {
+        &.text-area {
+          &.align-left .text-wrap,
+          &.align-right .text-wrap {
+            padding-left: 70px;
+            padding-right: 70px;
+            @include screen(custom, max, $max-lg) {
+              padding-left: 50px;
+              padding-right: 50px;
+            }
+            @include screen(custom, max, ($max-md)) {
+              padding-left: 30px;
+              padding-right: 30px;
+            }
+            // LGEPA-572 start
+            @include screen(custom, max, ($max-sm)) {
+              padding-left: 0;
+              padding-right: 0;
+            }
+            // LGEPA-572 end
+          }
+        }
+      }
+    }
+    &.type-hero {
+      .text-area {
+        &.align-top {
+          padding-top: 82px;
+          // padding-top:40px;
+          @include screen(custom, max, $max-lg) {
+            padding-top: 52px;
+            // padding-top:30px;
+          }
+          @include screen(custom, max, $max-sm) {
+            padding-top: 32px;
+            // padding-top:24px;
+          }
+        }
+        @include screen(custom, max, $max-sm) {
+          &.align-mobile-top {
+            justify-content: flex-start;
+            padding-top: 32px;
+          }
+          &.align-mobile-middle {
+            justify-content: center;
+          }
+          &.align-mobile-bottom {
+            justify-content: flex-end;
+            padding-bottom: 32px;
+          }
+        }
+      }
+      .text-wrap {
+        @extend %clearfix;
+        .eyebrow {
+          font-size: 30px;
+          line-height: 36px;
+          margin-bottom: 3px;
+          @include screen(custom, max, $max-lg) {
+            font-size: 18px;
+            line-height: 24px;
+            margin-bottom: 4px;
+          }
+          @include screen(custom, max, $max-sm) {
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 2px;
+          }
+        }
+        .title {
+          margin-bottom: 15px;
+          @include screen(custom, max, $max-lg) {
+            margin-bottom: 12px;
+          }
+          @include screen(custom, max, $max-sm) {
+            margin-bottom: 10px;
+          }
+        }
+        .title,
+        .title h1,
+        .title h2,
+        .title h3,
+        .title h4,
+        .title h5,
+        .title h6 {
+          font-size: 60px;
+          line-height: 60px;
+          @include screen(custom, max, 1355) {
+            font-size: 48px;
+            line-height: 50px;
+          }
+          @include screen(custom, max, $max-lg) {
+            font-size: 36px;
+            line-height: 40px;
+          }
+          @include screen(custom, max, $max-sm) {
+            font-size: 32px;
+            line-height: 36px;
+          }
+          @include screen(custom, max, 374) {
+            font-size: 26px;
+            line-height: 30px;
+          }
+        }
+        .copy {
+          font-size: 20px;
+          line-height: 26px;
+          margin-bottom: 18px;
+          @include screen(custom, max, $max-lg) {
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 15px;
+          }
+          @include screen(custom, max, $max-sm) {
+            // LGEPA-572 start
+            font-size: 14px;
+            line-height: 20px;
+            // LGEPA-572 end
+            margin-bottom: 13px;
+          }
+        }
+        .cta {
+          padding-bottom: 5px;
+        }
+        .video-link {
+          padding-bottom: 24px;
+          @include screen(custom, max, $max-sm) {
+            padding-bottom: 14px;
+          }
+        }
+      }
+      // slick
+      &.slick-initialized {
+        .text-area {
+          // Hero 캐로젤 일 경우, 모바일에서 ...과 텍스트 영역 위치 겹침 해결
+          /*
 					&.align-bottom {
 						@include screen(custom, max, $max-sm) {
 							bottom:42px;
 						}
 					}
 					*/
-					@include screen(custom, max, $max-sm) {
-						&.align-left .text-wrap,
-						&.align-right .text-wrap {
-							padding-left:0;
-							padding-right:0;
-						}
-						// 모바일 사이즈에서는 중앙정렬이므로 불필요
-						&.align-left .text-wrap .inner {
-							padding-left:0;
-							float: none;
-						}
-						&.align-right .text-wrap .inner {
-							padding-right:0;
-						}
-					}
-					.text-block {
-						user-select: none;
-					}
-				}
-				.animation-box .animation-area .controller-wrap {
-					margin-bottom:(42px + 15px);
-					@include screen(custom, max, $max-sm) {
-						margin-bottom:(42px + 12px);
-					}
-				}
-			}
-			// hero에서는 모바일일 경우 텍스트가 무조건 센터 정렬
-			@include screen(custom, max, $max-sm) {
-				.align-left,
-				.align-right {
-					.text-wrap {
-						.text-block,
-						.cta, 
-						.video-link,
-						.nugget-eyebrow {
-							// float:none;
-							text-align:center;
-						}
-					}
-				}
-			}
-		}
-		&.type-etc {
-			.text-area {
-				&.align-top {
-					padding-top:77px;
-					@include screen(custom, max, $max-lg) {
-						padding-top:52px;
-					}
-					@include screen(custom, max, $max-sm) {
-						padding-top:32px;
-					}
-				}
-				&.align-center {
-					@include screen(custom, max, $max-sm) {
-						// Hero 가 아닌 경우, pos-center 일 때, 모바일에서 tech spec 출력되지 않음
-						.nugget-eyebrow {
-							display:none;
-						}
-					}
-				}
-				&.align-bottom {
-					.text-wrap {
-						.video-link {
-							@include screen(custom, min, ($min-md)) {
-								&:last-child {
-									padding-bottom:24px;
-								}
-							}
-						}
-					}
-				}
-				&.align-mobile-top,
-				&.align-mobile-middle,
-				&.align-mobile-bottom {
-					@include screen(custom, max, $max-sm) {
-						&.text-black,
-						&.text-white {background:transparent;}
-					}
-				}
-				&.align-left,
-				&.align-right {
-					@include screen(custom, max, $max-sm) {
-						// Hero 가 아닌 경우, pos-left, pos-right 일 때, 모바일에서 텍스트 영역 분리됨.
-						position:static;
-						transform:none;
-						padding-top:30px;
-						padding-bottom:30px;
-						&.text-black {background:$bg-white;}
-						&.text-white {background:$bg-nightrider;}
-						.text-wrap {
-							padding-left:0;
-							padding-right:0;
-							.inner {
-								float:none;
-								// .text-block,
-								// .cta,
-								// .video-link,
-								// .nugget-eyebrow {
-								// 	float:none;
-								// }
-								.nugget-eyebrow {
-									width:100%;
-								}
-							}
-							.video-link {
-								&:last-child {
-									padding-bottom:0;
-								}
-							}
-						}
-					}
-				}
-				&.align-middle {
-					.text-wrap {
-						.video-link {
-							&:last-child {
-								padding-bottom:0;
-							}
-						}
-					}
-				}
-			}
-			.text-wrap {
-				// 20200413 START 박지영 : 디자인 오류 수정
-				.text-block > .eyebrow {
-				// 20200413 END
-					font-size:30px;
-					line-height:36px;
-					margin-bottom:8px;
-					@include screen(custom, max, $max-lg) {
-						font-size:18px;
-						line-height:24px;
-						margin-bottom:2px;
-					}
-					@include screen(custom, max, $max-sm) {
-						font-size:16px;
-						line-height:24px;
-						margin-bottom:2px;
-					}
-				}
-				.title {
-					margin-bottom:19px;
-					@include screen(custom, max, $max-lg) {
-						margin-bottom:17px;
-					}
-					@include screen(custom, max, $max-sm) {
-						margin-bottom:10px;
-					}
-				}
-				.title, .title h1, .title h2, .title h3, .title h4, .title h5, .title h6 {
-					font-size:60px;
-					line-height:60px;
-					@include screen(custom, max, 1355) {
-						font-size:48px;
-						line-height:50px;
-					}
-					@include screen(custom, max, $max-lg) {
-						font-size:36px;
-						line-height:40px;
-					}
-					@media (min-width: 768px ) and (max-width: 992px) {
-						font-size: 30px;
-						line-height: 30px;
-						margin-bottom: 12px;
-					}
-					@include screen(custom, max, $max-sm) {
-						font-size:32px;
-						line-height:36px;
-					}
-					@include screen(custom, max, 374) {
-						font-size:26px;
-						line-height:30px;
-					}
-				}
-				.date {
-					font-size:20px;
-					line-height:26px;
-					margin-bottom:4px;
-					@include screen(custom, max, 768) {
-						font-size: 16px;
-						line-height:20px;
-					}
-					@include screen(custom, max, $max-lg) {
-						font-size:18px;
-						line-height:24px;
-						margin-bottom:0px;
-					}
-					@include screen(custom, max, $max-sm) {
-						font-size:16px;
-						line-height:24px;
-						margin-bottom:2px;
-					}
-				}
-				.copy {
-					font-size:20px;
-					line-height:26px;
-					margin-bottom:18px;
-					@include screen(custom, max, 768) {
-						font-size: 12px;
-						line-height:16px;
-					}
-					@include screen(custom, max, $max-lg) {
-						font-size:16px;
-						line-height:24px;
-						margin-bottom:17px;
-					}
-					@include screen(custom, max, $max-sm) {
-						font-size:16px;
-						line-height:24px;
-						margin-bottom:12px;
-					}
-				}
-				.cta {
-					padding-bottom:3px;
-				}
-				.video-link {
-					padding-bottom:36px;
-					@include screen(custom, max, $max-lg) {
-						padding-bottom:25px;
-					}
-					@include screen(custom, max, $max-sm) {
-						padding-bottom:15px;
-					}
-				}
-				.nugget-eyebrow {
-					.eyebrow {
-						margin-bottom: 6px;
-						font-size:18px;
-						line-height:24px;
-						@include font-family($font-regular);
-						@include screen(custom, max, $max-lg) {
-							font-size:14px;
-							line-height:20px;
-						}
-						@include screen(custom, max, $max-sm) {
-							padding-top:4px;
-						}
-					}
-					.nugget {
-						font-size:20px;
-						line-height:26px;
-						@include font-family($font-semibold);
-						@include screen(custom, max, $max-lg) {
-							font-size:16px;
-							line-height:24px;
-						}
-						@include screen(custom, max, $max-sm) {
-							padding-top:7px;
-						}
-					}
-				}
-			}
-		}
+          @include screen(custom, max, $max-sm) {
+            &.align-left .text-wrap,
+            &.align-right .text-wrap {
+              padding-left: 0;
+              padding-right: 0;
+            }
+            // 모바일 사이즈에서는 중앙정렬이므로 불필요
+            &.align-left .text-wrap .inner {
+              padding-left: 0;
+              float: none;
+            }
+            &.align-right .text-wrap .inner {
+              padding-right: 0;
+            }
+          }
+          .text-block {
+            user-select: none;
+          }
+        }
+        .animation-box .animation-area .controller-wrap {
+          margin-bottom: (42px + 15px);
+          @include screen(custom, max, $max-sm) {
+            margin-bottom: (42px + 12px);
+          }
+        }
+      }
+      // hero에서는 모바일일 경우 텍스트가 무조건 센터 정렬
+      @include screen(custom, max, $max-sm) {
+        .align-left,
+        .align-right {
+          .text-wrap {
+            .text-block,
+            .cta,
+            .video-link,
+            .nugget-eyebrow {
+              // float:none;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+    &.type-etc {
+      .text-area {
+        &.align-top {
+          padding-top: 77px;
+          @include screen(custom, max, $max-lg) {
+            padding-top: 52px;
+          }
+          @include screen(custom, max, $max-sm) {
+            padding-top: 32px;
+          }
+        }
+        &.align-center {
+          @include screen(custom, max, $max-sm) {
+            // Hero 가 아닌 경우, pos-center 일 때, 모바일에서 tech spec 출력되지 않음
+            .nugget-eyebrow {
+              display: none;
+            }
+          }
+        }
+        &.align-bottom {
+          .text-wrap {
+            .video-link {
+              @include screen(custom, min, ($min-md)) {
+                &:last-child {
+                  padding-bottom: 24px;
+                }
+              }
+            }
+          }
+        }
+        &.align-mobile-top,
+        &.align-mobile-middle,
+        &.align-mobile-bottom {
+          @include screen(custom, max, $max-sm) {
+            &.text-black,
+            &.text-white {
+              background: transparent;
+            }
+          }
+        }
+        &.align-left,
+        &.align-right {
+          @include screen(custom, max, $max-sm) {
+            // Hero 가 아닌 경우, pos-left, pos-right 일 때, 모바일에서 텍스트 영역 분리됨.
+            position: static;
+            transform: none;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            &.text-black {
+              background: $bg-white;
+            }
+            &.text-white {
+              background: $bg-nightrider;
+            }
+            .text-wrap {
+              padding-left: 0;
+              padding-right: 0;
+              .inner {
+                float: none;
+                // .text-block,
+                // .cta,
+                // .video-link,
+                // .nugget-eyebrow {
+                // 	float:none;
+                // }
+                .nugget-eyebrow {
+                  width: 100%;
+                }
+              }
+              .video-link {
+                &:last-child {
+                  padding-bottom: 0;
+                }
+              }
+            }
+          }
+        }
+        &.align-middle {
+          .text-wrap {
+            .video-link {
+              &:last-child {
+                padding-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+      .text-wrap {
+        // 20200413 START 박지영 : 디자인 오류 수정
+        .text-block > .eyebrow {
+          // 20200413 END
+          font-size: 30px;
+          line-height: 36px;
+          margin-bottom: 8px;
+          @include screen(custom, max, $max-lg) {
+            font-size: 18px;
+            line-height: 24px;
+            margin-bottom: 2px;
+          }
+          @include screen(custom, max, $max-sm) {
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 2px;
+          }
+        }
+        .title {
+          margin-bottom: 19px;
+          @include screen(custom, max, $max-lg) {
+            margin-bottom: 17px;
+          }
+          @include screen(custom, max, $max-sm) {
+            margin-bottom: 10px;
+          }
+        }
+        .title,
+        .title h1,
+        .title h2,
+        .title h3,
+        .title h4,
+        .title h5,
+        .title h6 {
+          font-size: 60px;
+          line-height: 60px;
+          @include screen(custom, max, 1355) {
+            font-size: 48px;
+            line-height: 50px;
+          }
+          @include screen(custom, max, $max-lg) {
+            font-size: 36px;
+            line-height: 40px;
+          }
+          @media (min-width: 768px) and (max-width: 992px) {
+            font-size: 30px;
+            line-height: 30px;
+            margin-bottom: 12px;
+          }
+          @include screen(custom, max, $max-sm) {
+            font-size: 32px;
+            line-height: 36px;
+          }
+          @include screen(custom, max, 374) {
+            font-size: 26px;
+            line-height: 30px;
+          }
+        }
+        .date {
+          font-size: 20px;
+          line-height: 26px;
+          margin-bottom: 4px;
+          @include screen(custom, max, 768) {
+            font-size: 16px;
+            line-height: 20px;
+          }
+          @include screen(custom, max, $max-lg) {
+            font-size: 18px;
+            line-height: 24px;
+            margin-bottom: 0px;
+          }
+          @include screen(custom, max, $max-sm) {
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 2px;
+          }
+        }
+        .copy {
+          font-size: 20px;
+          line-height: 26px;
+          margin-bottom: 18px;
+          @include screen(custom, max, 768) {
+            font-size: 12px;
+            line-height: 16px;
+          }
+          @include screen(custom, max, $max-lg) {
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 17px;
+          }
+          @include screen(custom, max, $max-sm) {
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 12px;
+          }
+        }
+        .cta {
+          padding-bottom: 3px;
+        }
+        .video-link {
+          padding-bottom: 36px;
+          @include screen(custom, max, $max-lg) {
+            padding-bottom: 25px;
+          }
+          @include screen(custom, max, $max-sm) {
+            padding-bottom: 15px;
+          }
+        }
+        .nugget-eyebrow {
+          .eyebrow {
+            margin-bottom: 6px;
+            font-size: 18px;
+            line-height: 24px;
+            @include font-family($font-regular);
+            @include screen(custom, max, $max-lg) {
+              font-size: 14px;
+              line-height: 20px;
+            }
+            @include screen(custom, max, $max-sm) {
+              padding-top: 4px;
+            }
+          }
+          .nugget {
+            font-size: 20px;
+            line-height: 26px;
+            @include font-family($font-semibold);
+            @include screen(custom, max, $max-lg) {
+              font-size: 16px;
+              line-height: 24px;
+            }
+            @include screen(custom, max, $max-sm) {
+              padding-top: 7px;
+            }
+          }
+        }
+      }
+    }
 
-		// disclaimer-wrap
-		&.type-hero {
-			.disclaimer-wrap {
-				margin-bottom: 40px;
-			}
-			.animation-box {
-				@include screen(custom, max, $max-sm) {
-					.disclaimer-wrap {
-						margin-bottom: 85px;
-					}
-				}
-			}
-		}
-		&.type-etc {
-			.animation-box {
-				@include screen(custom, max, $max-sm) {
-					.disclaimer-wrap {
-						margin-bottom: 55px;
-					}
-				}
-			}
-		}
-	}
-	//LGEUS-277 20200526 START
-	.disclaimer-wrap {
-		@extend %clearfix;
-		pointer-events: none;
-		margin-top: 0;
-		//margin-bottom: 40px;
-		padding: 0 15px 15px;
-		// @include screen(custom, max, $max-sm) {
-		// 	margin-bottom: 40px;
-		// }
-		.disclaimer {
-			position: relative;
-			display: inline;
-			margin: 0;
-			z-index: 10;
-			font-size: 14px;
-			line-height: 1.2;
-			pointer-events: auto;
-			@include disclaimerMaxSize();
-		}
-	}
-	//LGEUS-277 20200526 END
+    // disclaimer-wrap
+    &.type-hero {
+      .disclaimer-wrap {
+        margin-bottom: 40px;
+      }
+      .animation-box {
+        @include screen(custom, max, $max-sm) {
+          .disclaimer-wrap {
+            margin-bottom: 85px;
+          }
+        }
+      }
+    }
+    &.type-etc {
+      .animation-box {
+        @include screen(custom, max, $max-sm) {
+          .disclaimer-wrap {
+            margin-bottom: 55px;
+          }
+        }
+      }
+    }
+  }
+  //LGEUS-277 20200526 START
+  .disclaimer-wrap {
+    @extend %clearfix;
+    pointer-events: none;
+    margin-top: 0;
+    //margin-bottom: 40px;
+    padding: 0 15px 15px;
+    // @include screen(custom, max, $max-sm) {
+    // 	margin-bottom: 40px;
+    // }
+    .disclaimer {
+      position: relative;
+      display: inline;
+      margin: 0;
+      z-index: 10;
+      font-size: 14px;
+      line-height: 1.2;
+      pointer-events: auto;
+      @include disclaimerMaxSize();
+    }
+  }
+  //LGEUS-277 20200526 END
 
-	// slick slider 
-	.slick-slider {
-		opacity:0;
-		&.slick-initialized {
-			opacity:1;
-		}
-		button {
-			overflow: hidden;
-			appearance:none;
-			border:none;
-			background-color:transparent;
-			color:transparent;
-			text-indent:-9999em;
-			[dir="rtl"] & {text-indent:9999em;}
-		}
-		.slick-arrow {
-			line-height:0;
-			color:$color-nightrider;
-			svg {
-				display:block;
-			}
-			&:not([disabled]):hover,
-			&:not([disabled]):focus {
-				color:$color-black;
-			}
-			@include screen(custom, max, $max-sm) {
-				display:none !important;	// 모바일에서는 좌우 화살표 출력하지 않음
-			}
-		}
-	}
-	.slick-white.slick-slider {
-		.slick-arrow {
-			color:#ccc;
-			&:not([disabled]):hover,
-			&:not([disabled]):focus {
-				color:#fff;
-			}
-		}
-	}
-	.slick-indicator {
-		position:absolute;
-		z-index:2;
-		bottom:0;
-		left:0;
-		text-align:center;
-		width:100%;
-		height:42px;
-		@include screen(custom, max, $max-sm) {
-			height:32px;
-		}
-		.slick-dot-wrap {
-			display: inline-block;
-			vertical-align:top;
-		}
-		.slide-pause {
-			display:none;
-			overflow:hidden;
-			white-space:nowrap;
-			vertical-align:top;
-			width:12px;
-			height:14px;
-			background:url('/lg5-common-gp/images/common/icons/pause-white-lg.svg') no-repeat;
-			background-size:100% 100%;
-			color:transparent;
-			margin-top:-1px;
-			margin-left:17px - 5px;
-			@include screen(custom, max, $max-sm) {
-				margin-top:-2px;
-				margin-left:17px - 4px;
-			}
-			[dir="rtl"] & {
-				margin-left:0;
-				margin-right:17px - 5px;
-				@include screen(custom, max, $max-sm) {
-					margin-right:17px - 4px;
-				}
-			}
-			&.play {
-				background-image:url('/lg5-common-gp/images/common/icons/play-white-lg.svg');
-			}
-			&.active {
-				display:inline-block;
-			}
-		}
-		.slick-dots {
-			display:inline-block;
-			font-size: 0;
-			text-align: center;
-			margin:0;
-			height:12px;
-			vertical-align: top;
-			@include screen(custom, max, $max-sm) {
-				height:10px;
-			}
-			li {
-				position:relative;
-				display:inline-block;
-				vertical-align:top;
-				width:12px;
-				height:12px;
-				margin:0 5px;
-				border-radius:50%;
-				border:1px solid rgba(0,0,0, 0.5);
-				line-height:normal;
-				@include screen(custom, max, $max-sm) {
-					width:10px;
-					height:10px;
-					margin:0 4px;
-				}
-				a, button {
-					background: $color-white;
-					display:block;
-					width:100%;
-					height:100%;
-					margin:0;
-					padding:0;
-					border:0;
-					border-radius:50%;
-					overflow:hidden;
-					color:transparent;
-					cursor:pointer;
-					&:focus {
-						outline:1px dotted;
-						outline:5px auto -webkit-focus-ring-color;
-					}
-				}
-				&.slick-active {
-					border:1px solid $color-carmine;
-					a, button {
-						background:$color-carmine;
-						&:focus {		
-							outline: 2px solid #000 !important;/* LGECI-297 : 20201214 edit */
-						}
-					}
-				}
-				&:only-child {
-					display:none;
-				}
-			}
-		}
-	}
-	&.js-invisible-nav {
-		.slick-indicator,
-		.slick-arrow {
-			z-index: -1 !important;
-		}
-	}
+  // slick slider
+  .slick-slider {
+    opacity: 0;
+    &.slick-initialized {
+      opacity: 1;
+    }
+    button {
+      overflow: hidden;
+      appearance: none;
+      border: none;
+      background-color: transparent;
+      color: transparent;
+      text-indent: -9999em;
+      [dir="rtl"] & {
+        text-indent: 9999em;
+      }
+    }
+    .slick-arrow {
+      line-height: 0;
+      color: $color-nightrider;
+      svg {
+        display: block;
+      }
+      &:not([disabled]):hover,
+      &:not([disabled]):focus {
+        color: $color-black;
+      }
+      @include screen(custom, max, $max-sm) {
+        display: none !important; // 모바일에서는 좌우 화살표 출력하지 않음
+      }
+    }
+  }
+  .slick-white.slick-slider {
+    .slick-arrow {
+      color: #ccc;
+      &:not([disabled]):hover,
+      &:not([disabled]):focus {
+        color: #fff;
+      }
+    }
+  }
+  .slick-indicator {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    height: 42px;
+    @include screen(custom, max, $max-sm) {
+      height: 32px;
+    }
+    .slick-dot-wrap {
+      display: inline-block;
+      vertical-align: top;
+    }
+    .slide-pause {
+      display: none;
+      overflow: hidden;
+      white-space: nowrap;
+      vertical-align: top;
+      width: 12px;
+      height: 14px;
+      background: url("/lg5-common-gp/images/common/icons/pause-white-lg.svg")
+        no-repeat;
+      background-size: 100% 100%;
+      color: transparent;
+      margin-top: -1px;
+      margin-left: 17px - 5px;
+      @include screen(custom, max, $max-sm) {
+        margin-top: -2px;
+        margin-left: 17px - 4px;
+      }
+      [dir="rtl"] & {
+        margin-left: 0;
+        margin-right: 17px - 5px;
+        @include screen(custom, max, $max-sm) {
+          margin-right: 17px - 4px;
+        }
+      }
+      &.play {
+        background-image: url("/lg5-common-gp/images/common/icons/play-white-lg.svg");
+      }
+      &.active {
+        display: inline-block;
+      }
+    }
+    .slick-dots {
+      display: inline-block;
+      font-size: 0;
+      text-align: center;
+      margin: 0;
+      height: 12px;
+      vertical-align: top;
+      @include screen(custom, max, $max-sm) {
+        height: 10px;
+      }
+      li {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        width: 12px;
+        height: 12px;
+        margin: 0 5px;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        line-height: normal;
+        @include screen(custom, max, $max-sm) {
+          width: 10px;
+          height: 10px;
+          margin: 0 4px;
+        }
+        a,
+        button {
+          background: $color-white;
+          display: block;
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          border: 0;
+          border-radius: 50%;
+          overflow: hidden;
+          color: transparent;
+          cursor: pointer;
+          &:focus {
+            outline: 1px dotted;
+            outline: 5px auto -webkit-focus-ring-color;
+          }
+        }
+        &.slick-active {
+          border: 1px solid $color-carmine;
+          a,
+          button {
+            background: $color-carmine;
+            &:focus {
+              outline: 2px solid #000 !important; /* LGECI-297 : 20201214 edit */
+            }
+          }
+        }
+        &:only-child {
+          display: none;
+        }
+      }
+    }
+  }
+  &.js-invisible-nav {
+    .slick-indicator,
+    .slick-arrow {
+      z-index: -1 !important;
+    }
+  }
 
-	// bottom
-	&.component {
-		.carousel-wrap.type-hero,
-		.carousel-wrap.type-etc {
-			// align-bottom margin (for desktop)
-			@include screen(custom, min, $min-md) {
-				// nomral
-				.text-area.align-bottom {
-					// .text-wrap {
-					// 	.inner {
-					// 		.cta {
-					// 			&:last-child {
-					// 				margin-bottom:-23px;
-					// 			}
-					// 		}
-					// 		.video-link {
-					// 			&:last-child {
-					// 				margin-bottom:-23px;
-					// 			}
-					// 		}
-					// 	}
-					// }
-					padding-bottom: 67px;
-					@include screen(custom, max, 1199) {
-						padding-bottom:57px;
-					}
-					@include screen(custom, max, 991) {
-						padding-bottom:43px;
-					}
-				}
-				// animation 
-				.animation-area + .text-area.align-bottom {
-					padding-bottom:97px;
-					@include screen(custom, max, 1199) {
-						padding-bottom:87px;
-					}
-					@include screen(custom, max, 991) {
-						padding-bottom:63px;
-					}
-				}
-				// carousel
-				&.slick-slider .text-area.align-bottom {
-					padding-bottom:97px;
-					@include screen(custom, max, 1199) {
-						padding-bottom:87px;
-					}
-					@include screen(custom, max, 991) {
-						padding-bottom:63px;
-					}
-				}
-				// animation + carousel 
-				&.slick-slider .animation-area + .text-area.align-bottom {
-					padding-bottom:120px;
-					@include screen(custom, max, 1199) {
-						padding-bottom:110px;
-					}
-					@include screen(custom, max, 991) {
-						padding-bottom:110px;
-					}
-				}
-			}
-			// component bottom padding
-			.textblock-top-compo-top,
-			.textblock-top-compo-middle,
-			.textblock-top-compo-bottom,
-			.textblock-bottom-compo-top,
-			.textblock-bottom-compo-middle,
-			.textblock-bottom-compo-bottom,
-			.textblock-middle-compo-top,
-			.textblock-middle-compo-bottom {
-				.contents-area {
-					.text-area {
-						padding-bottom: 30px !important;
-						@include screen(custom, max, $max-sm) {
-							padding-bottom: 24px !important;
-						}
-					}
-				}
-			}
-			.carousel-box {
-				&.textblock-top-compo-top,
-				&.textblock-top-compo-middle,
-				&.textblock-top-compo-bottom,
-				&.textblock-bottom-compo-top,
-				&.textblock-bottom-compo-middle,
-				&.textblock-bottom-compo-bottom,
-				&.textblock-middle-compo-top,
-				&.textblock-middle-compo-bottom {
-					&.bg-black {
-						background-color: #000;
-					}
-					&.bg-dark-gray {
-						background-color: #333;
-					}
-					&.bg-gray {
-						background-color: #f8f8f8;
-					}
-					&.bg-white {
-						background-color: #fff;
-					}
-					.text-area {
-						&.text-white,
-						&.text-black {
-							background-color: transparent;
-							.nugget-eyebrow .eyebrow-box:after {
-								background-color: transparent;
-							}
-						}
-						&.align-mobile-top,
-						&.align-mobile-middle,
-						&.align-mobile-bottom {
-							@include screen(custom, max, $max-sm) {
-								&.text-black,
-								&.text-white {background:transparent;}
-							}
-						}
-						&.align-left,
-						&.align-right {
-							@include screen(custom, max, $max-sm) {
-								&.text-black {background:$bg-white;}
-								&.text-white {background:$bg-nightrider;}
-							}
-						}
-					}
-				}
-			}
-		}
-		.carousel-wrap.type-hero {
-			// align-bottom margin (for mobile / hero)
-			@include screen(custom, max, $max-sm) {
-				// normal
-				.text-area.align-bottom {
-					// .text-wrap {
-					// 	.inner {
-					// 		.cta {
-					// 			&:last-child {
-					// 				margin-bottom:-23px;
-					// 			}
-					// 		}
-					// 		.video-link {
-					// 			&:last-child {
-					// 				margin-bottom:-23px;
-					// 			}
-					// 		}
-					// 	}
-					// }
-					padding-bottom:40px;
-				}
-			}
-		}
-		.carousel-wrap.type-hero,
-		.carousel-wrap.type-etc {
-			// align-bottom margin (for mobile)
-			@include screen(custom, max, $max-sm) {
-				// normal
-				.text-area.align-center.align-bottom {
-					// .text-wrap {
-					// 	.inner {
-					// 		.cta {
-					// 			&:last-child {
-					// 				margin-bottom:-23px;
-					// 			}
-					// 		}
-					// 		.video-link {
-					// 			&:last-child {
-					// 				margin-bottom:-23px;
-					// 			}
-					// 		}
-					// 	}
-					// }
-					padding-bottom:40px;
-				}
-				// animation 
-				.animation-area + .text-area.align-center.align-bottom {
-					padding-bottom:65px;
-				}
-				&.slick-slider {
-					// normal
-					.text-area.align-bottom {
-						// .text-wrap {
-						// 	.inner {
-						// 		.cta {
-						// 			&:last-child {
-						// 				margin-bottom:-23px;
-						// 			}
-						// 		}
-						// 		.video-link {
-						// 			&:last-child {
-						// 				margin-bottom:-23px;
-						// 			}
-						// 		}
-						// 	}
-						// }
-						padding-bottom:40px;
-					}
-					// animation 
-					.animation-area + .text-area.align-bottom {
-						padding-bottom:65px;
-					}
-					// carousel
-					.text-area.align-bottom {
-						padding-bottom:65px;
-					}
-					// animation + carousel 
-					.animation-area + .text-area.align-bottom {
-						padding-bottom:85px;
-					}
-				}
-			}
-		}
-		.carousel-wrap.type-hero {
-			// mobile align vertical option, hero type only
-			@include screen(custom, max, $max-sm) {
-				// normal
-				// .text-area.align-mobile-bottom {
-				// 	top:auto;
-				// 	bottom:40px;
-				// 	transform: none;
-				// 	.text-wrap {
-				// 		.inner {
-				// 			.cta {
-				// 				&:last-child {
-				// 					margin-bottom:-23px;
-				// 				}
-				// 			}
-				// 			.video-link {
-				// 				&:last-child {
-				// 					margin-bottom:-23px;
-				// 				}
-				// 			}
-				// 		}
-				// 	}
-				// }
-				// animation 
-				.animation-area + .text-area.align-mobile-bottom {
-					padding-bottom:65px;
-				}
-				&.slick-slider {
-					// normal
-					.text-area.align-mobile-bottom {
-					// 	.text-wrap {
-					// 		.inner {
-					// 			.cta {
-					// 				&:last-child {
-					// 					margin-bottom:-23px;
-					// 				}
-					// 			}
-					// 			.video-link {
-					// 				&:last-child {
-					// 					margin-bottom:-23px;
-					// 				}
-					// 			}
-					// 		}
-					// 	}
-						padding-bottom:40px;
-					}
-					// animation 
-					.animation-area + .text-area.align-mobile-bottom {
-						padding-bottom:65px;
-					}
-					// carousel
-					.text-area.align-mobile-bottom {
-						padding-bottom:65px;
-					}
-					// animation + carousel 
-					.animation-area + .text-area.align-mobile-bottom {
-						padding-bottom:85px;
-					}
-				}
-			}
-		}
-	}
-	// LGEPA-572 start
-	.count-timer-box {
-		.countdown-row {
-			display: inline-block;
-			padding-bottom: 38px;
-			font-size: 0;
-			line-height: 1;
-			@include screen(custom, max, 1355) {
-				padding-bottom: 25px;
-			}
-			.countdown-section {
-				position: relative;
-				display: inline-block;
-				margin-right: 44px;
-				font-size: 60px;
-				font-weight: 700;
-				[dir="rtl"] & {
-					margin-right: 0;
-					margin-left: 44px;
-				}
-				@include screen(custom, max, 1355) {
-					font-size: 48px;
-				}
-				@include screen(custom, max, $max-lg) {
-					margin-right: 32px;
-					font-size: 36px;
-					[dir="rtl"] & {
-						margin-right: 0;
-						margin-left: 32px;
-					}
-				}
-				@include screen(custom, max, $max-sm) {
-					margin-right: 23px;
-					font-size: 32px;
-					[dir="rtl"] & {
-						margin-right: 0;
-						margin-left: 23px;
-					}
-				}
-				@include screen(custom, max, 320) {
-					margin-right: 18px;
-					font-size: 26px;
-					[dir="rtl"] & {
-						margin-right: 0;
-						margin-left: 18px;
-					}
-				}
-				&:before {
-					position: absolute;
-					right: -44px;
-					top: 0;
-					width: 44px;
-					text-align: center;
-					content:':';
-					[dir="rtl"] & {
-						right: auto;
-						left: -44px;
-					}
-					@include screen(custom, max, $max-lg) {
-						right: -32px;
-						width: 32px;
-						[dir="rtl"] & {
-							right: auto;
-							left: -32px;
-						}
-					}
-					@include screen(custom, max, $max-sm) {
-						right: -23px;
-						width: 23px;
-						[dir="rtl"] & {
-							right: auto;
-							left: -23px;
-						}
-					}
-					@include screen(custom, max, 320) {
-						right: -18px;
-						width: 18px;
-						[dir="rtl"] & {
-							right: auto;
-							left: -18px;
-						}
-					}
-				}
-			}
-			&.countdown-show4 {
-				.countdown-section {
-					&:first-of-type:before {
-						content: '-';
-					}
-					&:last-of-type:before {
-						content: '';
-					}
-					&:last-of-type {
-						margin-right: 0;
-						[dir="rtl"] & {
-							margin-left: 0;
-						}
-					}
-				}
-			}
-			.countdown-period {
-				position: absolute;
-				left: 50%;
-				bottom: -15px;
-				font-size: 14px;
-				transform: translateX(-50%);
-				font-weight: 400;
-				word-break: normal;
-				text-transform: uppercase;
-				[dir="rtl"] & {
-					left: auto;
-					right: 50%;
-					transform: translateX(50%);
-				}
-				@include screen(custom, max, 1355) {
-					font-size: 12px;
-				}
-				@include screen(custom, max, $max-lg) {
-					font-size: 11px;
-				}
-				@include screen(custom, max, $max-sm) {
-					font-size: 10px;
-				}
-			}
-		}
-	}
-	// LGEPA-572 end
+  // bottom
+  &.component {
+    .carousel-wrap.type-hero,
+    .carousel-wrap.type-etc {
+      // align-bottom margin (for desktop)
+      @include screen(custom, min, $min-md) {
+        // nomral
+        .text-area.align-bottom {
+          // .text-wrap {
+          // 	.inner {
+          // 		.cta {
+          // 			&:last-child {
+          // 				margin-bottom:-23px;
+          // 			}
+          // 		}
+          // 		.video-link {
+          // 			&:last-child {
+          // 				margin-bottom:-23px;
+          // 			}
+          // 		}
+          // 	}
+          // }
+          padding-bottom: 67px;
+          @include screen(custom, max, 1199) {
+            padding-bottom: 57px;
+          }
+          @include screen(custom, max, 991) {
+            padding-bottom: 43px;
+          }
+        }
+        // animation
+        .animation-area + .text-area.align-bottom {
+          padding-bottom: 97px;
+          @include screen(custom, max, 1199) {
+            padding-bottom: 87px;
+          }
+          @include screen(custom, max, 991) {
+            padding-bottom: 63px;
+          }
+        }
+        // carousel
+        &.slick-slider .text-area.align-bottom {
+          padding-bottom: 97px;
+          @include screen(custom, max, 1199) {
+            padding-bottom: 87px;
+          }
+          @include screen(custom, max, 991) {
+            padding-bottom: 63px;
+          }
+        }
+        // animation + carousel
+        &.slick-slider .animation-area + .text-area.align-bottom {
+          padding-bottom: 120px;
+          @include screen(custom, max, 1199) {
+            padding-bottom: 110px;
+          }
+          @include screen(custom, max, 991) {
+            padding-bottom: 110px;
+          }
+        }
+      }
+      // component bottom padding
+      .textblock-top-compo-top,
+      .textblock-top-compo-middle,
+      .textblock-top-compo-bottom,
+      .textblock-bottom-compo-top,
+      .textblock-bottom-compo-middle,
+      .textblock-bottom-compo-bottom,
+      .textblock-middle-compo-top,
+      .textblock-middle-compo-bottom {
+        .contents-area {
+          .text-area {
+            padding-bottom: 30px !important;
+            @include screen(custom, max, $max-sm) {
+              padding-bottom: 24px !important;
+            }
+          }
+        }
+      }
+      .carousel-box {
+        &.textblock-top-compo-top,
+        &.textblock-top-compo-middle,
+        &.textblock-top-compo-bottom,
+        &.textblock-bottom-compo-top,
+        &.textblock-bottom-compo-middle,
+        &.textblock-bottom-compo-bottom,
+        &.textblock-middle-compo-top,
+        &.textblock-middle-compo-bottom {
+          &.bg-black {
+            background-color: #000;
+          }
+          &.bg-dark-gray {
+            background-color: #333;
+          }
+          &.bg-gray {
+            background-color: #f8f8f8;
+          }
+          &.bg-white {
+            background-color: #fff;
+          }
+          .text-area {
+            &.text-white,
+            &.text-black {
+              background-color: transparent;
+              .nugget-eyebrow .eyebrow-box:after {
+                background-color: transparent;
+              }
+            }
+            &.align-mobile-top,
+            &.align-mobile-middle,
+            &.align-mobile-bottom {
+              @include screen(custom, max, $max-sm) {
+                &.text-black,
+                &.text-white {
+                  background: transparent;
+                }
+              }
+            }
+            &.align-left,
+            &.align-right {
+              @include screen(custom, max, $max-sm) {
+                &.text-black {
+                  background: $bg-white;
+                }
+                &.text-white {
+                  background: $bg-nightrider;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .carousel-wrap.type-hero {
+      // align-bottom margin (for mobile / hero)
+      @include screen(custom, max, $max-sm) {
+        // normal
+        .text-area.align-bottom {
+          // .text-wrap {
+          // 	.inner {
+          // 		.cta {
+          // 			&:last-child {
+          // 				margin-bottom:-23px;
+          // 			}
+          // 		}
+          // 		.video-link {
+          // 			&:last-child {
+          // 				margin-bottom:-23px;
+          // 			}
+          // 		}
+          // 	}
+          // }
+          padding-bottom: 40px;
+        }
+      }
+    }
+    .carousel-wrap.type-hero,
+    .carousel-wrap.type-etc {
+      // align-bottom margin (for mobile)
+      @include screen(custom, max, $max-sm) {
+        // normal
+        .text-area.align-center.align-bottom {
+          // .text-wrap {
+          // 	.inner {
+          // 		.cta {
+          // 			&:last-child {
+          // 				margin-bottom:-23px;
+          // 			}
+          // 		}
+          // 		.video-link {
+          // 			&:last-child {
+          // 				margin-bottom:-23px;
+          // 			}
+          // 		}
+          // 	}
+          // }
+          padding-bottom: 40px;
+        }
+        // animation
+        .animation-area + .text-area.align-center.align-bottom {
+          padding-bottom: 65px;
+        }
+        &.slick-slider {
+          // normal
+          .text-area.align-bottom {
+            // .text-wrap {
+            // 	.inner {
+            // 		.cta {
+            // 			&:last-child {
+            // 				margin-bottom:-23px;
+            // 			}
+            // 		}
+            // 		.video-link {
+            // 			&:last-child {
+            // 				margin-bottom:-23px;
+            // 			}
+            // 		}
+            // 	}
+            // }
+            padding-bottom: 40px;
+          }
+          // animation
+          .animation-area + .text-area.align-bottom {
+            padding-bottom: 65px;
+          }
+          // carousel
+          .text-area.align-bottom {
+            padding-bottom: 65px;
+          }
+          // animation + carousel
+          .animation-area + .text-area.align-bottom {
+            padding-bottom: 85px;
+          }
+        }
+      }
+    }
+    .carousel-wrap.type-hero {
+      // mobile align vertical option, hero type only
+      @include screen(custom, max, $max-sm) {
+        // normal
+        // .text-area.align-mobile-bottom {
+        // 	top:auto;
+        // 	bottom:40px;
+        // 	transform: none;
+        // 	.text-wrap {
+        // 		.inner {
+        // 			.cta {
+        // 				&:last-child {
+        // 					margin-bottom:-23px;
+        // 				}
+        // 			}
+        // 			.video-link {
+        // 				&:last-child {
+        // 					margin-bottom:-23px;
+        // 				}
+        // 			}
+        // 		}
+        // 	}
+        // }
+        // animation
+        .animation-area + .text-area.align-mobile-bottom {
+          padding-bottom: 65px;
+        }
+        &.slick-slider {
+          // normal
+          .text-area.align-mobile-bottom {
+            // 	.text-wrap {
+            // 		.inner {
+            // 			.cta {
+            // 				&:last-child {
+            // 					margin-bottom:-23px;
+            // 				}
+            // 			}
+            // 			.video-link {
+            // 				&:last-child {
+            // 					margin-bottom:-23px;
+            // 				}
+            // 			}
+            // 		}
+            // 	}
+            padding-bottom: 40px;
+          }
+          // animation
+          .animation-area + .text-area.align-mobile-bottom {
+            padding-bottom: 65px;
+          }
+          // carousel
+          .text-area.align-mobile-bottom {
+            padding-bottom: 65px;
+          }
+          // animation + carousel
+          .animation-area + .text-area.align-mobile-bottom {
+            padding-bottom: 85px;
+          }
+        }
+      }
+    }
+  }
+  // LGEPA-572 start
+  .count-timer-box {
+    .countdown-row {
+      display: inline-block;
+      padding-bottom: 38px;
+      font-size: 0;
+      line-height: 1;
+      @include screen(custom, max, 1355) {
+        padding-bottom: 25px;
+      }
+      .countdown-section {
+        position: relative;
+        display: inline-block;
+        margin-right: 44px;
+        font-size: 60px;
+        font-weight: 700;
+        [dir="rtl"] & {
+          margin-right: 0;
+          margin-left: 44px;
+        }
+        @include screen(custom, max, 1355) {
+          font-size: 48px;
+        }
+        @include screen(custom, max, $max-lg) {
+          margin-right: 32px;
+          font-size: 36px;
+          [dir="rtl"] & {
+            margin-right: 0;
+            margin-left: 32px;
+          }
+        }
+        @include screen(custom, max, $max-sm) {
+          margin-right: 23px;
+          font-size: 32px;
+          [dir="rtl"] & {
+            margin-right: 0;
+            margin-left: 23px;
+          }
+        }
+        @include screen(custom, max, 320) {
+          margin-right: 18px;
+          font-size: 26px;
+          [dir="rtl"] & {
+            margin-right: 0;
+            margin-left: 18px;
+          }
+        }
+        &:before {
+          position: absolute;
+          right: -44px;
+          top: 0;
+          width: 44px;
+          text-align: center;
+          content: ":";
+          [dir="rtl"] & {
+            right: auto;
+            left: -44px;
+          }
+          @include screen(custom, max, $max-lg) {
+            right: -32px;
+            width: 32px;
+            [dir="rtl"] & {
+              right: auto;
+              left: -32px;
+            }
+          }
+          @include screen(custom, max, $max-sm) {
+            right: -23px;
+            width: 23px;
+            [dir="rtl"] & {
+              right: auto;
+              left: -23px;
+            }
+          }
+          @include screen(custom, max, 320) {
+            right: -18px;
+            width: 18px;
+            [dir="rtl"] & {
+              right: auto;
+              left: -18px;
+            }
+          }
+        }
+      }
+      &.countdown-show4 {
+        .countdown-section {
+          &:first-of-type:before {
+            content: "-";
+          }
+          &:last-of-type:before {
+            content: "";
+          }
+          &:last-of-type {
+            margin-right: 0;
+            [dir="rtl"] & {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+      .countdown-period {
+        position: absolute;
+        left: 50%;
+        bottom: -15px;
+        font-size: 14px;
+        transform: translateX(-50%);
+        font-weight: 400;
+        word-break: normal;
+        text-transform: uppercase;
+        [dir="rtl"] & {
+          left: auto;
+          right: 50%;
+          transform: translateX(50%);
+        }
+        @include screen(custom, max, 1355) {
+          font-size: 12px;
+        }
+        @include screen(custom, max, $max-lg) {
+          font-size: 11px;
+        }
+        @include screen(custom, max, $max-sm) {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+  // LGEPA-572 end
 }
 
-@media screen and (-ms-high-contrast: active ) {
-	.GPC0055 .carousel-wrap .visual-area {
-		img {
-			visibility: hidden;
-		}
-	}
+@media screen and (-ms-high-contrast: active) {
+  .GPC0055 .carousel-wrap .visual-area {
+    img {
+      visibility: hidden;
+    }
+  }
 }

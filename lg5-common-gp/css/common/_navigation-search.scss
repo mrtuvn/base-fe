@@ -1,1148 +1,1204 @@
+@use "sass:math";
+
 .band-scroll {
-	position:relative;
-	overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 .the-search-window {
-	// compoent set
-	$wrap-width:860px;
-	// 20200309 START 이상현 - 스크롤 바 제거
-	// $scroll-position-adjust:8px;	// secondary view divide line position-y 
-	// 20200309 END 이상현
-	@mixin shorten{
-		white-space:nowrap;
-		text-overflow:ellipsis;
-		overflow:hidden;
-	}
-	@mixin flex($direction:row) {
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display:flex;
-		-webkit-flex-direction: $direction;
-		-ms-flex-direction: $direction;
-		flex-direction: $direction;
-		-webkit-box-lines: single; 
-		-ms-flex-wrap: wrap;
-		flex-wrap:wrap;			
-	}
-	// reset
-	button {padding:0;border:none; background:none;}
-	.link-text {
-		&.color-nightrider {color:$color-nightrider;}
-	}
+  // compoent set
+  $wrap-width: 860px;
+  // 20200309 START 이상현 - 스크롤 바 제거
+  // $scroll-position-adjust:8px;	// secondary view divide line position-y
+  // 20200309 END 이상현
+  @mixin shorten {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  @mixin flex($direction: row) {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: $direction;
+    -ms-flex-direction: $direction;
+    flex-direction: $direction;
+    -webkit-box-lines: single;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+  // reset
+  button {
+    padding: 0;
+    border: none;
+    background: none;
+  }
+  .link-text {
+    &.color-nightrider {
+      color: $color-nightrider;
+    }
+  }
 
-	// 20200429 START 이상현 - gnb search rtl 화면 오류 수정
-	display:none;
-	padding:0 15px;
-	box-sizing:content-box;
-	width:100%;
-	height:100vh;
-	overflow:auto;
-	background-color:hsla(0, 100%, 100%, 0.98);
-	position: absolute;
-	z-index:100;
-	top:0;
-	left:-15px;
-	[dir="rtl"] & {left:-25px;}
-	// 20200429 END
-	// active
-	&.active {
-		display:block;
-	}
-	// top margin
-	&:before {
-		content:"";
-		display:block;
-		width:100%;
-		@include screen(custom, min, $min-md){
-			height:100px;
-			@media screen and (max-height:768px){
-				height:100/(768*0.01) * 1vh;
-			}
-		}
-		@include screen(custom, min, $min-lg){
-			height:150px;
-			@media screen and (max-height:768px){
-				height:150/(768*0.01) * 1vh;
-			}
-		}
-		@include screen(custom, max, $max-sm){
-			height:50px;
-		}
-	}
-	// non active button
-	.btn-close-cover {
-		position: absolute;
-		top:56px; right:45px;
-		[dir="rtl"] & {
-			right:auto;
-			left:45px;
-		}
-		@media screen and (max-height:768px){
-			top:56px;
-			top:6.51vh;
-		}
-		@include screen(custom, max, $max-sm){
-			top:14px; right:20px;
-			[dir="rtl"] & {left:20px;}
-		}
-		.btn-close-search-window {
-			vertical-align:top;
-			width:20px;
-			height:20px;
-			background : {
-				image:url(/lg5-common-gp/images/common/icons/modal-close.svg);
-				repeat: no-repeat;
-				position:0 0;
-				size:100% auto;
-			}
-			cursor:pointer;
-			@include screen(custom, max, $max-sm){
-				width:16px;
-				height:16px;
-			}
-		}
-	}
-	.search-window-wrap {
-		max-width:$wrap-width + (69px*2);
-		padding:0 69px;
-		margin:0 auto;
-		@include screen(custom, max, $max-sm){
-			padding:0 9px;
-		}
-	}
-	.title {
-		text-align:center;
-		font-size:40px;
-		line-height:42px;
-		color:$color-black;
-		@include font-family($font-semibold);
-		margin:-9px 0 51px;
-		@include screen(custom, max, $max-sm){
-			display:none;
-		}
-	}
-	// primary view
-	.keyword-field {
-		display:none;
-		@extend %clearfix;
-		&.active {
-			display:block;
-		}
-	}
-	.input-keyword-field {
-		// variable
-		$search-button-size:24px;
-		button {
-			position: absolute;
-			width:$search-button-size; 
-			height:$search-button-size;
-			background : {
-				position:50% 50%;
-				repeat:no-repeat;
-			}
-			cursor: pointer;
-		}
-		position:relative; 
-		z-index:10;
-		width:100%;
-		text-align:center;
-		.input-field {
-			position: relative;
-			height:58px;
-			background-color:$bg-white;
-			@include screen(custom, max, $max-sm){
-				height:43px;
-			}
-			input[type="text"] {
-				width:100%;
-				height:100%;
-				background-color:transparent;
-				padding:0 79px;
-				border:2px solid $line-black;
-				vertical-align: top;
-				text-align:center;
-				font-size:24px;
-				color:$color-black;
-				@include font-family($font-semibold);
-				@include placeholder($color-gray);
-				&:focus {
-					outline:none;
-					@include placeholder(transparent);
-				}
-				@include screen(custom, max, $max-sm){
-					font-size:18px;
-					text-align:left;
-					padding: 0 70px 0 10px;
-					[dir="rtl"] & {
-						text-align:right;
-						padding: 0 10px 0 70px;
-					}
-				}
-			}
-			.btn-clear-input {
-				display:none;
-				background-image:url(/lg5-common-gp/images/common/icons/gnb-search-clear.svg);
-				bottom:50%; transform:translateY(50%); 
-				right:56px;
-				[dir="rtl"] & {
-					right:auto;
-					left:56px;
-				}
-				@include screen(custom, max, $max-sm){
-					right:44px;
-					[dir="rtl"] & {left:44px;}
-				}
-			}
-			// event
-			&.is-typing .btn-clear-input {display:block;}
-		}
-		button[type="submit"] {
-			background-image:url(/lg5-common-gp/images/common/icons/gnb-search-carmine.svg);
-			background-size:100% auto;
-			top:16px;
-			right:20px;
-			[dir="rtl"] & {
-				right:auto;
-				left:20px;
-			}
-			@include screen(custom, max, $max-sm){
-				width:20px; 
-				height:20px;
-				right:15px;
-				top:11px;
-				[dir="rtl"] & {left:15px;}
-			}
-		}
-		.autoName-area{
-			display:none;
-			border:1px solid $line-dimgray;
-			position: relative;
-			z-index: 1;
-			top: -1px;
-			&.active{
-				display:block;
-			}
-			.autoName-box{
-				max-height:200px;
-				text-align:left;
-				&.mCS_destroyed{
-					max-height: none !important;
-				}
-				[dir="rtl"] & {
-					text-align: right;
-				}
-				&.gang-success{
-					.autoName-list{
-						display:none;
-					}
-					.success-seacrh{
-						display:block;
-					}
-				}
-				.autoName-list{					
-					li{
-						border-bottom:1px solid $line-gray;
-						a{
-							padding:9px 20px;
-							font-size:14px;
-							color:$color-nightrider;
-							display:block;
-							text-decoration:none !important;
-							span{
-								color:$color-carmine;
-								@include font-family($font-semibold);
-							}
-							&.active{
-								background:#fdf5f8;
-							}
-							@include screen(custom, min, $min-md){
-								&:hover{
-									background:#fdf5f8;
-								}
-							}
-							@include screen(custom, max, $max-sm){
-								font-size:13px;
-							}
-						}
-					}					
-				}
-				.success-seacrh{
-					display:none;
-					padding:15px 40px 20px;
-					@include screen(custom, max, $max-sm){
-						padding:14px 16px 20px;
-					}			
-					.success-seacrh-inner{
-						position: relative;
-						min-height:124px;
-						@include screen(custom, max, $max-sm){
-							min-height:auto;
-						}
-					}
-					.success-image{
-						width:124px;
-						position:absolute;
-						left:0;
-						top:0;
-						[dir="rtl"] & {
-							left:auto;
-							right:0;
-						}
-						a{
-							display:block;
-						}
-						img{
-							width:100%;
-						}
-						@include screen(custom, max, $max-sm){
-							position:relative;
-							left:auto !important;
-							right:auto !important;
-							top:auto !important;
-							margin: 0 auto 5px;
-						}
-					}
-					.success-item{
-						padding-left:160px;
-						[dir="rtl"] & {
-							padding-left:0;
-							padding-right:160px;
-						}
-						@include screen(custom, max, $max-sm){
-							padding-left:0 !important;
-							padding-right:0 !important;
-						}
-						.product-page-linker{
-							padding-top:10px;
-							margin-bottom:15px;
-							display: block;
-							.model-display-name{
-								font-size:16px;
-								color:$color-black;
-								@include font-family($font-semibold);
-							}
-							.user-friendly-name{
-								font-size:14px;
-								color:$color-nightrider;
-								@include font-family($font-regular);
-								overflow: hidden;
-								text-overflow: ellipsis;
-								display: block;
-								display: -webkit-box;
-								-webkit-line-clamp: 2;
-								-webkit-box-orient: vertical;
-								line-height: 1.5em;
-								max-height: 3.0em;
-							}
-							@include screen(custom, max, $max-sm){
-								text-align: center;
-								.user-friendly-name{
-									margin-top:5px;
-									padding:0 4px;
-								}
-							}
-						}
-						.btn-area{
-							.btn{
-								display:none;
-								margin: 0 5px 5px 0;
-								[dir="rtl"] & {
-									margin: 0 0 5px 5px;
-								}
-								&.active{
-									display:inline-block;
-								}
-							}
-							@include screen(custom, max, $max-sm){
-								.btn{
-									margin: 0px 4px 5px;
-									max-width: 100%;
-									&.active{
-										display:block;
-									}
-								}
-							}
-						}
-						.success-etc{
-							position: relative;
-							margin: 23px -23px 8px -23px;
-							overflow:hidden;
-							@include screen(custom, max, $max-sm){
-								margin: 23px 0 8px 0;
-							}
-							ul{
-								overflow: hidden;
-								margin: 0 24px;
-								@include screen(custom, max, $max-sm){
-									margin:0 0;
-									padding:0px 23px;
-								}
-								li{
-									position: relative;
-									display:inline-block;
-									margin-left: 16px;
-    								padding-left: 14px;
-									vertical-align:top;
-									[dir="rtl"] & {
-										margin-left: 0;
-										margin-right: 16px;
-										padding-left: 0;
-										padding-right: 14px;
-									}
-									@include screen(custom, max, $max-sm){
-										margin-left: 10px;
-										padding-left: 12px;
-										[dir="rtl"] & {
-											margin-right: 10px;
-											padding-right: 12px;
-										}
-									}
-									&:after{
-										content:'';
-										width:1px;
-										height:24px;
-										background:#e4e4e4;
-										display:block;
-										position:absolute;
-										left:0;
-										top:15px;
-										[dir="rtl"] & {
-											left:auto;
-											right:0;
-										}
-									}
-									&:first-child:after{
-										content:none;
-									}
-									a{
-										display:block;
-										min-width:74px;
-										max-width:150px;
-										img{
-											width:32px;
-											height:32px;
-											margin:0 auto 5px;
-											display: block;
-											@include screen(custom, max, $max-sm){
-												width:40px;
-												height:40px;
-											}
-										}
-										p{
-											font-size:14px;
-											color:$color-nightrider;
-											@include font-family($font-semibold);
-											text-align: center;
-											overflow: hidden;
-											text-overflow: ellipsis;
-											display:block;
-											display: -webkit-box;
-											-webkit-line-clamp: 2; 
-											-webkit-box-orient: vertical;
-											line-height: 1.3em;
-											max-height: 2.6em;
-											margin-bottom: 0;
-										}
-									}
-								}
-							}
-							.slick-list{
-								overflow: hidden;
-								margin-left: -5px;
-								[dir="rtl"] & {
-									margin-left:0;
-									margin-right:12px;
-								}
-							}
-							.slick-arrow{
-								position: absolute;
-								width: 24px;
-								height: 50px;								
-								background-repeat: no-repeat !important;
-								background-size:12px 12px !important;
-								cursor: pointer;
-								z-index:5;								
-								&.slick-prev{
-									left: 0;
-									top: 3px;
-									background-image: url(/lg5-common-gp/images/common/icons/link-search-left-nightrider.svg);
-									background-position: center left !important;
-									border-right: 1px solid $line-gray;
-									[dir="rtl"] & {
-										left: auto;
-										right: 0;
-										transform: rotateY(180deg);
-									}
-								}
-								&.slick-next{
-									right: 0;
-									top: 3px;
-									background-image: url(/lg5-common-gp/images/common/icons/link-search-right-nightrider.svg);
-									background-position: center right !important;
-									border-left: 1px solid $line-gray;
-									[dir="rtl"] & {
-										right: auto;
-										left: 0;
-										transform: rotateY(180deg);
-									}
-								}
-								&.slick-disabled{
-									opacity:0 !important;
-								}
-								@include screen(custom, max, $max-sm){
-									width: 20px;
-									height: 62px;
-									&.slick-prev{
-										left: 0;
-										[dir="rtl"] & {
-											left: auto;
-											right: 0;
-										}
-									}
-									&.slick-next{
-										right: 0;
-										[dir="rtl"] & {
-											right: auto;
-											left: 0;
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-			.search-footer-area {
-				padding:13px 20px;
-				text-align:right;
-				background:$bg-whitesmoke;
-				overflow: hidden;
-				.link-close {
-					color: $color-nightrider;
-					float: right;
-					font-size:14px;
-					[dir="rtl"] & {
-						float:left;
-					}
-				}
-				.results {
-					float: left;
-					font-size:16px;
-					[dir="rtl"] & {
-						float:right;
-					}
-				}
-			}
-		}
-	}
-	// recommended searched
-	.rolling-keyword-area-wrap {
-		position:relative;
-		margin:20px 0 84px;
-		padding-bottom:24px;
-		@include screen(custom, max, $max-sm){
-			margin:14px 0 0;
-		}
-		&:after {
-			content:"";
-			position: absolute;
-			bottom:0;
-			left:50%; margin-left:-1px;
-			width:2px;
-			height:14px;
-			background : {
-				image:url(/lg5-common-gp/images/common/icons/item-more.svg);
-				repeat:no-repeat;
-				position:0 0;
-			}
-		}
-	}
-	.rolling-keyword-area {
-		// variable
-		$rolling-item-height:31px;
-		$exposal-length:3;
+  // 20200429 START 이상현 - gnb search rtl 화면 오류 수정
+  display: none;
+  padding: 0 15px;
+  box-sizing: content-box;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: hsla(0, 100%, 100%, 0.98);
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: -15px;
+  [dir="rtl"] & {
+    left: -25px;
+  }
+  // 20200429 END
+  // active
+  &.active {
+    display: block;
+  }
+  // top margin
+  &:before {
+    content: "";
+    display: block;
+    width: 100%;
+    @include screen(custom, min, $min-md) {
+      height: 100px;
+      @media screen and (max-height: 768px) {
+        height: calc(100 / (768 * 0.01) * 1vh);
+      }
+    }
+    @include screen(custom, min, $min-lg) {
+      height: 150px;
+      @media screen and (max-height: 768px) {
+        height: calc(150 / (768 * 0.01) * 1vh);
+      }
+    }
+    @include screen(custom, max, $max-sm) {
+      height: 50px;
+    }
+  }
+  // non active button
+  .btn-close-cover {
+    position: absolute;
+    top: 56px;
+    right: 45px;
+    [dir="rtl"] & {
+      right: auto;
+      left: 45px;
+    }
+    @media screen and (max-height: 768px) {
+      top: 56px;
+      top: 6.51vh;
+    }
+    @include screen(custom, max, $max-sm) {
+      top: 14px;
+      right: 20px;
+      [dir="rtl"] & {
+        left: 20px;
+      }
+    }
+    .btn-close-search-window {
+      vertical-align: top;
+      width: 20px;
+      height: 20px;
+      background : {
+        image: url(/lg5-common-gp/images/common/icons/modal-close.svg);
+        repeat: no-repeat;
+        position: 0 0;
+        size: 100% auto;
+      }
+      cursor: pointer;
+      @include screen(custom, max, $max-sm) {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  .search-window-wrap {
+    max-width: $wrap-width + (69px * 2);
+    padding: 0 69px;
+    margin: 0 auto;
+    @include screen(custom, max, $max-sm) {
+      padding: 0 9px;
+    }
+  }
+  .title {
+    text-align: center;
+    font-size: 40px;
+    line-height: 42px;
+    color: $color-black;
+    @include font-family($font-semibold);
+    margin: -9px 0 51px;
+    @include screen(custom, max, $max-sm) {
+      display: none;
+    }
+  }
+  // primary view
+  .keyword-field {
+    display: none;
+    @extend %clearfix;
+    &.active {
+      display: block;
+    }
+  }
+  .input-keyword-field {
+    // variable
+    $search-button-size: 24px;
+    button {
+      position: absolute;
+      width: $search-button-size;
+      height: $search-button-size;
+      background : {
+        position: 50% 50%;
+        repeat: no-repeat;
+      }
+      cursor: pointer;
+    }
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    text-align: center;
+    .input-field {
+      position: relative;
+      height: 58px;
+      background-color: $bg-white;
+      @include screen(custom, max, $max-sm) {
+        height: 43px;
+      }
+      input[type="text"] {
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        padding: 0 79px;
+        border: 2px solid $line-black;
+        vertical-align: top;
+        text-align: center;
+        font-size: 24px;
+        color: $color-black;
+        @include font-family($font-semibold);
+        @include placeholder($color-gray);
+        &:focus {
+          outline: none;
+          @include placeholder(transparent);
+        }
+        @include screen(custom, max, $max-sm) {
+          font-size: 18px;
+          text-align: left;
+          padding: 0 70px 0 10px;
+          [dir="rtl"] & {
+            text-align: right;
+            padding: 0 10px 0 70px;
+          }
+        }
+      }
+      .btn-clear-input {
+        display: none;
+        background-image: url(/lg5-common-gp/images/common/icons/gnb-search-clear.svg);
+        bottom: 50%;
+        transform: translateY(50%);
+        right: 56px;
+        [dir="rtl"] & {
+          right: auto;
+          left: 56px;
+        }
+        @include screen(custom, max, $max-sm) {
+          right: 44px;
+          [dir="rtl"] & {
+            left: 44px;
+          }
+        }
+      }
+      // event
+      &.is-typing .btn-clear-input {
+        display: block;
+      }
+    }
+    button[type="submit"] {
+      background-image: url(/lg5-common-gp/images/common/icons/gnb-search-carmine.svg);
+      background-size: 100% auto;
+      top: 16px;
+      right: 20px;
+      [dir="rtl"] & {
+        right: auto;
+        left: 20px;
+      }
+      @include screen(custom, max, $max-sm) {
+        width: 20px;
+        height: 20px;
+        right: 15px;
+        top: 11px;
+        [dir="rtl"] & {
+          left: 15px;
+        }
+      }
+    }
+    .autoName-area {
+      display: none;
+      border: 1px solid $line-dimgray;
+      position: relative;
+      z-index: 1;
+      top: -1px;
+      &.active {
+        display: block;
+      }
+      .autoName-box {
+        max-height: 200px;
+        text-align: left;
+        &.mCS_destroyed {
+          max-height: none !important;
+        }
+        [dir="rtl"] & {
+          text-align: right;
+        }
+        &.gang-success {
+          .autoName-list {
+            display: none;
+          }
+          .success-seacrh {
+            display: block;
+          }
+        }
+        .autoName-list {
+          li {
+            border-bottom: 1px solid $line-gray;
+            a {
+              padding: 9px 20px;
+              font-size: 14px;
+              color: $color-nightrider;
+              display: block;
+              text-decoration: none !important;
+              span {
+                color: $color-carmine;
+                @include font-family($font-semibold);
+              }
+              &.active {
+                background: #fdf5f8;
+              }
+              @include screen(custom, min, $min-md) {
+                &:hover {
+                  background: #fdf5f8;
+                }
+              }
+              @include screen(custom, max, $max-sm) {
+                font-size: 13px;
+              }
+            }
+          }
+        }
+        .success-seacrh {
+          display: none;
+          padding: 15px 40px 20px;
+          @include screen(custom, max, $max-sm) {
+            padding: 14px 16px 20px;
+          }
+          .success-seacrh-inner {
+            position: relative;
+            min-height: 124px;
+            @include screen(custom, max, $max-sm) {
+              min-height: auto;
+            }
+          }
+          .success-image {
+            width: 124px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            [dir="rtl"] & {
+              left: auto;
+              right: 0;
+            }
+            a {
+              display: block;
+            }
+            img {
+              width: 100%;
+            }
+            @include screen(custom, max, $max-sm) {
+              position: relative;
+              left: auto !important;
+              right: auto !important;
+              top: auto !important;
+              margin: 0 auto 5px;
+            }
+          }
+          .success-item {
+            padding-left: 160px;
+            [dir="rtl"] & {
+              padding-left: 0;
+              padding-right: 160px;
+            }
+            @include screen(custom, max, $max-sm) {
+              padding-left: 0 !important;
+              padding-right: 0 !important;
+            }
+            .product-page-linker {
+              padding-top: 10px;
+              margin-bottom: 15px;
+              display: block;
+              .model-display-name {
+                font-size: 16px;
+                color: $color-black;
+                @include font-family($font-semibold);
+              }
+              .user-friendly-name {
+                font-size: 14px;
+                color: $color-nightrider;
+                @include font-family($font-regular);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                line-height: 1.5em;
+                max-height: 3em;
+              }
+              @include screen(custom, max, $max-sm) {
+                text-align: center;
+                .user-friendly-name {
+                  margin-top: 5px;
+                  padding: 0 4px;
+                }
+              }
+            }
+            .btn-area {
+              .btn {
+                display: none;
+                margin: 0 5px 5px 0;
+                [dir="rtl"] & {
+                  margin: 0 0 5px 5px;
+                }
+                &.active {
+                  display: inline-block;
+                }
+              }
+              @include screen(custom, max, $max-sm) {
+                .btn {
+                  margin: 0px 4px 5px;
+                  max-width: 100%;
+                  &.active {
+                    display: block;
+                  }
+                }
+              }
+            }
+            .success-etc {
+              position: relative;
+              margin: 23px -23px 8px -23px;
+              overflow: hidden;
+              @include screen(custom, max, $max-sm) {
+                margin: 23px 0 8px 0;
+              }
+              ul {
+                overflow: hidden;
+                margin: 0 24px;
+                @include screen(custom, max, $max-sm) {
+                  margin: 0 0;
+                  padding: 0px 23px;
+                }
+                li {
+                  position: relative;
+                  display: inline-block;
+                  margin-left: 16px;
+                  padding-left: 14px;
+                  vertical-align: top;
+                  [dir="rtl"] & {
+                    margin-left: 0;
+                    margin-right: 16px;
+                    padding-left: 0;
+                    padding-right: 14px;
+                  }
+                  @include screen(custom, max, $max-sm) {
+                    margin-left: 10px;
+                    padding-left: 12px;
+                    [dir="rtl"] & {
+                      margin-right: 10px;
+                      padding-right: 12px;
+                    }
+                  }
+                  &:after {
+                    content: "";
+                    width: 1px;
+                    height: 24px;
+                    background: #e4e4e4;
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    top: 15px;
+                    [dir="rtl"] & {
+                      left: auto;
+                      right: 0;
+                    }
+                  }
+                  &:first-child:after {
+                    content: none;
+                  }
+                  a {
+                    display: block;
+                    min-width: 74px;
+                    max-width: 150px;
+                    img {
+                      width: 32px;
+                      height: 32px;
+                      margin: 0 auto 5px;
+                      display: block;
+                      @include screen(custom, max, $max-sm) {
+                        width: 40px;
+                        height: 40px;
+                      }
+                    }
+                    p {
+                      font-size: 14px;
+                      color: $color-nightrider;
+                      @include font-family($font-semibold);
+                      text-align: center;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      display: block;
+                      display: -webkit-box;
+                      -webkit-line-clamp: 2;
+                      -webkit-box-orient: vertical;
+                      line-height: 1.3em;
+                      max-height: 2.6em;
+                      margin-bottom: 0;
+                    }
+                  }
+                }
+              }
+              .slick-list {
+                overflow: hidden;
+                margin-left: -5px;
+                [dir="rtl"] & {
+                  margin-left: 0;
+                  margin-right: 12px;
+                }
+              }
+              .slick-arrow {
+                position: absolute;
+                width: 24px;
+                height: 50px;
+                background-repeat: no-repeat !important;
+                background-size: 12px 12px !important;
+                cursor: pointer;
+                z-index: 5;
+                &.slick-prev {
+                  left: 0;
+                  top: 3px;
+                  background-image: url(/lg5-common-gp/images/common/icons/link-search-left-nightrider.svg);
+                  background-position: center left !important;
+                  border-right: 1px solid $line-gray;
+                  [dir="rtl"] & {
+                    left: auto;
+                    right: 0;
+                    transform: rotateY(180deg);
+                  }
+                }
+                &.slick-next {
+                  right: 0;
+                  top: 3px;
+                  background-image: url(/lg5-common-gp/images/common/icons/link-search-right-nightrider.svg);
+                  background-position: center right !important;
+                  border-left: 1px solid $line-gray;
+                  [dir="rtl"] & {
+                    right: auto;
+                    left: 0;
+                    transform: rotateY(180deg);
+                  }
+                }
+                &.slick-disabled {
+                  opacity: 0 !important;
+                }
+                @include screen(custom, max, $max-sm) {
+                  width: 20px;
+                  height: 62px;
+                  &.slick-prev {
+                    left: 0;
+                    [dir="rtl"] & {
+                      left: auto;
+                      right: 0;
+                    }
+                  }
+                  &.slick-next {
+                    right: 0;
+                    [dir="rtl"] & {
+                      right: auto;
+                      left: 0;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .search-footer-area {
+        padding: 13px 20px;
+        text-align: right;
+        background: $bg-whitesmoke;
+        overflow: hidden;
+        .link-close {
+          color: $color-nightrider;
+          float: right;
+          font-size: 14px;
+          [dir="rtl"] & {
+            float: left;
+          }
+        }
+        .results {
+          float: left;
+          font-size: 16px;
+          [dir="rtl"] & {
+            float: right;
+          }
+        }
+      }
+    }
+  }
+  // recommended searched
+  .rolling-keyword-area-wrap {
+    position: relative;
+    margin: 20px 0 84px;
+    padding-bottom: 24px;
+    @include screen(custom, max, $max-sm) {
+      margin: 14px 0 0;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      margin-left: -1px;
+      width: 2px;
+      height: 14px;
+      background : {
+        image: url(/lg5-common-gp/images/common/icons/item-more.svg);
+        repeat: no-repeat;
+        position: 0 0;
+      }
+    }
+  }
+  .rolling-keyword-area {
+    // variable
+    $rolling-item-height: 31px;
+    $exposal-length: 3;
 
-		text-align:center;
-		overflow: hidden;
-		max-height:$rolling-item-height * $exposal-length;
-		@include screen(custom, max, $max-sm){
-			max-height:($rolling-item-height - 1px) * $exposal-length;
-			margin-top:10px;
-		}
-		.rolling-keyword {
-			height:$rolling-item-height;
-			font-size:16px;
-			line-height:$rolling-item-height;
-			color:$color-gray;
-			transition:color 300ms ease;
-			@include font-family($font-semibold);
-			@include shorten;
-			@include screen(custom, max, $max-sm){
-				height:$rolling-item-height - 1px;
-				font-size:15px;
-				line-height:$rolling-item-height - 1px;
-			}
-			// center item
-			&.highlight {color:$color-nightrider;}
-			a {
-				font-size:inherit;
-				line-height:inherit;
-				color:inherit;
-			}
-		}
-	}
-	// recently searched & most searched common
-	.recenlty-keyword-list,
-	.most-searched-board {
-		@include screen(custom, min, $min-md){
-			width:50%;
-			height:150px;
-			margin-bottom:30px;	// prepare screen height less 769px
-			float:left;
-			[dir="rtl"] & {float:right;}
-		}
-		.head {
-			font-size:16px;
-			line-height:24px;
-			color:$color-dimgray;
-			@include screen(custom, max, $max-sm){
-				font-size:14px;
-			}
-		}
-	}
-	// recently searched
-	.recenlty-keyword-list {
-		position: relative;
-		[dir="rtl"] & {text-align:right;}
-		@include screen(custom, min, $min-md){
-			padding-right:30px;
-			[dir="rtl"] & {
-				padding-right:0;
-				padding-left:30px;
-			}
-			// 20200429 START 이상현 - gnb search rtl 화면 오류 수정
-			&:after{
-				content:"";
-				top:6px; 
-				width:1px;
-				height:147px;
-				background-color:$line-lightgray;
-				position: absolute;
-				left:100%;
-				[dir="rtl"] & {
-					left:0%;
-				}
-			}
-			// 20200429 END
-		}
-		@include screen(custom, min, $min-lg){
-			padding-right:50px;
-			[dir="rtl"] & {padding-left:50px;}
-		}
-		@include screen(custom, max, $max-sm){
-			border-bottom:1px solid $line-lightgray;
-			padding-bottom:19px;
-			margin-top:22px;
-		}
-		ul {
-			display:none;
-			margin-top:7px;
-			&.active{display:block;}
-			li {
-				padding-right:(50px/($wrap-width/2)) * 100%;
-				[dir="rtl"] & {
-					padding-right:0;
-					padding-left:(50px/($wrap-width/2)) * 100%;
-				}
-				@include shorten;
-				@include screen(custom, max, $max-sm){
-					margin-bottom:3px;
-				}
-			}
-			a {
-				font-size:16px;
-				line-height:32px;
-				color:$color-nightrider;
-				@include font-family($font-semibold);
-			}
-		}
-		.insertview {
-			display:none;
-			font-size:14px;
-			line-height:20px;
-			color:$color-dimgray;
-			margin-top:20px;
-			&.active{display:block;}
-		}
-		.no-history {
-			&:before{
-				content:"";
-				display:inline-block;
-				vertical-align:top;
-				width:20px; height:20px;
-				background : {
-					image : url(/lg5-common-gp/images/common/icons/clock-gray.svg);
-					repeat : no-repeat;
-					position : 50% 50%;
-				}
-				margin-right:7px;
-				[dir="rtl"] & {
-					margin-right:0;
-					margin-left:7px;
-				}
-			}
-			@include screen(custom, max, $max-sm){
-				text-align:center;
-				margin-top:22px;
-			}
-		}
-		.disagree-cookie {
-			text-align:center;
-			@include screen(custom, max, $max-sm){
-				margin-top:17px;
-			}
-			.link-text {
-				color:$color-carmine;
-			}
-		}
-		.btn-clear{
-			display:none;
-			@include screen(custom, min, 360){
-				position: absolute;
-				right:0; top:-2px;
-			}
-			@include screen(custom, min, $min-md){
-				right:30px;
-			}
-			@include screen(custom, min, $min-lg){
-				right:50px;     
-			}
-			@include screen(custom, max, 359){
-				text-align: right;
-				margin-top: -7px;
-			}
-			[dir="rtl"] & {
-				right:auto;
-				@include screen(custom, min, 360){
-					left:0;
-				}
-				@include screen(custom, min, $min-md){
-					left:30px;
-				}
-				@include screen(custom, min, $min-lg){
-					left:50px;     
-				}
-				@include screen(custom, max, 359){
-					text-align: left;
-				}
-			}
-		}
-		ul.active ~ .btn-clear {display:block;}
-	}
-	// most searched
-	.most-searched-board {
-		$tag-height:28px;
-		$tag-margin-bottom:12px;
-		[dir="rtl"] & {text-align:right;}
-		@include screen(custom, min, $min-md){
-			padding-left:30px + 1px;
-			height: auto;
-			[dir="rtl"] & {
-				padding-left:0;
-				padding-right:30px + 1px;
-			}
-		}
-		@include screen(custom, min, $min-lg){
-			padding-left:50px + 1px;
-			[dir="rtl"] & {
-				padding-left:0;
-				padding-right:50px + 1px;
-			}
-		}
-		@include screen(custom, max, $max-sm){
-			min-height: 115px;
-			margin-top: 17px;
-		}
-		.stick-words {
-			min-height:($tag-height + $tag-margin-bottom) * 4;
-			margin-top:17px;
-			@include screen(custom, max, $max-sm){
-				margin-top:13px;
-				min-height:auto;
-				height:auto;
-			}
-		}
-		.word-tag {
-			display:inline-block;
-			vertical-align:top;
-			white-space: nowrap;
-			overflow: hidden;
-			height:$tag-height;
-			background:$bg-white;
-			font-size:14px;
-			color:$color-nightrider;
-			@include font-family($font-semibold);
-			padding:2px 9px;
-			border:1px solid $line-dimgray;
-			border-radius:3px;
-			margin-bottom: $tag-margin-bottom;
-			// 20200514 START 이상현 - gnb search 추천 검색어 rtl 간격 수정
-			&:not(:last-child) {
-				margin-right: 6px;
-				[dir="rtl"] & {
-					margin-right: 0;
-					margin-left: 6px;
-				}
-			}
-			// 20200514 END
-			&:focus, 
-			&:hover {
-				text-decoration:none;
-				border:1px solid $line-black;
-				color:$color-black;
-			}
-			&.cutoff {
-				display: none;
-			}
-		}
-	}
-	// secondary view
-	.register-searched-box {
-		margin-top:20px;
-		[dir="rtl"] & {
-			text-align:right;
-		}
-		.stick-btn {
-			margin-top:17px;
-			.btn {
-				display:inline-block;
-				vertical-align:top;
-				white-space: nowrap;
-				overflow: hidden;
-				background:$bg-white;
-				font-size:14px;
-				color:$color-carmine;
-				@include font-family($font-semibold);
-				padding:2px 14px;
-				border:1px solid $line-carmine;
-				border-radius:3px;
-				line-height: 32px;
-				text-transform: none;
-				height: 38px;
-				&:focus, 
-				&:hover {
-					text-decoration:none;
-				}
-				&:before{
-					content:'';
-					width:19px;
-					height:20px;
-					display:inline-block;
-					background:url(/lg5-common-gp/images/common/icons/ico-register-product.svg) no-repeat center center;
-					vertical-align: middle;
-    				margin-right: 10px;
-					[dir="rtl"] & {
-						margin-right: 0;
-						margin-left: 10px;
-					}
-				}
-			}
-		}
-	}
-	.similar-mapping {
-		display:none;
-		text-align:center;
-		font-size:16px;
-		line-height:35px;
-		color:$color-nightrider;
-		@include font-family($font-semibold);
-		margin-top:18px;
-		@include screen(custom, max, $max-sm){
-			font-size:15px;
-			line-height:1;
-			margin-top:21px;
-		}
-		a {
-			font-size:inherit;
-			line-height:inherit;
-			color:inherit;
-			font-weight:inherit;
-		}
-		&.active {display:block;}
-		.suggestion {
-			color:$color-carmine;
-		}
-	}
-	.result-area {
-		[dir="rtl"] & {text-align:right;}
-		display:none;
-		// 20200309 START 이상현 - 레이아웃 오류 수정
-		margin-top: 44px;
-		margin-bottom:70px;
-		@include screen(custom, max, $max-sm){
-			margin-top: 16px;
-			padding-bottom:50px;
-			margin-bottom:30px;
-		}
-		// 20200309 END 
-		&.active {
-			display:block;
-			@include screen(custom, min, $min-md){
-				@include flex;
-			}
-		}
-	}
-	// match product results 
-	.match-results {
-		position: relative;
-		padding-right:27px;
-		[dir="rtl"] & {
-			padding-right:0;
-			padding-left:27px;
-		}
-		// 20200309 START 이상현 - 스크롤 바 제거
-		@include screen(custom, min, $min-md){
-			width:calc(100% - (218px + 42px));
-			&:before{
-				content:"";
-				width:1px;
-				background-color:$line-gray;
-				position: absolute;
-				top:6px; bottom:0; 
-				right:0;
-				[dir="rtl"] & {
-					right:auto;
-					left:0;
-				}
-			}
-		}
-		@include screen(custom, max, $max-sm){
-			padding-right:0;
-			[dir="rtl"] & {
-				padding-right:0;
-				padding-left:0;
-			}
-		}
-	}
-	.match-keyword-count {
-		font-size:16px;
-		line-height:1;
-		color:$color-gray;
-		@include screen(custom, max, $max-sm){
-			font-size:14px;
-		}
-		.count {color:$color-carmine;}
-	}
-	.match-product-list {
-		margin-top:15px;
-		// 20200309 START 이상현 - 스크롤 바 제거
-		// @include screen(custom, min, $min-md){
-		// 	max-height:292px;
-		// }
-		// @include screen(custom, min, $min-lg){
-		// 	max-height:(120px + 35px) * 3;
-		// }
-		// 20200309 END
-		@include screen(custom, max, $max-sm){
-			margin-top:7px;
-			border-bottom:1px solid $line-gray;
-			padding-bottom:25px;
-		}
-		ul {
-			@include flex;
-			margin-left:-12px;
-			[dir="rtl"] & {
-				margin-left:0;
-				margin-right:-12px;
-			}
-			@include screen(custom, max, $max-md){
-				margin-left:0;
-				[dir="rtl"] & {
-					margin-left:0;
-					margin-right:0;
-				}
-			}
-		}
-		.product-item {
-			@include flex;
-			padding: 18px 10px 20px 18px;
-			border: 1px solid $line-gray;
-			margin-left: 12px;
-			[dir="rtl"] & {
-				padding: 18px 18px 20px 10px;
-				margin-left: 0;
-				margin-right: 12px;
-				flex-direction: row-reverse;
-			}
-			@include screen(custom, min, $min-lg){
-				width:calc(50% - 12px);
-				&:nth-child(n+3) {margin-top:12px;}
-			}
-			@include screen(custom, max, $max-md){
-				width:100%;
-				&:not(:first-child) {margin-top:12px;}
-				margin-left: 0;
-				[dir="rtl"] & {
-					margin-left: 0;
-					margin-right: 0;
-				}
-			}
-			@include screen(custom, max, $max-sm){
-				min-height:72px;
-				&:not(:first-child) {margin-top:12px;}
-				&:nth-child(n+4) {display:none};
-			}
-		}
-		.product-image {
-			width:70px;
-			height:70px;
-			@include screen(custom, max, $max-sm){
-				width:65px;
-				height:65px;
-			}
-			img {
-				max-width:100%;
-				max-height:100%;
-				// outline:1px solid lightcoral;
-				// outline-offset: -1px;
-			}
-		}
-		.product-summary {
-			min-width:156px;
-			width:calc(100% - 70px);
-			margin-top: -3px;
-			padding-left:20px;
-			[dir="rtl"] & {
-				padding-left:0;
-				padding-right:20px;
-			}
-			@include screen(custom, max, $max-sm){
-				width:calc(100% - 65px);
-				margin-top: -4px;
-			}
-			.product-page-linker {
-				display:block;
-				width:100%;
-				@include screen(custom, min, $min-lg){
-					max-width:156px;
-				}
-			}
-			.model-display-name {
-				font-size:15px;
-				line-height:18px;
-				color:$color-nightrider;
-				@include font-family($font-semibold);
-			}
-			.user-friendly-name {
-				font-size:14px;
-				line-height:18px;
-				color:$color-dimgray;
-				@include font-family($font-semibold);
-				display: block;
-				display: -webkit-box;
-				-webkit-line-clamp: 2; 
-				-webkit-box-orient: vertical;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				max-height:18px * 2;
-				margin-top:4px;
-				// 20200608 START 박지영 - RTL 에서 괄호로 끝나는 경우 깨지는 현상 수정
-				[dir="rtl"] & {
-					display:block;
-				}
-				// 20200608 END
-			}
-			.btn-area {
-				margin-top:3px;
-				@include screen(custom, min, $min-lg){
-					margin-top:5px;
-				}
-				.link-text {
-					[dir="rtl"] & {
-						direction:rtl;
-					}
-					@include screen(custom, min, $min-lg){
-						display:block;
-					}
-					@include screen(custom, max, $max-sm){
-						margin-right:14px;
-						[dir="rtl"] & {
-							margin-right:0;
-							margin-left:14px;							
-						}
-					}
-				}
-			}
-		}
-	}
-	// categorized results
-	.categorized-results {
-		@include screen(custom, min, $min-md){
-			width:218px;
-			padding-top:4px;
-		}
-		@include screen(custom, max, $max-sm){
-			margin-top:18px;
-		}
-		// 20200309 START 이상현 - 스크롤 바 제거
-		.head {
-			font-size:16px;
-			line-height:1;
-			color:$color-gray;
-			// 20200506 START 이상현 - gnb search rtl 화면 오류 수정
-			@include screen(custom, min, $min-md){
-				padding-left:35px;
-				[dir="rtl"] & {
-					padding-left:0;
-					padding-right:35px;
-				}
-			}
-			@include screen(custom, max, $max-sm){
-				font-size:14px;
-			}
-			// 20200506 end
-		}
-		// 20200309 end
-		ul {
-			margin-top:10px;
-			@include screen(custom, max, $max-sm){
-				margin:12px 0 0;
-			}
-		}
-	}
-	.category-link-name a {
-		display:block;
-		//background-color:$bg-white;
-		padding:5px 0 6px;
-		font-size:16px;
-		line-height:24px;
-		color:$color-nightrider;
-		@include font-family($font-semibold);
-		// 20200309 START 이상현 - 스크롤 바 제거
-		@include screen(custom, min, $min-md){
-			padding-left:35px;
-			[dir="rtl"] & {
-				padding-left:0;
-				padding-right:35px;
-			}
-		}
-		// 20200309 END 이상현 - 스크롤 바 제거
-		@include screen(custom, max, $max-sm){
-			padding:0;
-			font-size:15px;
-			line-height:30px;
-		}
-	}
-	.cookie-permit-msg {
-		padding:0 !important;
-		.info-icon {
-			display:none;
-		}
-		.info-text {
-			font-size:14px;
-			line-height:20px;
-		}
-	}
+    text-align: center;
+    overflow: hidden;
+    max-height: $rolling-item-height * $exposal-length;
+    @include screen(custom, max, $max-sm) {
+      max-height: ($rolling-item-height - 1px) * $exposal-length;
+      margin-top: 10px;
+    }
+    .rolling-keyword {
+      height: $rolling-item-height;
+      font-size: 16px;
+      line-height: $rolling-item-height;
+      color: $color-gray;
+      transition: color 300ms ease;
+      @include font-family($font-semibold);
+      @include shorten;
+      @include screen(custom, max, $max-sm) {
+        height: $rolling-item-height - 1px;
+        font-size: 15px;
+        line-height: $rolling-item-height - 1px;
+      }
+      // center item
+      &.highlight {
+        color: $color-nightrider;
+      }
+      a {
+        font-size: inherit;
+        line-height: inherit;
+        color: inherit;
+      }
+    }
+  }
+  // recently searched & most searched common
+  .recenlty-keyword-list,
+  .most-searched-board {
+    @include screen(custom, min, $min-md) {
+      width: 50%;
+      height: 150px;
+      margin-bottom: 30px; // prepare screen height less 769px
+      float: left;
+      [dir="rtl"] & {
+        float: right;
+      }
+    }
+    .head {
+      font-size: 16px;
+      line-height: 24px;
+      color: $color-dimgray;
+      @include screen(custom, max, $max-sm) {
+        font-size: 14px;
+      }
+    }
+  }
+  // recently searched
+  .recenlty-keyword-list {
+    position: relative;
+    [dir="rtl"] & {
+      text-align: right;
+    }
+    @include screen(custom, min, $min-md) {
+      padding-right: 30px;
+      [dir="rtl"] & {
+        padding-right: 0;
+        padding-left: 30px;
+      }
+      // 20200429 START 이상현 - gnb search rtl 화면 오류 수정
+      &:after {
+        content: "";
+        top: 6px;
+        width: 1px;
+        height: 147px;
+        background-color: $line-lightgray;
+        position: absolute;
+        left: 100%;
+        [dir="rtl"] & {
+          left: 0%;
+        }
+      }
+      // 20200429 END
+    }
+    @include screen(custom, min, $min-lg) {
+      padding-right: 50px;
+      [dir="rtl"] & {
+        padding-left: 50px;
+      }
+    }
+    @include screen(custom, max, $max-sm) {
+      border-bottom: 1px solid $line-lightgray;
+      padding-bottom: 19px;
+      margin-top: 22px;
+    }
+    ul {
+      display: none;
+      margin-top: 7px;
+      &.active {
+        display: block;
+      }
+      li {
+        padding-right: math.div(50px, calc($wrap-width / 2)) * 100%;
+        [dir="rtl"] & {
+          padding-right: 0;
+          padding-left: math.div(50px, calc($wrap-width / 2)) * 100%;
+        }
+        @include shorten;
+        @include screen(custom, max, $max-sm) {
+          margin-bottom: 3px;
+        }
+      }
+      a {
+        font-size: 16px;
+        line-height: 32px;
+        color: $color-nightrider;
+        @include font-family($font-semibold);
+      }
+    }
+    .insertview {
+      display: none;
+      font-size: 14px;
+      line-height: 20px;
+      color: $color-dimgray;
+      margin-top: 20px;
+      &.active {
+        display: block;
+      }
+    }
+    .no-history {
+      &:before {
+        content: "";
+        display: inline-block;
+        vertical-align: top;
+        width: 20px;
+        height: 20px;
+        background : {
+          image: url(/lg5-common-gp/images/common/icons/clock-gray.svg);
+          repeat: no-repeat;
+          position: 50% 50%;
+        }
+        margin-right: 7px;
+        [dir="rtl"] & {
+          margin-right: 0;
+          margin-left: 7px;
+        }
+      }
+      @include screen(custom, max, $max-sm) {
+        text-align: center;
+        margin-top: 22px;
+      }
+    }
+    .disagree-cookie {
+      text-align: center;
+      @include screen(custom, max, $max-sm) {
+        margin-top: 17px;
+      }
+      .link-text {
+        color: $color-carmine;
+      }
+    }
+    .btn-clear {
+      display: none;
+      @include screen(custom, min, 360) {
+        position: absolute;
+        right: 0;
+        top: -2px;
+      }
+      @include screen(custom, min, $min-md) {
+        right: 30px;
+      }
+      @include screen(custom, min, $min-lg) {
+        right: 50px;
+      }
+      @include screen(custom, max, 359) {
+        text-align: right;
+        margin-top: -7px;
+      }
+      [dir="rtl"] & {
+        right: auto;
+        @include screen(custom, min, 360) {
+          left: 0;
+        }
+        @include screen(custom, min, $min-md) {
+          left: 30px;
+        }
+        @include screen(custom, min, $min-lg) {
+          left: 50px;
+        }
+        @include screen(custom, max, 359) {
+          text-align: left;
+        }
+      }
+    }
+    ul.active ~ .btn-clear {
+      display: block;
+    }
+  }
+  // most searched
+  .most-searched-board {
+    $tag-height: 28px;
+    $tag-margin-bottom: 12px;
+    [dir="rtl"] & {
+      text-align: right;
+    }
+    @include screen(custom, min, $min-md) {
+      padding-left: 30px + 1px;
+      height: auto;
+      [dir="rtl"] & {
+        padding-left: 0;
+        padding-right: 30px + 1px;
+      }
+    }
+    @include screen(custom, min, $min-lg) {
+      padding-left: 50px + 1px;
+      [dir="rtl"] & {
+        padding-left: 0;
+        padding-right: 50px + 1px;
+      }
+    }
+    @include screen(custom, max, $max-sm) {
+      min-height: 115px;
+      margin-top: 17px;
+    }
+    .stick-words {
+      min-height: ($tag-height + $tag-margin-bottom) * 4;
+      margin-top: 17px;
+      @include screen(custom, max, $max-sm) {
+        margin-top: 13px;
+        min-height: auto;
+        height: auto;
+      }
+    }
+    .word-tag {
+      display: inline-block;
+      vertical-align: top;
+      white-space: nowrap;
+      overflow: hidden;
+      height: $tag-height;
+      background: $bg-white;
+      font-size: 14px;
+      color: $color-nightrider;
+      @include font-family($font-semibold);
+      padding: 2px 9px;
+      border: 1px solid $line-dimgray;
+      border-radius: 3px;
+      margin-bottom: $tag-margin-bottom;
+      // 20200514 START 이상현 - gnb search 추천 검색어 rtl 간격 수정
+      &:not(:last-child) {
+        margin-right: 6px;
+        [dir="rtl"] & {
+          margin-right: 0;
+          margin-left: 6px;
+        }
+      }
+      // 20200514 END
+      &:focus,
+      &:hover {
+        text-decoration: none;
+        border: 1px solid $line-black;
+        color: $color-black;
+      }
+      &.cutoff {
+        display: none;
+      }
+    }
+  }
+  // secondary view
+  .register-searched-box {
+    margin-top: 20px;
+    [dir="rtl"] & {
+      text-align: right;
+    }
+    .stick-btn {
+      margin-top: 17px;
+      .btn {
+        display: inline-block;
+        vertical-align: top;
+        white-space: nowrap;
+        overflow: hidden;
+        background: $bg-white;
+        font-size: 14px;
+        color: $color-carmine;
+        @include font-family($font-semibold);
+        padding: 2px 14px;
+        border: 1px solid $line-carmine;
+        border-radius: 3px;
+        line-height: 32px;
+        text-transform: none;
+        height: 38px;
+        &:focus,
+        &:hover {
+          text-decoration: none;
+        }
+        &:before {
+          content: "";
+          width: 19px;
+          height: 20px;
+          display: inline-block;
+          background: url(/lg5-common-gp/images/common/icons/ico-register-product.svg)
+            no-repeat center center;
+          vertical-align: middle;
+          margin-right: 10px;
+          [dir="rtl"] & {
+            margin-right: 0;
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+  .similar-mapping {
+    display: none;
+    text-align: center;
+    font-size: 16px;
+    line-height: 35px;
+    color: $color-nightrider;
+    @include font-family($font-semibold);
+    margin-top: 18px;
+    @include screen(custom, max, $max-sm) {
+      font-size: 15px;
+      line-height: 1;
+      margin-top: 21px;
+    }
+    a {
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+      font-weight: inherit;
+    }
+    &.active {
+      display: block;
+    }
+    .suggestion {
+      color: $color-carmine;
+    }
+  }
+  .result-area {
+    [dir="rtl"] & {
+      text-align: right;
+    }
+    display: none;
+    // 20200309 START 이상현 - 레이아웃 오류 수정
+    margin-top: 44px;
+    margin-bottom: 70px;
+    @include screen(custom, max, $max-sm) {
+      margin-top: 16px;
+      padding-bottom: 50px;
+      margin-bottom: 30px;
+    }
+    // 20200309 END
+    &.active {
+      display: block;
+      @include screen(custom, min, $min-md) {
+        @include flex;
+      }
+    }
+  }
+  // match product results
+  .match-results {
+    position: relative;
+    padding-right: 27px;
+    [dir="rtl"] & {
+      padding-right: 0;
+      padding-left: 27px;
+    }
+    // 20200309 START 이상현 - 스크롤 바 제거
+    @include screen(custom, min, $min-md) {
+      width: calc(100% - (218px + 42px));
+      &:before {
+        content: "";
+        width: 1px;
+        background-color: $line-gray;
+        position: absolute;
+        top: 6px;
+        bottom: 0;
+        right: 0;
+        [dir="rtl"] & {
+          right: auto;
+          left: 0;
+        }
+      }
+    }
+    @include screen(custom, max, $max-sm) {
+      padding-right: 0;
+      [dir="rtl"] & {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+  }
+  .match-keyword-count {
+    font-size: 16px;
+    line-height: 1;
+    color: $color-gray;
+    @include screen(custom, max, $max-sm) {
+      font-size: 14px;
+    }
+    .count {
+      color: $color-carmine;
+    }
+  }
+  .match-product-list {
+    margin-top: 15px;
+    // 20200309 START 이상현 - 스크롤 바 제거
+    // @include screen(custom, min, $min-md){
+    // 	max-height:292px;
+    // }
+    // @include screen(custom, min, $min-lg){
+    // 	max-height:(120px + 35px) * 3;
+    // }
+    // 20200309 END
+    @include screen(custom, max, $max-sm) {
+      margin-top: 7px;
+      border-bottom: 1px solid $line-gray;
+      padding-bottom: 25px;
+    }
+    ul {
+      @include flex;
+      margin-left: -12px;
+      [dir="rtl"] & {
+        margin-left: 0;
+        margin-right: -12px;
+      }
+      @include screen(custom, max, $max-md) {
+        margin-left: 0;
+        [dir="rtl"] & {
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+    }
+    .product-item {
+      @include flex;
+      padding: 18px 10px 20px 18px;
+      border: 1px solid $line-gray;
+      margin-left: 12px;
+      [dir="rtl"] & {
+        padding: 18px 18px 20px 10px;
+        margin-left: 0;
+        margin-right: 12px;
+        flex-direction: row-reverse;
+      }
+      @include screen(custom, min, $min-lg) {
+        width: calc(50% - 12px);
+        &:nth-child(n + 3) {
+          margin-top: 12px;
+        }
+      }
+      @include screen(custom, max, $max-md) {
+        width: 100%;
+        &:not(:first-child) {
+          margin-top: 12px;
+        }
+        margin-left: 0;
+        [dir="rtl"] & {
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+      @include screen(custom, max, $max-sm) {
+        min-height: 72px;
+        &:not(:first-child) {
+          margin-top: 12px;
+        }
+        &:nth-child(n + 4) {
+          display: none;
+        }
+      }
+    }
+    .product-image {
+      width: 70px;
+      height: 70px;
+      @include screen(custom, max, $max-sm) {
+        width: 65px;
+        height: 65px;
+      }
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        // outline:1px solid lightcoral;
+        // outline-offset: -1px;
+      }
+    }
+    .product-summary {
+      min-width: 156px;
+      width: calc(100% - 70px);
+      margin-top: -3px;
+      padding-left: 20px;
+      [dir="rtl"] & {
+        padding-left: 0;
+        padding-right: 20px;
+      }
+      @include screen(custom, max, $max-sm) {
+        width: calc(100% - 65px);
+        margin-top: -4px;
+      }
+      .product-page-linker {
+        display: block;
+        width: 100%;
+        @include screen(custom, min, $min-lg) {
+          max-width: 156px;
+        }
+      }
+      .model-display-name {
+        font-size: 15px;
+        line-height: 18px;
+        color: $color-nightrider;
+        @include font-family($font-semibold);
+      }
+      .user-friendly-name {
+        font-size: 14px;
+        line-height: 18px;
+        color: $color-dimgray;
+        @include font-family($font-semibold);
+        display: block;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: 18px * 2;
+        margin-top: 4px;
+        // 20200608 START 박지영 - RTL 에서 괄호로 끝나는 경우 깨지는 현상 수정
+        [dir="rtl"] & {
+          display: block;
+        }
+        // 20200608 END
+      }
+      .btn-area {
+        margin-top: 3px;
+        @include screen(custom, min, $min-lg) {
+          margin-top: 5px;
+        }
+        .link-text {
+          [dir="rtl"] & {
+            direction: rtl;
+          }
+          @include screen(custom, min, $min-lg) {
+            display: block;
+          }
+          @include screen(custom, max, $max-sm) {
+            margin-right: 14px;
+            [dir="rtl"] & {
+              margin-right: 0;
+              margin-left: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+  // categorized results
+  .categorized-results {
+    @include screen(custom, min, $min-md) {
+      width: 218px;
+      padding-top: 4px;
+    }
+    @include screen(custom, max, $max-sm) {
+      margin-top: 18px;
+    }
+    // 20200309 START 이상현 - 스크롤 바 제거
+    .head {
+      font-size: 16px;
+      line-height: 1;
+      color: $color-gray;
+      // 20200506 START 이상현 - gnb search rtl 화면 오류 수정
+      @include screen(custom, min, $min-md) {
+        padding-left: 35px;
+        [dir="rtl"] & {
+          padding-left: 0;
+          padding-right: 35px;
+        }
+      }
+      @include screen(custom, max, $max-sm) {
+        font-size: 14px;
+      }
+      // 20200506 end
+    }
+    // 20200309 end
+    ul {
+      margin-top: 10px;
+      @include screen(custom, max, $max-sm) {
+        margin: 12px 0 0;
+      }
+    }
+  }
+  .category-link-name a {
+    display: block;
+    //background-color:$bg-white;
+    padding: 5px 0 6px;
+    font-size: 16px;
+    line-height: 24px;
+    color: $color-nightrider;
+    @include font-family($font-semibold);
+    // 20200309 START 이상현 - 스크롤 바 제거
+    @include screen(custom, min, $min-md) {
+      padding-left: 35px;
+      [dir="rtl"] & {
+        padding-left: 0;
+        padding-right: 35px;
+      }
+    }
+    // 20200309 END 이상현 - 스크롤 바 제거
+    @include screen(custom, max, $max-sm) {
+      padding: 0;
+      font-size: 15px;
+      line-height: 30px;
+    }
+  }
+  .cookie-permit-msg {
+    padding: 0 !important;
+    .info-icon {
+      display: none;
+    }
+    .info-text {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
 }

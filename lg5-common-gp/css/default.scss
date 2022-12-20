@@ -237,13 +237,13 @@ li {
   a {
     display: inline-block;
     vertical-align: top;
-    margin-left: ((16px * 100%)/321px);
+    margin-left: calc((16px * 100%) / 321px);
     &:first-child {
       margin-left: 0;
     }
     [dir="rtl"] & {
       margin-left: 0;
-      margin-right: ((16px * 100%)/321px);
+      margin-right: calc((16px * 100%) / 321px);
       &:first-child {
         margin-right: 0;
       }
@@ -844,7 +844,7 @@ button:focus {
     //top:-#{$message-height + floor($bleet-size/2)};
     bottom: 7px;
     .popover-inner:before {
-      bottom: -#{floor($bleet-size/2)};
+      bottom: -#{floor(calc($bleet-size / 2))};
       transform: rotate(-45deg);
       -o-transform: rotate(-45deg);
       -ms-transform: rotate(-45deg);
@@ -856,7 +856,7 @@ button:focus {
     //bottom:-#{$message-height + floor($bleet-size/2)};
     top: 7px;
     .popover-inner:before {
-      top: -#{floor($bleet-size/2)};
+      top: -#{floor(calc($bleet-size / 2))};
       transform: rotate(135deg);
       -o-transform: rotate(135deg);
       -ms-transform: rotate(135deg);
@@ -873,7 +873,7 @@ button:focus {
     -webkit-transform: translateX(-50%);
     .popover-inner:before {
       left: 50%;
-      margin-left: -#{floor($bleet-size/2)};
+      margin-left: -#{floor(calc($bleet-size / 2))};
     }
   }
   &.left {
