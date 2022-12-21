@@ -1,199 +1,220 @@
+@use "../setting/" as *;
 
 .customer-title-wrap {
-	padding:0 15px;
-	@include screen(custom, max, $max-sm) {
-		padding:0 9px;
-	}
+  padding: 0 15px;
+  @include screen(custom, max, $max-sm) {
+    padding: 0 9px;
+  }
 }
 .customer-title {
-	position:relative;
-	width:100%;
-	max-width:1284px;
-	margin:0 auto;
-	@include font-family($font-regular);
-	text-align:center;
-	background-color:transparent !important;
-	&.line {
-		border-bottom:2px solid $line-darkgray;
-		.txt-area {
-			padding: 13px 0 34px;
-			@include screen(custom, max, $max-sm) {
-				padding-bottom:19px;
-			}
-		}
-		.desc {
-			padding-top:10px !important;
-			@include screen(custom, max, $max-sm) {
-				padding-top:7px !important;
-			}
-		}
-	}
-	@include screen(custom, max, $max-sm) {
-		&.button {
-			.txt-area {padding-top:70px;}
-		}
-	}
-	.txt-area {
-		padding:13px 0 47px;
-		.txt-wrap {
-			.title {
-				font-size:48px;
-				line-height:56px;
-				margin:0;
-				max-width:860px;margin:0 auto;// for accessibility help
-				padding:0;
-				@include font-family($font-semibold);
-				color:$color-black;
-			}
-			.desc {
-				max-width:800px;margin:0 auto;// for accessibility help
-				padding-top:15px;
-				font-size:18px;
-				line-height:24px;
-				color:$color-nightrider;
-				.count {
-					color:$color-carmine;
-					@include font-family($font-bold);
-				}
-				&:empty {padding:0;}
-				strong {
-					@include font-family($font-bold);
-				}
-				// 20200527 START 박지영 - 링크 스타일 추가
-				a.link {
-					color:$color-carmine;
-					text-decoration:underline;
-				}
-				// 20200527 END
-			}
-		}
-		@include screen(custom, max, $max-lg) {
-			.txt-wrap {
-				.title {
-					font-size:44px;
-					line-height:52px;
-				}
-			}
-		}
-		@include screen(custom, max, $max-md) {
-			.txt-wrap {
-				.title {
-					font-size:40px;
-					line-height:48px;
-				}
-			}
-		}
-		@include screen(custom, max, $max-sm) {
-			padding:33px 0 40px;
-			.txt-wrap {
-				.title {
-					font-size:32px;
-					line-height:36px;
-				}
-				.desc {
-					padding-top:7px;
-					font-size:16px;
-					line-height:24px;
-				}
-			}
-		}
-		@include screen(custom, max, 320) {
-			.txt-wrap {
-				.title {
-					font-size:26px;
-					line-height:30px;
-				}
-			}
-		}
-	}
+  position: relative;
+  width: 100%;
+  max-width: 1284px;
+  margin: 0 auto;
+  @include font-family($font-regular);
+  text-align: center;
+  background-color: transparent !important;
+  &.line {
+    border-bottom: 2px solid $line-darkgray;
+    .txt-area {
+      padding: 13px 0 34px;
+      @include screen(custom, max, $max-sm) {
+        padding-bottom: 19px;
+      }
+    }
+    .desc {
+      padding-top: 10px !important;
+      @include screen(custom, max, $max-sm) {
+        padding-top: 7px !important;
+      }
+    }
+  }
+  @include screen(custom, max, $max-sm) {
+    &.button {
+      .txt-area {
+        padding-top: 70px;
+      }
+    }
+  }
+  .txt-area {
+    padding: 13px 0 47px;
+    .txt-wrap {
+      .title {
+        font-size: 48px;
+        line-height: 56px;
+        margin: 0;
+        max-width: 860px;
+        margin: 0 auto; // for accessibility help
+        padding: 0;
+        @include font-family($font-semibold);
+        color: $color-black;
+      }
+      .desc {
+        max-width: 800px;
+        margin: 0 auto; // for accessibility help
+        padding-top: 15px;
+        font-size: 18px;
+        line-height: 24px;
+        color: $color-nightrider;
+        .count {
+          color: $color-carmine;
+          @include font-family($font-bold);
+        }
+        &:empty {
+          padding: 0;
+        }
+        strong {
+          @include font-family($font-bold);
+        }
+        // 20200527 START 박지영 - 링크 스타일 추가
+        a.link {
+          color: $color-carmine;
+          text-decoration: underline;
+        }
+        // 20200527 END
+      }
+    }
+    @include screen(custom, max, $max-lg) {
+      .txt-wrap {
+        .title {
+          font-size: 44px;
+          line-height: 52px;
+        }
+      }
+    }
+    @include screen(custom, max, $max-md) {
+      .txt-wrap {
+        .title {
+          font-size: 40px;
+          line-height: 48px;
+        }
+      }
+    }
+    @include screen(custom, max, $max-sm) {
+      padding: 33px 0 40px;
+      .txt-wrap {
+        .title {
+          font-size: 32px;
+          line-height: 36px;
+        }
+        .desc {
+          padding-top: 7px;
+          font-size: 16px;
+          line-height: 24px;
+        }
+      }
+    }
+    @include screen(custom, max, 320) {
+      .txt-wrap {
+        .title {
+          font-size: 26px;
+          line-height: 30px;
+        }
+      }
+    }
+  }
 }
 .customer-title,
 .visible-sticky {
-	.previous {
-		position:absolute;left:0;top:16px;
-		[dir="rtl"] & {
-			left: auto;
-			right: 0;
-		}
-		@include screen(custom, max, $max-sm) {
-			top:18px;
-		}
-		a {
-			display:block;
-			height:40px;
-			padding:10px 0 0 60px;
-			color:$color-dimgray;
-			@include font-family($font-bold);
-			font-size:16px;
-			line-height:20px;
-			text-decoration:none;
-			&:before {
-				@include pseudo();
-				left:0;top:0;
-				width:40px;height:40px;
-				background:#f5f5f5;
-			}
-			&:after {
-				@include pseudo();
-				left:10px;top:10px;
-				width:20px;height:20px;
-				background: url('/lg5-common-gp/images/common/icons/arrow-left-nightrider.svg') no-repeat 50% 50%;
-			}
-			[dir="rtl"] & {
-				padding:10px 60px 0 0;
-				&:before {
-					left:auto;
-					right:0;
-				}
-				&:after {
-					left:auto;
-					right:10px;
-					transform: rotateZ(180deg);
-				}
-			}
-		}
-	}
-	.print {
-		position:absolute;right:0;top:89px;
-		a {
-			position:relative;
-			display:inline-block;
-			padding:0 0 0 30px;
-			color:$color-dimgray;
-			@include font-family($font-bold);
-			font-size:14px;
-			line-height:20px;
-			text-decoration:none;
-			text-transform:uppercase;
-			&:before {
-				@include pseudo();
-				left:0;top:0;
-				width:20px;height:20px;
-				background: url('/lg5-common-gp/images/common/icons/print-dimgray.svg') no-repeat 50% 50%;
-			}
-			&.page-email {
-				&:before {
-					background:url('/lg5-common-gp/images/common/icons/email-radius.svg') no-repeat 50% 50%;
-				}
-			}
-		}
-		a+a {
-			margin-left:22px;
-		}
-		[dir="rtl"] & {
-			right: auto;
-			left: 0;
-			a{
-				padding: 0 30px 0 0;
-				&:before {
-					left: auto;
-					right:0;top:0;
-				}
-			}
-			a+a {
-				margin-left: 0;
-				margin-right:22px;
-			}
-		}
-	}
+  .previous {
+    position: absolute;
+    left: 0;
+    top: 16px;
+    [dir="rtl"] & {
+      left: auto;
+      right: 0;
+    }
+    @include screen(custom, max, $max-sm) {
+      top: 18px;
+    }
+    a {
+      display: block;
+      height: 40px;
+      padding: 10px 0 0 60px;
+      color: $color-dimgray;
+      @include font-family($font-bold);
+      font-size: 16px;
+      line-height: 20px;
+      text-decoration: none;
+      &:before {
+        @include pseudo();
+        left: 0;
+        top: 0;
+        width: 40px;
+        height: 40px;
+        background: #f5f5f5;
+      }
+      &:after {
+        @include pseudo();
+        left: 10px;
+        top: 10px;
+        width: 20px;
+        height: 20px;
+        background: url("/lg5-common-gp/images/common/icons/arrow-left-nightrider.svg")
+          no-repeat 50% 50%;
+      }
+      [dir="rtl"] & {
+        padding: 10px 60px 0 0;
+        &:before {
+          left: auto;
+          right: 0;
+        }
+        &:after {
+          left: auto;
+          right: 10px;
+          transform: rotateZ(180deg);
+        }
+      }
+    }
+  }
+  .print {
+    position: absolute;
+    right: 0;
+    top: 89px;
+    a {
+      position: relative;
+      display: inline-block;
+      padding: 0 0 0 30px;
+      color: $color-dimgray;
+      @include font-family($font-bold);
+      font-size: 14px;
+      line-height: 20px;
+      text-decoration: none;
+      text-transform: uppercase;
+      &:before {
+        @include pseudo();
+        left: 0;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        background: url("/lg5-common-gp/images/common/icons/print-dimgray.svg")
+          no-repeat 50% 50%;
+      }
+      &.page-email {
+        &:before {
+          background: url("/lg5-common-gp/images/common/icons/email-radius.svg")
+            no-repeat 50% 50%;
+        }
+      }
+    }
+    a + a {
+      margin-left: 22px;
+    }
+    [dir="rtl"] & {
+      right: auto;
+      left: 0;
+      a {
+        padding: 0 30px 0 0;
+        &:before {
+          left: auto;
+          right: 0;
+          top: 0;
+        }
+      }
+      a + a {
+        margin-left: 0;
+        margin-right: 22px;
+      }
+    }
+  }
 }

@@ -3,204 +3,221 @@
  *
  * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
  */
-
- .datepicker {
-    margin-top: -1px;
-    padding: 0 21px 13px;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    border:1px solid #6b6b6b;
-    direction: ltr;
-    @include screen(custom, max, $max-sm) {
-      width:calc(100% - 48px);
-      left:24px !important;
-      right:24px !important;
-      margin:0 !important;
+@use "../setting/" as *;
+.datepicker {
+  margin-top: -1px;
+  padding: 0 21px 13px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border: 1px solid #6b6b6b;
+  direction: ltr;
+  @include screen(custom, max, $max-sm) {
+    width: calc(100% - 48px);
+    left: 24px !important;
+    right: 24px !important;
+    margin: 0 !important;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #eeeeee;
+  }
+  &-inline {
+    width: 220px;
+  }
+  &-rtl {
+    direction: rtl;
+    &.dropdown-menu {
+      left: auto;
     }
-    &:after {
-        content: '';
-        position: absolute;
-        top: 56px;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: #eeeeee;
+    table tr td span {
+      float: right;
     }
-    &-inline {
-        width: 220px;
+  }
+  &-dropdown {
+    top: 0;
+    left: 0;
+  }
+  // 200319 START 전호근 - BR datepicker 수정
+  .new,
+  .disabled {
+    color: #999;
+  }
+  // 200319 END 전호근 - BR datepicker 수정
+  table {
+    width: 100%;
+    margin: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    th,
+    td {
+      text-align: center;
+      width: 20px;
+      height: 20px;
+      border: none;
     }
-    &-rtl {
-        direction: rtl;
-        &.dropdown-menu {
-            left: auto;
-        }
-        table tr td span {
-            float: right;
-        }
-    }
-    &-dropdown {
-        top: 0;
-        left: 0;
-    }
-    // 200319 START 전호근 - BR datepicker 수정
-    .new, .disabled {
-        color: #999;
-    }
-    // 200319 END 전호근 - BR datepicker 수정
-    table {
-        width:100%;
-        margin: 0;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        th, td {
-            text-align: center;
-            width: 20px;
-            height: 20px;
-            border: none;
-        }
-        th {
-            &.datepicker-switch {
-                width: 186px;
-                height:56px;
-                @include font-family($font-semibold);
-                font-size:20px;
-                color:#000;
-                cursor: pointer;
-            }
-            &.dow:first-child {
-                color:#a50034;
-            }
-        }
-        td {
-            padding-top:13px;
-            &.day {
-                width:14%;
-                padding:0;
-                cursor:pointer;
-            }
-            &.highlighted {
-                color:#a50034;
-            }
-            // 200423 START 전호근 - BR datepicker 수정
-            &.old, &.disabled.highlighted, &.old.highlighted, &.new.highlighted {
-                color:#999;
-            }
-            // 200423 END 전호근 - BR datepicker 수정
-            .year, .month {
-                display: block;
-                float: left;
-                margin: 6px 7px;
-                cursor: pointer;
-                @include screen(custom, max, $max-sm) {
-                    width:25%;
-                    margin:0;
-                }
-                & span {
-                    display:block;
-                    width: 50px;
-                    height: 50px;
-                    line-height: 50px;
-                    @include screen(custom, max, $max-sm) {
-                        display:block;
-                        margin:0 auto;
-                    }
-                }
-            }
-        }
-        tr td .year.active span,
-        tr td .year.active:hover span,
-        tr td .month.active span,
-        tr td .month.active:hover span,
-        tr td.day.active div,
-        tr td.day.active:hover div {
-            color: #fff;
-            border-radius:50%;
-            background-color: #a50034;
-        }
-    }
-    // 200423 START 전호근 - BR datepicker 수정
-    .prev, .next, .prev-year, .next-year {
-        width:36px;
-        font-size:0;
+    th {
+      &.datepicker-switch {
+        width: 186px;
+        height: 56px;
+        @include font-family($font-semibold);
+        font-size: 20px;
+        color: #000;
         cursor: pointer;
-        &.disabled {
-            visibility: hidden;
-        }
+      }
+      &.dow:first-child {
+        color: #a50034;
+      }
     }
-    // 200423 END 전호근 - BR datepicker 수정
-    .prev {
-        background:url(/lg5-common-gp/images/common/icons/arrow-left.svg) no-repeat 50% 50%;
-        &:hover {
-            background:url(/lg5-common-gp/images/common/icons/arrow-left-black.svg) no-repeat 50% 50%;
+    td {
+      padding-top: 13px;
+      &.day {
+        width: 14%;
+        padding: 0;
+        cursor: pointer;
+      }
+      &.highlighted {
+        color: #a50034;
+      }
+      // 200423 START 전호근 - BR datepicker 수정
+      &.old,
+      &.disabled.highlighted,
+      &.old.highlighted,
+      &.new.highlighted {
+        color: #999;
+      }
+      // 200423 END 전호근 - BR datepicker 수정
+      .year,
+      .month {
+        display: block;
+        float: left;
+        margin: 6px 7px;
+        cursor: pointer;
+        @include screen(custom, max, $max-sm) {
+          width: 25%;
+          margin: 0;
         }
-        &-year {
-            background:url(/lg5-common-gp/images/common/icons/double-left-arrow-s.svg) no-repeat 50% 50%;
-            &:hover {
-                background:url(/lg5-common-gp/images/common/icons/double-left-arrow-black-s.svg) no-repeat 50% 50%;
-            }
+        & span {
+          display: block;
+          width: 50px;
+          height: 50px;
+          line-height: 50px;
+          @include screen(custom, max, $max-sm) {
+            display: block;
+            margin: 0 auto;
+          }
         }
+      }
     }
-    .next {
-        background:url(/lg5-common-gp/images/common/icons/arrow-right.svg) no-repeat 50% 50%;
-        &:hover {
-            background:url(/lg5-common-gp/images/common/icons/arrow-right-black.svg) no-repeat 50% 50%;
-        }
-        &-year {
-            background:url(/lg5-common-gp/images/common/icons/double-right-arrow-s.svg) no-repeat 50% 50%;
-            &:hover {
-                background:url(/lg5-common-gp/images/common/icons/double-right-arrow-black-s.svg) no-repeat 50% 50%;
-            }
-        }
+    tr td .year.active span,
+    tr td .year.active:hover span,
+    tr td .month.active span,
+    tr td .month.active:hover span,
+    tr td.day.active div,
+    tr td.day.active:hover div {
+      color: #fff;
+      border-radius: 50%;
+      background-color: #a50034;
     }
-    .controller {
-        height:56px;
-        font-size:0;
-        text-align:left;
-        & ~ .controller {
-        text-align:right;
-        }
-        button {
-            display:inline-block;
-            width:20px;
-            height:100%;
-            border:0 none;
-            cursor:pointer;
-        }
+  }
+  // 200423 START 전호근 - BR datepicker 수정
+  .prev,
+  .next,
+  .prev-year,
+  .next-year {
+    width: 36px;
+    font-size: 0;
+    cursor: pointer;
+    &.disabled {
+      visibility: hidden;
     }
-    &-years-days {
-        .datepicker-switch {
-            width:144px;
-        }
-        thead tr:last-child th {
-            padding-top:14px;
-            @include font-family($font-semibold);
-            font-size:14px;
-            line-height:24px;
-        }
-        tbody {
-            td.day {
-                padding:2px;
-                div {
-                    width:24px;
-                    height:24px;
-                    margin:0 auto;
-                    @include font-family($font-semibold);
-                    font-size:14px;
-                    line-height:24px;
-                }
-                &.active div {
-                    width:24px;
-                    height:24px;
-                    @include font-family($font-bold);
-                    font-size:14px;
-                    line-height:24px;
-                }
-            }
-        }
+  }
+  // 200423 END 전호근 - BR datepicker 수정
+  .prev {
+    background: url(/lg5-common-gp/images/common/icons/arrow-left.svg) no-repeat
+      50% 50%;
+    &:hover {
+      background: url(/lg5-common-gp/images/common/icons/arrow-left-black.svg)
+        no-repeat 50% 50%;
     }
+    &-year {
+      background: url(/lg5-common-gp/images/common/icons/double-left-arrow-s.svg)
+        no-repeat 50% 50%;
+      &:hover {
+        background: url(/lg5-common-gp/images/common/icons/double-left-arrow-black-s.svg)
+          no-repeat 50% 50%;
+      }
+    }
+  }
+  .next {
+    background: url(/lg5-common-gp/images/common/icons/arrow-right.svg)
+      no-repeat 50% 50%;
+    &:hover {
+      background: url(/lg5-common-gp/images/common/icons/arrow-right-black.svg)
+        no-repeat 50% 50%;
+    }
+    &-year {
+      background: url(/lg5-common-gp/images/common/icons/double-right-arrow-s.svg)
+        no-repeat 50% 50%;
+      &:hover {
+        background: url(/lg5-common-gp/images/common/icons/double-right-arrow-black-s.svg)
+          no-repeat 50% 50%;
+      }
+    }
+  }
+  .controller {
+    height: 56px;
+    font-size: 0;
+    text-align: left;
+    & ~ .controller {
+      text-align: right;
+    }
+    button {
+      display: inline-block;
+      width: 20px;
+      height: 100%;
+      border: 0 none;
+      cursor: pointer;
+    }
+  }
+  &-years-days {
+    .datepicker-switch {
+      width: 144px;
+    }
+    thead tr:last-child th {
+      padding-top: 14px;
+      @include font-family($font-semibold);
+      font-size: 14px;
+      line-height: 24px;
+    }
+    tbody {
+      td.day {
+        padding: 2px;
+        div {
+          width: 24px;
+          height: 24px;
+          margin: 0 auto;
+          @include font-family($font-semibold);
+          font-size: 14px;
+          line-height: 24px;
+        }
+        &.active div {
+          width: 24px;
+          height: 24px;
+          @include font-family($font-bold);
+          font-size: 14px;
+          line-height: 24px;
+        }
+      }
+    }
+  }
 }

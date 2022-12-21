@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 @use "sass:math";
-@import "./setting/variables";
+@use "./setting" as *;
 
 .GPC0022 {
   /* LGEUS-11784 : 20190807 add */

@@ -1,4 +1,6 @@
+@use "../setting/" as *;
 @use "sass:math";
+
 // fit ie lower case. use [.modal] codes by default.scss
 .modal-background {
   display: none;

@@ -1,19 +1,35 @@
 @charset 'UTF-8';
+@use "./common/bootstrap-reset"; // bootstrap reset
+@use "./setting" as *; // This mean all child and child-child component will get access to variables
+@use "./fonts";
+@use "./common/navigation";
+@use "./common/footer";
+@use "./modal/browse-not-supported";
+@use "./components/floating-menu"; // floating menu
+@use "./common/e-privacy"; // e privacy
+@use "./common/carousel-default"; // mobile carousel on product thumbnail and .slick-arrow default css ... etc
+@use "./common/energy-label"; //LGEGMC-926
+@use "./common/banner"; //LGEBR-314
+@use "./modal/with-pay"; // PJTOBSEMI-4-num2 import 위치 변경
+@use "./modal/choose-your-country"; //LGEGMC-1473
+@use "./modal/header-notice-popup"; // LGEITF-342
+@use "./common/buttons"; // buttons
 
-@import "./setting/variables";
-@import "./setting/sizes";
-@import "./fonts";
-@import "./common/navigation";
-@import "./common/footer";
-@import "./modal/browse-not-supported";
-@import "./components/floating-menu"; // floating menu
-@import "./common/e-privacy"; // e privacy
-@import "./common/carousel-default"; // mobile carousel on product thumbnail and .slick-arrow default css ... etc
-@import "./common/energy-label"; //LGEGMC-926
-@import "./common/banner"; //LGEBR-314
-@import "./modal/with-pay"; // PJTOBSEMI-4-num2 import 위치 변경
-@import "./modal/choose-your-country"; //LGEGMC-1473
-@import "./modal/header-notice-popup"; // LGEITF-342
+@use "./common/form-default"; // form default
+@use "./common/pagination"; // pagination
+@use "./common/tab-default"; // tab-default
+@use "./common/modal-common"; // modal common
+@use "./common/tooltip"; // tooltip
+@use "./common/table-list"; // table
+@use "./common/date-picker"; // date picker
+@use "./common/customer-title"; // title area for non-component page
+@use "./common/loading-circle"; // loading circle for ajax
+@use "./common/bv-review-star-for-pdp"; // bv review for pdp
+@use "./common/in-house-review-star"; // in house review for list
+@use "./common/model-switcher"; // model-switcher
+@use "./common/sns-share"; // sns share layer
+@use "./common/datepicker"; // datepicker
+@use "./common/mcustom-scrollbar"; // mcustom scrollbar
 
 // 20200323 START IR 폰트 반영
 // font-family (국가별 폰트가 반영되면, head 태그 내, font preload url도 변경되어야 합니다.)
@@ -97,8 +113,6 @@ body {
     word-break: break-all;
   }
 }
-
-@import "./common/bootstrap-reset"; // bootstrap reset
 
 // for debug (gulp only)
 // common.js : if(location.port == '3000') $('body').addClass('show-grid');
@@ -224,8 +238,6 @@ li {
   @extend %listreset;
 }
 
-@import "./common/buttons"; // buttons
-
 .wishlist-compare {
   position: relative;
   margin-top: 17px;
@@ -346,22 +358,6 @@ li {
     z-index: 2;
   }
 }
-
-@import "./common/form-default"; // form default
-@import "./common/pagination"; // pagination
-@import "./common/tab-default"; // tab-default
-@import "./common/modal-common"; // modal common
-@import "./common/tooltip"; // tooltip
-@import "./common/table-list"; // table
-@import "./common/date-picker"; // date picker
-@import "./common/customer-title"; // title area for non-component page
-@import "./common/loading-circle"; // loading circle for ajax
-@import "./common/bv-review-star-for-pdp"; // bv review for pdp
-@import "./common/in-house-review-star"; // in house review for list
-@import "./common/model-switcher"; // model-switcher
-@import "./common/sns-share"; // sns share layer
-@import "./common/datepicker"; // datepicker
-@import "./common/mcustom-scrollbar"; // mcustom scrollbar
 
 // Notice Text
 .notice {

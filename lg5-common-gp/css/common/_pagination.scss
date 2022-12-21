@@ -1,151 +1,165 @@
+@use "../setting/" as *;
 
 // Pagination
 .pagination {
-	// variable
-	$btn-size:32px;
-	$btn-margin:3px;
+  // variable
+  $btn-size: 32px;
+  $btn-margin: 3px;
 
-	display:block;
-	overflow:hidden;
-	position:relative;
-	margin:30px auto 0;
-	padding:0 ($btn-size + $btn-margin);
-	// 20200311 START 김우람 || width값 수정
-	max-width:260px;	
-	// 20200311 END 김우람 || width값 수정
-	height:$btn-size;
-	text-align:center;
-	a {display:inline-block;text-decoration:none;}
-	a,
-	button {border:0;padding:0;}
-	.prev,
-	.next,
-	.first,
-	.end {
-		position:absolute;
-		bottom:0;
-		width:$btn-size;
-		height:$btn-size;
-		overflow:hidden;
-		white-space:nowrap;
-		color:transparent;
-		cursor: pointer;
-		border: 1px solid transparent;
-		&:disabled {
-			display: none;
-		}
-		[dir=rtl] & {
-			transform:rotateY(180deg);
-			-moz-transform:rotateY(180deg);
-			-ms-transform:rotateY(180deg);
-			-o-transform:rotateY(180deg);
-		}
-	}
-	.prev {
-		left:0;
-		background:url('/lg5-common-gp/images/common/icons/page-left.svg') no-repeat 9px 10px;
-		[dir=rtl] & {
-			left:auto;
-			right:0;
-		}
-	}
-	.next {
-		right:0;
-		background:url('/lg5-common-gp/images/common/icons/page-right.svg') no-repeat 10px 10px;
-		[dir=rtl] & {
-			right:auto;
-			left:0;
-		}
-	}
-	.first {
-		left:-24px;
-		width: 20px;
-		background:url('/lg5-common-gp/images/common/icons/double-left-arrow-s.svg') no-repeat 3px 10px;
-		background-size: 12px 12px;
-		[dir=rtl] & {
-			left:auto;
-			right:-24px;
-		}
-	}
-	.end {
-		right:-24px;
-		width: 20px;
-		background:url('/lg5-common-gp/images/common/icons/double-right-arrow-s.svg') no-repeat 3px 10px;
-		background-size: 12px 12px;
-		[dir=rtl] & {
-			right:auto;
-			left:-24px;
-		}
-	}
-	ul {
-		margin:0;
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-flex-direction: row;
-		-ms-flex-direction: row;
-		flex-direction: row;
-		-webkit-box-lines: single;
-		-ms-flex-wrap: wrap;
-		flex-wrap:wrap;
-		justify-content:center;
-	}
-	li {
-		margin:0 $btn-margin;
-		a,
-		button {
-			border:1px solid $line-input;
-			width:$btn-size;
-			height:$btn-size;
-			font-size:14px;
-			line-height:24px;
-			color:#4e4e4e;
-			background:$bg-white;
-			cursor: pointer;
-			&.active {
-				color:$color-white;
-				background-color:$bg-dimgray;
-				border-color:$line-dimgray;
-			}
-		}
-		// 20200514 START 이상현 - 페이지네이션 목록이 1개일 때 화면 노출 방지. 
-		&:only-child {display:none;}
-		// 20200514 END
-	}
-	li a {
-		line-height:$btn-size;
-	}
+  display: block;
+  overflow: hidden;
+  position: relative;
+  margin: 30px auto 0;
+  padding: 0 ($btn-size + $btn-margin);
+  // 20200311 START 김우람 || width값 수정
+  max-width: 260px;
+  // 20200311 END 김우람 || width값 수정
+  height: $btn-size;
+  text-align: center;
+  a {
+    display: inline-block;
+    text-decoration: none;
+  }
+  a,
+  button {
+    border: 0;
+    padding: 0;
+  }
+  .prev,
+  .next,
+  .first,
+  .end {
+    position: absolute;
+    bottom: 0;
+    width: $btn-size;
+    height: $btn-size;
+    overflow: hidden;
+    white-space: nowrap;
+    color: transparent;
+    cursor: pointer;
+    border: 1px solid transparent;
+    &:disabled {
+      display: none;
+    }
+    [dir="rtl"] & {
+      transform: rotateY(180deg);
+      -moz-transform: rotateY(180deg);
+      -ms-transform: rotateY(180deg);
+      -o-transform: rotateY(180deg);
+    }
+  }
+  .prev {
+    left: 0;
+    background: url("/lg5-common-gp/images/common/icons/page-left.svg")
+      no-repeat 9px 10px;
+    [dir="rtl"] & {
+      left: auto;
+      right: 0;
+    }
+  }
+  .next {
+    right: 0;
+    background: url("/lg5-common-gp/images/common/icons/page-right.svg")
+      no-repeat 10px 10px;
+    [dir="rtl"] & {
+      right: auto;
+      left: 0;
+    }
+  }
+  .first {
+    left: -24px;
+    width: 20px;
+    background: url("/lg5-common-gp/images/common/icons/double-left-arrow-s.svg")
+      no-repeat 3px 10px;
+    background-size: 12px 12px;
+    [dir="rtl"] & {
+      left: auto;
+      right: -24px;
+    }
+  }
+  .end {
+    right: -24px;
+    width: 20px;
+    background: url("/lg5-common-gp/images/common/icons/double-right-arrow-s.svg")
+      no-repeat 3px 10px;
+    background-size: 12px 12px;
+    [dir="rtl"] & {
+      right: auto;
+      left: -24px;
+    }
+  }
+  ul {
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-lines: single;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  li {
+    margin: 0 $btn-margin;
+    a,
+    button {
+      border: 1px solid $line-input;
+      width: $btn-size;
+      height: $btn-size;
+      font-size: 14px;
+      line-height: 24px;
+      color: #4e4e4e;
+      background: $bg-white;
+      cursor: pointer;
+      &.active {
+        color: $color-white;
+        background-color: $bg-dimgray;
+        border-color: $line-dimgray;
+      }
+    }
+    // 20200514 START 이상현 - 페이지네이션 목록이 1개일 때 화면 노출 방지.
+    &:only-child {
+      display: none;
+    }
+    // 20200514 END
+  }
+  li a {
+    line-height: $btn-size;
+  }
 }
 .expander {
-	background-color:$color-white;
-	button {
-		border: none;
-		border: 1px solid $line-dimgray;
-		display: block;
-		width: 100%;
-		padding: 7px 0;
-		@include font-family($font-bold);
-		color: $color-nightrider;
-		&:disabled {
-			display: none;
-		}
-		// 20200511 START 박지영 - load more 버튼 높이 수정
-		@include screen(custom, max, $max-sm) {
-			&:not(.link-text) {
-				padding:11px 24px !important;
-			}
-		}
-		// 20200511 END
-	}
-	@include screen(custom, min, $min-md) {
-		display:none !important;
-	}
+  background-color: $color-white;
+  button {
+    border: none;
+    border: 1px solid $line-dimgray;
+    display: block;
+    width: 100%;
+    padding: 7px 0;
+    @include font-family($font-bold);
+    color: $color-nightrider;
+    &:disabled {
+      display: none;
+    }
+    // 20200511 START 박지영 - load more 버튼 높이 수정
+    @include screen(custom, max, $max-sm) {
+      &:not(.link-text) {
+        padding: 11px 24px !important;
+      }
+    }
+    // 20200511 END
+  }
+  @include screen(custom, min, $min-md) {
+    display: none !important;
+  }
 }
 
-@media screen and (-ms-high-contrast: active ) {
-	.pagination li a.active, .pagination li button.active {
-		border-width: 2px;
-	}
+@media screen and (-ms-high-contrast: active) {
+  .pagination li a.active,
+  .pagination li button.active {
+    border-width: 2px;
+  }
 }

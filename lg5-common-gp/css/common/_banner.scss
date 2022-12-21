@@ -1,6 +1,6 @@
 @charset 'UTF-8';
-
-.banner-windows{
+@use "../setting/" as *;
+.banner-windows {
   max-width: 1600px;
   padding: 25px 0;
   margin: 0 auto;
@@ -10,7 +10,7 @@
   @include screen(custom, max, $max-sm) {
     padding: 15px 9px;
   }
-  .inner{
+  .inner {
     display: flex;
     justify-content: flex-end;
   }

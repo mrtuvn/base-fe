@@ -1,155 +1,167 @@
+@use "../setting/" as *;
 
 .datepicker-wrap {
-	position:relative;
-	.datepicker-input {
-		width:100%;
-		padding-right:43px;
-		[dir=rtl] & {padding-right:10px;padding-left:43px;}
-	}
-	.calendar-view {
-		position:absolute;
-		right:1px;
-		top:1px;
-		width:42px;
-		height:42px;
-		text-indent:-9999px;
-		border:none;
-		background:url(/lg5-common-gp/images/common/icons/calendar.svg) no-repeat;
-		[dir=rtl] & {right:auto;left:1px;}
-		&:disabled {
-			opacity: 0.4;
-		}
-	}
+  position: relative;
+  .datepicker-input {
+    width: 100%;
+    padding-right: 43px;
+    [dir="rtl"] & {
+      padding-right: 10px;
+      padding-left: 43px;
+    }
+  }
+  .calendar-view {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    width: 42px;
+    height: 42px;
+    text-indent: -9999px;
+    border: none;
+    background: url(/lg5-common-gp/images/common/icons/calendar.svg) no-repeat;
+    [dir="rtl"] & {
+      right: auto;
+      left: 1px;
+    }
+    &:disabled {
+      opacity: 0.4;
+    }
+  }
 }
 
 .ui-datepicker {
-	border: 1px solid $line-dimgray;
-	width: 318px;
-	margin-left: -1px;
-	position: absolute;
-	left: -9999em;
-	display: none;
-	@include screen(custom, max, $max-sm) {
-		width: 100%;
-		left: 0 !important;
-		right: 0 !important;
-		margin-left: 0 !important;
-	}
-	.ui-datepicker-header {
-		border-bottom: 1px solid $line-lightgray;
-		position: relative;
-		padding: 17px 0;
-		background: $bg-white;
-		.ui-datepicker-title {
-			text-align: center;
-			padding: 0 35px;
-			@include font-family($font-semibold);
-			font-size: 20px;
-			line-height: 1;
-			color: $color-black;
-		}
-		// 20200406 START 이상현 - rtl 국가에서 date picker 모듈 접근성 위한 텍스트 노출 오류 수정
-		.ui-datepicker-prev,
-		.ui-datepicker-next {
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-			width: 20px;
-			height: 20px;
-			cursor: pointer;
-			// text-indent: -9999em;
-			// [dir=rtl] & {
-			// 	text-indent:9999em;
-			// }
-			.ui-icon {
-				display:inline-block;
-				width:1px;
-				height:1px;
-				clip:rect(0, 0, 1px 1px);
-				white-space:nowrap;
-				overflow:hidden;
-				padding:0;
-				border:0;
-			}
-		}
-		// 20200406 END
-		// 20200408 START 박지영 - date picker에 폰트, 위치 변경
-		.ui-datepicker-prev {
-			left: 30px;
-			background: url('/lg5-common-gp/images/common/icons/arrow-left.svg') no-repeat 50% 50%;
-			[dir=rtl] & {
-				left:auto;
-				right: 30px;
-				background: url('/lg5-common-gp/images/common/icons/arrow-right.svg') no-repeat 50% 50%;
-			}
-		}
-		.ui-datepicker-next {
-			right: 30px;
-			background: url('/lg5-common-gp/images/common/icons/arrow-right.svg') no-repeat 50% 50%;
-			[dir=rtl] & {
-				right:auto;
-				left: 30px;
-				background: url('/lg5-common-gp/images/common/icons/arrow-left.svg') no-repeat 50% 50%;
-			}
-		}
-		.ui-datepicker-year {
-			font-weight: inherit;
-		}
-		// 20200408 END
-	}
-	.ui-datepicker-calendar {
-		width: 100%;
-		display: block;
-		padding: 8px;
-		background: $bg-white;
-		thead,
-		tbody {
-			display: table;
-			table-layout: fixed;
-			width: 100%;
-		}
+  border: 1px solid $line-dimgray;
+  width: 318px;
+  margin-left: -1px;
+  position: absolute;
+  left: -9999em;
+  display: none;
+  @include screen(custom, max, $max-sm) {
+    width: 100%;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: 0 !important;
+  }
+  .ui-datepicker-header {
+    border-bottom: 1px solid $line-lightgray;
+    position: relative;
+    padding: 17px 0;
+    background: $bg-white;
+    .ui-datepicker-title {
+      text-align: center;
+      padding: 0 35px;
+      @include font-family($font-semibold);
+      font-size: 20px;
+      line-height: 1;
+      color: $color-black;
+    }
+    // 20200406 START 이상현 - rtl 국가에서 date picker 모듈 접근성 위한 텍스트 노출 오류 수정
+    .ui-datepicker-prev,
+    .ui-datepicker-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      // text-indent: -9999em;
+      // [dir=rtl] & {
+      // 	text-indent:9999em;
+      // }
+      .ui-icon {
+        display: inline-block;
+        width: 1px;
+        height: 1px;
+        clip: rect(0, 0, 1px 1px);
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 0;
+        border: 0;
+      }
+    }
+    // 20200406 END
+    // 20200408 START 박지영 - date picker에 폰트, 위치 변경
+    .ui-datepicker-prev {
+      left: 30px;
+      background: url("/lg5-common-gp/images/common/icons/arrow-left.svg")
+        no-repeat 50% 50%;
+      [dir="rtl"] & {
+        left: auto;
+        right: 30px;
+        background: url("/lg5-common-gp/images/common/icons/arrow-right.svg")
+          no-repeat 50% 50%;
+      }
+    }
+    .ui-datepicker-next {
+      right: 30px;
+      background: url("/lg5-common-gp/images/common/icons/arrow-right.svg")
+        no-repeat 50% 50%;
+      [dir="rtl"] & {
+        right: auto;
+        left: 30px;
+        background: url("/lg5-common-gp/images/common/icons/arrow-left.svg")
+          no-repeat 50% 50%;
+      }
+    }
+    .ui-datepicker-year {
+      font-weight: inherit;
+    }
+    // 20200408 END
+  }
+  .ui-datepicker-calendar {
+    width: 100%;
+    display: block;
+    padding: 8px;
+    background: $bg-white;
+    thead,
+    tbody {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+    }
 
-		th, td {
-			@include font-family($font-semibold);
-			text-align: center;
-			font-size: 14px;
-			height: 24px;
-			line-height: 24px;
-			padding: 4px 0;
-			&.ui-datepicker-week-end:first-child {
-				color: $color-carmine;
-			}
-		}
-		th {
-			font-weight: normal;
-			color: $color-gray;
-		}
-		td {
-			&.ui-state-disabled {
-				color: $color-gray !important;
-				@include font-family($font-regular);
-			}
-			&.ui-datepicker-days-cell-over {
-			//&.ui-datepicker-today {
-				a {
-					background: $bg-whitesmoke;
-					border-radius: 50%;
-					text-decoration: underline;
-				}
-			}
-		}
-		a {
-			color: inherit;
-			width: 24px;
-			margin: 0 auto;
-			display: block;
+    th,
+    td {
+      @include font-family($font-semibold);
+      text-align: center;
+      font-size: 14px;
+      height: 24px;
+      line-height: 24px;
+      padding: 4px 0;
+      &.ui-datepicker-week-end:first-child {
+        color: $color-carmine;
+      }
+    }
+    th {
+      font-weight: normal;
+      color: $color-gray;
+    }
+    td {
+      &.ui-state-disabled {
+        color: $color-gray !important;
+        @include font-family($font-regular);
+      }
+      &.ui-datepicker-days-cell-over {
+        //&.ui-datepicker-today {
+        a {
+          background: $bg-whitesmoke;
+          border-radius: 50%;
+          text-decoration: underline;
+        }
+      }
+    }
+    a {
+      color: inherit;
+      width: 24px;
+      margin: 0 auto;
+      display: block;
 
-			&.ui-state-active {
-				color: $color-white;
-				background: $color-carmine !important;
-				border-radius: 50%;
-				text-decoration: none !important;
-			}
-		}
-	}
+      &.ui-state-active {
+        color: $color-white;
+        background: $color-carmine !important;
+        border-radius: 50%;
+        text-decoration: none !important;
+      }
+    }
+  }
 }

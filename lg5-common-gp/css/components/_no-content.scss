@@ -1,40 +1,45 @@
+@use "../setting/" as *;
 .no-content {
-	// display:none;
-	padding: 150px 0; 
-	text-align:center;
-	@include screen(custom, max, $max-sm){
-		padding:30px 0 66px;
-		.guide-subtext {
-			font-size:16px;
-		}
-	}
-	.icon {
-		display:inline-block;
-		svg {fill:$line-gray; width:60px; height:60px;}
-	}
-	.guide-subtext {
-		font-size:20px;
-		line-height:40px;
-		@include font-family($font-semibold);
-		display:block;
-		margin-top:7px;
-	}
-	.linker {
-		color:$color-carmine;
-		text-decoration:underline;
-	}
-	.red {
-		color:$color-carmine;
-	}
-	.guide-paragraph {
-		margin-bottom:0;
-	}
-	.guide-title:empty,
-	.guide-subtext:empty{
-		display:none;
-		width:0;
-		height:0;
-		position: relative;
-		z-index:-100;
-	}
+  // display:none;
+  padding: 150px 0;
+  text-align: center;
+  @include screen(custom, max, $max-sm) {
+    padding: 30px 0 66px;
+    .guide-subtext {
+      font-size: 16px;
+    }
+  }
+  .icon {
+    display: inline-block;
+    svg {
+      fill: $line-gray;
+      width: 60px;
+      height: 60px;
+    }
+  }
+  .guide-subtext {
+    font-size: 20px;
+    line-height: 40px;
+    @include font-family($font-semibold);
+    display: block;
+    margin-top: 7px;
+  }
+  .linker {
+    color: $color-carmine;
+    text-decoration: underline;
+  }
+  .red {
+    color: $color-carmine;
+  }
+  .guide-paragraph {
+    margin-bottom: 0;
+  }
+  .guide-title:empty,
+  .guide-subtext:empty {
+    display: none;
+    width: 0;
+    height: 0;
+    position: relative;
+    z-index: -100;
+  }
 }

@@ -1,85 +1,90 @@
+@use "../setting/" as *;
 .animation-box {
-	position:relative;
-	@include screen(custom, max, $max-sm) {
-		.animation-area {
-			//display: none;
-		}
-	}
+  position: relative;
+  @include screen(custom, max, $max-sm) {
+    .animation-area {
+      //display: none;
+    }
+  }
 
-	.animation-area {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width:100%;
-		height:100%;
-		z-index: 1;
-		text-indent: -9999em;
-		video {
-			display: block;
-			width: 100%;
-			height: 100%;
-		}
-		@include screen(custom, min, $min-md) {
-			video.mobile {display:none;}
-		}
-		@include screen(custom, max, $max-sm) {
-			video.pc {display:none;}
-		}
-		.controller-wrap {
-			position: absolute;
-			left: 50%;
-			transform:translateX(-50%);
-			bottom: 0;
-			display: block;
-			margin-bottom: 30px;
-			@include screen(custom, max, $max-sm) {
-				margin-bottom: 20px;
-			}
-			button {
-				display: none;
-				text-indent: -9999em;
-				width: 32px;
-				height: 32px;
-				border: none;
-				background-color: rgba(0,0,0,0.75);
-				background-position: 50% 50%;
-				background-repeat: no-repeat;
-				border-radius: 50%;
-				cursor: pointer;
-				padding:0;
-				/* LGECI-297 20201126 add */
-				overflow: hidden;
-				&:focus{
-					outline: 2px solid #000;		
-					outline-offset: -2px;
-				}
-				/* //LGECI-297 20201126 add */
-				@include screen(custom, max, $max-sm) {
-					width:25px;
-					height:25px;
-				}
-				&.active {
-					display: block;
-				}
-				&.play {
-					background-image: url('/lg5-common-gp/images/common/icons/btn-aniplay.svg');
-					background-size:32px 32px;
-				}
-				&.pause {
-					background-image: url('/lg5-common-gp/images/common/icons/btn-anipause.svg');
-					background-size:32px 32px;
-				}
-				@include screen(custom, max, $max-sm) {
-					&.play {
-						background-image: url('/lg5-common-gp/images/common/icons/btn-aniplay-m.svg');
-						background-size:25px 25px;
-					}
-					&.pause {
-						background-image: url('/lg5-common-gp/images/common/icons/btn-anipause-m.svg');
-						background-size:25px 25px;
-					}
-				}
-			}
-		}
-	}
+  .animation-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    text-indent: -9999em;
+    video {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    @include screen(custom, min, $min-md) {
+      video.mobile {
+        display: none;
+      }
+    }
+    @include screen(custom, max, $max-sm) {
+      video.pc {
+        display: none;
+      }
+    }
+    .controller-wrap {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      display: block;
+      margin-bottom: 30px;
+      @include screen(custom, max, $max-sm) {
+        margin-bottom: 20px;
+      }
+      button {
+        display: none;
+        text-indent: -9999em;
+        width: 32px;
+        height: 32px;
+        border: none;
+        background-color: rgba(0, 0, 0, 0.75);
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        cursor: pointer;
+        padding: 0;
+        /* LGECI-297 20201126 add */
+        overflow: hidden;
+        &:focus {
+          outline: 2px solid #000;
+          outline-offset: -2px;
+        }
+        /* //LGECI-297 20201126 add */
+        @include screen(custom, max, $max-sm) {
+          width: 25px;
+          height: 25px;
+        }
+        &.active {
+          display: block;
+        }
+        &.play {
+          background-image: url("/lg5-common-gp/images/common/icons/btn-aniplay.svg");
+          background-size: 32px 32px;
+        }
+        &.pause {
+          background-image: url("/lg5-common-gp/images/common/icons/btn-anipause.svg");
+          background-size: 32px 32px;
+        }
+        @include screen(custom, max, $max-sm) {
+          &.play {
+            background-image: url("/lg5-common-gp/images/common/icons/btn-aniplay-m.svg");
+            background-size: 25px 25px;
+          }
+          &.pause {
+            background-image: url("/lg5-common-gp/images/common/icons/btn-anipause-m.svg");
+            background-size: 25px 25px;
+          }
+        }
+      }
+    }
+  }
 }

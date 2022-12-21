@@ -1,537 +1,561 @@
-.filter-open-box{
-	display:none;
-	height:69px;
-	margin-bottom:30px;
-	text-align:center;
-	background:$bg-whitesmoke;
-	@include screen(custom, max, 850) {
-		display:block;
-	}
-	@include screen(custom, max,  $max-sm) {
-		display:block;
-		height:32px;
-		background:#333;
-		color:#fff;
-		margin:10px 10px 10px;
-    	border-radius: 3px;
-	}
-	a{
-		display: block;
-		width: 100%;
-		height: 100%;
-		padding-top:21px;
-		font-size:14px;
-		@include font-family($font-semibold);
-		color:$color-nightrider !important;
-		text-decoration:none;
-		&:link,
-		&:visited,
-		&:hover,
-		&:active {color:$color-nightrider !important;}
-		&.ico-right:after {
-			@extend %linkicon;
-			background:url('/lg5-common-gp/images/common/icons/link-right-dark.svg') no-repeat 2px 0;
-			transform: rotate(90deg)!important;
-			margin-left:6px;
-			[dir="rtl"] & {
-				margin:-6px 6px 0 0;
-			}
-		}
-		@include screen(custom, max,  $max-sm) {
-			padding-top:0;
-			line-height:32px;
-			font-size:12px;
-			color:#fff !important;
-			&:link,
-			&:visited,
-			&:hover,
-			&:active {color:#fff !important;}
-			&.ico-right:after {
-				background:url('/lg5-common-gp/images/common/icons/link-right-white.svg') no-repeat 2px 0;
-				transform: rotate(90deg)!important;
-			}
-		}
-	}
+@use "../setting/" as *;
+
+.filter-open-box {
+  display: none;
+  height: 69px;
+  margin-bottom: 30px;
+  text-align: center;
+  background: $bg-whitesmoke;
+  @include screen(custom, max, 850) {
+    display: block;
+  }
+  @include screen(custom, max, $max-sm) {
+    display: block;
+    height: 32px;
+    background: #333;
+    color: #fff;
+    margin: 10px 10px 10px;
+    border-radius: 3px;
+  }
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding-top: 21px;
+    font-size: 14px;
+    @include font-family($font-semibold);
+    color: $color-nightrider !important;
+    text-decoration: none;
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+      color: $color-nightrider !important;
+    }
+    &.ico-right:after {
+      @extend %linkicon;
+      background: url("/lg5-common-gp/images/common/icons/link-right-dark.svg")
+        no-repeat 2px 0;
+      transform: rotate(90deg) !important;
+      margin-left: 6px;
+      [dir="rtl"] & {
+        margin: -6px 6px 0 0;
+      }
+    }
+    @include screen(custom, max, $max-sm) {
+      padding-top: 0;
+      line-height: 32px;
+      font-size: 12px;
+      color: #fff !important;
+      &:link,
+      &:visited,
+      &:hover,
+      &:active {
+        color: #fff !important;
+      }
+      &.ico-right:after {
+        background: url("/lg5-common-gp/images/common/icons/link-right-white.svg")
+          no-repeat 2px 0;
+        transform: rotate(90deg) !important;
+      }
+    }
+  }
 }
-.filter-box{
-	width:279px;
-	border-top:1px solid $line-gray;
-	float:left;
-	margin-right:48px;
-	[dir="rtl"] & {
-		text-align:right;
-		@include screen(custom, min, (850 + 1)) {
-			float:right;
-			margin-right:0;
-			margin-left:48px;
-		}
-	}
-	@include screen(custom, max, 850) {
-		float:none;
-		display:none;
-		width:100%;
-		margin:0;
-		background:$bg-whitesmoke;
-		&.open{
-			display:block;
-			margin-bottom:30px;
-			.filter-result{
-				display:block;
-			}
-		}
-	}
-	@include screen(custom, max, $max-sm) {
-		&:after{
-			content: '';
-			left: 0;
-			right: 0;
-			height: 1px;
-			background: #e4e4e4;
-			display: block;
-			bottom: -10px;
-			position: absolute;
-		}
-	}
-	.guide-for-user {
-		position: absolute;
-		z-index:-100;
-		color:transparent;
-		opacity:0;
-	}	
-	.filter-result{
-		display:none;
-		height:69px;
-		border-bottom:1px solid $line-gray;
-		text-align:center;
-		@include screen(custom, max, $max-sm) {
-			display:block;
-			height:32px;
-			background:#333;
-			color:#fff;
-			margin: 10px 10px 10px;
-			border-radius: 3px;
-			position: relative;
-			&:after{
-				content:'';
-				position: absolute;
-				left:-12px;
-				right:-12px;
-				bottom:-10px;
-				height:1px;
-				background:#e4e4e4;
-			}
-		}
-		a {
-			display: block;
-			width: 100%;
-			height: 100%;
-			padding-top:21px;
-			font-size:14px;
-			@include font-family($font-semibold);
-			color:$color-nightrider !important;
-			text-decoration:none;
-			&:after {
-				@extend %linkicon;
-				background:url('/lg5-common-gp/images/common/icons/link-right-dark.svg') no-repeat -2px 0;
-				transform: rotate(-90deg)!important;
-				margin-left:6px;
-				[dir="rtl"] & {
-					margin:-6px 6px 0 0;
-				}
-			}
-			@include screen(custom, max, $max-sm) {
-				padding-top:0;
-				line-height:32px;
-				font-size:12px;
-				color:#fff !important;
-				&:after {
-					background:url('/lg5-common-gp/images/common/icons/link-right-white.svg') no-repeat 2px 0;
-					transform: rotate(90deg)!important;
-					margin-left:6px;
-					[dir="rtl"] & {
-						margin:-6px 6px 0 0;
-					}
-				}
-			}
-		}
-	}
-	.option-box {
-		padding-bottom:17px;
-		border-bottom:1px solid $line-gray;
-		@include screen(custom, max, 850) {
-			margin:0 24px 0 24px;
-		}
-		@include screen(custom, max, $max-sm) {
-			margin:0 24px 0 24px;
-			&:first-child{
-				border-top: 1px solid #e4e4e4;
-			}
-		}
-		&.close {
-			float:none !important;
-			opacity:1 !important;
-		}
-		.title {
-			position:relative;
-			margin-top:18px;
-			strong{
-				vertical-align:top;
-				font-size:16px;
-				line-height:24px;	// prevent bootstrap close class style
-				color:$color-black;
-				@include font-family($font-semibold);
-			}
-			.btn-list {
-				display: none;
-				@include screen(custom, max, 850) {
-					display:block;
-					width:12px; 
-					height:12px;
-					position:absolute; 
-					top:7px;
-					right:0;
-					text-indent:-10em;
-					background:url(/lg5-common-gp/images/common/icons/accordion-expand-dimgray.svg) no-repeat;
-					overflow: hidden;
-					[dir="rtl"] & {
-						right:auto;
-						left:0;
-						text-indent:10em;
-					}
-					&.active {
-						background:url(/lg5-common-gp/images/common/icons/accordion-fold-dimgray.svg) no-repeat;
-					}
-				}
-			}
-		} 
-		.option-list{
-			.list-box-type1{
-				margin-top:24px;
-				margin-bottom:0;
-				padding-bottom:2px;
-				@include screen(custom, max, 850) {
-					margin-top:19px;
-					padding-bottom:0;
-					margin-bottom:10px;
-				}
-				li {
-					margin-bottom:13px;
-					padding-left:11px;
-					[dir="rtl"] & {
-						@include screen(custom, min, (850 + 1)) {
-							padding-left:0;
-							padding-right:11px;
-						}
-					}
-					@include screen(custom, max, 850) {
-						padding-left:0;
-						margin-bottom:17px;
-						&:last-child{
-							margin-bottom:0;
-						}
-					}
-				}
-			}
+.filter-box {
+  width: 279px;
+  border-top: 1px solid $line-gray;
+  float: left;
+  margin-right: 48px;
+  [dir="rtl"] & {
+    text-align: right;
+    @include screen(custom, min, (850 + 1)) {
+      float: right;
+      margin-right: 0;
+      margin-left: 48px;
+    }
+  }
+  @include screen(custom, max, 850) {
+    float: none;
+    display: none;
+    width: 100%;
+    margin: 0;
+    background: $bg-whitesmoke;
+    &.open {
+      display: block;
+      margin-bottom: 30px;
+      .filter-result {
+        display: block;
+      }
+    }
+  }
+  @include screen(custom, max, $max-sm) {
+    &:after {
+      content: "";
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #e4e4e4;
+      display: block;
+      bottom: -10px;
+      position: absolute;
+    }
+  }
+  .guide-for-user {
+    position: absolute;
+    z-index: -100;
+    color: transparent;
+    opacity: 0;
+  }
+  .filter-result {
+    display: none;
+    height: 69px;
+    border-bottom: 1px solid $line-gray;
+    text-align: center;
+    @include screen(custom, max, $max-sm) {
+      display: block;
+      height: 32px;
+      background: #333;
+      color: #fff;
+      margin: 10px 10px 10px;
+      border-radius: 3px;
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        left: -12px;
+        right: -12px;
+        bottom: -10px;
+        height: 1px;
+        background: #e4e4e4;
+      }
+    }
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding-top: 21px;
+      font-size: 14px;
+      @include font-family($font-semibold);
+      color: $color-nightrider !important;
+      text-decoration: none;
+      &:after {
+        @extend %linkicon;
+        background: url("/lg5-common-gp/images/common/icons/link-right-dark.svg")
+          no-repeat -2px 0;
+        transform: rotate(-90deg) !important;
+        margin-left: 6px;
+        [dir="rtl"] & {
+          margin: -6px 6px 0 0;
+        }
+      }
+      @include screen(custom, max, $max-sm) {
+        padding-top: 0;
+        line-height: 32px;
+        font-size: 12px;
+        color: #fff !important;
+        &:after {
+          background: url("/lg5-common-gp/images/common/icons/link-right-white.svg")
+            no-repeat 2px 0;
+          transform: rotate(90deg) !important;
+          margin-left: 6px;
+          [dir="rtl"] & {
+            margin: -6px 6px 0 0;
+          }
+        }
+      }
+    }
+  }
+  .option-box {
+    padding-bottom: 17px;
+    border-bottom: 1px solid $line-gray;
+    @include screen(custom, max, 850) {
+      margin: 0 24px 0 24px;
+    }
+    @include screen(custom, max, $max-sm) {
+      margin: 0 24px 0 24px;
+      &:first-child {
+        border-top: 1px solid #e4e4e4;
+      }
+    }
+    &.close {
+      float: none !important;
+      opacity: 1 !important;
+    }
+    .title {
+      position: relative;
+      margin-top: 18px;
+      strong {
+        vertical-align: top;
+        font-size: 16px;
+        line-height: 24px; // prevent bootstrap close class style
+        color: $color-black;
+        @include font-family($font-semibold);
+      }
+      .btn-list {
+        display: none;
+        @include screen(custom, max, 850) {
+          display: block;
+          width: 12px;
+          height: 12px;
+          position: absolute;
+          top: 7px;
+          right: 0;
+          text-indent: -10em;
+          background: url(/lg5-common-gp/images/common/icons/accordion-expand-dimgray.svg)
+            no-repeat;
+          overflow: hidden;
+          [dir="rtl"] & {
+            right: auto;
+            left: 0;
+            text-indent: 10em;
+          }
+          &.active {
+            background: url(/lg5-common-gp/images/common/icons/accordion-fold-dimgray.svg)
+              no-repeat;
+          }
+        }
+      }
+    }
+    .option-list {
+      .list-box-type1 {
+        margin-top: 24px;
+        margin-bottom: 0;
+        padding-bottom: 2px;
+        @include screen(custom, max, 850) {
+          margin-top: 19px;
+          padding-bottom: 0;
+          margin-bottom: 10px;
+        }
+        li {
+          margin-bottom: 13px;
+          padding-left: 11px;
+          [dir="rtl"] & {
+            @include screen(custom, min, (850 + 1)) {
+              padding-left: 0;
+              padding-right: 11px;
+            }
+          }
+          @include screen(custom, max, 850) {
+            padding-left: 0;
+            margin-bottom: 17px;
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
 
-			.list-box-type2{
-				margin-top:0;
-				margin-bottom:0;
-				padding-top:7px;
-				padding-bottom:4px;
-				@include screen(custom, max, 850) {
-					padding-top:6px;
-					padding-bottom:1px;
-				}
-				li {
-					margin-top:13px;
-					padding-left:10px;
-					[dir="rtl"] & {
-						@include screen(custom, max, (850 + 1)) {
-							padding-left:0;
-							padding-right:10px;
-						}
-					}
-					@include screen(custom, max, 850) {
-						margin-top:14px;
-						padding-left:0;
-						padding-bottom:3px;
-						&:last-child{
-							margin-bottom:0;
-						}
-					}
-				}
-			}
+      .list-box-type2 {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 7px;
+        padding-bottom: 4px;
+        @include screen(custom, max, 850) {
+          padding-top: 6px;
+          padding-bottom: 1px;
+        }
+        li {
+          margin-top: 13px;
+          padding-left: 10px;
+          [dir="rtl"] & {
+            @include screen(custom, max, (850 + 1)) {
+              padding-left: 0;
+              padding-right: 10px;
+            }
+          }
+          @include screen(custom, max, 850) {
+            margin-top: 14px;
+            padding-left: 0;
+            padding-bottom: 3px;
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
 
-			.checkbox-box {
-				.text{
-					padding-left:28px;
-					@include screen(custom, max, 850) {
-						padding-left:26px;
-					}
-					[dir="rtl"] & {
-						padding-left:0;
-						padding-right:28px;
-						@include screen(custom, max, 850) {
-							padding-right:26px;
-						}
-					}
-				}
-			}
-			
-			.swatch-list-box{
-				@extend %clearfix;
-				margin:24px 9px 14px 9px;
-				@include screen(custom, max, 850) {
-					margin:19px 1px 9px 1px;
-				}
-				li{
-					width:30px;
-					float:left;
-					margin-right:4px;
-					text-indent:-10em;
-					overflow: hidden;
-					[dir="rtl"] & {
-						float:right;
-						margin-right:0;
-						margin-left:4px;
-					}
-				}
-				.swatch {
-					overflow: visible;
-					position: relative;
-					vertical-align: top;
-					box-sizing:border-box;
-					width: 20px;
-					height: 20px;
-					padding: 0;
-					margin: 4px 5px 4px;
-					border-radius: 10px;
-					border:1px solid #9c9c9c;
-					color: transparent;
-					cursor: pointer;
-					float: left;
-					[dir="rtl"] & {
-						float: right;
-					}
-					&.disabled {
-						opacity: 0.4;
-						cursor:default;
-						input[type=checkbox]:checked+:after {
-							border:none;
-						}
-					}
-					&+:before {
-						content: '';
-						display:block;
-						width:28px;
-						height:28px;
-						border:1px solid transparent;
-						box-sizing:border-box;
-						border-radius:14px;
-						position:absolute;
-						top:-5px;
-						left:-5px;
-						[dir="rtl"] & {
-							left:auto;
-							right:-5px;
-						}
-					}					
-					input[type="checkbox"]{
-						&:checked {
-							&+:after {
-							content: '';
-								width:28px;
-								height:28px;
-								border:1px solid $line-carmine;
-								box-sizing:border-box;
-								border-radius:14px;
-								position:absolute;
-								top:-5px;
-								left:-5px;
-								[dir="rtl"] & {
-									left:auto;
-									right:-5px;
-								}
-							}
-						}
-						&:focus {
-							&+:before {
-								content: '';
-								width:28px;
-								height:28px;
-								outline:1px dotted;outline:5px auto -webkit-focus-ring-color;
-								box-sizing:border-box;
-								position:absolute;
-								top:-5px;
-								left:-5px;
-								[dir="rtl"] & {
-									left:auto;
-									right:-5px;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		// tooltip
-		.tooltip {
-			vertical-align:top;
-			.tooltip-wrap {
-				top:3px;
-			}
-			.btn-tooltip-question span {
-				background:#999;
-				color:#fff;
-				&:before {
-					background-image:url('/lg5-common-gp/images/common/icons/info.svg');
-				}
-			}
-			.tooltip-inner {
-				color:#333;
-				.btn-area {
-					padding:14px 0 0 0;
-					a.link-text {
-						color:#333;
-					}
-					a.link-text.ico-right:after {
-						background-image:url('/lg5-common-gp/images/common/icons/link-right-nightrider.svg');
-					}
-				}
-			}
-			@include screen(custom, max, $max-sm) {
-				.tooltip-area.top-right:not(.out) {
-					left:50%;
-					margin-left:-110px;
-					&:before {
-						left:50%;
-						margin-left:-6px;
-					}
-					[dir="rtl"] & {
-						left:auto;
-						right:50%;
-						margin-left:0;
-						margin-right:-110px;
-						&:before {
-							left:auto;
-							right:50%;
-							margin-left:0;
-							margin-right:-6px;
-						}
-					}
-				}
-			}
-		}
-		.title .tooltip {
-			.tooltip-wrap {
-				top:1px;
-			}
-		}
-		// price range slider
-		.slider-wrap{
-			margin:36px 0 8px 20px;
-			@include screen(custom, max, 850) {
-				margin:31px 0 3px 20px;
-			}
-			[dir="rtl"] & {
-				margin:36px 20px 8px 0;
-				@include screen(custom, max, 850) {
-					margin:31px 20px 3px 0;
-				}
-			}
-		}
-		.slider-range{
-			position:relative;
-			border-bottom:2px solid $line-gray;
-			width:241px;
-			margin-bottom:8px;
-			@include screen(custom, max, 850) {
-				width:calc(100% - 20px);
-			}
-			.ui-slider-handle {
-				position:absolute;
-				top:-8px;
-				width:18px;
-				height:18px;
-				margin-left:-9px;
-				border-radius:50%;
-				border:2px solid $line-carmine;
-				background:$bg-white;		
-			}
-			.ui-slider-range{
-				position:absolute;
-				bottom:-2px;
-				width:100%;
-				height:2px;
-				background:$bg-carmine;
-			}		
-		}
-		.price-range{
-			position:relative;
-			height:27px;
-			p {
-				position:absolute;
-				top:2px;
-				font-size:14px;
-				height:20px;
-			}
-			.min-box{
-				left:-10px;
-				[dir="rtl"] & {left:auto;right:-10px;}
-			}
-			.max-box{
-				text-align:right;
-				right:10px;
-				[dir="rtl"] & {right:auto;left:10px;text-align: left;}
-			}
-			
-		}
-		.filter-subtext{
-			font-size: 14px;
-			line-height: 20px;
-			color:#767676;
-			@include font-family($font-semibold);
-		}
-		@include screen(custom, max, 850) {
-			&.close{
-				.btn-list {
-					background:url(/lg5-common-gp/images/common/icons/accordion-expand-dimgray.svg) no-repeat;
-				}
-				.option-list,.slider-wrap{
-					display:none;	
-				}
-			}
-			&.open{
-				.btn-list {
-					background:url(/lg5-common-gp/images/common/icons/accordion-fold-dimgray.svg) no-repeat;
-				}
-				.option-list,.slider-wrap{
-					display:block;	
-				}
-			}
-		}
-	} 
-	.etc-box {
-		padding-top:24px;
-		padding-bottom:35px;
-		@include screen(custom, max, 850) {
-			padding-bottom:14px;
-			margin:0 24px 0 24px;
-		}
-		.link-text {
-			margin-bottom:10px;
-			color:$color-dimgray;
-			display:block;
-			cursor: pointer;
-			&.ico-right{
-				text-decoration:none;
-				text-transform: uppercase;
-				@include font-family($font-bold);
-				color:$color-nightrider;
-				&:after {
-					background: url('/lg5-common-gp/images/common/icons/link-right-nightrider.svg') no-repeat 0 1px;
-				}
-			}
-		}
-	}
+      .checkbox-box {
+        .text {
+          padding-left: 28px;
+          @include screen(custom, max, 850) {
+            padding-left: 26px;
+          }
+          [dir="rtl"] & {
+            padding-left: 0;
+            padding-right: 28px;
+            @include screen(custom, max, 850) {
+              padding-right: 26px;
+            }
+          }
+        }
+      }
+
+      .swatch-list-box {
+        @extend %clearfix;
+        margin: 24px 9px 14px 9px;
+        @include screen(custom, max, 850) {
+          margin: 19px 1px 9px 1px;
+        }
+        li {
+          width: 30px;
+          float: left;
+          margin-right: 4px;
+          text-indent: -10em;
+          overflow: hidden;
+          [dir="rtl"] & {
+            float: right;
+            margin-right: 0;
+            margin-left: 4px;
+          }
+        }
+        .swatch {
+          overflow: visible;
+          position: relative;
+          vertical-align: top;
+          box-sizing: border-box;
+          width: 20px;
+          height: 20px;
+          padding: 0;
+          margin: 4px 5px 4px;
+          border-radius: 10px;
+          border: 1px solid #9c9c9c;
+          color: transparent;
+          cursor: pointer;
+          float: left;
+          [dir="rtl"] & {
+            float: right;
+          }
+          &.disabled {
+            opacity: 0.4;
+            cursor: default;
+            input[type="checkbox"]:checked + :after {
+              border: none;
+            }
+          }
+          & + :before {
+            content: "";
+            display: block;
+            width: 28px;
+            height: 28px;
+            border: 1px solid transparent;
+            box-sizing: border-box;
+            border-radius: 14px;
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            [dir="rtl"] & {
+              left: auto;
+              right: -5px;
+            }
+          }
+          input[type="checkbox"] {
+            &:checked {
+              & + :after {
+                content: "";
+                width: 28px;
+                height: 28px;
+                border: 1px solid $line-carmine;
+                box-sizing: border-box;
+                border-radius: 14px;
+                position: absolute;
+                top: -5px;
+                left: -5px;
+                [dir="rtl"] & {
+                  left: auto;
+                  right: -5px;
+                }
+              }
+            }
+            &:focus {
+              & + :before {
+                content: "";
+                width: 28px;
+                height: 28px;
+                outline: 1px dotted;
+                outline: 5px auto -webkit-focus-ring-color;
+                box-sizing: border-box;
+                position: absolute;
+                top: -5px;
+                left: -5px;
+                [dir="rtl"] & {
+                  left: auto;
+                  right: -5px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    // tooltip
+    .tooltip {
+      vertical-align: top;
+      .tooltip-wrap {
+        top: 3px;
+      }
+      .btn-tooltip-question span {
+        background: #999;
+        color: #fff;
+        &:before {
+          background-image: url("/lg5-common-gp/images/common/icons/info.svg");
+        }
+      }
+      .tooltip-inner {
+        color: #333;
+        .btn-area {
+          padding: 14px 0 0 0;
+          a.link-text {
+            color: #333;
+          }
+          a.link-text.ico-right:after {
+            background-image: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg");
+          }
+        }
+      }
+      @include screen(custom, max, $max-sm) {
+        .tooltip-area.top-right:not(.out) {
+          left: 50%;
+          margin-left: -110px;
+          &:before {
+            left: 50%;
+            margin-left: -6px;
+          }
+          [dir="rtl"] & {
+            left: auto;
+            right: 50%;
+            margin-left: 0;
+            margin-right: -110px;
+            &:before {
+              left: auto;
+              right: 50%;
+              margin-left: 0;
+              margin-right: -6px;
+            }
+          }
+        }
+      }
+    }
+    .title .tooltip {
+      .tooltip-wrap {
+        top: 1px;
+      }
+    }
+    // price range slider
+    .slider-wrap {
+      margin: 36px 0 8px 20px;
+      @include screen(custom, max, 850) {
+        margin: 31px 0 3px 20px;
+      }
+      [dir="rtl"] & {
+        margin: 36px 20px 8px 0;
+        @include screen(custom, max, 850) {
+          margin: 31px 20px 3px 0;
+        }
+      }
+    }
+    .slider-range {
+      position: relative;
+      border-bottom: 2px solid $line-gray;
+      width: 241px;
+      margin-bottom: 8px;
+      @include screen(custom, max, 850) {
+        width: calc(100% - 20px);
+      }
+      .ui-slider-handle {
+        position: absolute;
+        top: -8px;
+        width: 18px;
+        height: 18px;
+        margin-left: -9px;
+        border-radius: 50%;
+        border: 2px solid $line-carmine;
+        background: $bg-white;
+      }
+      .ui-slider-range {
+        position: absolute;
+        bottom: -2px;
+        width: 100%;
+        height: 2px;
+        background: $bg-carmine;
+      }
+    }
+    .price-range {
+      position: relative;
+      height: 27px;
+      p {
+        position: absolute;
+        top: 2px;
+        font-size: 14px;
+        height: 20px;
+      }
+      .min-box {
+        left: -10px;
+        [dir="rtl"] & {
+          left: auto;
+          right: -10px;
+        }
+      }
+      .max-box {
+        text-align: right;
+        right: 10px;
+        [dir="rtl"] & {
+          right: auto;
+          left: 10px;
+          text-align: left;
+        }
+      }
+    }
+    .filter-subtext {
+      font-size: 14px;
+      line-height: 20px;
+      color: #767676;
+      @include font-family($font-semibold);
+    }
+    @include screen(custom, max, 850) {
+      &.close {
+        .btn-list {
+          background: url(/lg5-common-gp/images/common/icons/accordion-expand-dimgray.svg)
+            no-repeat;
+        }
+        .option-list,
+        .slider-wrap {
+          display: none;
+        }
+      }
+      &.open {
+        .btn-list {
+          background: url(/lg5-common-gp/images/common/icons/accordion-fold-dimgray.svg)
+            no-repeat;
+        }
+        .option-list,
+        .slider-wrap {
+          display: block;
+        }
+      }
+    }
+  }
+  .etc-box {
+    padding-top: 24px;
+    padding-bottom: 35px;
+    @include screen(custom, max, 850) {
+      padding-bottom: 14px;
+      margin: 0 24px 0 24px;
+    }
+    .link-text {
+      margin-bottom: 10px;
+      color: $color-dimgray;
+      display: block;
+      cursor: pointer;
+      &.ico-right {
+        text-decoration: none;
+        text-transform: uppercase;
+        @include font-family($font-bold);
+        color: $color-nightrider;
+        &:after {
+          background: url("/lg5-common-gp/images/common/icons/link-right-nightrider.svg")
+            no-repeat 0 1px;
+        }
+      }
+    }
+  }
 }

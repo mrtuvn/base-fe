@@ -1,157 +1,165 @@
 @charset 'UTF-8';
+@use "../setting/" as *;
 
-$mkt-float : (
-	bg-graywhite : #e5e5e5,
-	bg-black : #333333
+$mkt-float: (
+  bg-graywhite: #e5e5e5,
+  bg-black: #333333,
 );
 
 .floating-menu {
-	position:fixed;
-	opacity:1;
-	transition:opacity 0.8s ease-out, transform 0.5s ease-out;
-	z-index:100;
-	&.call-yet {
-		opacity:0;
-		z-index:-100;
-		// right:-40px !important;
-		//transition:opacity 0.3s ease-out, right 0.3s ease-out;
-		transform: translateX(110px);
-		[dir="rtl"] & {
-			transform: translateX(-110px);
-		} 
-	}
-	&.top {
-		right:20px;
-		bottom:20px;
-	}
-	[dir="rtl"] &.top {
-		right: auto;
-		left:20px;
-	}
-	.back-to-top {
-		width:50px; height:50px;
-		background:url(/lg5-common-gp/images/common/icons/arrow-up-nightrider.svg) 50% 50% no-repeat rgba( map-get($mkt-float, bg-graywhite), 0.75) ;
-		background-size:20px 20px;
-		border-radius:50%;
-		margin-top:15px;
-		line-height:0;
-		button{
-			width:100%;
-			height:100%;
-			padding:0;
-			border:none;
-			background:none;
-			cursor:pointer;
-		}
-	}
-	&.chat {
-		right:20px;
-		bottom:(20px+50px+15px)
-	}
-	[dir="rtl"] &.chat {
-		right: auto;
-		left:20px;
-	}
-	.chatbot-linker {
-		width:50px; height:50px;
-		background:url(/lg5-common-gp/images/common/icons/speech-bubble.svg) 50% 50% no-repeat map-get($mkt-float, bg-black);
-		background-size:24px 24px;
-		border-radius:50%;
-		box-shadow:0px 2px 5px hsla(0,0%,0%,0.3);
-		a {
-			display:block;
-			width:100%;
-			height:100%;
-		}
-	}
+  position: fixed;
+  opacity: 1;
+  transition: opacity 0.8s ease-out, transform 0.5s ease-out;
+  z-index: 100;
+  &.call-yet {
+    opacity: 0;
+    z-index: -100;
+    // right:-40px !important;
+    //transition:opacity 0.3s ease-out, right 0.3s ease-out;
+    transform: translateX(110px);
+    [dir="rtl"] & {
+      transform: translateX(-110px);
+    }
+  }
+  &.top {
+    right: 20px;
+    bottom: 20px;
+  }
+  [dir="rtl"] &.top {
+    right: auto;
+    left: 20px;
+  }
+  .back-to-top {
+    width: 50px;
+    height: 50px;
+    background: url(/lg5-common-gp/images/common/icons/arrow-up-nightrider.svg)
+      50% 50% no-repeat rgba(map-get($mkt-float, bg-graywhite), 0.75);
+    background-size: 20px 20px;
+    border-radius: 50%;
+    margin-top: 15px;
+    line-height: 0;
+    button {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+  }
+  &.chat {
+    right: 20px;
+    bottom: (20px+50px+15px);
+  }
+  [dir="rtl"] &.chat {
+    right: auto;
+    left: 20px;
+  }
+  .chatbot-linker {
+    width: 50px;
+    height: 50px;
+    background: url(/lg5-common-gp/images/common/icons/speech-bubble.svg) 50%
+      50% no-repeat map-get($mkt-float, bg-black);
+    background-size: 24px 24px;
+    border-radius: 50%;
+    box-shadow: 0px 2px 5px hsla(0, 0%, 0%, 0.3);
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
 
-	@include screen(custom, max, $max-sm){
-		&.call-yet {
-			transform:translateX(98px);
-			[dir="rtl"] & {
-				transform:translateX(-98px);
-			}
-		}
-		&.top{
-			bottom:15px;
-			transform:translateX(7px);
-			[dir="rtl"] & {
-				transform:translateX(-7px);
-			}
-		}
-		&.chat {
-			bottom:(15px+45px+15px);
-			transform:translateX(7px);
-			[dir="rtl"] & {
-				transform:translateX(-7px);
-			}
-		}
-		.back-to-top,
-		.chatbot-linker {width:45px;height:45px;}
-		&.has-bar{
-			bottom:55px !important; //큐레이션 바가 있는경우
-		}
-	}
+  @include screen(custom, max, $max-sm) {
+    &.call-yet {
+      transform: translateX(98px);
+      [dir="rtl"] & {
+        transform: translateX(-98px);
+      }
+    }
+    &.top {
+      bottom: 15px;
+      transform: translateX(7px);
+      [dir="rtl"] & {
+        transform: translateX(-7px);
+      }
+    }
+    &.chat {
+      bottom: (15px+45px+15px);
+      transform: translateX(7px);
+      [dir="rtl"] & {
+        transform: translateX(-7px);
+      }
+    }
+    .back-to-top,
+    .chatbot-linker {
+      width: 45px;
+      height: 45px;
+    }
+    &.has-bar {
+      bottom: 55px !important; //큐레이션 바가 있는경우
+    }
+  }
 }
 .floating-whatsapp {
-	position: fixed;
-	bottom: 86px;
-	right: 0px;
-	width: 84px;
-	height: 64px;
-	padding: 2px 7px;
-	margin-right: 88px;
-	z-index: 99999;
-	text-align: center;
-	.btn-whatsapp {
-		display: inline-block;
-		width: 60px;
-		height: 60px;
-		text-align: center;
-		border: none;
-		border-radius: 50%;
-		background-color: #23c25d;
-		box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
-		cursor: pointer;
-		line-height: 1;
-	}
-	@include screen(custom, max, 1439) {
-		left:15px ;
-		right:auto;
-		margin-right:0;
-	}
-	// LGEBR-720 start
-	&.left {
-		[data-countrycode=br] & {
-			right: auto;
-			left: 20px;
-			bottom: 20px;
-			width: 50px;
-			height: 50px;
-			padding: 0;
-			@include screen(custom, max, $max-sm) {
-				width: 45px;
-				height: 45px;
-			}
-			.btn-whatsapp {
-				width: 50px;
-				height: 50px;
-				@include screen(custom, max, $max-sm) {
-					width: 45px;
-					height: 45px;
-				}
-				img {
-					margin-right: -2px;
-					width: 25px;
-				}
-			}
-		}
-	}
-	// LGEBR-720 end
+  position: fixed;
+  bottom: 86px;
+  right: 0px;
+  width: 84px;
+  height: 64px;
+  padding: 2px 7px;
+  margin-right: 88px;
+  z-index: 99999;
+  text-align: center;
+  .btn-whatsapp {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    border: none;
+    border-radius: 50%;
+    background-color: #23c25d;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  @include screen(custom, max, 1439) {
+    left: 15px;
+    right: auto;
+    margin-right: 0;
+  }
+  // LGEBR-720 start
+  &.left {
+    [data-countrycode="br"] & {
+      right: auto;
+      left: 20px;
+      bottom: 20px;
+      width: 50px;
+      height: 50px;
+      padding: 0;
+      @include screen(custom, max, $max-sm) {
+        width: 45px;
+        height: 45px;
+      }
+      .btn-whatsapp {
+        width: 50px;
+        height: 50px;
+        @include screen(custom, max, $max-sm) {
+          width: 45px;
+          height: 45px;
+        }
+        img {
+          margin-right: -2px;
+          width: 25px;
+        }
+      }
+    }
+  }
+  // LGEBR-720 end
 }
 
 // LGECI-593 start
 .grecaptcha-badge {
-	box-shadow: grey 0px 0px 1px !important;
+  box-shadow: grey 0px 0px 1px !important;
 }
 // LGECI-593 end

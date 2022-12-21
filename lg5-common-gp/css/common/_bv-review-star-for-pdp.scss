@@ -1,34 +1,46 @@
-
+@use "../setting/" as *;
 .rating-area {
-	[data-bv-show=rating_summary] .bv_main_container .bv_stars_component_container {padding-right:5px !important;}
-	[data-bv-show=rating_summary] .bv_main_container .bv_avgRating,
-	[data-bv-show=rating_summary] .bv_main_container .bv_numReviews_text {color:#333 !important;}
-	[data-bv-show=rating_summary] .bv_main_container .bv_button_buttonMinimalist,
-	[data-bv-show=rating_summary] .bv_main_container .bv_button_buttonMinimalist:hover {
-		display: inline-block !important;;
-		color: #a50034 !important;;
-		font-family: $font-regular !important;;
-		font-style: normal !important;;
-		font-weight: 400 !important;;
-		font-size: 14px !important;;
-		line-height: 1.5 !important;;
-		text-decoration: underline !important;;
-		word-break: break-all !important;;
-		cursor: pointer !important;;
-	}
-	.bv_button_component_container {
-		position:relative !important;
-		padding-left:15px !important;
-		&:before {
-			@include pseudo();
-			left:0 !important;
-			top:6px !important;
-			width:1px !important;
-			height:13px !important;
-			background:#e4e4e4 !important;
-		}
-	}
-	[data-bv-show=rating_summary] .bv_main_container .bv_main_container_row_flex {
-		padding-right:15px !important;
-	}
+  [data-bv-show="rating_summary"]
+    .bv_main_container
+    .bv_stars_component_container {
+    padding-right: 5px !important;
+  }
+  [data-bv-show="rating_summary"] .bv_main_container .bv_avgRating,
+  [data-bv-show="rating_summary"] .bv_main_container .bv_numReviews_text {
+    color: #333 !important;
+  }
+  [data-bv-show="rating_summary"]
+    .bv_main_container
+    .bv_button_buttonMinimalist,
+  [data-bv-show="rating_summary"]
+    .bv_main_container
+    .bv_button_buttonMinimalist:hover {
+    display: inline-block !important;
+    color: #a50034 !important;
+    font-family: $font-regular !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    text-decoration: underline !important;
+    word-break: break-all !important;
+    cursor: pointer !important;
+  }
+  .bv_button_component_container {
+    position: relative !important;
+    padding-left: 15px !important;
+    &:before {
+      @include pseudo();
+      left: 0 !important;
+      top: 6px !important;
+      width: 1px !important;
+      height: 13px !important;
+      background: #e4e4e4 !important;
+    }
+  }
+  [data-bv-show="rating_summary"]
+    .bv_main_container
+    .bv_main_container_row_flex {
+    padding-right: 15px !important;
+  }
 }

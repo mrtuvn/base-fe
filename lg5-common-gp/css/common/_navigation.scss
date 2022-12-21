@@ -1,6 +1,7 @@
-@import "../setting/_variables";
-@import "./banner-gnb-bottom"; //banner-gnb-bottom
-@import "./banner-standard"; //LGEGMC-2323
+@use "../setting/" as *;
+@use "./banner-gnb-bottom"; //banner-gnb-bottom
+@use "./banner-standard"; //LGEGMC-2323
+@use "./navigation-search";
 
 // skip navigation
 .skip_nav {
@@ -4398,7 +4399,7 @@ header.navigation {
     display: none;
   }
 }
-@import "./navigation-search";
+
 @media screen and (-ms-high-contrast: active) {
   header.navigation .for-desktop .sublayer .banner a.white .banner-visual {
     img {

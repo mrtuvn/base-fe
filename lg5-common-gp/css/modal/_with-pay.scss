@@ -1,489 +1,497 @@
+@use "../setting/" as *;
+
 .modal {
-	&.modal-with-pay {
-		background-color: rgba(0,0,0,.7);
-		.modal-content {
-			padding: 0;
-			.modal-body {
-				padding: 0 30px;
-				color: $color-black;
-				@include screen(custom, max, $max-sm) {
-					padding: 0 20px;
-				}
-				p {
-					margin: 0;
-					font-size: 14px;
-					line-height: 22px;
-				}
-			}
-			.modal-footer {
-				display: block;
-				margin: 10px 30px 0;
-				padding: 20px 0;
-				text-align: center;
-				border-top: 1px solid $line-gray;
-				@include screen(custom, max, $max-sm) {
-					margin: 10px 20px 0;
-				}
-				.btn {
-					width: auto;
-					min-width: 136px;
-				}
-			}
-		}
-		.modal-title {
-			@include screen(custom, max, $max-sm) {
-				font-size: 20px;
-			}
-		}
-		.modal-body {
-			.top-text {
-				padding: 15px 0 30px;
-				margin: 0;
-				@include font-family($font-semibold);
-				font-size: 28px;
-				text-align: center;
-				color: $color-black;
-				border-bottom: 1px solid $line-gray;
-				@include screen(custom, max, $max-sm) {
-					margin: 0 0 10px;
-					padding: 0 0 15px;
-					font-size: 22px;
-					line-height: 26px;
-				}
-			}
-			.box-area {
-				padding: 22px 0;
-				@include screen(custom, max, $max-sm) {
-					padding: 14px 0;
-				}
-				&.how-to-work {
-					padding-left: 20px;
-					padding-right: 20px;
-					margin-bottom: 10px;
-					@include screen(custom, max, $max-sm) {
-						padding: 18px;
-					}
-				}
-				&.bg-whitesmoke {
-					background-color: $bg-whitesmoke;
-				}
-				.area-title {
-					margin-bottom: 30px;
-					@include font-family($font-semibold);
-					font-size: 23px;
-					text-align: center;
-					@include screen(custom, max, $max-sm) {
-						margin-bottom: 12px;
-						font-size: 20px;
-					}
-				}
-			}
-		}
-		.step-how-to-shop {
-			display: flex;
-			text-align: center;
-			justify-content: center;
-			@include screen(custom, max, $max-sm) {
-				display: block;
-				&.mo-item-col{
-					li{
-						width: 100% !important;
-						display: flex;
-						align-items: center;
-						.step-icon{
-							margin: 0 10px 0 0;
-							[dir="rtl"] & {
-								margin: 0 0 0 10px;
-							}
-						}
-						p{
-							width: calc(100% - 60px);
-							text-align: left;
-							[dir="rtl"] & {
-								text-align:right;
-							}
-						}
-					}
-				}
-			}
-			li {
-				padding: 0 8px;
-				width: 33.33%;
-				@include screen(custom, max, $max-sm) {
-					padding: 10px 0;
-					width: 100%;
-				}
-				strong {
-					padding: 6px 0;
-					@include font-family($font-bold);
-					font-size: 16px;
-					color: #212529;
-				}
-				.step-icon {
-					display: block;
-					margin: 0 auto 6px;
-					width: 45px;
-					height: 45px;
-					img {
-						width: 100%;
-					}
-					@include screen(custom, max, $max-sm) {
-						margin-bottom: 4px;
-						width: 50px;
-						height: 50px;
-					}
-				}
-			}
-			&.item-4ea{
-				li{
-					width:25%;
-				}
-			}
-			&.item-2ea{
-				li{
-					width:50%;
-				}
-			}
-		}
-		.how-to-work {
-			padding: 0 15px;
-			.area-title {
-				@include screen(custom, max, $max-sm) {
-					font-size: 20px;
-				}
-			}
-			dl {
-				margin: 10px 0 0 0;
-				color: $color-black;
-				&:first-child {
-					margin-top: 0;
-				}
-				dt {
-					margin-bottom: 3px;
-					line-height: 24px;
-					@include font-family($font-bold);
-					&.link-area{
-						margin-top:15px;
-						text-align:left;
-						[dir="rtl"] & {
-							text-align:right;
-						}
-						p{
-							margin:10px 0 5px;
-							@include font-family($font-bold);
-						}
-					}
-				}
-				dd {
-					margin: 0;
-					font-size: 14px;
-					line-height: 22px;
-				}
-			}
-			ul {
-				li {
-					position: relative;
-					margin: 0;
-					padding-left: 10px;
-					font-size: 14px;
-					line-height: 22px;
-					color: $color-dimgray;
-					[dir="rtl"] & {
-						padding-left: 0;
-						padding-right: 10px;
-					}
-					&:before {
-						position: absolute;
-						left: 0;
-						top: 0;
-						content: '-';
-						[dir="rtl"] & {
-							left: auto;
-							right: 0;
-						}
-					}
-					& + li {
-						margin-top: 4px;
-					}
-					&.no-dash{
-						padding-left:0 !important;
-						&:before {
-							content:none !important
-						}
-					}
-				}
-			}
-			.text-line {
-				@include font-family($font-semibold);
-				text-decoration: underline;
-				font-style: normal;
-			}
-			.has-line {
-				&:before {
-					display: block;
-					margin: 20px 0;
-					width: 100%;
-					height: 1px;
-					background-color: #e4e4e4;
-					content: '';
-				}		
-			}
-			.fw-sb {
-				@include font-family($font-semibold);
-			}
-			.fc-dimgray {
-				color: $color-dimgray;
-			}
-		}
-		.item-infomation {
-			li {
-				position: relative;
-				margin: 0;
-				+ li {
-					margin-top: 20px;
-				}
-				strong {
-					display: inline-block;
-					margin-bottom: 4px;
-					font-size: 18px;
-					@include font-family($font-semibold);
-					vertical-align: middle;
-				}
-				.item-icon {
-					display: inline-block;
-					margin-right: 3px;
-					margin-bottom: 3px;
-					width: 30px;
-					vertical-align: middle;
-					[dir="rtl"] & {
-						margin-right: 0;
-						margin-left: 3px;
-					}
-					img {
-						width: 100%;
-					}
-					&.hello-bank{
-						width:90px;
-					}
-				}
-			}
-			ul.sty-dash {
-				li {
-					position: relative;
-					margin: 0;
-					padding-left: 10px;
-					font-size: 14px;
-					line-height: 22px;
-					color: $color-dimgray;
-					[dir="rtl"] & {
-						padding-left: 0;
-						padding-right: 10px;
-					}
-					&:before {
-						position: absolute;
-						left: 0;
-						top: 0;
-						content: '-';
-						[dir="rtl"] & {
-							left: auto;
-							right: 0;
-						}
-					}
-				}
-			}
-			.fc-dimgray {
-				color: $color-dimgray;
-			}
-		}
-		.link-area {
-			margin: 10px 0 20px !important;
-			text-align: center;
-			font-size: 14px;
-			@include screen(custom, max, $max-sm) {
-				margin: 3px 0 20px !important;
-			}
-		}
-		// LGEGMC-1857 start
-		.btn-cetlemmel {
-			position: relative;
-			margin-left: 5px;
-			padding: 0 20px 0 32px;
-			height: 30px;
-			font-size: 14px;
-			background: none;
-			border: none;
-			cursor: pointer;
-			@include screen(custom, max, $max-sm) {
-				padding-left: 36px;
-			}
-			&:before {
-				position: absolute;
-				left: 0;
-				top: 50%;
-				margin-top: -13px;
-				width: 26px;
-				height: 26px;
-				background: #6b6b6b url(/lg5-common-gp/images/common/icons/calculator-white.svg) 58% 50% no-repeat;
-				background-size: 19px;
-				border-radius: 50%;
-				content:'';
-				@include screen(custom, max, $max-sm) {
-					margin-top: -15px;
-					width: 30px;
-					height: 30px;
-				}
-			}
-			&:after {
-				position: absolute;
-				right: 0;
-				top: 50%;
-				margin-top: -8px;
-				width: 16px;
-				height: 16px;
-				background: url(/lg5-common-gp/images/common/icons/link-open-gray.svg) 58% 50% no-repeat;
-				content:'';
-			}
-			&.is-open {
-				&:after {
-					background-image: url(/lg5-common-gp/images/common/icons/link-close-gray.svg);
-				}
-			}
-		}
-		.acco-cetlemmel {
-			display: none;
-			overflow-x: auto;
-			margin: 15px 0;
-			@include screen(custom, max, $max-sm) {
-				margin-top: 10px;
-				&::-webkit-scrollbar {
-					height: 5px;
-				}
-				&::-webkit-scrollbar-track {
-					background-color: #f2f2f2;
-				}
-				&::-webkit-scrollbar-thumb {
-					background: #4e4e4e;
-					border-radius: 2.5px;
-				}
-			}
-			&.is-open {
-				display: block;
-			}
-		}
-		// LGEGMC-1857 end
-		// LGEGMC-2156 start
-		.iframe-btn {
-			position: relative;
-			display: inline-block;
-			padding: 0;
-			border: 0;
-			background: 0;
-			color: $color-carmine;
-			font-size: 14px;
-			line-height: 20px;
-			text-decoration: underline;
-			word-break: break-all;
-			cursor: pointer;
-			text-align: initial;
-			&:focus, &:hover {
-				color:$color-carmine;
-			}
-			&:after {
-				@extend %linkicon;
-				margin-left: 6px;
-				background: url(/lg5-common-gp/images/common/icons/link-open-carmine.svg) no-repeat 0 1px;
-			}
-			[dir="rtl"] &:after {
-				margin-left: 0;
-				margin-right: 6px;
-			}
-			&.is-open {
-				&:after {
-					background-image:url(/lg5-common-gp/images/common/icons/link-close-carmine.svg);
-				}
-			}
-		}
-		.iframe-wrap {
-			display: none;
-			margin-top: 17px;
-			height: 300px;
-			border: 1px solid $line-lightgray;
-			@include screen(custom, max, $max-sm) {
-				margin-top: 9px;
-			}
-			&.is-open {
-				display: block;
-			}
-		}
-		.how-to-work {
-			.iframe-wrap {
-				margin-left: -20px;
-				margin-right: -20px;
-				@include screen(custom, max, $max-sm) {
-					margin-left: -18px;
-					margin-right: -18px;
-				}
-			}
-		}
-		#iframeWrap02 {
-			[data-countrycode=cz] & {
-				margin-bottom: -42px;
-				@include screen(custom, max, $max-sm) {
-					margin-bottom: -38px;
-				}
-			}
-		}
-		.change-browser {
-			display: flex;
-			align-items: center;
-			text-align: center;
-			height: 100%;
-			background: $bg-white;
-			.text {
-				padding: 110px 10px 0 10px;
-				width: 100%;
-				font-size: 18px;
-				color: $color-nightrider;
-				background: url(/lg5-common-gp/images/common/icons/ico-ie-not.svg) 50% 0 no-repeat;
-				background-size: 110px 110px;
-				@include screen(custom, max, $max-sm) {
-					font-size: 14px;
-				}
-			}
-		}
-		// LGEGMC-2156 end
-	}
-	.afterpay-popup{
-		& > a{
-			text-decoration:none;
-		}
-		.top-text{
-			@include screen(custom, max, $max-sm) {
-				img{
-					width: 168px;
-  					height: 35px;
-				}
-			}
-		}
-		.box-area{
-			.area-title{
-				line-height :1.6;
-			}
-			&.afterpay-info{
-				padding:22px 20px;
-				@include screen(custom, max, $max-sm) {
-					padding:18px 18px;
-				}
-			}
-		}
-		.item-afterpay{
-			margin:15px 0;
-			li{
-				margin-top:10px;
-				&:first-child{
-					margin-top:0 !important;
-				}
-			}
-		}
-	}
+  &.modal-with-pay {
+    background-color: rgba(0, 0, 0, 0.7);
+    .modal-content {
+      padding: 0;
+      .modal-body {
+        padding: 0 30px;
+        color: $color-black;
+        @include screen(custom, max, $max-sm) {
+          padding: 0 20px;
+        }
+        p {
+          margin: 0;
+          font-size: 14px;
+          line-height: 22px;
+        }
+      }
+      .modal-footer {
+        display: block;
+        margin: 10px 30px 0;
+        padding: 20px 0;
+        text-align: center;
+        border-top: 1px solid $line-gray;
+        @include screen(custom, max, $max-sm) {
+          margin: 10px 20px 0;
+        }
+        .btn {
+          width: auto;
+          min-width: 136px;
+        }
+      }
+    }
+    .modal-title {
+      @include screen(custom, max, $max-sm) {
+        font-size: 20px;
+      }
+    }
+    .modal-body {
+      .top-text {
+        padding: 15px 0 30px;
+        margin: 0;
+        @include font-family($font-semibold);
+        font-size: 28px;
+        text-align: center;
+        color: $color-black;
+        border-bottom: 1px solid $line-gray;
+        @include screen(custom, max, $max-sm) {
+          margin: 0 0 10px;
+          padding: 0 0 15px;
+          font-size: 22px;
+          line-height: 26px;
+        }
+      }
+      .box-area {
+        padding: 22px 0;
+        @include screen(custom, max, $max-sm) {
+          padding: 14px 0;
+        }
+        &.how-to-work {
+          padding-left: 20px;
+          padding-right: 20px;
+          margin-bottom: 10px;
+          @include screen(custom, max, $max-sm) {
+            padding: 18px;
+          }
+        }
+        &.bg-whitesmoke {
+          background-color: $bg-whitesmoke;
+        }
+        .area-title {
+          margin-bottom: 30px;
+          @include font-family($font-semibold);
+          font-size: 23px;
+          text-align: center;
+          @include screen(custom, max, $max-sm) {
+            margin-bottom: 12px;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+    .step-how-to-shop {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      @include screen(custom, max, $max-sm) {
+        display: block;
+        &.mo-item-col {
+          li {
+            width: 100% !important;
+            display: flex;
+            align-items: center;
+            .step-icon {
+              margin: 0 10px 0 0;
+              [dir="rtl"] & {
+                margin: 0 0 0 10px;
+              }
+            }
+            p {
+              width: calc(100% - 60px);
+              text-align: left;
+              [dir="rtl"] & {
+                text-align: right;
+              }
+            }
+          }
+        }
+      }
+      li {
+        padding: 0 8px;
+        width: 33.33%;
+        @include screen(custom, max, $max-sm) {
+          padding: 10px 0;
+          width: 100%;
+        }
+        strong {
+          padding: 6px 0;
+          @include font-family($font-bold);
+          font-size: 16px;
+          color: #212529;
+        }
+        .step-icon {
+          display: block;
+          margin: 0 auto 6px;
+          width: 45px;
+          height: 45px;
+          img {
+            width: 100%;
+          }
+          @include screen(custom, max, $max-sm) {
+            margin-bottom: 4px;
+            width: 50px;
+            height: 50px;
+          }
+        }
+      }
+      &.item-4ea {
+        li {
+          width: 25%;
+        }
+      }
+      &.item-2ea {
+        li {
+          width: 50%;
+        }
+      }
+    }
+    .how-to-work {
+      padding: 0 15px;
+      .area-title {
+        @include screen(custom, max, $max-sm) {
+          font-size: 20px;
+        }
+      }
+      dl {
+        margin: 10px 0 0 0;
+        color: $color-black;
+        &:first-child {
+          margin-top: 0;
+        }
+        dt {
+          margin-bottom: 3px;
+          line-height: 24px;
+          @include font-family($font-bold);
+          &.link-area {
+            margin-top: 15px;
+            text-align: left;
+            [dir="rtl"] & {
+              text-align: right;
+            }
+            p {
+              margin: 10px 0 5px;
+              @include font-family($font-bold);
+            }
+          }
+        }
+        dd {
+          margin: 0;
+          font-size: 14px;
+          line-height: 22px;
+        }
+      }
+      ul {
+        li {
+          position: relative;
+          margin: 0;
+          padding-left: 10px;
+          font-size: 14px;
+          line-height: 22px;
+          color: $color-dimgray;
+          [dir="rtl"] & {
+            padding-left: 0;
+            padding-right: 10px;
+          }
+          &:before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            content: "-";
+            [dir="rtl"] & {
+              left: auto;
+              right: 0;
+            }
+          }
+          & + li {
+            margin-top: 4px;
+          }
+          &.no-dash {
+            padding-left: 0 !important;
+            &:before {
+              content: none !important;
+            }
+          }
+        }
+      }
+      .text-line {
+        @include font-family($font-semibold);
+        text-decoration: underline;
+        font-style: normal;
+      }
+      .has-line {
+        &:before {
+          display: block;
+          margin: 20px 0;
+          width: 100%;
+          height: 1px;
+          background-color: #e4e4e4;
+          content: "";
+        }
+      }
+      .fw-sb {
+        @include font-family($font-semibold);
+      }
+      .fc-dimgray {
+        color: $color-dimgray;
+      }
+    }
+    .item-infomation {
+      li {
+        position: relative;
+        margin: 0;
+        + li {
+          margin-top: 20px;
+        }
+        strong {
+          display: inline-block;
+          margin-bottom: 4px;
+          font-size: 18px;
+          @include font-family($font-semibold);
+          vertical-align: middle;
+        }
+        .item-icon {
+          display: inline-block;
+          margin-right: 3px;
+          margin-bottom: 3px;
+          width: 30px;
+          vertical-align: middle;
+          [dir="rtl"] & {
+            margin-right: 0;
+            margin-left: 3px;
+          }
+          img {
+            width: 100%;
+          }
+          &.hello-bank {
+            width: 90px;
+          }
+        }
+      }
+      ul.sty-dash {
+        li {
+          position: relative;
+          margin: 0;
+          padding-left: 10px;
+          font-size: 14px;
+          line-height: 22px;
+          color: $color-dimgray;
+          [dir="rtl"] & {
+            padding-left: 0;
+            padding-right: 10px;
+          }
+          &:before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            content: "-";
+            [dir="rtl"] & {
+              left: auto;
+              right: 0;
+            }
+          }
+        }
+      }
+      .fc-dimgray {
+        color: $color-dimgray;
+      }
+    }
+    .link-area {
+      margin: 10px 0 20px !important;
+      text-align: center;
+      font-size: 14px;
+      @include screen(custom, max, $max-sm) {
+        margin: 3px 0 20px !important;
+      }
+    }
+    // LGEGMC-1857 start
+    .btn-cetlemmel {
+      position: relative;
+      margin-left: 5px;
+      padding: 0 20px 0 32px;
+      height: 30px;
+      font-size: 14px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      @include screen(custom, max, $max-sm) {
+        padding-left: 36px;
+      }
+      &:before {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -13px;
+        width: 26px;
+        height: 26px;
+        background: #6b6b6b
+          url(/lg5-common-gp/images/common/icons/calculator-white.svg) 58% 50%
+          no-repeat;
+        background-size: 19px;
+        border-radius: 50%;
+        content: "";
+        @include screen(custom, max, $max-sm) {
+          margin-top: -15px;
+          width: 30px;
+          height: 30px;
+        }
+      }
+      &:after {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-top: -8px;
+        width: 16px;
+        height: 16px;
+        background: url(/lg5-common-gp/images/common/icons/link-open-gray.svg)
+          58% 50% no-repeat;
+        content: "";
+      }
+      &.is-open {
+        &:after {
+          background-image: url(/lg5-common-gp/images/common/icons/link-close-gray.svg);
+        }
+      }
+    }
+    .acco-cetlemmel {
+      display: none;
+      overflow-x: auto;
+      margin: 15px 0;
+      @include screen(custom, max, $max-sm) {
+        margin-top: 10px;
+        &::-webkit-scrollbar {
+          height: 5px;
+        }
+        &::-webkit-scrollbar-track {
+          background-color: #f2f2f2;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: #4e4e4e;
+          border-radius: 2.5px;
+        }
+      }
+      &.is-open {
+        display: block;
+      }
+    }
+    // LGEGMC-1857 end
+    // LGEGMC-2156 start
+    .iframe-btn {
+      position: relative;
+      display: inline-block;
+      padding: 0;
+      border: 0;
+      background: 0;
+      color: $color-carmine;
+      font-size: 14px;
+      line-height: 20px;
+      text-decoration: underline;
+      word-break: break-all;
+      cursor: pointer;
+      text-align: initial;
+      &:focus,
+      &:hover {
+        color: $color-carmine;
+      }
+      &:after {
+        @extend %linkicon;
+        margin-left: 6px;
+        background: url(/lg5-common-gp/images/common/icons/link-open-carmine.svg)
+          no-repeat 0 1px;
+      }
+      [dir="rtl"] &:after {
+        margin-left: 0;
+        margin-right: 6px;
+      }
+      &.is-open {
+        &:after {
+          background-image: url(/lg5-common-gp/images/common/icons/link-close-carmine.svg);
+        }
+      }
+    }
+    .iframe-wrap {
+      display: none;
+      margin-top: 17px;
+      height: 300px;
+      border: 1px solid $line-lightgray;
+      @include screen(custom, max, $max-sm) {
+        margin-top: 9px;
+      }
+      &.is-open {
+        display: block;
+      }
+    }
+    .how-to-work {
+      .iframe-wrap {
+        margin-left: -20px;
+        margin-right: -20px;
+        @include screen(custom, max, $max-sm) {
+          margin-left: -18px;
+          margin-right: -18px;
+        }
+      }
+    }
+    #iframeWrap02 {
+      [data-countrycode="cz"] & {
+        margin-bottom: -42px;
+        @include screen(custom, max, $max-sm) {
+          margin-bottom: -38px;
+        }
+      }
+    }
+    .change-browser {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+      background: $bg-white;
+      .text {
+        padding: 110px 10px 0 10px;
+        width: 100%;
+        font-size: 18px;
+        color: $color-nightrider;
+        background: url(/lg5-common-gp/images/common/icons/ico-ie-not.svg) 50% 0
+          no-repeat;
+        background-size: 110px 110px;
+        @include screen(custom, max, $max-sm) {
+          font-size: 14px;
+        }
+      }
+    }
+    // LGEGMC-2156 end
+  }
+  .afterpay-popup {
+    & > a {
+      text-decoration: none;
+    }
+    .top-text {
+      @include screen(custom, max, $max-sm) {
+        img {
+          width: 168px;
+          height: 35px;
+        }
+      }
+    }
+    .box-area {
+      .area-title {
+        line-height: 1.6;
+      }
+      &.afterpay-info {
+        padding: 22px 20px;
+        @include screen(custom, max, $max-sm) {
+          padding: 18px 18px;
+        }
+      }
+    }
+    .item-afterpay {
+      margin: 15px 0;
+      li {
+        margin-top: 10px;
+        &:first-child {
+          margin-top: 0 !important;
+        }
+      }
+    }
+  }
 }

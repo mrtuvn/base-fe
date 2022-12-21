@@ -1,251 +1,263 @@
 @charset 'UTF-8';
-
-@import './setting/variables';
-@import './components/video-asset';
-@import './components/animation-asset';
-@import './components/no-content';
-@import './components/colorchip';
-@import './modal/pdp-summary-gallery';
-@import './components/filter-sort-box'; // filter sort css (List filter sort)
-@import './components/filter-default'; // filter default css (filter: GPC0007/GPC0026)
-@import './components/result-other-box'; //result-other-box css (filter: GPC0120)
-// @import './modal/with-pay'; // LGEGMC-1857 default.scss 에서 이미 불러옴. 중복적용으로 삭제.
-// @import './modal/header-notice-popup'; // LGEITF-342
+@use "./setting" as *; // mean other files listed below can use settings variables from file inside setting
+@forward "./components/video-asset";
+@forward "./components/animation-asset";
+@forward "./components/no-content";
+@forward "./components/colorchip";
+@forward "./modal/pdp-summary-gallery";
+@forward "./components/filter-sort-box"; // filter sort css (List filter sort)
+@forward "./components/filter-default"; // filter default css (filter: GPC0007/GPC0026)
+@forward "./components/result-other-box"; //result-other-box css (filter: GPC0120)
+// @use './modal/with-pay'; // LGEGMC-1857 default.scss 에서 이미 불러옴. 중복적용으로 삭제.
+// @use './modal/header-notice-popup'; // LGEITF-342
 
 // component container
 .iw_placeholder .iw_component {
-	// don't remove
-	border-top:1px solid transparent;	
-	margin-top:-2px; // LGEGMC-892 20201201 edit			
+  // don't remove
+  border-top: 1px solid transparent;
+  margin-top: -2px; // LGEGMC-892 20201201 edit
 }
 .component-wrap {
-	position:relative;width:100%;clear:both;
-	@extend %clearfix;
-	max-width:1600px;
-	margin:50px auto; // 50px : component top bottom margin for desktop
-	//padding:0 30px;
-	&.bg-whitesmoke {background-color:$bg-whitesmoke;}
-	@include screen(custom, max, (1630)) {
-		margin-left:-15px;
-		margin-right:-15px;
-		padding:0;
-		width:auto;
-	}
-	@include screen(custom, max, $max-sm) {
-		margin:25px -15px; // 60px : component top bottom margin for mobile
-	}
-	&.zero-top {
-		margin-top:0;
-		// 상단 여백 없음 선택 시, 기본 여백 있는 경우 추가 처리
-		.component {
+  position: relative;
+  width: 100%;
+  clear: both;
+  @extend %clearfix;
+  max-width: 1600px;
+  margin: 50px auto; // 50px : component top bottom margin for desktop
+  //padding:0 30px;
+  &.bg-whitesmoke {
+    background-color: $bg-whitesmoke;
+  }
+  @include screen(custom, max, (1630)) {
+    margin-left: -15px;
+    margin-right: -15px;
+    padding: 0;
+    width: auto;
+  }
+  @include screen(custom, max, $max-sm) {
+    margin: 25px -15px; // 60px : component top bottom margin for mobile
+  }
+  &.zero-top {
+    margin-top: 0;
+    // 상단 여백 없음 선택 시, 기본 여백 있는 경우 추가 처리
+    .component {
+    }
+  }
+  &.zero-btm {
+    margin-bottom: 0;
+    // 하단 여백 없음 선택 시, 기본 여백 있는 경우 추가 처리
+    .component {
+    }
+  }
+  .component {
+    position: relative;
+    margin: 0 auto;
+    // 좌우에 Slick 화살표가 들어가는 경우
+    &.component-outer-box,
+    .component-outer-box {
+      max-width: (1284px+160px);
+      margin: 0 auto;
+      padding-left: 80px;
+      padding-right: 80px;
+      .component-inner-box {
+        position: relative;
+        overflow: visible;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      @include screen(custom, max, $max-sm) {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .slick-prev,
+      .slick-next {
+        position: absolute;
+        top: 50%;
+        margin-top: -12px;
+        border: 0;
+        background: none;
+        padding: 0;
+        width: 23px;
+        height: 40px;
+        cursor: pointer;
+        svg {
+          display: block;
+        }
+        color: $color-gray;
+        &:not([disabled]):hover,
+        &:not([disabled]):focus {
+          //color: $color-nightrider;
+          color: $color-black;
+        }
+        @include screen(custom, max, $max-sm) {
+          display: none;
+        }
+      }
+      .slick-prev {
+        left: -50px;
+        [dir="rtl"] & {
+          left: auto;
+          right: -50px;
+          transform: rotate(180deg);
+        }
+      }
+      .slick-next {
+        right: -50px;
+        [dir="rtl"] & {
+          right: auto;
+          left: -50px;
+          transform: rotate(180deg);
+        }
+      }
+    }
+    // WA-Common-Slick
+    .slick-slider {
+      .slick-arrow.slick-disabled {
+        opacity: 0.3;
+      }
+    }
+  }
 
-		}
-	}
-	&.zero-btm {
-		margin-bottom:0;
-		// 하단 여백 없음 선택 시, 기본 여백 있는 경우 추가 처리
-		.component {
+  // text-align
+  .align-left {
+    text-align: left;
+  }
+  .align-right {
+    text-align: right;
+  }
+  .align-center {
+    text-align: center;
+  }
 
-		}
-	}
-	.component {
-		position:relative;
-		margin:0 auto;
-		// 좌우에 Slick 화살표가 들어가는 경우
-		&.component-outer-box,
-		.component-outer-box {
-			max-width:(1284px+160px);
-			margin:0 auto;
-			padding-left:80px;
-			padding-right:80px;
-			.component-inner-box {
-				position:relative;
-				overflow:visible;
-				width:100%;
-				padding:0;
-				margin:0;
-			}
-			@include screen(custom, max, $max-sm) {
-				padding-left:24px;
-				padding-right:24px;
-			}
-			.slick-prev,
-			.slick-next {
-				position:absolute;
-				top:50%;
-				margin-top:-12px;
-				border:0;
-				background:none;
-				padding:0;
-				width:23px;
-				height:40px;
-				cursor:pointer;
-				svg {
-					display: block;
-				}
-				color: $color-gray;
-				&:not([disabled]):hover,
-				&:not([disabled]):focus {
-					//color: $color-nightrider;
-					color:$color-black;
-				}
-				@include screen(custom, max, $max-sm) {
-					display:none;
-				}
-			}
-			.slick-prev {
-				left:-50px;
-				[dir="rtl"] & {
-					left:auto;
-					right:-50px;
-					transform:rotate(180deg);
-				}
-			}
-			.slick-next {
-				right:-50px;
-				[dir="rtl"] & {
-					right:auto;
-					left:-50px;
-					transform:rotate(180deg);
-				}
-			}
-		}
-		// WA-Common-Slick
-		.slick-slider {
-			.slick-arrow.slick-disabled {opacity:0.3;}
-		}
-	}
+  // video title copy, play button
+  .video,
+  .animation-box,
+  .visual-area.image {
+    .caption {
+      width: 100%;
+      height: 39px;
+      background-color: rgba(0, 0, 0, 0.35);
+      color: $color-white;
+      font-size: 14px;
+      line-height: 24px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 5;
+      padding: 7px 0 0 15px;
+      text-align: left;
+      box-sizing: border-box;
+      @include screen(custom, max, $max-sm) {
+        padding: 2px 0 0 10px;
+        height: 29px;
+      }
+      [dir="rtl"] & {
+        text-align: right;
+        padding: 7px 15px 0 0;
+        @include screen(custom, max, $max-sm) {
+          padding: 2px 10px 0 0;
+        }
+      }
+    }
+  }
+  .video {
+    .cookie-permit-msg {
+      position: absolute;
+      top: 50%;
+      left: auto;
+      transform: translateY(-50%);
+      a {
+        &:before {
+          display: none;
+        }
+      }
+      img {
+        position: static !important;
+      }
+    }
+    a {
+      display: block;
+      &:before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        /* LGEGMC-432 20200812 modify */
+        width: 48px;
+        height: 48px;
+        margin: -24px 0 0 -24px;
+        background: url("/lg5-common-gp/images/components/btn-play.svg")
+          no-repeat 0 0;
+        background-size: 100% 100%;
+        border-radius: 50% 50%;
+        background-color: rgba(0, 0, 0, 0.25);
+        // @include screen(custom, max, $max-sm){
+        // 	width:48px;
+        // 	height:48px;
+        // 	margin:-24px 0 0 -24px;
+        // 	background:rgba(0,0,0, 0.25) url('/lg5-common/images/components/btn-play.svg') no-repeat 0 0;
+        // }
+        /* //LGEGMC-432 20200812 modify */
+      }
+    }
+  }
+  // font opion style
+  .font-regular {
+    @include font-family($font-regular);
+  }
+  .font-bold {
+    @include font-family($font-bold);
+  }
+  .font-regular-italic {
+    @include font-family($font-regular, italic);
+  }
+  .font-bold-italic {
+    @include font-family($font-bold, italic);
+  }
+  .font-underline {
+    text-decoration: underline;
+  }
+  // bv_star style custom
+  [data-bv-rating] .bv_main_container,
+  [data-bv-show="inline_rating"] .bv_main_container {
+    display: inline-block !important;
+  }
 
-	// text-align
-	.align-left {
-		text-align:left;
-	}
-	.align-right {
-		text-align:right;
-	}
-	.align-center {
-		text-align:center;
-	}
-
-	// video title copy, play button
-	.video,
-	.animation-box,
-	.visual-area.image  {
-		.caption {
-			width:100%;
-			height:39px;
-			background-color:rgba(0,0,0,0.35);
-			color:$color-white;
-			font-size:14px;
-			line-height: 24px;
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			z-index: 5;
-			padding: 7px 0 0 15px;
-			text-align: left;
-			box-sizing: border-box;
-			@include screen(custom, max, $max-sm) {
-				padding: 2px 0 0 10px;
-				height:29px;
-			}
-			[dir="rtl"] & {
-				text-align:right;
-				padding: 7px 15px 0 0;
-				@include screen(custom, max, $max-sm) {
-					padding: 2px 10px 0 0;
-				}
-			}
-		}
-	}
-	.video {
-		.cookie-permit-msg {
-			position:absolute;
-			top:50%;
-			left:auto;
-			transform:translateY(-50%);
-			a {
-				&:before {
-					display:none;
-				}
-			}
-			img {
-				position:static !important;
-			}
-		}
-		a {
-			display:block;
-			&:before {
-				content:'';
-				display: inline-block;
-				position:absolute;
-				left:50%;
-				top:50%;
-				/* LGEGMC-432 20200812 modify */
-				width:48px;
-				height:48px;
-				margin:-24px 0 0 -24px;
-				background:url('/lg5-common-gp/images/components/btn-play.svg') no-repeat 0 0;
-				background-size:100% 100%;
-				border-radius:50% 50%;
-				background-color:rgba(0,0,0, 0.25);
-				// @include screen(custom, max, $max-sm){
-				// 	width:48px;
-				// 	height:48px;
-				// 	margin:-24px 0 0 -24px;
-				// 	background:rgba(0,0,0, 0.25) url('/lg5-common/images/components/btn-play.svg') no-repeat 0 0;
-				// }
-				/* //LGEGMC-432 20200812 modify */	
-			}
-		}
-	}
-	// font opion style
-	.font-regular {
-		@include font-family($font-regular);
-	}
-	.font-bold {
-		@include font-family($font-bold);
-	}
-	.font-regular-italic {
-		@include font-family($font-regular, italic);
-	}
-	.font-bold-italic {
-		@include font-family($font-bold, italic);
-	}
-	.font-underline {
-		text-decoration:underline;
-	}
-	// bv_star style custom
-	[data-bv-rating] .bv_main_container,
-	[data-bv-show=inline_rating] .bv_main_container {
-		display:inline-block!important;
-	}
-
-	[data-bv-rating] .bv_main_container .bv_averageRating_component_container,
-	[data-bv-rating] .bv_main_container .bv_numReviews_component_container,
-	[data-bv-show=inline_rating] .bv_main_container .bv_averageRating_component_container,
-	[data-bv-show=inline_rating] .bv_main_container .bv_numReviews_component_container,
-	.bv_stars_component_container {
-		display:inline-block!important;
-		vertical-align:middle!important;
-	}
-	// 20200416 START 이상현 - CN에서 list detail 컴포넌트의 nav 화면 오류 수정.
-	// CN article detail component 
-	// 20200518 START 이상현 - CN 케이스에만 적용한 detail 컴포넌트의 분기 코드를 한자 사용 국가 전체로 확장. 
-	[data-countrycode="cn"] & 
-	[data-countrycode="tw"] & 
-	[data-countrycode="hk"] & 
-	[data-countrycode="jp"] & {
-		.component .article-nav dt {
-			word-break:keep-all;
-		}
-	}
-	// 20200518 END
-	// 20200416 END
+  [data-bv-rating] .bv_main_container .bv_averageRating_component_container,
+  [data-bv-rating] .bv_main_container .bv_numReviews_component_container,
+  [data-bv-show="inline_rating"]
+    .bv_main_container
+    .bv_averageRating_component_container,
+  [data-bv-show="inline_rating"]
+    .bv_main_container
+    .bv_numReviews_component_container,
+  .bv_stars_component_container {
+    display: inline-block !important;
+    vertical-align: middle !important;
+  }
+  // 20200416 START 이상현 - CN에서 list detail 컴포넌트의 nav 화면 오류 수정.
+  // CN article detail component
+  // 20200518 START 이상현 - CN 케이스에만 적용한 detail 컴포넌트의 분기 코드를 한자 사용 국가 전체로 확장.
+  [data-countrycode="cn"]
+    &
+    [data-countrycode="tw"]
+    &
+    [data-countrycode="hk"]
+    &
+    [data-countrycode="jp"]
+    & {
+    .component .article-nav dt {
+      word-break: keep-all;
+    }
+  }
+  // 20200518 END
+  // 20200416 END
 }
 
 // LGEGMC-1253 START
 .bv_histogram_row_rating {
-	word-break: normal;
+  word-break: normal;
 }
 // LGEGMC-1253 END

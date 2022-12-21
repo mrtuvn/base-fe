@@ -1,7 +1,7 @@
 @charset 'UTF-8';
 @use "sass:math";
-@import "./setting/variables";
-@import "./GPC0088";
+@use "./setting" as *;
+@use "./GPC0088" as *;
 
 .GPC0055 {
   $relative: 1200px;

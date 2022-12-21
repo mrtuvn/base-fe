@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 @use "sass:math";
-@import "./setting/variables";
+@use "./setting" as *;
 
 .GPC0064 {
   margin: 0 auto;

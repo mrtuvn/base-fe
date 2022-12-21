@@ -1,43 +1,72 @@
-
-footer {width:100%;}
-[type=reset], [type=submit], button, html [type=button] {
-	-moz-appearance: none;
-	-webkit-appearance: none;
+@use "../setting/" as *;
+footer {
+  width: 100%;
+}
+[type="reset"],
+[type="submit"],
+button,
+html [type="button"] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
 }
 // visible-xs --> sm-only
 // hidden-xs --> mobile-hidden
-.visible-sm, .visible-xs {display: none !important;}
+.visible-sm,
+.visible-xs {
+  display: none !important;
+}
 @media (max-width: 767px) {
-	.visible-xs {display: block !important;}
-	.hidden-xs {display: none !important;}
-}@media (max-width: 991px) {
-	.visible-sm {display: block !important;}
-	.hidden-sm {display: none !important;}
+  .visible-xs {
+    display: block !important;
+  }
+  .hidden-xs {
+    display: none !important;
+  }
+}
+@media (max-width: 991px) {
+  .visible-sm {
+    display: block !important;
+  }
+  .hidden-sm {
+    display: none !important;
+  }
 }
 .row {
-	@extend %clearfix;
+  @extend %clearfix;
 }
 a {
-	color:#000;
-	&:hover {
-		color:#000;
-	}
+  color: #000;
+  &:hover {
+    color: #000;
+  }
 }
-b, strong {font-weight:400;}
+b,
+strong {
+  font-weight: 400;
+}
 .modal-backdrop {
-	z-index:10001;
+  z-index: 10001;
 }
 .modal {
-	z-index:10002;
+  z-index: 10002;
 }
 
 @media screen and (min-resolution: 400dpi) {
-
 }
 
-.btn  {padding:0;border-radius:0;}
-button.link-text {padding:0;border-radius:0;background:transparent;border:0;}
+.btn {
+  padding: 0;
+  border-radius: 0;
+}
+button.link-text {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+}
 
 body {
-	.close {opacity:1!important;}
+  .close {
+    opacity: 1 !important;
+  }
 }

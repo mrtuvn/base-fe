@@ -1,5 +1,5 @@
 @charset 'UTF-8';
-@import "./setting/variables";
+@use "./setting" as *;
 
 .GPC0003 {
   .slick-track {

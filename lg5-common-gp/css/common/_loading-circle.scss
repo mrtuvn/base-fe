@@ -1,42 +1,43 @@
+@use "../setting/" as *;
 
 @at-root .loading-circle {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-	background: rgba(255,255,255,0.6);
-	z-index: 99;
-	.lds-dual-ring {
-		display: inline-block;
-		width: 64px;
-		height: 64px;
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%);
-	}
-	.lds-dual-ring:after {
-		content: " ";
-		display: block;
-		width: 46px;
-		height: 46px;
-		margin: 1px;
-		border-radius: 50%;
-		border: 5px solid $color-carmine;
-		border-color: $color-carmine transparent $color-carmine transparent;
-		animation: lds-dual-ring 1.2s linear infinite;
-	}
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 99;
+  .lds-dual-ring {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%);
+  }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 5px solid $color-carmine;
+    border-color: $color-carmine transparent $color-carmine transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
 }
 @at-root body > .loading-circle {
-	position: fixed;
+  position: fixed;
 }
 
 @keyframes lds-dual-ring {
-	0% {
-	transform: rotate(0deg);
-	}
-	100% {
-	transform: rotate(360deg);
-	}
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

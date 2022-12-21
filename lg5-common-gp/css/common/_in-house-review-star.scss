@@ -1,77 +1,79 @@
-
+@use "../setting/" as *;
 // inhouse review rates
 .rating.inhouse-review {
-	a {
-		text-decoration: none;
-		display: inline-block;
-	}
-	.star-area {
-		font-size: 0px;
-		.star {
-			width: 73px;
-			height: 12px;
-			position: relative;
-			display: inline-block;
-			margin-top: 4px;
-			.bg-star,
-			.carmine-star {
-				height: 100%;
-				background: {
-					repeat:no-repeat;
-					size:73px 12px;
-					position:0 0;
-				}
-				position: absolute;
-				top:0;
-				left:0;
-				[dir="rtl"] & {
-					left:auto;
-					right:0;
-				}
-			}
-			.bg-star {
-				width: 100%;
-				background-image: url('/lg5-common-gp/images/common/icons/star-white.svg');
-			}
-			.carmine-star {
-				width: 0;
-				background-image: url('/lg5-common-gp/images/common/icons/star-carmine.svg');
-				background-color: $bg-white;
-				// 20200608 START 박지영 - 모바일 디바이스에서 잘 안 보여서 수정
-				// [dir="rtl"] & {transform:rotateY(180deg);}
-				[dir="rtl"] & {background-position:right top;}
-				// 20200608 END
-			}
-		}
-		.review-number {
-			display: inline-block;
-			vertical-align: top;
-			color: $color-dimgray;
-			font-size: 14px;
-			margin-top: 0;
-			margin-left: 8px;
-			[dir="rtl"] & {
-				margin-left:0;
-				margin-right:8px;
-			}
-			/* LGEJP-161 20210112 add -  GPC0009, GPC0007, GPC0058, SEARCH, COMPARE */
-			.underline, 
-			[data-countrycode="jp"] .GPC0004 &, 
-			[data-countrycode="jp"] .GPC0007 &, 
-			[data-countrycode="jp"] .GPC0058 &, 
-			[data-countrycode="jp"] .search-result-view-all &, 
-			[data-countrycode="jp"] .compare-product & {
-				text-decoration: underline;
-			}
-			/* //LGEJP-161 20210112 add */
-		}
-	}
-} 
+  a {
+    text-decoration: none;
+    display: inline-block;
+  }
+  .star-area {
+    font-size: 0px;
+    .star {
+      width: 73px;
+      height: 12px;
+      position: relative;
+      display: inline-block;
+      margin-top: 4px;
+      .bg-star,
+      .carmine-star {
+        height: 100%;
+        background: {
+          repeat: no-repeat;
+          size: 73px 12px;
+          position: 0 0;
+        }
+        position: absolute;
+        top: 0;
+        left: 0;
+        [dir="rtl"] & {
+          left: auto;
+          right: 0;
+        }
+      }
+      .bg-star {
+        width: 100%;
+        background-image: url("/lg5-common-gp/images/common/icons/star-white.svg");
+      }
+      .carmine-star {
+        width: 0;
+        background-image: url("/lg5-common-gp/images/common/icons/star-carmine.svg");
+        background-color: $bg-white;
+        // 20200608 START 박지영 - 모바일 디바이스에서 잘 안 보여서 수정
+        // [dir="rtl"] & {transform:rotateY(180deg);}
+        [dir="rtl"] & {
+          background-position: right top;
+        }
+        // 20200608 END
+      }
+    }
+    .review-number {
+      display: inline-block;
+      vertical-align: top;
+      color: $color-dimgray;
+      font-size: 14px;
+      margin-top: 0;
+      margin-left: 8px;
+      [dir="rtl"] & {
+        margin-left: 0;
+        margin-right: 8px;
+      }
+      /* LGEJP-161 20210112 add -  GPC0009, GPC0007, GPC0058, SEARCH, COMPARE */
+      .underline,
+      [data-countrycode="jp"] .GPC0004 &,
+      [data-countrycode="jp"] .GPC0007 &,
+      [data-countrycode="jp"] .GPC0058 &,
+      [data-countrycode="jp"] .search-result-view-all &,
+      [data-countrycode="jp"] .compare-product & {
+        text-decoration: underline;
+      }
+      /* //LGEJP-161 20210112 add */
+    }
+  }
+}
 /* LGEJP-161 20210112 add - GPC0058, SEARCH, COMPARE */
 .rating.rating-ru-box {
-	[data-countrycode="jp"] & .bv_numReviews_component_container .bv_text, 
-	[data-countrycode="jp"] & .sp-inline-rating-disclaimer {
-		text-decoration: underline;
-	}
+  [data-countrycode="jp"] & .bv_numReviews_component_container .bv_text,
+  [data-countrycode="jp"] & .sp-inline-rating-disclaimer {
+    text-decoration: underline;
+  }
 }
 /* //LGEJP-161 20210112 add */

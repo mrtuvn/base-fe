@@ -1,193 +1,226 @@
-
+@use "../setting/" as *;
 .btn-tooltip-question {
-	position:relative;
-	top:1px;
-	display:inline-block;
-	vertical-align:top;
-	width:20px;height:20px;
-	padding:0;border:0;
-	background:none;
-	overflow:hidden;
-	white-space:nowrap;
-	text-indent:200%;
-	[dir="rtl"] & {text-indent:-1000%;}
-	cursor:pointer;
-	span {
-		width:14px;height:14px;
-		border-radius:100%;
-		background:$bg-carmine;
-		position:absolute;
-		left:3px;top:3px;
-		[dir="rtl"] & {
-			left:0;
-			right:3px;
-		}
-		&:before{
-			width:14px;height:14px;
-			background:url('/lg5-common-gp/images/common/icons/question.svg') no-repeat 0 0;
-			@include pseudo();
-			left:0;top:0;
-			[dir="rtl"] & {
-				left:auto;
-				right:0;
-			}
-		}
-	}
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  vertical-align: top;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 200%;
+  [dir="rtl"] & {
+    text-indent: -1000%;
+  }
+  cursor: pointer;
+  span {
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    background: $bg-carmine;
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    [dir="rtl"] & {
+      left: 0;
+      right: 3px;
+    }
+    &:before {
+      width: 14px;
+      height: 14px;
+      background: url("/lg5-common-gp/images/common/icons/question.svg")
+        no-repeat 0 0;
+      @include pseudo();
+      left: 0;
+      top: 0;
+      [dir="rtl"] & {
+        left: auto;
+        right: 0;
+      }
+    }
+  }
 }
 
 .tooltip {
-	position:relative;
-	display:inline-block;
-	opacity:1;
-	padding-right:22px;
-	[dir="rtl"] & {
-		padding-right:0;
-		padding-left:22px;
-	}
+  position: relative;
+  display: inline-block;
+  opacity: 1;
+  padding-right: 22px;
+  [dir="rtl"] & {
+    padding-right: 0;
+    padding-left: 22px;
+  }
 }
 .tooltip-wrap {
-	position:absolute;
-	right:0; top:0;
-	[dir="rtl"] & {
-		right:auto;
-		left:0;
-	}
+  position: absolute;
+  right: 0;
+  top: 0;
+  [dir="rtl"] & {
+    right: auto;
+    left: 0;
+  }
 }
 .tooltip-area {
-	display:none;
-	position:absolute;
-	z-index:1000;
-	min-width:220px;
-	&:before {
-		position: absolute;
-		content:'';
-		border-color: $line-gray;
-		border-style: solid;
-		border-width: 0 0 1px 1px;
-		background: $bg-white;
-		width: 11px;
-		height: 11px;
-	}
-	&.top-left {
-		bottom:26px;
-		right:-5px;
-		padding:0 0 8px;
-		&:before {
-			bottom:2px;
-			right:9px;
-			transform: rotate(-45deg);
-		}
-		[dir="rtl"] & {
-			right:auto;
-			left:-5px;
-			&:before {
-				right:auto;
-				left:9px;
-			}
-		}
-	}
-	&.top-center {
-		bottom:26px;left:50%;margin-left:-108px;
-		padding:0 0 8px;
-		&:before {
-			bottom:2px;left:50%;margin-left:-8px;
-			transform: rotate(-45deg);
-		}
-	}
-	&.top-right {
-		bottom:26px;left:-5px;
-		padding:0 0 8px;
-		&:before {
-			bottom:2px;left:9px;
-			transform: rotate(-45deg);
-		}
-		[dir="rtl"] & {
-			left:auto;
-			right:-5px;
-			&:before {
-				left:auto;
-				right:9px;
-			}
-		}
-	}
-	&.bottom-left {
-		top:26px;
-		right:-5px;
-		padding:8px 0 0;
-		&:before {
-			top:2px;
-			right:9px;
-			transform: rotate(135deg);
-		}
-		.tooltip-close {top:16px;}
-		[dir="rtl"] & {
-			right:auto;
-			left:-5px;
-			&:before {
-				right:auto;
-				left:9px;
-			}
-		}
-	}
-	&.bottom-center {
-		top:26px;left:50%;margin-left:-108px;
-		padding:8px 0 0;
-		&:before {
-			top:2px;left:50%;margin-left:-8px;
-			transform: rotate(135deg);
-		}
-		.tooltip-close {top:16px;}
-	}
-	&.bottom-right {
-		top:26px;
-		left:-5px;
-		padding:8px 0 0;
-		&:before {
-			top:2px;
-			left:9px;
-			transform: rotate(135deg);
-		}
-		.tooltip-close {top:16px;}
-		[dir="rtl"] & {
-			left:auto;
-			right:-5px;
-			&:before {
-				left:auto;
-				right:9px;
-			}
-		}
-	}
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  min-width: 220px;
+  &:before {
+    position: absolute;
+    content: "";
+    border-color: $line-gray;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    background: $bg-white;
+    width: 11px;
+    height: 11px;
+  }
+  &.top-left {
+    bottom: 26px;
+    right: -5px;
+    padding: 0 0 8px;
+    &:before {
+      bottom: 2px;
+      right: 9px;
+      transform: rotate(-45deg);
+    }
+    [dir="rtl"] & {
+      right: auto;
+      left: -5px;
+      &:before {
+        right: auto;
+        left: 9px;
+      }
+    }
+  }
+  &.top-center {
+    bottom: 26px;
+    left: 50%;
+    margin-left: -108px;
+    padding: 0 0 8px;
+    &:before {
+      bottom: 2px;
+      left: 50%;
+      margin-left: -8px;
+      transform: rotate(-45deg);
+    }
+  }
+  &.top-right {
+    bottom: 26px;
+    left: -5px;
+    padding: 0 0 8px;
+    &:before {
+      bottom: 2px;
+      left: 9px;
+      transform: rotate(-45deg);
+    }
+    [dir="rtl"] & {
+      left: auto;
+      right: -5px;
+      &:before {
+        left: auto;
+        right: 9px;
+      }
+    }
+  }
+  &.bottom-left {
+    top: 26px;
+    right: -5px;
+    padding: 8px 0 0;
+    &:before {
+      top: 2px;
+      right: 9px;
+      transform: rotate(135deg);
+    }
+    .tooltip-close {
+      top: 16px;
+    }
+    [dir="rtl"] & {
+      right: auto;
+      left: -5px;
+      &:before {
+        right: auto;
+        left: 9px;
+      }
+    }
+  }
+  &.bottom-center {
+    top: 26px;
+    left: 50%;
+    margin-left: -108px;
+    padding: 8px 0 0;
+    &:before {
+      top: 2px;
+      left: 50%;
+      margin-left: -8px;
+      transform: rotate(135deg);
+    }
+    .tooltip-close {
+      top: 16px;
+    }
+  }
+  &.bottom-right {
+    top: 26px;
+    left: -5px;
+    padding: 8px 0 0;
+    &:before {
+      top: 2px;
+      left: 9px;
+      transform: rotate(135deg);
+    }
+    .tooltip-close {
+      top: 16px;
+    }
+    [dir="rtl"] & {
+      left: auto;
+      right: -5px;
+      &:before {
+        left: auto;
+        right: 9px;
+      }
+    }
+  }
 }
 .tooltip-inner {
-	max-width:none;
-	background:$bg-white;
-	border:1px solid $line-gray;
-	font-size:14px;
-	line-height:20px;
-	color:$color-gray;
-	@include font-family($font-regular);
-	// word-wrap:break-all;
-	word-break:break-word;
-	text-align:left;
-	padding:18px 30px 19px 24px;
-	[dir="rtl"] & {
-		text-align:right;
-		padding:18px 24px 19px 30px;
-	}
-	p {margin:0;}
+  max-width: none;
+  background: $bg-white;
+  border: 1px solid $line-gray;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-gray;
+  @include font-family($font-regular);
+  // word-wrap:break-all;
+  word-break: break-word;
+  text-align: left;
+  padding: 18px 30px 19px 24px;
+  [dir="rtl"] & {
+    text-align: right;
+    padding: 18px 24px 19px 30px;
+  }
+  p {
+    margin: 0;
+  }
 }
 .tooltip-close {
-	width:20px;height:20px;
-	padding:0;border:0;cursor:pointer;
-	background:$bg-white url('/lg5-common-gp/images/common/icons/modal-close.svg') no-repeat 4px 4px;
-	background-size:12px 12px;
-	overflow:hidden;
-	white-space:nowrap;
-	text-indent:200%;
-	position:absolute;
-	right:8px;top:8px;
-	[dir="rtl"] & {
-		right:auto;
-		left:8px;
-	}
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: $bg-white
+    url("/lg5-common-gp/images/common/icons/modal-close.svg") no-repeat 4px 4px;
+  background-size: 12px 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 200%;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  [dir="rtl"] & {
+    right: auto;
+    left: 8px;
+  }
 }

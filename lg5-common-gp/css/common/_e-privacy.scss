@@ -1,4 +1,5 @@
-@import "../setting/_variables";
+@use "../setting/" as *;
+
 @mixin toggleActive() {
   .toggle-active-button {
     position: absolute;

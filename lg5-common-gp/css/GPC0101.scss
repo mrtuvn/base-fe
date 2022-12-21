@@ -1,5 +1,5 @@
 @charset 'UTF-8';
-@import "./setting/variables";
+@use "./setting" as *;
 
 .GPC0101 {
   @mixin flex($direction: row) {
